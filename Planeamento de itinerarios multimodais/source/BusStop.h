@@ -18,6 +18,7 @@ class BusStop{
 public:
 	BusStop(const std::string &code, const std::string &name, const Coordinates &coords);
 	const Coordinates& getCoords() const;
+	void print() const;
 };
 
 #endif /* SOURCE_BUSSTOP_H_ */

@@ -12,10 +12,13 @@
 #include <sstream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
 #include "BusStop.h"
+#include "BusLine.h"
+#include "BusRoute.h"
 
 class Map {
 public:

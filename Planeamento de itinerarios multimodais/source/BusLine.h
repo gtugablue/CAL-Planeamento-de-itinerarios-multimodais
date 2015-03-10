@@ -1,5 +1,5 @@
 /*
- * BusLine.h
+ * BusEdge.h
  *
  *  Created on: 09/03/2015
  *      Author: Gustavo
@@ -13,9 +13,12 @@
 
 class BusLine {
 private:
-	std::vector<Coordinates> route;
+	std::vector<Coordinates> line;
 public:
-	BusLine(const std::vector<Coordinates> &route);
+	BusLine();
+	BusLine(const std::vector<Coordinates> &line);
+	void addPoint(const Coordinates &coords);
+	void print() const;
 };
 
 #endif /* SOURCE_BUSLINE_H_ */
