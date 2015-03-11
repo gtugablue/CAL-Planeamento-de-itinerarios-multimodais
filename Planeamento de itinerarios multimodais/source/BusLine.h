@@ -14,9 +14,9 @@
 class BusLine {
 private:
 	std::vector<Coordinates> line;
+	double length;
 public:
 	BusLine();
-	BusLine(const std::vector<Coordinates> &line);
 	void addPoint(const Coordinates &coords);
 	void print() const;
 };

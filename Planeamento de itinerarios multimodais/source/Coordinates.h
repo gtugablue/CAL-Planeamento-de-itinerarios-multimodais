@@ -8,6 +8,8 @@
 #ifndef SOURCE_COORDINATES_H_
 #define SOURCE_COORDINATES_H_
 
+#include <math.h>
+
 class Coordinates {
 private:
 	double latitude;
@@ -16,6 +18,7 @@ public:
 	Coordinates(double latitude, double longitude);
 	double getLatitude() const;
 	double getLongitude() const;
+	double calcDist(const Coordinates &coordinates) const;
 };
 
 #endif /* SOURCE_COORDINATES_H_ */
