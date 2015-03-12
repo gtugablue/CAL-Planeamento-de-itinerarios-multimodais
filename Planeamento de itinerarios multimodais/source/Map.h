@@ -13,9 +13,12 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "rapidjson/document.h"
-#include "rapidjson/writer.h"
-#include "rapidjson/stringbuffer.h"
+#include "include/rapidjson/document.h"
+#include "include/rapidjson/writer.h"
+#include "include/rapidjson/stringbuffer.h"
+#include "include/rapidxml/rapidxml.hpp"
+#include "include/rapidxml/rapidxml_utils.hpp"
+#include "include/rapidxml/rapidxml_print.hpp"
 #include "BusStop.h"
 #include "BusLine.h"
 #include "BusRoute.h"

@@ -51,6 +51,22 @@ void Map::load()
 		busLines.push_back(busLine);
 	}
 
+	ifstream infile2("data/horarios_tab/201-0-1-1.xml");
+	stringstream ss2;
+	ss2 << infile2.rdbuf();
+	infile2.close();
+
+
+	rapidxml::xml_document<> d2;
+	char xmlText[ss2.str().size() + 1];
+	strcpy(xmlText, ss2.str().c_str());
+	d2.parse<0>(xmlText);
+
+	rapidxml::xml_node<> *node = d2.first_node("table");
+	node = node->first_node("tr");
+	node = node->first_node("th");
+	cout << "XML Test: " << node->value() << endl;
+
 	BusRoute busRoute(busStops, busLines);
 	busRoute.print();
 }
