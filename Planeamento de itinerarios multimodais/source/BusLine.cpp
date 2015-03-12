@@ -7,6 +7,7 @@
 
 #include "BusLine.h"
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -18,15 +19,16 @@ BusLine::BusLine():
 
 void BusLine::addPoint(const Coordinates &coords)
 {
+	if (line.size() > 0)
+		length += line[line.size() - 1].calcDist(coords);
 	line.push_back(coords);
-	length += line[line.size() - 2].calcDist(coords);
 }
 
 void BusLine::print() const
 {
-	cout << "Line length: " << length << endl;
+	cout << "Line length: " << length << " km" << endl;
 	for (size_t i = 0; i < line.size(); ++i)
 	{
-		cout << line[i].getLatitude() << " - " << line[i].getLongitude() << endl;
+		cout << setprecision(10) << line[i].getLatitude() << " - " << line[i].getLongitude() << endl;
 	}
 }
