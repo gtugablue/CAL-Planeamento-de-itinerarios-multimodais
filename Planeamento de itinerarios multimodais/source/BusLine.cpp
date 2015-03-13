@@ -17,6 +17,16 @@ BusLine::BusLine():
 
 }
 
+double BusLine::getLength() const
+{
+	return length;
+}
+
+const std::vector<Coordinates>& BusLine::getLine() const
+{
+	return line;
+}
+
 void BusLine::addPoint(const Coordinates &coords)
 {
 	if (line.size() > 0)

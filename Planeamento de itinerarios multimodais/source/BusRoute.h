@@ -20,6 +20,8 @@ private:
 public:
 	BusRoute(const std::vector<BusStop> &busStops, const std::vector<BusLine> &busLines);
 	void print() const;
+	const std::vector<BusLine>& getBusLines() const;
+	const std::vector<BusStop>& getBusStops() const;
 };
 
 #endif /* SOURCE_BUSROUTE_H_ */
