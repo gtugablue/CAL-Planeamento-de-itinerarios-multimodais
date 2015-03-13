@@ -12,8 +12,18 @@
 using namespace std;
 
 BusRoute::BusRoute(const vector<BusStop> &busStops, const vector<BusLine> &busLines):
-		busStops(busStops), busLines(busLines)
+				busStops(busStops), busLines(busLines)
 {
+}
+
+const std::vector<BusLine>& BusRoute::getBusLines() const
+{
+	return busLines;
+}
+
+const std::vector<BusStop>& BusRoute::getBusStops() const
+{
+	return busStops;
 }
 
 void BusRoute::print() const
