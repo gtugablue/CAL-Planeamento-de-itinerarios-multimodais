@@ -19,6 +19,8 @@ public:
 	BusLine();
 	void addPoint(const Coordinates &coords);
 	void print() const;
+	double getLength() const;
+	const std::vector<Coordinates>& getLine() const;
 };
 
 #endif /* SOURCE_BUSLINE_H_ */

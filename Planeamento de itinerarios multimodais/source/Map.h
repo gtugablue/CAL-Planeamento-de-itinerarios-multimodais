@@ -24,9 +24,12 @@
 #include "BusRoute.h"
 
 class Map {
+private:
+	std::vector<BusRoute> busRoutes;
 public:
 	Map();
 	void load();
+	const std::vector<BusRoute>& getBusRoutes() const;
 };
 
 #endif /* SOURCE_MAP_H_ */

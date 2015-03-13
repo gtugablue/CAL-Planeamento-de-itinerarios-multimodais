@@ -14,6 +14,10 @@ Map::Map() {
 
 }
 
+const std::vector<BusRoute>& Map::getBusRoutes() const {
+	return busRoutes;
+}
+
 void Map::load()
 {
 	ifstream infile("data/linedraw/201-0.txt");
@@ -67,6 +71,6 @@ void Map::load()
 	node = node->first_node("th");
 	cout << "XML Test: " << node->value() << endl;
 
-	BusRoute busRoute(busStops, busLines);
-	busRoute.print();
+	busRoutes.push_back(BusRoute(busStops, busLines));
+	busRoutes[0].print();
 }
