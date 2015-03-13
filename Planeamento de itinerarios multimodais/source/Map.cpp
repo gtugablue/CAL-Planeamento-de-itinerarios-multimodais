@@ -24,6 +24,7 @@ const std::vector<BusRoute>& Map::getBusRoutes() const {
 void Map::Loader::parseJsonFile(const std::string file, rapidjson::Document &d) const
 {
 	ifstream infile(file.c_str());
+	infile.exceptions(ios::failbit | ios::badbit);
 	stringstream ss;
 	ss << infile.rdbuf();
 	d.Parse(ss.str().c_str());
@@ -33,6 +34,7 @@ void Map::Loader::parseJsonFile(const std::string file, rapidjson::Document &d) 
 void Map::Loader::parseXMLFile(const std::string file, rapidxml::xml_document<> &d) const
 {
 	ifstream infile(file.c_str());
+	infile.exceptions(ios::failbit | ios::badbit);
 	stringstream ss;
 	ss << infile.rdbuf();
 	infile.close();
@@ -102,9 +104,8 @@ std::vector<BusLine> Map::Loader::loadBusLines(const rapidjson::Document &d) con
 
 Map Map::Loader::load()
 {
-	vector<string> fileNames = getFilesInFolder(busLinesFolder);
 	Map map;
-
+	vector<string> fileNames = getFilesInFolder(busLinesFolder);
 	for (size_t i = 0; i < fileNames.size(); ++i)
 	{
 		rapidjson::Document d;
@@ -125,6 +126,5 @@ Map Map::Loader::load()
 		node = node->first_node("th");
 		cout << "XML Test: " << node->value() << endl;
 	}
-
 	return map;
 }
