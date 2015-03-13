@@ -6,42 +6,85 @@
  */
 
 #include "Map.h"
+#include <dirent/dirent.h>
 
 using namespace std;
 
-Map::Map() {
-	// TODO Auto-generated constructor stub
+const string Map::Loader::busLinesFolder = "data/linedraw/";
+const string Map::Loader::busStopsFolder = "data/linestops/";
+const string Map::Loader::timetablesFolder = "data/horarios_tab/";
 
+Map::Map() {
 }
 
 const std::vector<BusRoute>& Map::getBusRoutes() const {
 	return busRoutes;
 }
 
-void Map::load()
+void Map::Loader::parseJsonFile(const std::string file, rapidjson::Document &d) const
 {
-	ifstream infile("data/linedraw/201-0.txt");
+	ifstream infile(file.c_str());
 	stringstream ss;
 	ss << infile.rdbuf();
-	rapidjson::Document d;
 	d.Parse(ss.str().c_str());
 	infile.close();
+}
 
+void Map::Loader::parseXMLFile(const std::string file, rapidxml::xml_document<> &d) const
+{
+	ifstream infile(file.c_str());
+	stringstream ss;
+	ss << infile.rdbuf();
+	infile.close();
+	char xmlText[ss.str().size() + 1];
+	strcpy(xmlText, ss.str().c_str());
+	d.parse<0>(xmlText);
+}
+
+std::vector<std::string> Map::Loader::getFilesInFolder(const std::string &folder) const
+{
+	vector<string> fileNames;
+
+	DIR *dir;
+	struct dirent *ent;
+	if ((dir = opendir (folder.c_str())) != NULL) {
+		/* print all the files and directories within directory */
+		readdir(dir); // Skip "."
+		readdir(dir); // Skip ".."
+		while ((ent = readdir (dir)) != NULL) {
+			fileNames.push_back(ent->d_name);
+		}
+		closedir (dir);
+	} else {
+		/* could not open directory */
+		perror ("");
+		return fileNames;
+	}
+
+	return fileNames;
+}
+
+std::vector<BusStop> Map::Loader::loadBusStops(const rapidjson::Document &d) const
+{
 	vector<BusStop> busStops;
 	for (size_t i = 0; i < d["locations"].Size(); ++i)
 	{
-		rapidjson::Value &location = d["locations"][i];
+		const rapidjson::Value &location = d["locations"][i];
 		string geomdesc = location["geomdesc"].GetString();
 		rapidjson::Document geo;
 		geo.Parse(geomdesc.c_str());
 		rapidjson::Value &coords = geo["coordinates"];
 		busStops.push_back(BusStop(location["code"].GetString(), location["name"].GetString(), Coordinates(coords[1].GetDouble(), coords[0].GetDouble())));
 	}
+	return busStops;
+}
 
+std::vector<BusLine> Map::Loader::loadBusLines(const rapidjson::Document &d) const
+{
 	vector<BusLine> busLines;
 	for (size_t i = 0; i < d["route"].Size(); ++i)
 	{
-		rapidjson::Value &line = d["route"][i];
+		const rapidjson::Value &line = d["route"][i];
 		string geomdesc = line["geomdesc"].GetString();
 		rapidjson::Document geo;
 		geo.Parse(geomdesc.c_str());
@@ -54,23 +97,34 @@ void Map::load()
 		}
 		busLines.push_back(busLine);
 	}
+	return busLines;
+}
 
-	ifstream infile2("data/horarios_tab/201-0-1-1.xml");
-	stringstream ss2;
-	ss2 << infile2.rdbuf();
-	infile2.close();
+Map Map::Loader::load()
+{
+	vector<string> fileNames = getFilesInFolder(busLinesFolder);
+	Map map;
 
+	for (size_t i = 0; i < fileNames.size(); ++i)
+	{
+		rapidjson::Document d;
+		parseJsonFile(busLinesFolder + fileNames[i], d);
+		vector<BusStop> busStops = loadBusStops(d);
+		vector<BusLine> busLines = loadBusLines(d);
+		map.busRoutes.push_back(BusRoute(busStops, busLines));
+		map.busRoutes[i].print();
+	}
 
-	rapidxml::xml_document<> d2;
-	char xmlText[ss2.str().size() + 1];
-	strcpy(xmlText, ss2.str().c_str());
-	d2.parse<0>(xmlText);
+	fileNames = getFilesInFolder(timetablesFolder);
+	for (size_t i = 0; i < fileNames.size(); ++i)
+	{
+		rapidxml::xml_document<> d2;
+		parseXMLFile(timetablesFolder + fileNames[i], d2);
+		rapidxml::xml_node<> *node = d2.first_node("table");
+		node = node->first_node("tr");
+		node = node->first_node("th");
+		cout << "XML Test: " << node->value() << endl;
+	}
 
-	rapidxml::xml_node<> *node = d2.first_node("table");
-	node = node->first_node("tr");
-	node = node->first_node("th");
-	cout << "XML Test: " << node->value() << endl;
-
-	busRoutes.push_back(BusRoute(busStops, busLines));
-	busRoutes[0].print();
+	return map;
 }

@@ -28,7 +28,21 @@ private:
 	std::vector<BusRoute> busRoutes;
 public:
 	Map();
-	void load();
+
+	class Loader {
+	private:
+		static const std::string busLinesFolder;
+		static const std::string busStopsFolder;
+		static const std::string timetablesFolder;
+		std::vector<std::string> getFilesInFolder(const std::string &folder) const;
+		void parseJsonFile(const std::string file, rapidjson::Document &d) const;
+		void parseXMLFile(const std::string file, rapidxml::xml_document<> &d) const;
+		std::vector<BusStop> loadBusStops(const rapidjson::Document &d) const;
+		std::vector<BusLine> loadBusLines(const rapidjson::Document &d) const;
+	public:
+		Map load();
+	};
+	friend class Loader;
 	const std::vector<BusRoute>& getBusRoutes() const;
 };
 
