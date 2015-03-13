@@ -35,7 +35,7 @@ void Map::load()
 		rapidjson::Document geo;
 		geo.Parse(geomdesc.c_str());
 		rapidjson::Value &coords = geo["coordinates"];
-		busStops.push_back(BusStop(location["code"].GetString(), location["name"].GetString(), Coordinates(coords[0].GetDouble(), coords[1].GetDouble())));
+		busStops.push_back(BusStop(location["code"].GetString(), location["name"].GetString(), Coordinates(coords[1].GetDouble(), coords[0].GetDouble())));
 	}
 
 	vector<BusLine> busLines;
@@ -49,7 +49,7 @@ void Map::load()
 		BusLine busLine;
 		for (size_t j = 0; j < coords.Size(); ++j)
 		{
-			Coordinates coord(coords[j][0].GetDouble(), coords[j][1].GetDouble());
+			Coordinates coord(coords[j][1].GetDouble(), coords[j][0].GetDouble());
 			busLine.addPoint(coord);
 		}
 		busLines.push_back(busLine);

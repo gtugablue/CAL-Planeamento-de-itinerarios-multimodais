@@ -13,10 +13,9 @@ int main(int argc, char *argv[])
 	Map map;
 	map.load();
 
-
 	SDL_Init(SDL_INIT_VIDEO);
-	SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
-	SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	SDL_Window *win = SDL_CreateWindow("Linha 201", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+	SDL_Renderer *ren = SDL_CreateRenderer(win, (int)-1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 	SDL_SetRenderDrawColor(ren, 0x00, 0x00, 0xFF, 0xFF );
 
@@ -46,16 +45,14 @@ int main(int argc, char *argv[])
 			Coordinates coord = busLines[i].getLine()[j];
 			Coordinates coord2 = busLines[i].getLine()[j - 1];
 			SDL_RenderDrawLine(ren, resize(coord.getLongitude(), minLong, maxLong, 0, 640),
-					resize(coord.getLatitude(), minLat, maxLat, 0, 480),
+					480 - resize(coord.getLatitude(), minLat, maxLat, 0, 480),
 					resize(coord2.getLongitude(), minLong, maxLong, 0, 640),
-					resize(coord2.getLatitude(), minLat, maxLat, 0, 480));
-			SDL_RenderPresent(ren);
-			//SDL_Delay(3);
+					480 - resize(coord2.getLatitude(), minLat, maxLat, 0, 480));
 		}
 	}
 
 	SDL_Event Events;    //The SDL event that we will poll to get events.
-
+	SDL_RenderPresent(ren);
 	while (true)
 	{
 		SDL_PollEvent(&Events);
