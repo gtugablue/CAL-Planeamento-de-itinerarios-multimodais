@@ -10,8 +10,8 @@ double resize(double x, double minX, double maxX, double minScreen, double maxSc
 
 int main(int argc, char *argv[])
 {
-	Map map;
-	map.load();
+	Map::Loader l;
+	Map map = l.load();
 
 	SDL_Init(SDL_INIT_VIDEO);
 	SDL_Window *win = SDL_CreateWindow("Linha 201", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
