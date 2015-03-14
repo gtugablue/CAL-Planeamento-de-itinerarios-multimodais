@@ -10,7 +10,7 @@
 
 using namespace std;
 
-const string Map::Loader::busLinesFolder = "data/linedraw/";
+const string Map::Loader::BusEdgesFolder = "data/linedraw/";
 const string Map::Loader::busStopsFolder = "data/linestops/";
 const string Map::Loader::timetablesFolder = "data/horarios_tab/";
 
@@ -81,9 +81,9 @@ std::vector<BusStop> Map::Loader::loadBusStops(const rapidjson::Document &d) con
 	return busStops;
 }
 
-std::vector<BusLine> Map::Loader::loadBusLines(const rapidjson::Document &d) const
+std::vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d) const
 {
-	vector<BusLine> busLines;
+	vector<BusEdge> BusEdges;
 	for (size_t i = 0; i < d["route"].Size(); ++i)
 	{
 		const rapidjson::Value &line = d["route"][i];
@@ -91,28 +91,28 @@ std::vector<BusLine> Map::Loader::loadBusLines(const rapidjson::Document &d) con
 		rapidjson::Document geo;
 		geo.Parse(geomdesc.c_str());
 		rapidjson::Value &coords = geo["coordinates"];
-		BusLine busLine;
+		BusEdge BusEdge;
 		for (size_t j = 0; j < coords.Size(); ++j)
 		{
 			Coordinates coord(coords[j][1].GetDouble(), coords[j][0].GetDouble());
-			busLine.addPoint(coord);
+			BusEdge.addPoint(coord);
 		}
-		busLines.push_back(busLine);
+		BusEdges.push_back(BusEdge);
 	}
-	return busLines;
+	return BusEdges;
 }
 
 Map Map::Loader::load()
 {
 	Map map;
-	vector<string> fileNames = getFilesInFolder(busLinesFolder);
+	vector<string> fileNames = getFilesInFolder(BusEdgesFolder);
 	for (size_t i = 0; i < fileNames.size(); ++i)
 	{
 		rapidjson::Document d;
-		parseJsonFile(busLinesFolder + fileNames[i], d);
+		parseJsonFile(BusEdgesFolder + fileNames[i], d);
 		vector<BusStop> busStops = loadBusStops(d);
-		vector<BusLine> busLines = loadBusLines(d);
-		map.busRoutes.push_back(BusRoute(busStops, busLines));
+		vector<BusEdge> BusEdges = loadBusEdges(d);
+		map.busRoutes.push_back(BusRoute(busStops, BusEdges));
 		map.busRoutes[i].print();
 	}
 

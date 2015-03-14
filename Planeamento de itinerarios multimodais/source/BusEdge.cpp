@@ -5,38 +5,33 @@
  *      Author: Gustavo
  */
 
-#include "BusLine.h"
+#include "BusEdge.h"
 #include <iostream>
 #include <iomanip>
 
 using namespace std;
 
-BusLine::BusLine():
-		length(0.0)
+BusEdge::BusEdge(Vertex *src, Vertex *dst):
+		Edge(src, dst)
 {
 
 }
 
-double BusLine::getLength() const
-{
-	return length;
-}
-
-const std::vector<Coordinates>& BusLine::getLine() const
+const std::vector<Coordinates>& BusEdge::getLine() const
 {
 	return line;
 }
 
-void BusLine::addPoint(const Coordinates &coords)
+void BusEdge::addPoint(const Coordinates &coords)
 {
 	if (line.size() > 0)
-		length += line[line.size() - 1].calcDist(coords);
+		storedWeight += line[line.size() - 1].calcDist(coords);
 	line.push_back(coords);
 }
 
-void BusLine::print() const
+void BusEdge::print() const
 {
-	cout << "Line length: " << length << " km" << endl;
+	cout << "Line length: " << storedWeight << " km" << endl;
 	for (size_t i = 0; i < line.size(); ++i)
 	{
 		cout << setprecision(10) << line[i].getLatitude() << " - " << line[i].getLongitude() << endl;

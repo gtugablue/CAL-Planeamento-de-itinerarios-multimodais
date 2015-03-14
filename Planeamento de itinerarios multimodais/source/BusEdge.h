@@ -5,22 +5,21 @@
  *      Author: Gustavo
  */
 
-#ifndef SOURCE_BUSLINE_H_
-#define SOURCE_BUSLINE_H_
+#ifndef SOURCE_BUSEDGE_H_
+#define SOURCE_BUSEDGE_H_
 
 #include <vector>
 #include "Coordinates.h"
+#include "Edge.h"
 
-class BusLine {
+class BusEdge: public Edge {
 private:
 	std::vector<Coordinates> line;
-	double length;
 public:
-	BusLine();
+	BusEdge(Vertex *src, Vertex *dst);
 	void addPoint(const Coordinates &coords);
 	void print() const;
-	double getLength() const;
 	const std::vector<Coordinates>& getLine() const;
 };
 
-#endif /* SOURCE_BUSLINE_H_ */
+#endif /* SOURCE_BUSEDGE_H_ */

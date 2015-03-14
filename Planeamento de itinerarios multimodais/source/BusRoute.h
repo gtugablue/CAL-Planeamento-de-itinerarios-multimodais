@@ -11,16 +11,16 @@
 #include <vector>
 #include "Coordinates.h"
 #include "BusStop.h"
-#include "BusLine.h"
+#include "BusEdge.h"
 
 class BusRoute {
 private:
 	std::vector<BusStop> busStops;
-	std::vector<BusLine> busLines;
+	std::vector<BusEdge> BusEdges;
 public:
-	BusRoute(const std::vector<BusStop> &busStops, const std::vector<BusLine> &busLines);
+	BusRoute(const std::vector<BusStop> &busStops, const std::vector<BusEdge> &BusEdges);
 	void print() const;
-	const std::vector<BusLine>& getBusLines() const;
+	const std::vector<BusEdge>& getBusEdges() const;
 	const std::vector<BusStop>& getBusStops() const;
 };
 
