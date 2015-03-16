@@ -1,22 +1,23 @@
 #ifndef VERTEX_H
 #define VERTEX_H
 
-#include "Edge.h"
 #include "SDLGraphDraw.h"
 #include <vector>
 #include <list>
 
 using namespace std;
 
+class Edge;
+
 class Vertex{
 	static unsigned int lastID;
-	const unsigned int id;
 	unsigned int index;
 	unsigned int x;
 	unsigned int y;
 	vector<Edge*> adj;
 public:
-	Vertex(unsigned int index, unsigned int x,	unsigned int y): id(0){
+	Vertex() { } // TODO: Delete
+	Vertex(unsigned int index, unsigned int x,	unsigned int y){
 		this->x = x;
 		this->y = y;
 		this->index = index;
