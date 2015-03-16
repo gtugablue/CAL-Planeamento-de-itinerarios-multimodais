@@ -9,8 +9,9 @@
 #define SOURCE_COORDINATES_H_
 
 #include <math.h>
+#include "Vertex.h"
 
-class Coordinates {
+class Coordinates: public Vertex{
 private:
 	double latitude;
 	double longitude;

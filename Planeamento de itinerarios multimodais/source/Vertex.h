@@ -8,9 +8,6 @@
 
 using namespace std;
 
-class Edge;
-
-
 class Vertex{
 	static unsigned int lastID;
 	const unsigned int id;

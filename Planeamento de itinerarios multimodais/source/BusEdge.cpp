@@ -11,8 +11,7 @@
 
 using namespace std;
 
-BusEdge::BusEdge(Vertex *src, Vertex *dst):
-		Edge(src, dst)
+BusEdge::BusEdge()
 {
 
 }

@@ -12,10 +12,11 @@
 #include "Coordinates.h"
 #include "Edge.h"
 
-class BusEdge: public Edge {
+class BusEdge: Edge{
 private:
 	std::vector<Coordinates> line;
 public:
+	BusEdge();
 	BusEdge(Vertex *src, Vertex *dst);
 	void addPoint(const Coordinates &coords);
 	void print() const;

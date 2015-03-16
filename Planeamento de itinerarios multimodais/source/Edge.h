@@ -8,12 +8,11 @@ using namespace std;
 #include "SDLRGB.h"
 #include "math.h"
 
-class Vertex;
-
 class Edge{
 private:
 	static unsigned int lastID;
 	const unsigned int id;
+protected:
 	double storedWeight;
 	Vertex* src;
 	Vertex* dst;
