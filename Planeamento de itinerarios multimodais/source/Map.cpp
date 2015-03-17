@@ -95,7 +95,7 @@ std::vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d) con
 		for (size_t j = 0; j < coords.Size(); ++j)
 		{
 			Coordinates coord(coords[j][1].GetDouble(), coords[j][0].GetDouble());
-			coordinates.push_back(coordinates[i]);
+			coordinates.push_back(coord);
 		}
 		Vertex *src = new Vertex(coordinates[0].getLongitude(), coordinates[0].getLatitude());
 		Vertex *dst = new Vertex(coordinates[coords.Size() - 1].getLongitude(), coordinates[coords.Size() - 1].getLatitude());
@@ -117,7 +117,6 @@ Map Map::Loader::load()
 		map.busRoutes.push_back(BusRoute(busStops, BusEdges));
 		map.busRoutes[i].print();
 	}
-
 	fileNames = getFilesInFolder(timetablesFolder);
 	for (size_t i = 0; i < fileNames.size(); ++i)
 	{
@@ -128,5 +127,6 @@ Map Map::Loader::load()
 		node = node->first_node("th");
 		cout << "XML Test: " << node->value() << endl;
 	}
+	cout << "derp" << endl;
 	return map;
 }

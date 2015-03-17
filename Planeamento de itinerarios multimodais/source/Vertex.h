@@ -1,12 +1,13 @@
 #ifndef VERTEX_H
 #define VERTEX_H
 
-#include "Edge.h"
 #include "SDLGraphDraw.h"
 #include <vector>
 #include <list>
 
 using namespace std;
+
+class Edge;
 
 class Vertex{
 	unsigned int x;

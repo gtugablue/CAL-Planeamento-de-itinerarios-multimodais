@@ -15,7 +15,6 @@ int main(int argc, char *argv[])
 	try
 	{
 		map = l.load();
-
 		SDL_Init(SDL_INIT_VIDEO);
 		SDL_Window *win = SDL_CreateWindow("Linha 201", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
 		SDL_Renderer *ren = SDL_CreateRenderer(win, (int)-1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
@@ -23,7 +22,6 @@ int main(int argc, char *argv[])
 		SDL_SetRenderDrawColor(ren, 0x00, 0x00, 0xFF, 0xFF );
 
 		double minLat = 999, minLong = 999, maxLat = -999, maxLong = -999;
-
 		BusRoute busRoute = map.getBusRoutes()[0];
 		const vector<BusEdge> &BusEdges = busRoute.getBusEdges();
 		for (size_t i = 0; i < BusEdges.size(); ++i)

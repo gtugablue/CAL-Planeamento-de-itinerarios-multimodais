@@ -10,7 +10,7 @@
 
 #include <math.h>
 
-class Coordinates {
+class Coordinates{
 private:
 	double latitude;
 	double longitude;
