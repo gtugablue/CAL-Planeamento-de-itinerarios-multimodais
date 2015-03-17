@@ -10,7 +10,8 @@
 using namespace std;
 
 BusEdge::BusEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
-		Edge(src, dst)
+		Edge(src, dst),
+		line(line)
 {
 
 }

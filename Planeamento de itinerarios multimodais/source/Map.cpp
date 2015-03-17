@@ -98,7 +98,7 @@ std::vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d) con
 			coordinates.push_back(coord);
 		}
 		Vertex *src = new Vertex(coordinates[0].getLongitude(), coordinates[0].getLatitude());
-		Vertex *dst = new Vertex(coordinates[coords.Size() - 1].getLongitude(), coordinates[coords.Size() - 1].getLatitude());
+		Vertex *dst = new Vertex(coordinates[coordinates.size() - 1].getLongitude(), coordinates[coordinates.size() - 1].getLatitude());
 		busEdges.push_back(BusEdge(src, dst, coordinates));
 	}
 	return busEdges;
@@ -127,6 +127,5 @@ Map Map::Loader::load()
 		node = node->first_node("th");
 		cout << "XML Test: " << node->value() << endl;
 	}
-	cout << "derp" << endl;
 	return map;
 }
