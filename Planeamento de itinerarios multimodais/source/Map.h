@@ -22,6 +22,7 @@
 #include "BusStop.h"
 #include "BusEdge.h"
 #include "BusRoute.h"
+#include "Vertex.h"
 
 class Map {
 private:

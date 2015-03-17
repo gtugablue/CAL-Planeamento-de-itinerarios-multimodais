@@ -4,7 +4,6 @@
 
 using namespace std;
 
-#include "Vertex.h"
 #include "SDLRGB.h"
 #include "math.h"
 
@@ -12,13 +11,12 @@ class Vertex;
 
 class Edge{
 private:
-	static unsigned int lastID;
-	const unsigned int id;
-	double storedWeight;
 	Vertex* src;
 	Vertex* dst;
+protected:
+	double storedWeight;
 public:
-    Edge(Vertex* src, Vertex* dst, double storedWeight = 0): id(0)
+    Edge(Vertex* src, Vertex* dst, double storedWeight = 0)
     {
         this->src = src;
         this->dst = dst;

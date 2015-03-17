@@ -6,12 +6,10 @@
  */
 
 #include "BusEdge.h"
-#include <iostream>
-#include <iomanip>
 
 using namespace std;
 
-BusEdge::BusEdge(Vertex *src, Vertex *dst):
+BusEdge::BusEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
 		Edge(src, dst)
 {
 

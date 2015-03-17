@@ -83,7 +83,7 @@ std::vector<BusStop> Map::Loader::loadBusStops(const rapidjson::Document &d) con
 
 std::vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d) const
 {
-	vector<BusEdge> BusEdges;
+	vector<BusEdge> busEdges;
 	for (size_t i = 0; i < d["route"].Size(); ++i)
 	{
 		const rapidjson::Value &line = d["route"][i];
@@ -91,15 +91,17 @@ std::vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d) con
 		rapidjson::Document geo;
 		geo.Parse(geomdesc.c_str());
 		rapidjson::Value &coords = geo["coordinates"];
-		BusEdge BusEdge;
+		vector<Coordinates> coordinates;
 		for (size_t j = 0; j < coords.Size(); ++j)
 		{
 			Coordinates coord(coords[j][1].GetDouble(), coords[j][0].GetDouble());
-			BusEdge.addPoint(coord);
+			coordinates.push_back(coordinates[i]);
 		}
-		BusEdges.push_back(BusEdge);
+		Vertex *src = new Vertex(coordinates[0].getLongitude(), coordinates[0].getLatitude());
+		Vertex *dst = new Vertex(coordinates[coords.Size() - 1].getLongitude(), coordinates[coords.Size() - 1].getLatitude());
+		busEdges.push_back(BusEdge(src, dst, coordinates));
 	}
-	return BusEdges;
+	return busEdges;
 }
 
 Map Map::Loader::load()
