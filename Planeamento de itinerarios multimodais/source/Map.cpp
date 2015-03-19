@@ -7,6 +7,7 @@
 
 #include "Map.h"
 #include <dirent/dirent.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -21,9 +22,13 @@ const std::vector<BusRoute>& Map::getBusRoutes() const {
 	return busRoutes;
 }
 
+const std::vector<BusStop>& Map::getBusStops() const
+{
+	return busStops;
+}
+
 void Map::Loader::parseJsonFile(const std::string file, rapidjson::Document &d) const
 {
-	cout << "Parsing file: " << file << endl;
 	ifstream infile(file.c_str());
 	infile.exceptions(ios::failbit | ios::badbit);
 	stringstream ss;
@@ -113,11 +118,26 @@ Map Map::Loader::load()
 	{
 		rapidjson::Document d;
 		parseJsonFile(BusEdgesFolder + fileNames[i], d);
-		vector<BusStop> busStops = loadBusStops(d);
+		vector<BusStop> loadedBusStops = loadBusStops(d);
+		vector<BusStop *> finalBusStops;
+		for (size_t j = 0; j < loadedBusStops.size(); ++j)
+		{
+			vector<BusStop>::iterator it = find(map.busStops.begin(), map.busStops.end(), loadedBusStops[j]);
+			if (it != map.busStops.end()) // Already loaded, we just need to point to it
+			{
+				finalBusStops.push_back(&*it);
+			}
+			else // Create it
+			{
+				map.busStops.push_back(loadedBusStops[j]);
+				finalBusStops.push_back(&map.busStops[map.busStops.size() - 1]);
+			}
+		}
 		vector<BusEdge> BusEdges = loadBusEdges(d);
-		map.busRoutes.push_back(BusRoute(busStops, BusEdges));
+		map.busRoutes.push_back(BusRoute(finalBusStops, BusEdges));
 		map.busRoutes[i].print();
 	}
+
 	fileNames = getFilesInFolder(timetablesFolder);
 	for (size_t i = 0; i < fileNames.size(); ++i)
 	{

@@ -11,7 +11,7 @@
 
 using namespace std;
 
-BusRoute::BusRoute(const vector<BusStop> &busStops, const vector<BusEdge> &BusEdges):
+BusRoute::BusRoute(const vector<BusStop *> &busStops, const vector<BusEdge> &BusEdges):
 				busStops(busStops), BusEdges(BusEdges)
 {
 }
@@ -21,7 +21,7 @@ const std::vector<BusEdge>& BusRoute::getBusEdges() const
 	return BusEdges;
 }
 
-const std::vector<BusStop>& BusRoute::getBusStops() const
+const std::vector<BusStop *>& BusRoute::getBusStops() const
 {
 	return busStops;
 }

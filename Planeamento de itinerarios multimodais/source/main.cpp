@@ -22,6 +22,11 @@ int main(int argc, char *argv[])
 		SDL_Window *win = SDL_CreateWindow("Autocarros STCP", 100, 100, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
 		SDL_Renderer *ren = SDL_CreateRenderer(win, (int)-1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
+		// Draw background map
+		SDL_Surface* background = SDL_LoadBMP("data/map.bmp");
+		SDL_Texture* background_text = SDL_CreateTextureFromSurface(ren, background);
+		SDL_RenderCopy(ren, background_text, NULL, NULL);
+
 		SDL_SetRenderDrawColor(ren, 0x00, 0x00, 0xFF, 0xFF );
 
 		// Position and scale map in window
@@ -64,19 +69,13 @@ int main(int argc, char *argv[])
 				}
 			}
 		}
-
 		// Draw Bus Stops
 		SDL_SetRenderDrawColor(ren, 0xFF, 0xFF, 0xFF, 0xFF);
-		for (size_t i = 0; i < map.getBusRoutes().size(); ++i)
+		for (size_t j = 0; j < map.getBusStops().size(); ++j)
 		{
-			BusRoute busRoute = map.getBusRoutes()[i];
-			const vector<BusStop> &busStops = busRoute.getBusStops();
-			for (size_t j = 0; j < busStops.size(); ++j)
-			{
-				Coordinates coords = busStops[j].getCoords();
-				SDL_RenderDrawPoint(ren, resize(coords.getLongitude(), minLong, maxLong, 0, WIDTH),
-						HEIGHT - resize(coords.getLatitude(), minLat, maxLat, 0, HEIGHT));
-			}
+			Coordinates coords = map.getBusStops()[j].getCoords();
+			SDL_RenderDrawPoint(ren, resize(coords.getLongitude(), minLong, maxLong, 0, WIDTH),
+					HEIGHT - resize(coords.getLatitude(), minLat, maxLat, 0, HEIGHT));
 		}
 
 		SDL_Event Events;    //The SDL event that we will poll to get events.
