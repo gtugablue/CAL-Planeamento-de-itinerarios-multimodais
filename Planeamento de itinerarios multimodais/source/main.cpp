@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
 			}
 		}
 		// Draw Bus Stops
-		SDL_SetRenderDrawColor(ren, 0xFF, 0xFF, 0xFF, 0xFF);
+		SDL_SetRenderDrawColor(ren, 0xFF, 0x00, 0x00, 0xFF);
 		for (size_t j = 0; j < map.getBusStops().size(); ++j)
 		{
 			Coordinates coords = map.getBusStops()[j].getCoords();
