@@ -23,6 +23,7 @@ const std::vector<BusRoute>& Map::getBusRoutes() const {
 
 void Map::Loader::parseJsonFile(const std::string file, rapidjson::Document &d) const
 {
+	cout << "Parsing file: " << file << endl;
 	ifstream infile(file.c_str());
 	infile.exceptions(ios::failbit | ios::badbit);
 	stringstream ss;

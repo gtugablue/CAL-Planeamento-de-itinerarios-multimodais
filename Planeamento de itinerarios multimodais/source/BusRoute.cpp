@@ -30,9 +30,9 @@ void BusRoute::print() const
 {
 	for (size_t i = 0; i < BusEdges.size(); ++i)
 	{
-		busStops[i].print();
-		BusEdges[i].print();
-		cout << endl;
+		//busStops[i].print();
+		//BusEdges[i].print();
+		//cout << endl;
 	}
-	busStops[BusEdges.size()].print();
+	//busStops[BusEdges.size()].print();
 }
