@@ -10,11 +10,14 @@
 
 #include <string>
 #include "Coordinates.h"
+#include <set>
+#include "Hour.h"
 
 class BusStop{
 	std::string code;
 	std::string name;
 	Coordinates coords;
+	std::set<Hour> schedule;
 public:
 	BusStop(const std::string &code, const std::string &name, const Coordinates &coords);
 	const Coordinates& getCoords() const;

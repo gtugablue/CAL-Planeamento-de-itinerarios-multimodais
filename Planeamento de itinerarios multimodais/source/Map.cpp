@@ -50,7 +50,6 @@ std::vector<std::string> Map::Loader::getFilesInFolder(const std::string &folder
 	DIR *dir;
 	struct dirent *ent;
 	if ((dir = opendir (folder.c_str())) != NULL) {
-		/* print all the files and directories within directory */
 		readdir(dir); // Skip "."
 		readdir(dir); // Skip ".."
 		while ((ent = readdir (dir)) != NULL) {
@@ -59,7 +58,7 @@ std::vector<std::string> Map::Loader::getFilesInFolder(const std::string &folder
 		closedir (dir);
 	} else {
 		/* could not open directory */
-		perror ("");
+		perror ("Couldn't open directory.");
 		return fileNames;
 	}
 
