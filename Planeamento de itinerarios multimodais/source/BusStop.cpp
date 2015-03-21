@@ -22,3 +22,8 @@ void BusStop::print() const
 	std::cout << "name: " << name << std::endl;
 	std::cout << "coords: " << coords.getLatitude() << " - " << coords.getLongitude() << std::endl << std::endl;
 }
+
+bool BusStop::operator==(const BusStop &busStop) const
+{
+	return code == busStop.code;
+}

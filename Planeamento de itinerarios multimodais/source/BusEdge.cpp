@@ -13,7 +13,11 @@ BusEdge::BusEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
 		Edge(src, dst),
 		line(line)
 {
-
+	storedWeight = 0;
+	for (size_t i = 1; i < line.size(); ++i)
+	{
+		storedWeight += line[i - 1].calcDist(line[i]);
+	}
 }
 
 const std::vector<Coordinates>& BusEdge::getLine() const
@@ -30,9 +34,9 @@ void BusEdge::addPoint(const Coordinates &coords)
 
 void BusEdge::print() const
 {
-	cout << "Line length: " << storedWeight << " km" << endl;
+	/*cout << "Line length: " << storedWeight << " km" << endl;
 	for (size_t i = 0; i < line.size(); ++i)
 	{
 		cout << setprecision(10) << line[i].getLatitude() << " - " << line[i].getLongitude() << endl;
-	}
+	}*/
 }

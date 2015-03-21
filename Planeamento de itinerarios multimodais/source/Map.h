@@ -27,6 +27,7 @@
 class Map {
 private:
 	std::vector<BusRoute> busRoutes;
+	std::vector<BusStop> busStops;
 public:
 	Map();
 
@@ -45,6 +46,7 @@ public:
 	};
 	friend class Loader;
 	const std::vector<BusRoute>& getBusRoutes() const;
+	const std::vector<BusStop>& getBusStops() const;
 };
 
 #endif /* SOURCE_MAP_H_ */

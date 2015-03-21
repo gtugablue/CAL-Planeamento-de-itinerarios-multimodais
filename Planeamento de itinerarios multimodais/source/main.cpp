@@ -1,6 +1,9 @@
 #include "Map.h"
 #include "include/SDL2/SDL.h"
 
+#define WIDTH 800
+#define HEIGHT 600
+
 using namespace std;
 
 double resize(double x, double minX, double maxX, double minScreen, double maxScreen)
@@ -16,40 +19,63 @@ int main(int argc, char *argv[])
 	{
 		map = l.load();
 		SDL_Init(SDL_INIT_VIDEO);
-		SDL_Window *win = SDL_CreateWindow("Linha 201", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+		SDL_Window *win = SDL_CreateWindow("Autocarros STCP", 100, 100, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
 		SDL_Renderer *ren = SDL_CreateRenderer(win, (int)-1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
+		// Draw background map
+		SDL_Surface* background = SDL_LoadBMP("data/map.bmp");
+		SDL_Texture* background_text = SDL_CreateTextureFromSurface(ren, background);
+		SDL_RenderCopy(ren, background_text, NULL, NULL);
 
 		SDL_SetRenderDrawColor(ren, 0x00, 0x00, 0xFF, 0xFF );
 
+		// Position and scale map in window
 		double minLat = 999, minLong = 999, maxLat = -999, maxLong = -999;
-		BusRoute busRoute = map.getBusRoutes()[0];
-		const vector<BusEdge> &BusEdges = busRoute.getBusEdges();
-		for (size_t i = 0; i < BusEdges.size(); ++i)
+		for (size_t i = 0; i < map.getBusRoutes().size(); ++i)
 		{
-			for (size_t j = 0; j < BusEdges[i].getLine().size(); ++j)
+			BusRoute busRoute = map.getBusRoutes()[i];
+			const vector<BusEdge> &BusEdges = busRoute.getBusEdges();
+			for (size_t j = 0; j < BusEdges.size(); ++j)
 			{
-				if (minLat > BusEdges[i].getLine()[j].getLatitude())
-					minLat = BusEdges[i].getLine()[j].getLatitude();
-				if (minLong > BusEdges[i].getLine()[j].getLongitude())
-					minLong = BusEdges[i].getLine()[j].getLongitude();
-				if (maxLat < BusEdges[i].getLine()[j].getLatitude())
-					maxLat = BusEdges[i].getLine()[j].getLatitude();
-				if (maxLong < BusEdges[i].getLine()[j].getLongitude())
-					maxLong = BusEdges[i].getLine()[j].getLongitude();
+				for (size_t k = 0; k < BusEdges[j].getLine().size(); ++k)
+				{
+					if (minLat > BusEdges[j].getLine()[k].getLatitude())
+						minLat = BusEdges[j].getLine()[k].getLatitude();
+					if (minLong > BusEdges[j].getLine()[k].getLongitude())
+						minLong = BusEdges[j].getLine()[k].getLongitude();
+					if (maxLat < BusEdges[j].getLine()[k].getLatitude())
+						maxLat = BusEdges[j].getLine()[k].getLatitude();
+					if (maxLong < BusEdges[j].getLine()[k].getLongitude())
+						maxLong = BusEdges[j].getLine()[k].getLongitude();
+				}
 			}
 		}
 
-		for (size_t i = 0; i < BusEdges.size(); ++i)
+		// Draw Bus Routes
+		for (size_t i = 0; i < map.getBusRoutes().size(); ++i)
 		{
-			for (size_t j = 1; j < BusEdges[i].getLine().size(); ++j)
+			BusRoute busRoute = map.getBusRoutes()[i];
+			const vector<BusEdge> &BusEdges = busRoute.getBusEdges();
+			for (size_t j = 0; j < BusEdges.size(); ++j)
 			{
-				Coordinates coord = BusEdges[i].getLine()[j];
-				Coordinates coord2 = BusEdges[i].getLine()[j - 1];
-				SDL_RenderDrawLine(ren, resize(coord.getLongitude(), minLong, maxLong, 0, 640),
-						480 - resize(coord.getLatitude(), minLat, maxLat, 0, 480),
-						resize(coord2.getLongitude(), minLong, maxLong, 0, 640),
-						480 - resize(coord2.getLatitude(), minLat, maxLat, 0, 480));
+				for (size_t k = 1; k < BusEdges[j].getLine().size(); ++k)
+				{
+					Coordinates coord = BusEdges[j].getLine()[k];
+					Coordinates coord2 = BusEdges[j].getLine()[k - 1];
+					SDL_RenderDrawLine(ren, resize(coord.getLongitude(), minLong, maxLong, 0, WIDTH),
+							HEIGHT - resize(coord.getLatitude(), minLat, maxLat, 0, HEIGHT),
+							resize(coord2.getLongitude(), minLong, maxLong, 0, WIDTH),
+							HEIGHT - resize(coord2.getLatitude(), minLat, maxLat, 0, HEIGHT));
+				}
 			}
+		}
+		// Draw Bus Stops
+		SDL_SetRenderDrawColor(ren, 0xFF, 0x00, 0x00, 0xFF);
+		for (size_t j = 0; j < map.getBusStops().size(); ++j)
+		{
+			Coordinates coords = map.getBusStops()[j].getCoords();
+			SDL_RenderDrawPoint(ren, resize(coords.getLongitude(), minLong, maxLong, 0, WIDTH),
+					HEIGHT - resize(coords.getLatitude(), minLat, maxLat, 0, HEIGHT));
 		}
 
 		SDL_Event Events;    //The SDL event that we will poll to get events.
