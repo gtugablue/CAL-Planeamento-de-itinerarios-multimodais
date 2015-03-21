@@ -4,10 +4,9 @@
 #include "SDLGraphDraw.h"
 #include <vector>
 #include <list>
+#include "Edge.h"
 
 using namespace std;
-
-class Edge;
 
 class Vertex{
 	unsigned int x;

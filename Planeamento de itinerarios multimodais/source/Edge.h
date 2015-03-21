@@ -6,7 +6,6 @@ using namespace std;
 
 #include "SDLRGB.h"
 #include "math.h"
-#include "Vertex.h"
 
 class Vertex;
 
