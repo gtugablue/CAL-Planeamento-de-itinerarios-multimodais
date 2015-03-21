@@ -39,14 +39,8 @@ void Map::Loader::parseJsonFile(const std::string file, rapidjson::Document &d) 
 
 void Map::Loader::parseXMLFile(const std::string file, rapidxml::xml_document<> &d) const
 {
-	ifstream infile(file.c_str());
-	infile.exceptions(ios::failbit | ios::badbit);
-	stringstream ss;
-	ss << infile.rdbuf();
-	infile.close();
-	char xmlText[ss.str().size() + 1];
-	strcpy(xmlText, ss.str().c_str());
-	d.parse<0>(xmlText);
+	rapidxml::file<> xmlFile(file.c_str());
+	d.parse<0>(xmlFile.data());
 }
 
 std::vector<std::string> Map::Loader::getFilesInFolder(const std::string &folder) const
