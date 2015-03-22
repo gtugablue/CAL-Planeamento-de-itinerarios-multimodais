@@ -37,10 +37,9 @@ void Map::Loader::parseJsonFile(const std::string file, rapidjson::Document &d) 
 	infile.close();
 }
 
-void Map::Loader::parseXMLFile(const std::string file, rapidxml::xml_document<> &d) const
+void Map::Loader::parseXMLFile(rapidxml::file<> &file, rapidxml::xml_document<> &d) const
 {
-	rapidxml::file<> xmlFile(file.c_str());
-	d.parse<0>(xmlFile.data());
+	d.parse<rapidxml::parse_full|rapidxml::parse_no_utf8>(file.data());
 }
 
 std::vector<std::string> Map::Loader::getFilesInFolder(const std::string &folder) const
@@ -126,21 +125,32 @@ Map Map::Loader::load()
 	for (size_t i = 0; i < fileNames.size(); ++i)
 	{
 		rapidxml::xml_document<> d2;
-		parseXMLFile(timetablesFolder + fileNames[i], d2);
+		rapidxml::file<> xmlFile((timetablesFolder + fileNames[i]).c_str());
+		parseXMLFile(xmlFile, d2);
 		rapidxml::xml_node<> *node = d2.first_node("table");
 		node = node->first_node("tr");
 		node = node->first_node("th");
-		cout << "XML Test: " << node->value() << endl;
+		cout << "XML Test: " << node->value() << " " << d2.first_node()->name() << endl;
 	}
 
 	/*// Road test
 	rapidxml::xml_document<> d;
-	parseXMLFile("data/map.xml", d);
-	rapidxml::xml_node <> *node = d.first_node("osm");
+	rapidxml::file<> xmlFile("data/map.xml");
+	cout << "Parsing map..." << endl;
+	parseXMLFile(xmlFile, d);
+	cout << "Map parsed! Transversing it..." << endl;
+
+	rapidxml::xml_node<> *node = d.first_node("osm");
 	for (rapidxml::xml_node<> *child = node->first_node(); child; child = child->next_sibling())
 	{
-		//
-	}*/
+		if (string(child->name()) != "node")
+			continue;
+		Coordinates coords(strtod(child->first_attribute("lat")->value(), NULL),
+				strtod(child->first_attribute("lon")->value(), NULL));
+		Vertex vertex(coords);
+		map.vertices.push_back(new Vertex(vertex));
+	}
+	cout << "Map transversed!" << endl;*/
 
 	return map;
 }
