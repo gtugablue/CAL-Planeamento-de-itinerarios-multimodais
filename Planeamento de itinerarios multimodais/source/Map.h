@@ -38,7 +38,7 @@ public:
 		static const std::string timetablesFolder;
 		std::vector<std::string> getFilesInFolder(const std::string &folder) const;
 		void parseJsonFile(const std::string file, rapidjson::Document &d) const;
-		void parseXMLFile(const std::string file, rapidxml::xml_document<> &d) const;
+		void parseXMLFile(rapidxml::file<> &file, rapidxml::xml_document<> &d) const;
 		std::vector<BusStop> loadBusStops(const rapidjson::Document &d) const;
 		std::vector<BusEdge> loadBusEdges(const rapidjson::Document &d) const;
 	public:
