@@ -12,11 +12,11 @@
 #include "Coordinates.h"
 #include <set>
 #include "Hour.h"
+#include "Vertex.h"
 
-class BusStop{
+class BusStop : public Vertex {
 	std::string code;
 	std::string name;
-	Coordinates coords;
 	std::set<Hour> schedule;
 public:
 	BusStop(const std::string &code, const std::string &name, const Coordinates &coords);

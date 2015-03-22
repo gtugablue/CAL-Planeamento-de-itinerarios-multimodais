@@ -96,8 +96,8 @@ std::vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d) con
 			Coordinates coord(coords[j][1].GetDouble(), coords[j][0].GetDouble());
 			coordinates.push_back(coord);
 		}
-		Vertex *src = new Vertex(coordinates[0].getLongitude(), coordinates[0].getLatitude());
-		Vertex *dst = new Vertex(coordinates[coordinates.size() - 1].getLongitude(), coordinates[coordinates.size() - 1].getLatitude());
+		Vertex *src = new Vertex(coordinates[0]);
+		Vertex *dst = new Vertex(coordinates[coordinates.size() - 1]);
 		busEdges.push_back(BusEdge(src, dst, coordinates));
 	}
 	return busEdges;

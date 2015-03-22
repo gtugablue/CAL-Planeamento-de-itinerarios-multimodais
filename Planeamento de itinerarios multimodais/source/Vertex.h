@@ -5,33 +5,20 @@
 #include <vector>
 #include <list>
 #include "Edge.h"
-
-using namespace std;
+#include "Coordinates.h"
 
 class Vertex{
-	unsigned int x;
-	unsigned int y;
-	vector<Edge*> adj;
+private:
+	std::vector<Edge*> adj;
+protected:
+	Coordinates coords;
 public:
-	Vertex(unsigned int x,	unsigned int y){
-		this->x = x;
-		this->y = y;
-	}
-
-	vector<Edge*> getAdj()const{return adj;};
+	Vertex(const Coordinates &coords): coords(coords) { }
+	std::vector<Edge*> getAdj()const{return adj;};
 	void addAdj(Vertex* v, double weight =0);
-
-	virtual unsigned int getRenderX() {
-		return x;
-	}
-
-	;
-
-	virtual unsigned int getRenderY() {
-		return y;
-	}
-
-	;
+	Coordinates getCoords() const { return coords; }
+	double getRenderX() const { return coords.getLongitude(); }
+	double getRenderY() const { return coords.getLatitude(); }
 };
 
 

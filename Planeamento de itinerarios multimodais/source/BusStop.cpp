@@ -8,7 +8,8 @@
 #include "BusStop.h"
 #include <iostream>
 
-BusStop::BusStop(const std::string &code, const std::string &name, const Coordinates &coords): code(code), name(name), coords(coords)
+BusStop::BusStop(const std::string &code, const std::string &name, const Coordinates &coords):
+	Vertex(coords), code(code), name(name)
 {
 }
 
