@@ -71,9 +71,9 @@ int main(int argc, char *argv[])
 		}
 		// Draw Bus Stops
 		SDL_SetRenderDrawColor(ren, 0xFF, 0x00, 0x00, 0xFF);
-		for (size_t j = 0; j < map.getBusStops().size(); ++j)
+		for (size_t j = 0; j < map.getVertices().size(); ++j)
 		{
-			Coordinates coords = map.getBusStops()[j].getCoords();
+			Coordinates coords = map.getVertices()[j]->getCoords();
 			SDL_RenderDrawPoint(ren, resize(coords.getLongitude(), minLong, maxLong, 0, WIDTH),
 					HEIGHT - resize(coords.getLatitude(), minLat, maxLat, 0, HEIGHT));
 		}
@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
 		SDL_Quit();
 		return 0;
 	}
-	catch (std::fstream::failure e)
+	catch (std::fstream::failure &e)
 	{
 		cout << "derpou" << endl;
 		std::cerr << e.what();

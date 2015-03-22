@@ -13,10 +13,6 @@ BusStop::BusStop(const std::string &code, const std::string &name, const Coordin
 {
 }
 
-const Coordinates& BusStop::getCoords() const {
-	return coords;
-}
-
 void BusStop::print() const
 {
 	std::cout << "code: " << code << std::endl;

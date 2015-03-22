@@ -22,9 +22,9 @@ const std::vector<BusRoute>& Map::getBusRoutes() const {
 	return busRoutes;
 }
 
-const std::vector<BusStop>& Map::getBusStops() const
+const std::vector<Vertex *>& Map::getVertices() const
 {
-	return busStops;
+	return vertices;
 }
 
 void Map::Loader::parseJsonFile(const std::string file, rapidjson::Document &d) const
@@ -115,16 +115,7 @@ Map Map::Loader::load()
 		vector<BusStop *> finalBusStops;
 		for (size_t j = 0; j < loadedBusStops.size(); ++j)
 		{
-			vector<BusStop>::iterator it = find(map.busStops.begin(), map.busStops.end(), loadedBusStops[j]);
-			if (it != map.busStops.end()) // Already loaded, we just need to point to it
-			{
-				finalBusStops.push_back(&*it);
-			}
-			else // Create it
-			{
-				map.busStops.push_back(loadedBusStops[j]);
-				finalBusStops.push_back(&map.busStops[map.busStops.size() - 1]);
-			}
+			finalBusStops.push_back(new BusStop(loadedBusStops[j])); // TODO: free
 		}
 		vector<BusEdge> BusEdges = loadBusEdges(d);
 		map.busRoutes.push_back(BusRoute(finalBusStops, BusEdges));
@@ -141,5 +132,15 @@ Map Map::Loader::load()
 		node = node->first_node("th");
 		cout << "XML Test: " << node->value() << endl;
 	}
+
+	/*// Road test
+	rapidxml::xml_document<> d;
+	parseXMLFile("data/map.xml", d);
+	rapidxml::xml_node <> *node = d.first_node("osm");
+	for (rapidxml::xml_node<> *child = node->first_node(); child; child = child->next_sibling())
+	{
+		//
+	}*/
+
 	return map;
 }
