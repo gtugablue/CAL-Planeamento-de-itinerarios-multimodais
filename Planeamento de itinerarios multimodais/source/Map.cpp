@@ -22,9 +22,9 @@ const std::vector<BusRoute>& Map::getBusRoutes() const {
 	return busRoutes;
 }
 
-const std::vector<Vertex *>& Map::getVertices() const
+const std::vector<BusStop *>& Map::getBusStops() const
 {
-	return vertices;
+	return busStops;
 }
 
 void Map::Loader::parseJsonFile(const std::string file, rapidjson::Document &d) const
@@ -64,9 +64,9 @@ std::vector<std::string> Map::Loader::getFilesInFolder(const std::string &folder
 	return fileNames;
 }
 
-std::vector<BusStop> Map::Loader::loadBusStops(const rapidjson::Document &d) const
+vector<BusStop *> Map::Loader::loadBusStops(const rapidjson::Document &d) const
 {
-	vector<BusStop> busStops;
+	vector<BusStop *> busStops;
 	for (size_t i = 0; i < d["locations"].Size(); ++i)
 	{
 		const rapidjson::Value &location = d["locations"][i];
@@ -74,12 +74,12 @@ std::vector<BusStop> Map::Loader::loadBusStops(const rapidjson::Document &d) con
 		rapidjson::Document geo;
 		geo.Parse(geomdesc.c_str());
 		rapidjson::Value &coords = geo["coordinates"];
-		busStops.push_back(BusStop(location["code"].GetString(), location["name"].GetString(), Coordinates(coords[1].GetDouble(), coords[0].GetDouble())));
+		busStops.push_back(new BusStop(location["code"].GetString(), location["name"].GetString(), Coordinates(coords[1].GetDouble(), coords[0].GetDouble())));
 	}
 	return busStops;
 }
 
-std::vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d) const
+vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d) const
 {
 	vector<BusEdge> busEdges;
 	for (size_t i = 0; i < d["route"].Size(); ++i)
@@ -110,17 +110,12 @@ Map Map::Loader::load()
 	{
 		rapidjson::Document d;
 		parseJsonFile(BusEdgesFolder + fileNames[i], d);
-		vector<BusStop> loadedBusStops = loadBusStops(d);
-		vector<BusStop *> finalBusStops;
-		for (size_t j = 0; j < loadedBusStops.size(); ++j)
-		{
-			finalBusStops.push_back(new BusStop(loadedBusStops[j])); // TODO: free
-		}
+		vector<BusStop *> loadedBusStops = loadBusStops(d);
+		map.busStops.insert(map.busStops.end(), loadedBusStops.begin(), loadedBusStops.end());
 		vector<BusEdge> BusEdges = loadBusEdges(d);
-		map.busRoutes.push_back(BusRoute(finalBusStops, BusEdges));
+		map.busRoutes.push_back(BusRoute(loadedBusStops, BusEdges));
 		map.busRoutes[i].print();
 	}
-
 	fileNames = getFilesInFolder(timetablesFolder);
 	for (size_t i = 0; i < fileNames.size(); ++i)
 	{

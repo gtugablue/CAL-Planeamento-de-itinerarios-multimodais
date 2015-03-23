@@ -71,9 +71,9 @@ int main(int argc, char *argv[])
 		}
 		// Draw Bus Stops
 		SDL_SetRenderDrawColor(ren, 0xFF, 0x00, 0x00, 0xFF);
-		for (size_t j = 0; j < map.getVertices().size(); ++j)
+		for (size_t j = 0; j < map.getBusStops().size(); ++j)
 		{
-			Coordinates coords = map.getVertices()[j]->getCoords();
+			Coordinates coords = map.getBusStops()[j]->getCoords();
 			SDL_RenderDrawPoint(ren, resize(coords.getLongitude(), minLong, maxLong, 0, WIDTH),
 					HEIGHT - resize(coords.getLatitude(), minLat, maxLat, 0, HEIGHT));
 		}

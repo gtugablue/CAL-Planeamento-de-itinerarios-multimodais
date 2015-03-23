@@ -27,7 +27,7 @@
 class Map {
 private:
 	std::vector<BusRoute> busRoutes;
-	std::vector<Vertex *> vertices;
+	std::vector<BusStop *> busStops;
 public:
 	Map();
 
@@ -39,14 +39,14 @@ public:
 		std::vector<std::string> getFilesInFolder(const std::string &folder) const;
 		void parseJsonFile(const std::string file, rapidjson::Document &d) const;
 		void parseXMLFile(rapidxml::file<> &file, rapidxml::xml_document<> &d) const;
-		std::vector<BusStop> loadBusStops(const rapidjson::Document &d) const;
+		std::vector<BusStop *> loadBusStops(const rapidjson::Document &d) const;
 		std::vector<BusEdge> loadBusEdges(const rapidjson::Document &d) const;
 	public:
 		Map load();
 	};
 	friend class Loader;
 	const std::vector<BusRoute>& getBusRoutes() const;
-	const std::vector<Vertex *>& getVertices() const;
+	const std::vector<BusStop *>& getBusStops() const;
 };
 
 #endif /* SOURCE_MAP_H_ */
