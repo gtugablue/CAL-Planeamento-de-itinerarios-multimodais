@@ -1,0 +1,49 @@
+			<table class="bus-horarios-list">
+									<tr>
+											<th>COIMBROES-SUL</th>
+												<th>GAIA-CAMARA</th>
+												<th>ALIADOS</th>
+												<th>H. S. JOAO</th>
+											</tr>
+					<tr>							<td class="odd">
+								01:15							</td>
+														<td class="odd">
+								01:23							</td>
+														<td class="odd">
+								01:33							</td>
+														<td class="odd">
+								01:43							</td>
+							</tr><tr>							<td class="even">
+								02:15							</td>
+														<td class="even">
+								02:23							</td>
+														<td class="even">
+								02:33							</td>
+														<td class="even">
+								02:43							</td>
+							</tr><tr>							<td class="odd">
+								03:15							</td>
+														<td class="odd">
+								03:23							</td>
+														<td class="odd">
+								03:33							</td>
+														<td class="odd">
+								03:43							</td>
+							</tr><tr>							<td class="even">
+								04:15							</td>
+														<td class="even">
+								04:23							</td>
+														<td class="even">
+								04:33							</td>
+														<td class="even">
+								04:43							</td>
+							</tr><tr>							<td class="odd">
+								05:15							</td>
+														<td class="odd">
+								05:23							</td>
+														<td class="odd">
+								05:33							</td>
+														<td class="odd">
+								05:43							</td>
+							</tr>			</table>
+			

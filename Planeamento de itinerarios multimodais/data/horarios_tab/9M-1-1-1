@@ -1,0 +1,83 @@
+			<table class="bus-horarios-list">
+									<tr>
+											<th>GONDOMAR</th>
+												<th>S. ROQUE</th>
+												<th>AREOSA</th>
+												<th>H. S. JOAO</th>
+												<th>MTE. BURGOS</th>
+												<th>NORTESHOPPING</th>
+											</tr>
+					<tr>							<td class="odd">
+								00:30							</td>
+														<td class="odd">
+								00:43							</td>
+														<td class="odd">
+								00:48							</td>
+														<td class="odd">
+								00:50							</td>
+														<td class="odd">
+								00:53							</td>
+														<td class="odd">
+								00:58							</td>
+							</tr><tr>							<td class="even">
+								01:30							</td>
+														<td class="even">
+								01:43							</td>
+														<td class="even">
+								01:48							</td>
+														<td class="even">
+								01:50							</td>
+														<td class="even">
+								01:53							</td>
+														<td class="even">
+								01:58							</td>
+							</tr><tr>							<td class="odd">
+								02:30							</td>
+														<td class="odd">
+								02:43							</td>
+														<td class="odd">
+								02:48							</td>
+														<td class="odd">
+								02:50							</td>
+														<td class="odd">
+								02:53							</td>
+														<td class="odd">
+								02:58							</td>
+							</tr><tr>							<td class="even">
+								03:30							</td>
+														<td class="even">
+								03:43							</td>
+														<td class="even">
+								03:48							</td>
+														<td class="even">
+								03:50							</td>
+														<td class="even">
+								03:53							</td>
+														<td class="even">
+								03:58							</td>
+							</tr><tr>							<td class="odd">
+								04:30							</td>
+														<td class="odd">
+								04:43							</td>
+														<td class="odd">
+								04:48							</td>
+														<td class="odd">
+								04:50							</td>
+														<td class="odd">
+								04:53							</td>
+														<td class="odd">
+								04:58							</td>
+							</tr><tr>							<td class="even">
+								05:30							</td>
+														<td class="even">
+								05:43							</td>
+														<td class="even">
+								05:48							</td>
+														<td class="even">
+								05:50							</td>
+														<td class="even">
+								05:53							</td>
+														<td class="even">
+								05:58							</td>
+							</tr>			</table>
+			

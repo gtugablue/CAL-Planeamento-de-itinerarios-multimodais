@@ -1,0 +1,49 @@
+			<table class="bus-horarios-list">
+									<tr>
+											<th>ALIADOS</th>
+												<th>AMIAL</th>
+												<th>PONTE PEDRA</th>
+												<th>MAIA</th>
+											</tr>
+					<tr>							<td class="odd">
+								01:00							</td>
+														<td class="odd">
+								01:13							</td>
+														<td class="odd">
+								01:18							</td>
+														<td class="odd">
+								01:25							</td>
+							</tr><tr>							<td class="even">
+								02:00							</td>
+														<td class="even">
+								02:13							</td>
+														<td class="even">
+								02:18							</td>
+														<td class="even">
+								02:25							</td>
+							</tr><tr>							<td class="odd">
+								03:00							</td>
+														<td class="odd">
+								03:13							</td>
+														<td class="odd">
+								03:18							</td>
+														<td class="odd">
+								03:25							</td>
+							</tr><tr>							<td class="even">
+								04:00							</td>
+														<td class="even">
+								04:13							</td>
+														<td class="even">
+								04:18							</td>
+														<td class="even">
+								04:25							</td>
+							</tr><tr>							<td class="odd">
+								05:00							</td>
+														<td class="odd">
+								05:13							</td>
+														<td class="odd">
+								05:18							</td>
+														<td class="odd">
+								05:25							</td>
+							</tr>			</table>
+			

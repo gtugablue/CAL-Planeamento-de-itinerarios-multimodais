@@ -1,0 +1,71 @@
+			<table class="bus-horarios-list">
+									<tr>
+											<th>ALIADOS</th>
+												<th>MASSARELOS</th>
+												<th>LORDELO</th>
+												<th>MERCADO FOZ</th>
+												<th>C. QUEIJO</th>
+												<th>MATOSINHOS-CAMARA</th>
+											</tr>
+					<tr>							<td class="odd">
+								01:00							</td>
+														<td class="odd">
+								01:03							</td>
+														<td class="odd">
+								01:10							</td>
+														<td class="odd">
+								01:15							</td>
+														<td class="odd">
+								01:20							</td>
+														<td class="odd">
+								01:23							</td>
+							</tr><tr>							<td class="even">
+								02:00							</td>
+														<td class="even">
+								02:03							</td>
+														<td class="even">
+								02:10							</td>
+														<td class="even">
+								02:15							</td>
+														<td class="even">
+								02:20							</td>
+														<td class="even">
+								02:23							</td>
+							</tr><tr>							<td class="odd">
+								03:00							</td>
+														<td class="odd">
+								03:03							</td>
+														<td class="odd">
+								03:10							</td>
+														<td class="odd">
+								03:15							</td>
+														<td class="odd">
+								03:20							</td>
+														<td class="odd">
+								03:23							</td>
+							</tr><tr>							<td class="even">
+								04:00							</td>
+														<td class="even">
+								04:03							</td>
+														<td class="even">
+								04:10							</td>
+														<td class="even">
+								04:15							</td>
+														<td class="even">
+								04:20							</td>
+														<td class="even">
+								04:23							</td>
+							</tr><tr>							<td class="odd">
+								05:00							</td>
+														<td class="odd">
+								05:03							</td>
+														<td class="odd">
+								05:10							</td>
+														<td class="odd">
+								05:15							</td>
+														<td class="odd">
+								05:20							</td>
+														<td class="odd">
+								05:23							</td>
+							</tr>			</table>
+			

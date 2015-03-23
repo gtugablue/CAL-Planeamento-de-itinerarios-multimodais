@@ -1,0 +1,60 @@
+			<table class="bus-horarios-list">
+									<tr>
+											<th>ALIADOS</th>
+												<th>BOAVISTA</th>
+												<th>ROTUNDA AEP</th>
+												<th>MATOSINHOS-CAMARA</th>
+												<th>MATOSINHOS-MERCADO</th>
+											</tr>
+					<tr>							<td class="odd">
+								01:00							</td>
+														<td class="odd">
+								01:08							</td>
+														<td class="odd">
+								01:18							</td>
+														<td class="odd">
+								01:23							</td>
+														<td class="odd">
+								01:28							</td>
+							</tr><tr>							<td class="even">
+								02:00							</td>
+														<td class="even">
+								02:08							</td>
+														<td class="even">
+								02:18							</td>
+														<td class="even">
+								02:23							</td>
+														<td class="even">
+								02:28							</td>
+							</tr><tr>							<td class="odd">
+								03:00							</td>
+														<td class="odd">
+								03:08							</td>
+														<td class="odd">
+								03:18							</td>
+														<td class="odd">
+								03:23							</td>
+														<td class="odd">
+								03:28							</td>
+							</tr><tr>							<td class="even">
+								04:00							</td>
+														<td class="even">
+								04:08							</td>
+														<td class="even">
+								04:18							</td>
+														<td class="even">
+								04:23							</td>
+														<td class="even">
+								04:28							</td>
+							</tr><tr>							<td class="odd">
+								05:00							</td>
+														<td class="odd">
+								05:08							</td>
+														<td class="odd">
+								05:18							</td>
+														<td class="odd">
+								05:23							</td>
+														<td class="odd">
+								05:28							</td>
+							</tr>			</table>
+			

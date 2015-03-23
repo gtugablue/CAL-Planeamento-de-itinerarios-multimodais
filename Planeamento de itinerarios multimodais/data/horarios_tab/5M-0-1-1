@@ -1,0 +1,60 @@
+			<table class="bus-horarios-list">
+									<tr>
+											<th>ALIADOS</th>
+												<th>MARQUES</th>
+												<th>AREOSA</th>
+												<th>ALTO DA MAIA</th>
+												<th>ERMESINDE</th>
+											</tr>
+					<tr>							<td class="odd">
+								01:00							</td>
+														<td class="odd">
+								01:05							</td>
+														<td class="odd">
+								01:13							</td>
+														<td class="odd">
+								01:20							</td>
+														<td class="odd">
+								01:28							</td>
+							</tr><tr>							<td class="even">
+								02:00							</td>
+														<td class="even">
+								02:05							</td>
+														<td class="even">
+								02:13							</td>
+														<td class="even">
+								02:20							</td>
+														<td class="even">
+								02:28							</td>
+							</tr><tr>							<td class="odd">
+								03:00							</td>
+														<td class="odd">
+								03:05							</td>
+														<td class="odd">
+								03:13							</td>
+														<td class="odd">
+								03:20							</td>
+														<td class="odd">
+								03:28							</td>
+							</tr><tr>							<td class="even">
+								04:00							</td>
+														<td class="even">
+								04:05							</td>
+														<td class="even">
+								04:13							</td>
+														<td class="even">
+								04:20							</td>
+														<td class="even">
+								04:28							</td>
+							</tr><tr>							<td class="odd">
+								05:00							</td>
+														<td class="odd">
+								05:05							</td>
+														<td class="odd">
+								05:13							</td>
+														<td class="odd">
+								05:20							</td>
+														<td class="odd">
+								05:28							</td>
+							</tr>			</table>
+			

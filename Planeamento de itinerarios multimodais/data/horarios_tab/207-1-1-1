@@ -1,0 +1,640 @@
+			<table class="bus-horarios-list">
+									<tr>
+											<th>MERCADO FOZ</th>
+												<th>LORDELO</th>
+												<th>PR. GALIZA</th>
+												<th>PR. LIBERDADE</th>
+												<th>CAMPANHA</th>
+											</tr>
+					<tr>							<td class="odd">
+								06:00							</td>
+														<td class="odd">
+								06:15							</td>
+														<td class="odd">
+								06:23							</td>
+														<td class="odd">
+								06:33							</td>
+														<td class="odd">
+								06:43							</td>
+							</tr><tr>							<td class="even">
+								06:20							</td>
+														<td class="even">
+								06:35							</td>
+														<td class="even">
+								06:43							</td>
+														<td class="even">
+								06:53							</td>
+														<td class="even">
+								07:03							</td>
+							</tr><tr>							<td class="odd">
+								06:40							</td>
+														<td class="odd">
+								06:55							</td>
+														<td class="odd">
+								07:03							</td>
+														<td class="odd">
+								07:13							</td>
+														<td class="odd">
+								07:23							</td>
+							</tr><tr>							<td class="even">
+								07:00							</td>
+														<td class="even">
+								07:15							</td>
+														<td class="even">
+								07:23							</td>
+														<td class="even">
+								07:33							</td>
+														<td class="even">
+								07:43							</td>
+							</tr><tr>							<td class="odd">
+								07:13							</td>
+														<td class="odd">
+								07:28							</td>
+														<td class="odd">
+								07:36							</td>
+														<td class="odd">
+								07:46							</td>
+														<td class="odd">
+								07:56							</td>
+							</tr><tr>							<td class="even">
+								07:25							</td>
+														<td class="even">
+								07:40							</td>
+														<td class="even">
+								07:48							</td>
+														<td class="even">
+								07:58							</td>
+														<td class="even">
+								08:08							</td>
+							</tr><tr>							<td class="odd">
+								07:37							</td>
+														<td class="odd">
+								07:52							</td>
+														<td class="odd">
+								08:00							</td>
+														<td class="odd">
+								08:10							</td>
+														<td class="odd">
+								08:20							</td>
+							</tr><tr>							<td class="even">
+								07:49							</td>
+														<td class="even">
+								08:04							</td>
+														<td class="even">
+								08:12							</td>
+														<td class="even">
+								08:22							</td>
+														<td class="even">
+								08:32							</td>
+							</tr><tr>							<td class="odd">
+								08:01							</td>
+														<td class="odd">
+								08:16							</td>
+														<td class="odd">
+								08:26							</td>
+														<td class="odd">
+								08:36							</td>
+														<td class="odd">
+								08:51							</td>
+							</tr><tr>							<td class="even">
+								08:13							</td>
+														<td class="even">
+								08:28							</td>
+														<td class="even">
+								08:38							</td>
+														<td class="even">
+								08:48							</td>
+														<td class="even">
+								09:03							</td>
+							</tr><tr>							<td class="odd">
+								08:25							</td>
+														<td class="odd">
+								08:40							</td>
+														<td class="odd">
+								08:50							</td>
+														<td class="odd">
+								09:00							</td>
+														<td class="odd">
+								09:15							</td>
+							</tr><tr>							<td class="even">
+								08:37							</td>
+														<td class="even">
+								08:52							</td>
+														<td class="even">
+								09:02							</td>
+														<td class="even">
+								09:12							</td>
+														<td class="even">
+								09:27							</td>
+							</tr><tr>							<td class="odd">
+								08:49							</td>
+														<td class="odd">
+								09:04							</td>
+														<td class="odd">
+								09:14							</td>
+														<td class="odd">
+								09:24							</td>
+														<td class="odd">
+								09:39							</td>
+							</tr><tr>							<td class="even">
+								09:01							</td>
+														<td class="even">
+								09:16							</td>
+														<td class="even">
+								09:26							</td>
+														<td class="even">
+								09:36							</td>
+														<td class="even">
+								09:51							</td>
+							</tr><tr>							<td class="odd">
+								09:15							</td>
+														<td class="odd">
+								09:30							</td>
+														<td class="odd">
+								09:40							</td>
+														<td class="odd">
+								09:50							</td>
+														<td class="odd">
+								10:05							</td>
+							</tr><tr>							<td class="even">
+								09:30							</td>
+														<td class="even">
+								09:45							</td>
+														<td class="even">
+								09:55							</td>
+														<td class="even">
+								10:05							</td>
+														<td class="even">
+								10:20							</td>
+							</tr><tr>							<td class="odd">
+								09:45							</td>
+														<td class="odd">
+								10:00							</td>
+														<td class="odd">
+								10:10							</td>
+														<td class="odd">
+								10:20							</td>
+														<td class="odd">
+								10:35							</td>
+							</tr><tr>							<td class="even">
+								10:00							</td>
+														<td class="even">
+								10:15							</td>
+														<td class="even">
+								10:25							</td>
+														<td class="even">
+								10:35							</td>
+														<td class="even">
+								10:50							</td>
+							</tr><tr>							<td class="odd">
+								10:15							</td>
+														<td class="odd">
+								10:30							</td>
+														<td class="odd">
+								10:40							</td>
+														<td class="odd">
+								10:50							</td>
+														<td class="odd">
+								11:05							</td>
+							</tr><tr>							<td class="even">
+								10:30							</td>
+														<td class="even">
+								10:45							</td>
+														<td class="even">
+								10:55							</td>
+														<td class="even">
+								11:05							</td>
+														<td class="even">
+								11:20							</td>
+							</tr><tr>							<td class="odd">
+								10:45							</td>
+														<td class="odd">
+								11:00							</td>
+														<td class="odd">
+								11:10							</td>
+														<td class="odd">
+								11:20							</td>
+														<td class="odd">
+								11:35							</td>
+							</tr><tr>							<td class="even">
+								11:00							</td>
+														<td class="even">
+								11:15							</td>
+														<td class="even">
+								11:25							</td>
+														<td class="even">
+								11:35							</td>
+														<td class="even">
+								11:50							</td>
+							</tr><tr>							<td class="odd">
+								11:15							</td>
+														<td class="odd">
+								11:30							</td>
+														<td class="odd">
+								11:40							</td>
+														<td class="odd">
+								11:50							</td>
+														<td class="odd">
+								12:05							</td>
+							</tr><tr>							<td class="even">
+								11:30							</td>
+														<td class="even">
+								11:45							</td>
+														<td class="even">
+								11:55							</td>
+														<td class="even">
+								12:05							</td>
+														<td class="even">
+								12:20							</td>
+							</tr><tr>							<td class="odd">
+								11:45							</td>
+														<td class="odd">
+								12:00							</td>
+														<td class="odd">
+								12:10							</td>
+														<td class="odd">
+								12:20							</td>
+														<td class="odd">
+								12:35							</td>
+							</tr><tr>							<td class="even">
+								12:00							</td>
+														<td class="even">
+								12:15							</td>
+														<td class="even">
+								12:25							</td>
+														<td class="even">
+								12:35							</td>
+														<td class="even">
+								12:50							</td>
+							</tr><tr>							<td class="odd">
+								12:15							</td>
+														<td class="odd">
+								12:30							</td>
+														<td class="odd">
+								12:40							</td>
+														<td class="odd">
+								12:50							</td>
+														<td class="odd">
+								13:05							</td>
+							</tr><tr>							<td class="even">
+								12:30							</td>
+														<td class="even">
+								12:45							</td>
+														<td class="even">
+								12:55							</td>
+														<td class="even">
+								13:05							</td>
+														<td class="even">
+								13:20							</td>
+							</tr><tr>							<td class="odd">
+								12:45							</td>
+														<td class="odd">
+								13:00							</td>
+														<td class="odd">
+								13:10							</td>
+														<td class="odd">
+								13:20							</td>
+														<td class="odd">
+								13:35							</td>
+							</tr><tr>							<td class="even">
+								13:00							</td>
+														<td class="even">
+								13:15							</td>
+														<td class="even">
+								13:25							</td>
+														<td class="even">
+								13:35							</td>
+														<td class="even">
+								13:50							</td>
+							</tr><tr>							<td class="odd">
+								13:15							</td>
+														<td class="odd">
+								13:30							</td>
+														<td class="odd">
+								13:40							</td>
+														<td class="odd">
+								13:50							</td>
+														<td class="odd">
+								14:05							</td>
+							</tr><tr>							<td class="even">
+								13:30							</td>
+														<td class="even">
+								13:45							</td>
+														<td class="even">
+								13:55							</td>
+														<td class="even">
+								14:05							</td>
+														<td class="even">
+								14:20							</td>
+							</tr><tr>							<td class="odd">
+								13:45							</td>
+														<td class="odd">
+								14:00							</td>
+														<td class="odd">
+								14:10							</td>
+														<td class="odd">
+								14:20							</td>
+														<td class="odd">
+								14:35							</td>
+							</tr><tr>							<td class="even">
+								14:00							</td>
+														<td class="even">
+								14:15							</td>
+														<td class="even">
+								14:25							</td>
+														<td class="even">
+								14:35							</td>
+														<td class="even">
+								14:50							</td>
+							</tr><tr>							<td class="odd">
+								14:15							</td>
+														<td class="odd">
+								14:30							</td>
+														<td class="odd">
+								14:40							</td>
+														<td class="odd">
+								14:50							</td>
+														<td class="odd">
+								15:05							</td>
+							</tr><tr>							<td class="even">
+								14:30							</td>
+														<td class="even">
+								14:45							</td>
+														<td class="even">
+								14:55							</td>
+														<td class="even">
+								15:05							</td>
+														<td class="even">
+								15:20							</td>
+							</tr><tr>							<td class="odd">
+								14:45							</td>
+														<td class="odd">
+								15:00							</td>
+														<td class="odd">
+								15:10							</td>
+														<td class="odd">
+								15:20							</td>
+														<td class="odd">
+								15:35							</td>
+							</tr><tr>							<td class="even">
+								15:00							</td>
+														<td class="even">
+								15:15							</td>
+														<td class="even">
+								15:25							</td>
+														<td class="even">
+								15:35							</td>
+														<td class="even">
+								15:50							</td>
+							</tr><tr>							<td class="odd">
+								15:15							</td>
+														<td class="odd">
+								15:30							</td>
+														<td class="odd">
+								15:40							</td>
+														<td class="odd">
+								15:50							</td>
+														<td class="odd">
+								16:05							</td>
+							</tr><tr>							<td class="even">
+								15:30							</td>
+														<td class="even">
+								15:45							</td>
+														<td class="even">
+								15:55							</td>
+														<td class="even">
+								16:05							</td>
+														<td class="even">
+								16:20							</td>
+							</tr><tr>							<td class="odd">
+								15:45							</td>
+														<td class="odd">
+								16:00							</td>
+														<td class="odd">
+								16:10							</td>
+														<td class="odd">
+								16:20							</td>
+														<td class="odd">
+								16:35							</td>
+							</tr><tr>							<td class="even">
+								16:00							</td>
+														<td class="even">
+								16:15							</td>
+														<td class="even">
+								16:25							</td>
+														<td class="even">
+								16:35							</td>
+														<td class="even">
+								16:50							</td>
+							</tr><tr>							<td class="odd">
+								16:14							</td>
+														<td class="odd">
+								16:29							</td>
+														<td class="odd">
+								16:39							</td>
+														<td class="odd">
+								16:49							</td>
+														<td class="odd">
+								17:04							</td>
+							</tr><tr>							<td class="even">
+								16:28							</td>
+														<td class="even">
+								16:46							</td>
+														<td class="even">
+								16:56							</td>
+														<td class="even">
+								17:06							</td>
+														<td class="even">
+								17:21							</td>
+							</tr><tr>							<td class="odd">
+								16:41							</td>
+														<td class="odd">
+								16:59							</td>
+														<td class="odd">
+								17:09							</td>
+														<td class="odd">
+								17:19							</td>
+														<td class="odd">
+								17:34							</td>
+							</tr><tr>							<td class="even">
+								16:52							</td>
+														<td class="even">
+								17:10							</td>
+														<td class="even">
+								17:20							</td>
+														<td class="even">
+								17:30							</td>
+														<td class="even">
+								17:45							</td>
+							</tr><tr>							<td class="odd">
+								17:03							</td>
+														<td class="odd">
+								17:21							</td>
+														<td class="odd">
+								17:31							</td>
+														<td class="odd">
+								17:41							</td>
+														<td class="odd">
+								17:56							</td>
+							</tr><tr>							<td class="even">
+								17:14							</td>
+														<td class="even">
+								17:32							</td>
+														<td class="even">
+								17:42							</td>
+														<td class="even">
+								17:52							</td>
+														<td class="even">
+								18:07							</td>
+							</tr><tr>							<td class="odd">
+								17:25							</td>
+														<td class="odd">
+								17:43							</td>
+														<td class="odd">
+								17:53							</td>
+														<td class="odd">
+								18:03							</td>
+														<td class="odd">
+								18:18							</td>
+							</tr><tr>							<td class="even">
+								17:36							</td>
+														<td class="even">
+								17:54							</td>
+														<td class="even">
+								18:04							</td>
+														<td class="even">
+								18:14							</td>
+														<td class="even">
+								18:29							</td>
+							</tr><tr>							<td class="odd">
+								17:47							</td>
+														<td class="odd">
+								18:05							</td>
+														<td class="odd">
+								18:15							</td>
+														<td class="odd">
+								18:25							</td>
+														<td class="odd">
+								18:40							</td>
+							</tr><tr>							<td class="even">
+								17:58							</td>
+														<td class="even">
+								18:16							</td>
+														<td class="even">
+								18:26							</td>
+														<td class="even">
+								18:36							</td>
+														<td class="even">
+								18:51							</td>
+							</tr><tr>							<td class="odd">
+								18:10							</td>
+														<td class="odd">
+								18:28							</td>
+														<td class="odd">
+								18:38							</td>
+														<td class="odd">
+								18:48							</td>
+														<td class="odd">
+								19:03							</td>
+							</tr><tr>							<td class="even">
+								18:22							</td>
+														<td class="even">
+								18:40							</td>
+														<td class="even">
+								18:50							</td>
+														<td class="even">
+								19:00							</td>
+														<td class="even">
+								19:15							</td>
+							</tr><tr>							<td class="odd">
+								18:34							</td>
+														<td class="odd">
+								18:52							</td>
+														<td class="odd">
+								19:02							</td>
+														<td class="odd">
+								19:12							</td>
+														<td class="odd">
+								19:26							</td>
+							</tr><tr>							<td class="even">
+								18:47							</td>
+														<td class="even">
+								19:02							</td>
+														<td class="even">
+								19:12							</td>
+														<td class="even">
+								19:22							</td>
+														<td class="even">
+								19:35							</td>
+							</tr><tr>							<td class="odd">
+								19:00							</td>
+														<td class="odd">
+								19:13							</td>
+														<td class="odd">
+								19:20							</td>
+														<td class="odd">
+								19:30							</td>
+														<td class="odd">
+								19:43							</td>
+							</tr><tr>							<td class="even">
+								19:15							</td>
+														<td class="even">
+								19:28							</td>
+														<td class="even">
+								19:35							</td>
+														<td class="even">
+								19:45							</td>
+														<td class="even">
+								19:58							</td>
+							</tr><tr>							<td class="odd">
+								19:30							</td>
+														<td class="odd">
+								19:43							</td>
+														<td class="odd">
+								19:50							</td>
+														<td class="odd">
+								20:00							</td>
+														<td class="odd">
+								20:13							</td>
+							</tr><tr>							<td class="even">
+								19:50							</td>
+														<td class="even">
+								20:03							</td>
+														<td class="even">
+								20:10							</td>
+														<td class="even">
+								20:20							</td>
+														<td class="even">
+								20:33							</td>
+							</tr><tr>							<td class="odd">
+								20:10							</td>
+														<td class="odd">
+								20:23							</td>
+														<td class="odd">
+								20:28							</td>
+														<td class="odd">
+								20:38							</td>
+														<td class="odd">
+								20:50							</td>
+							</tr><tr>							<td class="even">
+								20:35							</td>
+														<td class="even">
+								20:48							</td>
+														<td class="even">
+								20:53							</td>
+														<td class="even">
+								21:03							</td>
+														<td class="even">
+								21:15							</td>
+							</tr><tr>							<td class="odd">
+								21:00							</td>
+														<td class="odd">
+								21:13							</td>
+														<td class="odd">
+								21:18							</td>
+														<td class="odd">
+								21:28							</td>
+														<td class="odd">
+								21:38							</td>
+							</tr>			</table>
+			
