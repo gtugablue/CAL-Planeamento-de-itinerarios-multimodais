@@ -142,6 +142,8 @@ void Map::Loader::loadSchedule(const BusRoute &busRoute) const
 
 unsigned Map::Loader::levenshteinDistance(const string &s1, const string &s2) const
 {
+	// http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance
+
 	const size_t len1 = s1.size(), len2 = s2.size();
 	vector<unsigned int> col(len2+1), prevCol(len2+1);
 
