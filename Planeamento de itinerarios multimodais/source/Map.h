@@ -41,6 +41,8 @@ public:
 		void parseXMLFile(rapidxml::file<> &file, rapidxml::xml_document<> &d) const;
 		std::vector<BusStop *> loadBusStops(const rapidjson::Document &d) const;
 		std::vector<BusEdge> loadBusEdges(const rapidjson::Document &d) const;
+		void loadSchedule(const BusRoute &busRoute) const;
+		unsigned levenshteinDistance(const string &s1, const string &s2) const;
 	public:
 		Map load();
 	};

@@ -20,6 +20,11 @@ void BusStop::print() const
 	std::cout << "coords: " << coords.getLatitude() << " - " << coords.getLongitude() << std::endl << std::endl;
 }
 
+void BusStop::addHour(const Hour &hour)
+{
+	schedule.insert(hour);
+}
+
 bool BusStop::operator==(const BusStop &busStop) const
 {
 	return code == busStop.code;

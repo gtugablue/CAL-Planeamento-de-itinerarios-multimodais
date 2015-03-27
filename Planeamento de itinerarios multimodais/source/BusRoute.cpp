@@ -11,8 +11,8 @@
 
 using namespace std;
 
-BusRoute::BusRoute(const vector<BusStop *> &busStops, const vector<BusEdge> &BusEdges):
-				busStops(busStops), BusEdges(BusEdges)
+BusRoute::BusRoute(const string code, const vector<BusStop *> &busStops, const vector<BusEdge> &BusEdges):
+				code(code), busStops(busStops), BusEdges(BusEdges)
 {
 }
 

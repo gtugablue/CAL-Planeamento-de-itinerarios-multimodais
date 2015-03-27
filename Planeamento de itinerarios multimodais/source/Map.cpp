@@ -8,6 +8,7 @@
 #include "Map.h"
 #include <dirent/dirent.h>
 #include <algorithm>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -39,7 +40,7 @@ void Map::Loader::parseJsonFile(const std::string file, rapidjson::Document &d) 
 
 void Map::Loader::parseXMLFile(rapidxml::file<> &file, rapidxml::xml_document<> &d) const
 {
-	d.parse<rapidxml::parse_full|rapidxml::parse_no_utf8>(file.data());
+	d.parse<rapidxml::parse_full|rapidxml::parse_no_utf8|rapidxml::parse_trim_whitespace>(file.data());
 }
 
 std::vector<std::string> Map::Loader::getFilesInFolder(const std::string &folder) const
@@ -102,6 +103,60 @@ vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d) const
 	return busEdges;
 }
 
+void Map::Loader::loadSchedule(const BusRoute &busRoute) const
+{
+	rapidxml::xml_document<> d;
+	rapidxml::file<> xmlFile((timetablesFolder + busRoute.getCode() + "-0-1-1").c_str());
+	parseXMLFile(xmlFile, d);
+	rapidxml::xml_node<> *table = d.first_node("table");
+	rapidxml::xml_node<> *header = table->first_node("tr");
+
+	vector<BusStop *> keyBusStops;
+	for (rapidxml::xml_node<> *child = header->first_node(); child; child = child->next_sibling())
+	{
+		unsigned minDistance = -1;
+		unsigned minIndex;
+		for (size_t i = 0; i < busRoute.getBusStops().size(); ++i)
+		{
+			unsigned distance = levenshteinDistance(busRoute.getBusStops()[i]->getName(), child->value());
+			if (distance < minDistance)
+			{
+				minDistance = distance;
+				minIndex = i;
+			}
+		}
+		//cout << "name1: " << busRoute.getBusStops()[minIndex]->getName() << " name2: " << child->value() << endl;
+		keyBusStops.push_back(busRoute.getBusStops()[minIndex]);
+	}
+
+	for (rapidxml::xml_node<> *body = header->next_sibling("tr"); body; body = body->next_sibling("tr"))
+	{
+		size_t i = 0;
+		for (rapidxml::xml_node<> *td = body->first_node("td"); td; td = td->next_sibling(), ++i)
+		{
+			assert(i < keyBusStops.size());
+			keyBusStops[i]->addHour(Hour(td->value()));
+		}
+	}
+}
+
+unsigned Map::Loader::levenshteinDistance(const string &s1, const string &s2) const
+{
+	const size_t len1 = s1.size(), len2 = s2.size();
+	vector<unsigned int> col(len2+1), prevCol(len2+1);
+
+	for (unsigned int i = 0; i < prevCol.size(); i++)
+		prevCol[i] = i;
+	for (unsigned int i = 0; i < len1; i++) {
+		col[0] = i+1;
+		for (unsigned int j = 0; j < len2; j++)
+			col[j+1] = std::min( std::min(prevCol[1 + j] + 1, col[j] + 1),
+					prevCol[j] + (s1[i]==s2[j] ? 0 : 1) );
+		col.swap(prevCol);
+	}
+	return prevCol[len2];
+}
+
 Map Map::Loader::load()
 {
 	Map map;
@@ -112,10 +167,15 @@ Map Map::Loader::load()
 		parseJsonFile(BusEdgesFolder + fileNames[i], d);
 		vector<BusStop *> loadedBusStops = loadBusStops(d);
 		map.busStops.insert(map.busStops.end(), loadedBusStops.begin(), loadedBusStops.end());
-		vector<BusEdge> BusEdges = loadBusEdges(d);
-		map.busRoutes.push_back(BusRoute(loadedBusStops, BusEdges));
+		vector<BusEdge> busEdges = loadBusEdges(d);
+		char temp[fileNames[i].length() + 1];
+		strcpy(temp, fileNames[i].c_str());
+		BusRoute busRoute(string(strtok(temp, "-")), loadedBusStops, busEdges);
+		loadSchedule(busRoute);
+		map.busRoutes.push_back(busRoute);
 		map.busRoutes[i].print();
 	}
+	/*
 	fileNames = getFilesInFolder(timetablesFolder);
 	for (size_t i = 0; i < fileNames.size(); ++i)
 	{
@@ -127,7 +187,7 @@ Map Map::Loader::load()
 		node = node->first_node("th");
 		cout << "XML Test: " << node->value() << " " << d2.first_node()->name() << endl;
 	}
-
+*/
 	/*// Road test
 	rapidxml::xml_document<> d;
 	rapidxml::file<> xmlFile("data/map.xml");

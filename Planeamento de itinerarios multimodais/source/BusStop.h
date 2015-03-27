@@ -20,7 +20,9 @@ class BusStop : public Vertex {
 	std::set<Hour> schedule;
 public:
 	BusStop(const std::string &code, const std::string &name, const Coordinates &coords);
+	std::string getName() const { return name; }
 	void print() const;
+	void addHour(const Hour &hour);
 	bool operator==(const BusStop &busStop) const;
 };
 
