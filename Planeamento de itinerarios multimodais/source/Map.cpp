@@ -40,7 +40,7 @@ void Map::Loader::parseJsonFile(const std::string file, rapidjson::Document &d) 
 
 void Map::Loader::parseXMLFile(rapidxml::file<> &file, rapidxml::xml_document<> &d) const
 {
-	d.parse<rapidxml::parse_full|rapidxml::parse_no_utf8|rapidxml::parse_trim_whitespace>(file.data());
+	d.parse<rapidxml::parse_full|rapidxml::parse_trim_whitespace>(file.data());
 }
 
 std::vector<std::string> Map::Loader::getFilesInFolder(const std::string &folder) const
@@ -125,7 +125,7 @@ void Map::Loader::loadSchedule(const BusRoute &busRoute) const
 				minIndex = i;
 			}
 		}
-		//cout << "name1: " << busRoute.getBusStops()[minIndex]->getName() << " name2: " << child->value() << endl;
+		cout << "route: " << busRoute.getCode() << " score: " << minDistance << " name1: " << busRoute.getBusStops()[minIndex]->getName() << " name2: " << child->value() << endl;
 		keyBusStops.push_back(busRoute.getBusStops()[minIndex]);
 	}
 
@@ -138,6 +138,7 @@ void Map::Loader::loadSchedule(const BusRoute &busRoute) const
 			keyBusStops[i]->addHour(Hour(td->value()));
 		}
 	}
+	busRoute.interpolateSchedules();
 }
 
 unsigned Map::Loader::levenshteinDistance(const string &s1, const string &s2) const

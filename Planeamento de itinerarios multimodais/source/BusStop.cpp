@@ -25,6 +25,11 @@ void BusStop::addHour(const Hour &hour)
 	schedule.insert(hour);
 }
 
+const set<Hour> &BusStop::getSchedule() const
+{
+	return schedule;
+}
+
 bool BusStop::operator==(const BusStop &busStop) const
 {
 	return code == busStop.code;

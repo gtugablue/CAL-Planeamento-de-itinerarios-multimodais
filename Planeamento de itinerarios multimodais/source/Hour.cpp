@@ -63,24 +63,34 @@ Hour Hour::operator-(const Hour &hour) const
 	return Hour(*this) -= hour;
 }
 
-Hour& Hour::operator*=(unsigned factor)
+/*Hour& Hour::operator*=(const Hour &hour)
 {
-	setHourstamp((getHourstamp() * factor) % minutesPerDay);
+	setHourstamp((getHourstamp() * hour.getHourstamp()) % minutesPerDay);
 	return *this;
-}
+}*/
+/*Hour Hour::operator*(const Hour &hour) const
+{
+	return Hour(*this) *= hour;
+}*/
 
-Hour Hour::operator*(unsigned factor) const
+/*Hour& Hour::operator*=(double factor)
+{
+	setHourstamp((unsigned)(getHourstamp() * factor) % minutesPerDay);
+	return *this;
+}*/
+
+/*Hour Hour::operator*(double factor) const
 {
 	return Hour(*this) *= factor;
-}
+}*/
 
-Hour& Hour::operator/=(unsigned quocient)
+Hour& Hour::operator/=(double quocient)
 {
 	setHourstamp(getHourstamp() / quocient);
 	return *this;
 }
 
-Hour Hour::operator/(unsigned quocient) const
+Hour Hour::operator/(double quocient) const
 {
 	return Hour(*this) /= quocient;
 }
@@ -94,4 +104,16 @@ bool Hour::operator<(const Hour &hour) const
 	if (minutes < hour.minutes)
 		return true;
 	return false;
+}
+
+Hour operator*(const Hour &hour, double factor)
+{
+	Hour hour2(hour);
+	hour2.setHourstamp((unsigned)(hour2.getHourstamp() * factor) % hour2.minutesPerDay);
+	return hour2;
+}
+
+ostream &operator<<(ostream &os, const Hour &hour)
+{
+	return os << hour.hours << ':' << hour.minutes;
 }

@@ -9,6 +9,7 @@
 #define SOURCE_HOUR_H_
 
 #include <string>
+#include <iostream>
 
 class Hour {
 private:
@@ -26,11 +27,15 @@ public:
 	Hour operator+(const Hour &hour) const;
 	Hour& operator-=(const Hour &hour);
 	Hour operator-(const Hour &hour) const;
-	Hour& operator*=(unsigned factor);
-	Hour operator*(unsigned factor) const;
-	Hour& operator/=(unsigned quocient);
-	Hour operator/(unsigned quocient) const;
+	//Hour& operator*=(const Hour &hour);
+	//Hour operator*(const Hour &hour) const;
+	//Hour& operator*=(double factor);
+	//Hour operator*(double factor) const;
+	Hour& operator/=(double quocient);
+	Hour operator/(double quocient) const;
 	bool operator<(const Hour &hour) const;
+	friend Hour operator*(const Hour &hour, double factor);
+	friend std::ostream &operator<<(std::ostream &os, const Hour &hour);
 };
 
 #endif /* SOURCE_HOUR_H_ */

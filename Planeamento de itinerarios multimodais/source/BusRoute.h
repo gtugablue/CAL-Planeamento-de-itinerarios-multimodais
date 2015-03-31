@@ -12,6 +12,8 @@
 #include "Coordinates.h"
 #include "BusStop.h"
 #include "BusEdge.h"
+#include "Hour.h"
+#include <set>
 
 class BusRoute {
 private:
@@ -24,6 +26,7 @@ public:
 	const std::string getCode() const { return code; }
 	const std::vector<BusEdge>& getBusEdges() const;
 	const std::vector<BusStop *>& getBusStops() const;
+	void interpolateSchedules() const;
 };
 
 #endif /* SOURCE_BUSROUTE_H_ */

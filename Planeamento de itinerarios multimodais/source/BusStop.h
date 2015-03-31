@@ -23,6 +23,8 @@ public:
 	std::string getName() const { return name; }
 	void print() const;
 	void addHour(const Hour &hour);
+	const std::set<Hour> &getSchedule() const;
+	bool hasSchedule() const { return schedule.size() > 0; }
 	bool operator==(const BusStop &busStop) const;
 };
 

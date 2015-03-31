@@ -21,6 +21,7 @@ public:
 	BusEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line);
 	void addPoint(const Coordinates &coords);
 	void print() const;
+	double getDist() const { return storedWeight; }
 	const std::vector<Coordinates>& getLine() const;
 };
 
