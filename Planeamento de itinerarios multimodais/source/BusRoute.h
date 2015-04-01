@@ -18,10 +18,11 @@
 class BusRoute {
 private:
 	std::string code;
+	bool direction;
 	std::vector<BusStop *> busStops;
 	std::vector<BusEdge> BusEdges;
 public:
-	BusRoute(const std::string code, const std::vector<BusStop *> &busStops, const std::vector<BusEdge> &BusEdges);
+	BusRoute(const std::string code, bool direction, const std::vector<BusStop *> &busStops, const std::vector<BusEdge> &BusEdges);
 	void print() const;
 	const std::string getCode() const { return code; }
 	const std::vector<BusEdge>& getBusEdges() const;

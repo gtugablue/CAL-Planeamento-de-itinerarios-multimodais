@@ -125,7 +125,7 @@ void Map::Loader::loadSchedule(const BusRoute &busRoute) const
 				minIndex = i;
 			}
 		}
-		cout << "route: " << busRoute.getCode() << " score: " << minDistance << " name1: " << busRoute.getBusStops()[minIndex]->getName() << " name2: " << child->value() << endl;
+		//cout << "route: " << busRoute.getCode() << " score: " << minDistance << " name1: " << busRoute.getBusStops()[minIndex]->getName() << " name2: " << child->value() << endl;
 		keyBusStops.push_back(busRoute.getBusStops()[minIndex]);
 	}
 
@@ -166,6 +166,7 @@ Map Map::Loader::load()
 	vector<string> fileNames = getFilesInFolder(BusEdgesFolder);
 	for (size_t i = 0; i < fileNames.size(); ++i)
 	{
+		//cout << "Progress: " <<( unsigned)(100 * ((double)i/fileNames.size())) << "%" << endl;
 		rapidjson::Document d;
 		parseJsonFile(BusEdgesFolder + fileNames[i], d);
 		vector<BusStop *> loadedBusStops = loadBusStops(d);
@@ -173,24 +174,13 @@ Map Map::Loader::load()
 		vector<BusEdge> busEdges = loadBusEdges(d);
 		char temp[fileNames[i].length() + 1];
 		strcpy(temp, fileNames[i].c_str());
-		BusRoute busRoute(string(strtok(temp, "-")), loadedBusStops, busEdges);
+		string code = string(strtok(temp, "-."));
+		bool direction = string(strtok(NULL, "-.")) == "0" ? false : true;
+		BusRoute busRoute(code, direction, loadedBusStops, busEdges);
 		loadSchedule(busRoute);
 		map.busRoutes.push_back(busRoute);
-		map.busRoutes[i].print();
+		//map.busRoutes[i].print();
 	}
-	/*
-	fileNames = getFilesInFolder(timetablesFolder);
-	for (size_t i = 0; i < fileNames.size(); ++i)
-	{
-		rapidxml::xml_document<> d2;
-		rapidxml::file<> xmlFile((timetablesFolder + fileNames[i]).c_str());
-		parseXMLFile(xmlFile, d2);
-		rapidxml::xml_node<> *node = d2.first_node("table");
-		node = node->first_node("tr");
-		node = node->first_node("th");
-		cout << "XML Test: " << node->value() << " " << d2.first_node()->name() << endl;
-	}
-*/
 	/*// Road test
 	rapidxml::xml_document<> d;
 	rapidxml::file<> xmlFile("data/map.xml");
