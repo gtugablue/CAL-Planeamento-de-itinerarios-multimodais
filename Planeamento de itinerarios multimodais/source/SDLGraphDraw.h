@@ -8,26 +8,31 @@ using namespace std;
 #include "Graph.h"
 #include "Path.h"
 #include "SDLRGB.h"
+#include "Camera.h"
 #include <SDL2/SDL.h>
 
 class Graph;
 class Edge;
 
-class SDLGRAPHDRAW{
+class SDLGraphDraw{
 private:
 	static unsigned int h_res;
 	static unsigned int v_res;
 
-
 public:
 	static void setRes(unsigned int h, unsigned int v){
-		h_res = h;
-		v_res = v;
+		SDLGraphDraw::h_res = h;
+		SDLGraphDraw::v_res = v;
 	}
 	static void drawEdge(SDL_Renderer *renderer, Edge* e, SDLRGB color);
 	static void drawGraph(SDL_Renderer *renderer, Graph* e);
 	static void drawPath(SDL_Renderer *renderer, Path* e);
 	static void drawVertex(SDL_Renderer *renderer, Vertex* v, int size, SDLRGB color);
+
+	static void drawEdge(SDL_Renderer *renderer, Camera* c, Edge* e, SDLRGB color);
+	static void drawGraph(SDL_Renderer *renderer, Camera* c, Graph* e);
+	static void drawPath(SDL_Renderer *renderer, Camera* c, Path* e);
+	static void drawVertex(SDL_Renderer *renderer,Camera* c, Vertex* v, int size, SDLRGB color);
 
     static unsigned int getHRes()
     {
