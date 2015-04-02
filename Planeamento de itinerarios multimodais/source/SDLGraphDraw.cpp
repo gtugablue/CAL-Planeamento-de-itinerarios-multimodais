@@ -1,11 +1,14 @@
 #include "SDLGraphDraw.h"
 
- void SDLGRAPHDRAW::drawEdge(SDL_Renderer *renderer,Edge* e, SDLRGB color){
+unsigned int SDLGraphDraw::h_res = 0;
+unsigned int SDLGraphDraw::v_res = 0;
+
+ void SDLGraphDraw::drawEdge(SDL_Renderer *renderer,Edge* e, SDLRGB color){
 		SDL_SetRenderDrawColor( renderer, color.red,color.green, color.blue, 0xFF);
 		SDL_RenderDrawLine(renderer, e->getSrc()->getRenderX(), e->getSrc()->getRenderY(),e->getDst()->getRenderX(), e->getDst()->getRenderY());
 	}
 
- void SDLGRAPHDRAW::drawGraph(SDL_Renderer *renderer, Graph* e){
+ void SDLGraphDraw::drawGraph(SDL_Renderer *renderer, Graph* e){
 	for(size_t i = 0; i < e->getVertexSet().size(); i++){
 		if(i == 0)
 			drawVertex(renderer,e->getVertexSet()[i], 5, SDLRGB(0, 0xFF,0));
@@ -19,7 +22,7 @@
 	}
 }
 
- void SDLGRAPHDRAW::drawPath(SDL_Renderer *renderer, Path* e){
+ void SDLGraphDraw::drawPath(SDL_Renderer *renderer, Path* e){
 //	for(size_t i = 0; i < e->getEdges().size(); i++){
 //		drawEdge(renderer, e->getEdges()[i], SDLRGB(0xFF, 0, 0));
 //	}
@@ -32,7 +35,7 @@
 	 }
 }
 
- void SDLGRAPHDRAW::drawVertex(SDL_Renderer *renderer, Vertex* v, int size, SDLRGB color){
+ void SDLGraphDraw::drawVertex(SDL_Renderer *renderer, Vertex* v, int size, SDLRGB color){
 	 int offset = (float) size / 2 +.5;
 	for(size_t i = v->getRenderX()-offset; i <  v->getRenderX() + offset ; i++){
 		for(size_t j = v->getRenderY()-offset; j <  v->getRenderY() + offset ; j++){
@@ -41,3 +44,53 @@
 			}
 	}
 }
+/////
+
+
+
+void SDLGraphDraw::drawEdge(SDL_Renderer *renderer, Camera* c, Edge* e, SDLRGB color){
+		SDL_SetRenderDrawColor( renderer, color.red,color.green, color.blue, 0xFF);
+		SDL_RenderDrawLine(renderer, c->getRenderX(h_res, e->getSrc()->getRenderX()),  c->getRenderY(v_res, e->getSrc()->getRenderY()), c->getRenderX(h_res, e->getDst()->getRenderX()),  c->getRenderY(v_res, e->getDst()->getRenderY()));
+	}
+void SDLGraphDraw::drawGraph(SDL_Renderer *renderer, Camera* c, Graph* e){
+		for(size_t i = 0; i < e->getVertexSet().size(); i++){
+			if(i == 0)
+				drawVertex(renderer, c, e->getVertexSet()[i], 5, SDLRGB(0, 0xFF,0));
+			else if(i == 1)
+				drawVertex(renderer,c,e->getVertexSet()[i], 5, SDLRGB(0xFF, 0xFF,0));
+			else
+			drawVertex(renderer,c,e->getVertexSet()[i], 5, SDLRGB(0xFF, 0,0));
+			for(size_t j = 0; j < e->getVertexSet()[i]->getAdj().size(); j++){
+				drawEdge(renderer,c, e->getVertexSet()[i]->getAdj()[j], e->getVertexSet()[i]->getAdj()[j]->getColor());
+			}
+		}
+	}
+void SDLGraphDraw::drawPath(SDL_Renderer *renderer, Camera* c, Path* e){
+	 //	for(size_t i = 0; i < e->getEdges().size(); i++){
+	 //		drawEdge(renderer, e->getEdges()[i], SDLRGB(0xFF, 0, 0));
+	 //	}
+	 	 if(e->getVertices().size() == 0)
+	 		 return;
+	 	 SDLRGB color(0xFF, 0, 0);
+	 	 for(size_t i = 0; i < e->getVertices().size()-1; i++){
+	 		 SDL_SetRenderDrawColor( renderer, color.red,color.green, color.blue, 0xFF);
+	 		 SDL_RenderDrawLine(renderer,  c->getRenderX(h_res, e->getVertices()[i]->getRenderX()),  c->getRenderY(v_res, e->getVertices()[i]->getRenderY()), c->getRenderX(h_res, e->getVertices()[i+1]->getRenderX()),  c->getRenderY(v_res, e->getVertices()[i+1]->getRenderY()));
+	 	 }
+}
+
+
+
+
+void SDLGraphDraw::drawVertex(SDL_Renderer *renderer, Camera* c, Vertex* v, int size, SDLRGB color){
+	 int offset = (float) size / 2 +.5;
+	int renderx = c->getRenderX(h_res,v->getRenderX());
+	int rendery =  c->getRenderY(v_res,v->getRenderY());
+	for(size_t i = renderx-offset; i <  renderx + offset ; i++){
+		for(size_t j = rendery-offset; j <  rendery + offset ; j++){
+				SDL_SetRenderDrawColor( renderer,color.red,color.blue, color.green, 0xFF);
+				SDL_RenderDrawPoint(renderer, i, j);
+			}
+	}
+}
+
+
