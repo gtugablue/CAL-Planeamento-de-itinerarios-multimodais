@@ -5,7 +5,6 @@
 #include <vector>
 #include <stdlib.h>
 #include <iostream>
-#include "Vertex.h"
 
 using namespace std;
 
@@ -15,7 +14,7 @@ public:
 	static Graph* randGraph(unsigned int numVertices, unsigned int numEdges, unsigned int minx, unsigned int maxx ,unsigned int miny,unsigned int maxy){
 		Graph* out = new Graph();
 		while(out->getVertexSet().size() < numVertices){
-			Vertex* v = new Vertex(out->getVertexSet().size(), rand() % (maxx-minx) + minx, rand() % (maxy-miny) + miny);
+			Vertex* v = new Vertex(Coordinates(rand() % (maxx-minx) + minx, rand() % (maxy-miny) + miny));
 			out->addVertex(v);
 		}
 		while(out->getNumEdges() < numEdges*2){

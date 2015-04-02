@@ -49,16 +49,14 @@ void BusRoute::interpolateSchedules() const
 		unsigned scheduleSize = busStops[keyIDs[i]]->getSchedule().size();
 		for (size_t k = 0; k < scheduleSize; ++k)
 		{
-			set<Hour>::iterator it = busStops[keyIDs[i]]->getSchedule().begin();
-			advance(it, k);
-			set<Hour>::iterator it2 = busStops[keyIDs[i + 1]]->getSchedule().begin();
-			advance(it2, k);
-			Hour h = *it2 - *it;
+			Hour h1 = busStops[keyIDs[i]]->getSchedule()[k];
+			Hour h2 = busStops[keyIDs[i + 1]]->getSchedule()[k];
+			Hour h = h2 - h1;
 			double ranDist = 0;
 			for (size_t l = keyIDs[i]; l + 1 < keyIDs[i + 1]; ++l)
 			{
 				ranDist += BusEdges[l].getDist();
-				busStops[l + 1]->addHour(h * (ranDist / dist) + *it);
+				busStops[l + 1]->addHour(h * (ranDist / dist) + h1);
 			}
 		}
 	}

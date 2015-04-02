@@ -12,20 +12,13 @@
 #include "Coordinates.h"
 #include <set>
 #include "Hour.h"
-#include "Vertex.h"
+#include "TransportStop.h"
 
-class BusStop : public Vertex {
+class BusStop : public TransportStop {
 	std::string code;
-	std::string name;
-	std::set<Hour> schedule;
 public:
 	BusStop(const std::string &code, const std::string &name, const Coordinates &coords);
-	std::string getName() const { return name; }
 	void print() const;
-	void addHour(const Hour &hour);
-	const std::set<Hour> &getSchedule() const;
-	bool hasSchedule() const { return schedule.size() > 0; }
-	bool operator==(const BusStop &busStop) const;
 };
 
 #endif /* SOURCE_BUSSTOP_H_ */

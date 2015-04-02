@@ -15,6 +15,7 @@ Path* dijsktra(Graph* g, Vertex* ini, Vertex* f){
 	}
 
 	cout << ini->getAdj().size()<< endl;
+	//cout << ini->getAdj().size()<< endl;
 	double costsofar = 0;
 	double minnextcost=0;
 	Path* out = new Path(0);
