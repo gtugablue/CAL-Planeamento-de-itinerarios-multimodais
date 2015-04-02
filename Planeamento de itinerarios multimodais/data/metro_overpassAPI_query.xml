@@ -1,0 +1,13 @@
+<osm-script output="json" timeout="20">
+  <bbox-query e="-8.460159301757812" n="41.41235069554362" s="41.0948771219984" w="-8.784942626953125"/>
+  <recurse type="node-way"/>
+  <union>
+    <query type="way">
+      <item/>
+      <has-kv regk="railway" regv="."/>
+      <has-kv regk="ref" regv="A|B|C|D|E|F|G"/>
+    </query>
+    <recurse type="way-node"/>
+  </union>
+  <print from="_" limit="" mode="body" order="id"/>
+</osm-script>
