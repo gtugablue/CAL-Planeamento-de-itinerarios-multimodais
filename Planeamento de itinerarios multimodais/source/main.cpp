@@ -1,4 +1,4 @@
-#include "Map.h"
+/*#include "Map.h"
 #include "include/SDL2/SDL.h"
 
 #define WIDTH 800
@@ -100,5 +100,94 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 }
+*/
+#include <SDL2/SDL.h>
+#include <vector>
+#include <iostream>
+#include <stdlib.h>
+#include "GraphGen.h"
+#include "Graph.h"
+#include "dijsktra.h"
+#include <ctime>
+#include "Camera.h"
+#include "SDLGraphDraw.h"
 
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600
 
+static SDL_Window* window = NULL;
+
+static SDL_Renderer* renderer = NULL;
+
+bool init(){
+	if(SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer))
+		return false;
+	SDLGraphDraw::setRes(SCREEN_WIDTH,SCREEN_HEIGHT);
+	srand(time(NULL));
+	return true;
+}
+
+void close(){
+	SDL_DestroyRenderer( renderer );
+	SDL_DestroyWindow(window);
+	SDL_Quit();
+	renderer = NULL;
+	window = NULL;
+}
+
+int main(int argc, char* argv[]) {
+	if(! init() ){
+		std::cout << "Failed to initialize!" << endl;
+		exit(1);
+	}
+	Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
+	Path* p = dijsktra(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+	SDL_Event e;
+	bool moving = false;
+	SDL_RenderDrawPoint(renderer,50, 50);
+	Camera* c = new Camera(0,0,SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
+	while( SDL_WaitEvent(&e) )
+	{
+		if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE || e.type == SDL_QUIT)
+			break;
+		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT){
+			std::cout << "left pressed"<<endl;
+			delete g1;
+			delete p;
+			g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
+			p = dijsktra(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+		}
+		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT){
+			moving = true;
+			continue;
+		}
+		else if(e.type  ==  SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_RIGHT){
+			moving = false;
+			continue;
+		}
+		else if(e.type  ==  SDL_MOUSEMOTION && moving){
+			cout << "moving " << e.motion.xrel << ", " <<e.motion.yrel<< endl;
+			//c->moveRel(-c->getZoomScaleX(SDLGraphDraw::getHRes()) * e.motion.xrel, - c->getZoomScaleY(SDLGraphDraw::getVRes()) * e.motion.yrel);
+			c->moveRelScaled(-e.motion.xrel, -e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
+		}
+		else if(e.type  ==  SDL_MOUSEWHEEL ){
+			if( e.wheel.y > 0){
+				c->mulScale(.75,.75);
+			}
+			else if( e.wheel.y < 0){
+				c->mulScale(1.25,1.25);
+			}
+			std::cout << "mouse wheel "<< e.wheel.y <<endl;
+		}
+		else continue;
+		SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+		SDL_RenderClear(renderer );
+		SDLGraphDraw::drawGraph(renderer,c, g1);
+		SDLGraphDraw::drawPath(renderer, c, p);
+		SDL_RenderPresent(renderer);
+	}
+
+	close();
+
+	return 0;
+}
