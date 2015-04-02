@@ -5,7 +5,6 @@
 #include <vector>
 #include <stdlib.h>
 #include <iostream>
-#include "Vertex.h"
 
 using namespace std;
 
