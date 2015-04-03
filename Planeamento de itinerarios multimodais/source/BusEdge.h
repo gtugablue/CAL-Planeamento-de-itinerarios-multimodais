@@ -23,6 +23,7 @@ public:
 	void print() const;
 	double getDist() const { return storedWeight; }
 	const std::vector<Coordinates>& getLine() const;
+	virtual ~BusEdge() { }
 };
 
 #endif /* SOURCE_BUSEDGE_H_ */

@@ -64,6 +64,7 @@ public:
     {
         return SDLRGB(0, 0xFF, 0);
     }
+    virtual ~Edge() { }
 };
 
 
