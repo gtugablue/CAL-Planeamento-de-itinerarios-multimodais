@@ -9,17 +9,18 @@ using namespace std;
 class Vertex;
 
 class Graph{
-	static unsigned int lastID;
-	const unsigned int id;
+	//static unsigned int lastID;
+	//const unsigned int id;
 	vector<Vertex*> vertexSet;
 public:
-	Graph(): id(0){};
+	Graph() /*: id(0)*/{};
 	vector<Vertex*> getVertexSet() const{return vertexSet;};
 	void addVertex(Vertex* v){
 		for(size_t i = 0; i < vertexSet.size(); i++){
 			if(vertexSet[i] == v)
 				return;
 		}
+		v->setIndex(vertexSet.size());
 		vertexSet.push_back(v);
 	}
 	unsigned int getNumEdges() const;

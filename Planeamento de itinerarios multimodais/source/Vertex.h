@@ -8,22 +8,22 @@
 
 class Vertex{
 private:
-	static unsigned int lastID;
-	const unsigned int id;
+	//static unsigned int lastID;
+	unsigned int index;
 	unsigned int x;
 	unsigned int y;
 	std::vector<Edge*> adj;
 protected:
 	Coordinates coords;
 public:
-	Vertex(const Coordinates &coords): coords(coords), id(lastID++) { }
+	Vertex(const Coordinates &coords): coords(coords), x(coords.getLatitude()), y(coords.getLongitude()) { }
 	std::vector<Edge*> getAdj()const{return adj;};
 	void addAdj(Vertex* v, double weight =0);
 	Coordinates getCoords() const { return coords; }
 	double getRenderX() const { return coords.getLongitude(); }
 	double getRenderY() const { return coords.getLatitude(); }
 	unsigned int getIndex() const {
-		return id;
+		return index;
 	}
 	virtual unsigned int getRenderX() {
 		return x;
@@ -34,6 +34,9 @@ public:
 	virtual ~Vertex()
 	{
 
+	}
+	void setIndex(unsigned int index){
+		this->index = index;
 	}
 };
 

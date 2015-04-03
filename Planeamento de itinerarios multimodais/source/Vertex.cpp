@@ -1,6 +1,5 @@
 #include "Vertex.h"
 
-unsigned int Vertex::lastID = 0;
 
 void Vertex::addAdj(Vertex* v, double weight){
 		for(size_t i = 0; i < adj.size(); i++){

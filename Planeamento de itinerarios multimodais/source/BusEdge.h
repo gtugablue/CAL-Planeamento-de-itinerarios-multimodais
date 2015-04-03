@@ -14,7 +14,7 @@
 #include <iostream>
 #include <iomanip>
 
-class BusEdge: public Edge{
+class BusEdge: public Edge {
 private:
 	std::vector<Coordinates> line;
 public:
