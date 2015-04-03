@@ -10,19 +10,14 @@
 
 #include <vector>
 #include "Coordinates.h"
-#include "Edge.h"
+#include "TransportEdge.h"
 #include <iostream>
 #include <iomanip>
 
-class BusEdge: public Edge {
-private:
-	std::vector<Coordinates> line;
+class BusEdge: public TransportEdge {
 public:
 	BusEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line);
-	void addPoint(const Coordinates &coords);
 	void print() const;
-	double getDist() const { return storedWeight; }
-	const std::vector<Coordinates>& getLine() const;
 	virtual ~BusEdge() { }
 };
 
