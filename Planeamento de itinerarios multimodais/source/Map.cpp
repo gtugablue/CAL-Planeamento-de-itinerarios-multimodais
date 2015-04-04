@@ -141,9 +141,9 @@ void Map::Loader::loadSchedule(const BusRoute &busRoute) const
 	busRoute.interpolateSchedules();
 }
 
-vector<MetroStop *> Map::Loader::loadMetro(rapidjson::Document &d) const
+vector<pair<MetroStop *, string> > Map::Loader::loadMetroStopNodes(rapidjson::Document &d) const
 {
-	vector<pair<Coordinates, string> > nodes;
+	vector<pair<MetroStop *, string> > metroStopNodes;
 
 	const rapidjson::Value &elements = d["elements"];
 	for (size_t i = 0; i < elements.Size(); ++i)
@@ -151,11 +151,15 @@ vector<MetroStop *> Map::Loader::loadMetro(rapidjson::Document &d) const
 		if (elements[i]["type"] == "node")
 		{
 			Coordinates coords(elements[i]["lat"].GetDouble(), elements[i]["lon"].GetDouble());
-			nodes.push_back(make_pair(coords, elements[i].GetString()));
+			if (elements[i].HasMember("tags"))
+			{
+				const rapidjson::Value &tags = elements[i]["tags"];
+				MetroStop *metroStop = new MetroStop(tags["name"].GetString(), coords); // TODO delete
+				metroStopNodes.push_back(make_pair(metroStop, elements[i]["id"].GetString()));
+			}
 		}
 	}
-
-	// TODO
+	return metroStopNodes;
 }
 
 unsigned Map::Loader::levenshteinDistance(const string &s1, const string &s2) const
