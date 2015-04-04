@@ -263,7 +263,7 @@ int main(int argc, char* argv[]) {
 	SDL_Cursor * cursorresize = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_WAIT);
 	SDL_Cursor * cursordefault = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
 	SDL_SetCursor(cursordefault);
-	SDL_TimerID  setTimer;
+	SDL_TimerID  setTimer = 0;
 	queue<SDL_TimerID> timers;
 	while( SDL_WaitEvent(&e) )
 	{
@@ -298,8 +298,10 @@ int main(int argc, char* argv[]) {
 			c->moveRelScreen(-e.motion.xrel, -e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
 		}
 		else if(e.type  ==  SDL_MOUSEWHEEL ){
-			Uint32 delay = (250 / 10) * 10;  /* To round it down to the nearest 10 ms */
-			timers.push( SDL_AddTimer(delay, my_callbackfunc, NULL));
+			Uint32 delay = (300 / 10) * 10;  /* To round it down to the nearest 10 ms */
+			if(setTimer != 0)
+				SDL_RemoveTimer(setTimer);
+			setTimer = SDL_AddTimer(delay, my_callbackfunc, NULL);
 			SDL_SetCursor(cursorresize);
 			if( e.wheel.y > 0){
 				int x, y;
@@ -319,11 +321,9 @@ int main(int argc, char* argv[]) {
 			std::cout << "x0 : "  << c->getX() << ", y0 : " << c->getY() <<  "; "<< "x1 : " <<  c->getFinalX() << ", y1 : "<< c->getFinalY() << endl;
 		}
 		else if(e.type == SDL_USEREVENT){
-
-			SDL_RemoveTimer(timers.front());
-			timers.pop();
-			if(timers.empty())
-				SDL_SetCursor(cursordefault);
+			SDL_SetCursor(cursordefault);
+			SDL_RemoveTimer(setTimer);
+			setTimer = 0;
 			cout << "timer"<< endl;
 		}
 		else {continue;}
