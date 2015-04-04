@@ -6,6 +6,7 @@ class Camera{
 private:
 	double x0, y0, x1, y1;
 	double maxWidth, maxHeight;
+	double minWidth, minHeight;
 	void setValues(double x0, double y0, double x1, double y1);
 public:
 	Camera(double x0, double y0, double x1, double y1, double limit);

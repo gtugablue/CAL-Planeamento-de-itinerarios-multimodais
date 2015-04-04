@@ -126,7 +126,7 @@
 //}
 
 void Camera::setValues(double x0, double y0, double x1, double y1){
-	if(abs(x1-x0) > maxWidth || abs(y1-y0) > maxHeight)
+	if(abs(x1-x0) > maxWidth || abs(y1-y0) > maxHeight || abs(x1-x0) < minWidth || abs(y1-y0) < minHeight)
 		return;
 	if(x0 < x1){
 		this->x0 = x0;
@@ -142,6 +142,8 @@ void Camera::setValues(double x0, double y0, double x1, double y1){
 Camera::Camera(double x0, double y0, double x1, double y1, double limit){
 	this->maxWidth = (x1 - x0) * limit;
 	this->maxHeight = (y1 - y0) * limit;
+	this->minWidth = (x1 - x0) / limit;
+	this->minHeight = (y1 - y0) / limit;
 	setValues(x0, y0, x1, y1);
 }
 
@@ -181,7 +183,12 @@ void Camera::uncenteredMulScale(double factorx, double factory, double x, double
 	y = getWorldY(v_res, y);
 	double posx = factorx*x0+(1-factorx)*x;
 	double posy = factory*y0+(1-factory)*y;
+	double currentx0 = x0;
+	double currenty0 = y0;
+	double currentx1 = x1;
+	double currenty1 = y1;
 	mulScale(factorx, factory);
+	if(currentx0 != x0 || currenty0 != y0 ||currentx1 != x1 ||currenty1 != y1)
 	moveAbs(posx, posy);
 }
 
