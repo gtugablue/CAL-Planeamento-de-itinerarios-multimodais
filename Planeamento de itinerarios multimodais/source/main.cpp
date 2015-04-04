@@ -237,7 +237,7 @@ int main(int argc, char* argv[]) {
 	Camera* c = new Camera(0,0,SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes(), 1000);
 	while( SDL_WaitEvent(&e) )
 	{
-		if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE || e.type == SDL_QUIT)
+		if ((e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) || e.type == SDL_QUIT)
 			break;
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT){
 			std::cout << "left pressed"<<endl;
