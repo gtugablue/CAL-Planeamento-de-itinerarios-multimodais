@@ -200,6 +200,7 @@ int main(int argc, char* argv[]) {
 #include <ctime>
 #include "Camera.h"
 #include "SDLGraphDraw.h"
+#include <queue>
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
@@ -209,9 +210,9 @@ static SDL_Window* window = NULL;
 static SDL_Renderer* renderer = NULL;
 
 bool init(){
+
 	if(SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer))
 		return false;
-
 	SDLGraphDraw::setRes(SCREEN_WIDTH,SCREEN_HEIGHT);
 	srand(time(NULL));
 	return true;
@@ -223,6 +224,27 @@ void close(){
 	SDL_Quit();
 	renderer = NULL;
 	window = NULL;
+}
+
+Uint32 my_callbackfunc(Uint32 interval, void *param)
+{
+    SDL_Event event;
+    SDL_UserEvent userevent;
+
+    /* In this example, our callback pushes an SDL_USEREVENT event
+    into the queue, and causes our callback to be called again at the
+    same interval: */
+
+    userevent.type = SDL_USEREVENT;
+    userevent.code = 0;
+    userevent.data1 = NULL;
+    userevent.data2 = NULL;
+
+    event.type = SDL_USEREVENT;
+    event.user = userevent;
+
+    SDL_PushEvent(&event);
+    return(interval);
 }
 
 int main(int argc, char* argv[]) {
@@ -241,6 +263,8 @@ int main(int argc, char* argv[]) {
 	SDL_Cursor * cursorresize = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_WAIT);
 	SDL_Cursor * cursordefault = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
 	SDL_SetCursor(cursordefault);
+	SDL_TimerID  setTimer;
+	queue<SDL_TimerID> timers;
 	while( SDL_WaitEvent(&e) )
 	{
 		if ((e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) || e.type == SDL_QUIT)
@@ -274,7 +298,9 @@ int main(int argc, char* argv[]) {
 			c->moveRelScreen(-e.motion.xrel, -e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
 		}
 		else if(e.type  ==  SDL_MOUSEWHEEL ){
-
+			Uint32 delay = (250 / 10) * 10;  /* To round it down to the nearest 10 ms */
+			timers.push( SDL_AddTimer(delay, my_callbackfunc, NULL));
+			SDL_SetCursor(cursorresize);
 			if( e.wheel.y > 0){
 				int x, y;
 				SDL_GetMouseState(&x, &y);
@@ -291,6 +317,14 @@ int main(int argc, char* argv[]) {
 
 			std::cout << "mouse wheel "<< e.wheel.y <<endl;
 			std::cout << "x0 : "  << c->getX() << ", y0 : " << c->getY() <<  "; "<< "x1 : " <<  c->getFinalX() << ", y1 : "<< c->getFinalY() << endl;
+		}
+		else if(e.type == SDL_USEREVENT){
+
+			SDL_RemoveTimer(timers.front());
+			timers.pop();
+			if(timers.empty())
+				SDL_SetCursor(cursordefault);
+			cout << "timer"<< endl;
 		}
 		else {continue;}
 		SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF );
