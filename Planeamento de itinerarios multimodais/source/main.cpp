@@ -211,6 +211,7 @@ static SDL_Renderer* renderer = NULL;
 bool init(){
 	if(SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer))
 		return false;
+
 	SDLGraphDraw::setRes(SCREEN_WIDTH,SCREEN_HEIGHT);
 	srand(time(NULL));
 	return true;
@@ -235,6 +236,11 @@ int main(int argc, char* argv[]) {
 	bool moving = false;
 	SDL_RenderDrawPoint(renderer,50, 50);
 	Camera* c = new Camera(0,0,SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes(), 100);
+
+	SDL_Cursor * cursormove = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_SIZEALL);
+	SDL_Cursor * cursorresize = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_WAIT);
+	SDL_Cursor * cursordefault = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
+	SDL_SetCursor(cursordefault);
 	while( SDL_WaitEvent(&e) )
 	{
 		if ((e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) || e.type == SDL_QUIT)
@@ -248,6 +254,7 @@ int main(int argc, char* argv[]) {
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT){
 			moving = true;
+			SDL_SetCursor(cursormove);
 			continue;
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_MIDDLE){
@@ -257,6 +264,7 @@ int main(int argc, char* argv[]) {
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_RIGHT){
 			moving = false;
+			SDL_SetCursor(cursordefault);
 			continue;
 		}
 		else if(e.type  ==  SDL_MOUSEMOTION && moving){
@@ -266,6 +274,7 @@ int main(int argc, char* argv[]) {
 			c->moveRelScreen(-e.motion.xrel, -e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
 		}
 		else if(e.type  ==  SDL_MOUSEWHEEL ){
+
 			if( e.wheel.y > 0){
 				int x, y;
 				SDL_GetMouseState(&x, &y);
@@ -279,10 +288,11 @@ int main(int argc, char* argv[]) {
 				SDL_GetMouseState(&x, &y);
 				c->uncenteredMulScale(1.1,1.1,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
 			}
+
 			std::cout << "mouse wheel "<< e.wheel.y <<endl;
 			std::cout << "x0 : "  << c->getX() << ", y0 : " << c->getY() <<  "; "<< "x1 : " <<  c->getFinalX() << ", y1 : "<< c->getFinalY() << endl;
 		}
-		else continue;
+		else {continue;}
 		SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(renderer );
 		SDLGraphDraw::drawGraph(renderer,c, g1);
