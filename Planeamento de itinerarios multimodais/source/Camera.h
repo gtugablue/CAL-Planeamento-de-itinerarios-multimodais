@@ -13,6 +13,7 @@ public:
 	void movePartialAbsCentered(int x, int y,  int h_res, int v_res, double extent = 1.0);
 	void moveRel(int x, int y);
 	void moveRelScaled(int x, int y, int h_res, int v_res);
+	void moveRelScreen(int x, int y, int h_res, int v_res);
 	void mulScale(double factorx, double factory);
 	void uncenteredMulScale(double factorx, double factory, int x, int y, int h_res, int v_res);
 	void addScale(int addx, int addy);

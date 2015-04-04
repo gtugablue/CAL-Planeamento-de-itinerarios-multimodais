@@ -175,9 +175,12 @@ void Camera::moveAbs(int x, int y){
 }
 
 void Camera::moveRel(int x, int y){
-	setValues(x0+x, y0+y,  x1+x,y1+y);
+	setValues(x0+x, y0+y,  x1+x, y1+y);
 }
-
+void  Camera::moveRelScreen(int x, int y, int h_res, int v_res){
+	moveAbs(getWorldX(h_res, getRenderX(h_res,x0) + x), getWorldY(v_res, getRenderY(v_res, y0) + y));
+	//getWorldX(x, h_res);
+}
 void Camera::movePartialAbsCentered(int x, int y,  int h_res, int v_res, double extent){
 	moveRel((x-(x1+x0)/2)*extent * min(getZoomScaleX(h_res), 1),(y-(y1+y0)/2)*extent * min(getZoomScaleY(v_res), 1));
 }

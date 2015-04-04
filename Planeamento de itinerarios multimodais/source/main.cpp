@@ -262,7 +262,8 @@ int main(int argc, char* argv[]) {
 		else if(e.type  ==  SDL_MOUSEMOTION && moving){
 			cout << "moving " << e.motion.xrel << ", " <<e.motion.yrel<< endl;
 			//c->moveRel(-c->getZoomScaleX(SDLGraphDraw::getHRes()) * e.motion.xrel, - c->getZoomScaleY(SDLGraphDraw::getVRes()) * e.motion.yrel);
-			c->moveRelScaled(-e.motion.xrel, -e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
+			//c->moveRelScaled(-e.motion.xrel, -e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
+			c->moveRelScreen(-e.motion.xrel, -e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
 		}
 		else if(e.type  ==  SDL_MOUSEWHEEL ){
 			if( e.wheel.y > 0){
@@ -273,7 +274,10 @@ int main(int argc, char* argv[]) {
 				c->uncenteredMulScale(.5,.5,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
 			}
 			else if( e.wheel.y < 0){
-				c->mulScale(2,2);
+				//c->mulScale(2,2);
+				int x, y;
+				SDL_GetMouseState(&x, &y);
+				c->uncenteredMulScale(1.5,1.5,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
 			}
 			std::cout << "mouse wheel "<< e.wheel.y <<endl;
 			std::cout << "x0 : "  << c->getX() << ", y0 : " << c->getY() <<  "; "<< "x1 : " <<  c->getFinalX() << ", y1 : "<< c->getFinalY() << endl;
