@@ -234,7 +234,7 @@ int main(int argc, char* argv[]) {
 	SDL_Event e;
 	bool moving = false;
 	SDL_RenderDrawPoint(renderer,50, 50);
-	Camera* c = new Camera(0,0,SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes(), 1000);
+	Camera* c = new Camera(0,0,SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes(), 100);
 	while( SDL_WaitEvent(&e) )
 	{
 		if ((e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) || e.type == SDL_QUIT)
@@ -271,13 +271,13 @@ int main(int argc, char* argv[]) {
 				SDL_GetMouseState(&x, &y);
 				//c->movePartialAbsCentered(x, y , SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes(), 1);
 				//c->mulScale(.5,.5);
-				c->uncenteredMulScale(.5,.5,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
+				c->uncenteredMulScale(.9,.9,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
 			}
 			else if( e.wheel.y < 0){
 				//c->mulScale(2,2);
 				int x, y;
 				SDL_GetMouseState(&x, &y);
-				c->uncenteredMulScale(1.5,1.5,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
+				c->uncenteredMulScale(1.1,1.1,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
 			}
 			std::cout << "mouse wheel "<< e.wheel.y <<endl;
 			std::cout << "x0 : "  << c->getX() << ", y0 : " << c->getY() <<  "; "<< "x1 : " <<  c->getFinalX() << ", y1 : "<< c->getFinalY() << endl;
