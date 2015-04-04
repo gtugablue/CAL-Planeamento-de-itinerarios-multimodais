@@ -195,11 +195,6 @@ void Camera::mulScale(double factorx, double factory){
 }
 
 void Camera::uncenteredMulScale(double factorx, double factory, int x, int y, int h_res, int v_res){
-	//int deltax = x - (x1 + x0) / 2;
-	//int deltay = y - (y1 + y0) / 2;
-	//mulScale(factorx, factory);
-	//moveRel(deltax*factorx, deltay*factory);
-	//moveAbs(-(((x1-x0)*factorx-x1+x0)*x-x0*h_res)/h_res , -(((y1-y0)*factory-y1+y0)*y-y0*v_res)/v_res );
 	x = getWorldX(h_res, x);
 	y = getWorldY(v_res, y);
 	int posx = factorx*x0+(1-factorx)*x;
