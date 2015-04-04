@@ -125,9 +125,9 @@
 //	moveRel(movex, movey);
 //}
 
-void Camera::setValues(double x0, double y0, double x1, double y1){
+bool Camera::setValues(double x0, double y0, double x1, double y1){
 	if(abs(x1-x0) > maxWidth || abs(y1-y0) > maxHeight || abs(x1-x0) < minWidth || abs(y1-y0) < minHeight)
-		return;
+		return false;
 	if(x0 < x1){
 		this->x0 = x0;
 		this->x1 = x1;
@@ -136,7 +136,7 @@ void Camera::setValues(double x0, double y0, double x1, double y1){
 		this->y0 = y0;
 		this->y1 = y1;
 	}
-	return;
+	return true;
 }
 
 Camera::Camera(double x0, double y0, double x1, double y1, double limit){
@@ -165,20 +165,20 @@ void Camera::movePartialAbsCentered(double x, double y,  int h_res, int v_res, d
 	moveRel((x-(x1+x0)/2)*extent * min(getZoomScaleX(h_res), 1),(y-(y1+y0)/2)*extent * min(getZoomScaleY(v_res), 1));
 }
 
-void Camera::mulScale(double factorx, double factory){
+bool Camera::mulScale(double factorx, double factory){
 	if(factorx == 0 || factory == 0)
-		return;
+		return false;
 	if(factorx < 0)
 		factorx = -factorx;
 	if(factory < 0)
 		factory = -factory;
 	double xmul = (x1-x0)* factorx;
 	double ymul = (y1-y0)* factory;
-	setValues(((x1+x0) - xmul)/2, ((y1+y0) - ymul)/2, ((x1+x0) +xmul)/2,((y1+y0) + ymul)/2);
+	return setValues(((x1+x0) - xmul)/2, ((y1+y0) - ymul)/2, ((x1+x0) +xmul)/2,((y1+y0) + ymul)/2);
 }
 
 
-void Camera::uncenteredMulScale(double factorx, double factory, double x, double y, int h_res, int v_res){
+bool Camera::uncenteredMulScale(double factorx, double factory, double x, double y, int h_res, int v_res){
 	x = getWorldX(h_res, x);
 	y = getWorldY(v_res, y);
 	double posx = factorx*x0+(1-factorx)*x;
@@ -187,9 +187,9 @@ void Camera::uncenteredMulScale(double factorx, double factory, double x, double
 	double currenty0 = y0;
 	double currentx1 = x1;
 	double currenty1 = y1;
-	mulScale(factorx, factory);
-	if(currentx0 != x0 || currenty0 != y0 ||currentx1 != x1 ||currenty1 != y1)
-	moveAbs(posx, posy);
+	if(mulScale(factorx, factory))
+		{moveAbs(posx, posy); return true;}
+	return false;
 }
 
 

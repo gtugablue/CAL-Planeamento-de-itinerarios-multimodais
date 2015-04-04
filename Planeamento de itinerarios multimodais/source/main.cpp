@@ -298,25 +298,28 @@ int main(int argc, char* argv[]) {
 			c->moveRelScreen(-e.motion.xrel, -e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
 		}
 		else if(e.type  ==  SDL_MOUSEWHEEL ){
-			Uint32 delay = (300 / 10) * 10;  /* To round it down to the nearest 10 ms */
-			if(setTimer != 0)
-				SDL_RemoveTimer(setTimer);
-			setTimer = SDL_AddTimer(delay, my_callbackfunc, NULL);
-			SDL_SetCursor(cursorresize);
+			bool changed = false;
+
 			if( e.wheel.y > 0){
 				int x, y;
 				SDL_GetMouseState(&x, &y);
 				//c->movePartialAbsCentered(x, y , SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes(), 1);
 				//c->mulScale(.5,.5);
-				c->uncenteredMulScale(.9,.9,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
+				changed = c->uncenteredMulScale(.9,.9,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
 			}
 			else if( e.wheel.y < 0){
 				//c->mulScale(2,2);
 				int x, y;
 				SDL_GetMouseState(&x, &y);
-				c->uncenteredMulScale(1.1,1.1,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
+				changed = c->uncenteredMulScale(1.1,1.1,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
 			}
-
+			Uint32 delay = (300 / 10) * 10;  /* To round it down to the nearest 10 ms */
+			if(changed){
+				SDL_SetCursor(cursorresize);
+				if(setTimer != 0)
+					SDL_RemoveTimer(setTimer);
+				setTimer = SDL_AddTimer(delay, my_callbackfunc, NULL);
+			}
 			std::cout << "mouse wheel "<< e.wheel.y <<endl;
 			std::cout << "x0 : "  << c->getX() << ", y0 : " << c->getY() <<  "; "<< "x1 : " <<  c->getFinalX() << ", y1 : "<< c->getFinalY() << endl;
 		}
