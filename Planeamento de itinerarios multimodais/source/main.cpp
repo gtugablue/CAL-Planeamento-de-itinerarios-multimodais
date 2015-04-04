@@ -271,13 +271,13 @@ int main(int argc, char* argv[]) {
 				SDL_GetMouseState(&x, &y);
 				//c->movePartialAbsCentered(x, y , SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes(), 1);
 				//c->mulScale(.5,.5);
-				c->uncenteredMulScale(.5,.5,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
+				c->uncenteredMulScale(.75,.75,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
 			}
 			else if( e.wheel.y < 0){
 				//c->mulScale(2,2);
 				int x, y;
 				SDL_GetMouseState(&x, &y);
-				c->uncenteredMulScale(1.5,1.5,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
+				c->uncenteredMulScale(1.25,1.25,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
 			}
 			std::cout << "mouse wheel "<< e.wheel.y <<endl;
 			std::cout << "x0 : "  << c->getX() << ", y0 : " << c->getY() <<  "; "<< "x1 : " <<  c->getFinalX() << ", y1 : "<< c->getFinalY() << endl;
