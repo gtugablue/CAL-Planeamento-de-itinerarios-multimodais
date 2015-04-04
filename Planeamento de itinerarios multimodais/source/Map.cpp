@@ -141,6 +141,23 @@ void Map::Loader::loadSchedule(const BusRoute &busRoute) const
 	busRoute.interpolateSchedules();
 }
 
+vector<MetroStop *> Map::Loader::loadMetro(rapidjson::Document &d) const
+{
+	vector<pair<Coordinates, string> > nodes;
+
+	const rapidjson::Value &elements = d["elements"];
+	for (size_t i = 0; i < elements.Size(); ++i)
+	{
+		if (elements[i]["type"] == "node")
+		{
+			Coordinates coords(elements[i]["lat"].GetDouble(), elements[i]["lon"].GetDouble());
+			nodes.push_back(make_pair(coords, elements[i].GetString()));
+		}
+	}
+
+	// TODO
+}
+
 unsigned Map::Loader::levenshteinDistance(const string &s1, const string &s2) const
 {
 	// http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance

@@ -103,10 +103,10 @@
 //	return y0+renderY*(y1-y0)/v_res;
 //}
 //
-//double Camera::getZoomScaleX(int h_res)const{
+//double Camera::getZoomScaleX(double h_res)const{
 //	return ((double)(x1-x0))/h_res;
 //}
-//double Camera::getZoomScaleY(int v_res)const{
+//double Camera::getZoomScaleY(double v_res)const{
 //	return ((double)(y1-y0))/v_res;
 //}
 //void Camera::moveRelScaled(double x, double y, int h_res, int v_res){
@@ -154,6 +154,7 @@ void Camera::moveAbs(double x, double y){
 void Camera::moveRel(double x, double y){
 	setValues(x0+x, y0+y,  x1+x, y1+y);
 }
+
 void  Camera::moveRelScreen(double x, double y, int h_res, int v_res){
 	moveAbs(getWorldX(h_res,  x), getWorldY(v_res, y));
 	//getWorldX(x, h_res);
@@ -173,6 +174,7 @@ void Camera::mulScale(double factorx, double factory){
 	double ymul = (y1-y0)* factory;
 	setValues(((x1+x0) - xmul)/2, ((y1+y0) - ymul)/2, ((x1+x0) +xmul)/2,((y1+y0) + ymul)/2);
 }
+
 
 void Camera::uncenteredMulScale(double factorx, double factory, double x, double y, int h_res, int v_res){
 	x = getWorldX(h_res, x);
@@ -210,9 +212,11 @@ double Camera::getHeight() const {return y1- y0;}
 double Camera::getRenderX(int h_res, double worldX) const{
 	return (worldX-x0)*h_res/(x1-x0);
 }
+
 double Camera::getRenderY(int v_res, double worldY) const{
 	return (worldY-y0)*v_res/(y1-y0);
 }
+
 
 double Camera::getWorldX(int h_res, double renderX) const{
 	return x0+renderX*(x1-x0)/h_res;

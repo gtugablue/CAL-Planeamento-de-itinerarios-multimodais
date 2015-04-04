@@ -23,6 +23,7 @@
 #include "BusEdge.h"
 #include "BusRoute.h"
 #include "Vertex.h"
+#include "MetroStop.h"
 
 class Map {
 private:
@@ -42,6 +43,7 @@ public:
 		std::vector<BusStop *> loadBusStops(const rapidjson::Document &d) const;
 		std::vector<BusEdge> loadBusEdges(const rapidjson::Document &d) const;
 		void loadSchedule(const BusRoute &busRoute) const;
+		std::vector<MetroStop *> loadMetro(rapidjson::Document &d) const;
 		unsigned levenshteinDistance(const string &s1, const string &s2) const;
 	public:
 		Map load();
