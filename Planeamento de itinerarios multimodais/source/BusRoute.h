@@ -24,7 +24,7 @@ private:
 public:
 	BusRoute(const std::string code, bool direction, const std::vector<BusStop *> &busStops, const std::vector<BusEdge> &BusEdges);
 	void print() const;
-	const std::string getCode() const { return code; }
+	const std::string &getCode() const { return code; }
 	const std::vector<BusEdge>& getBusEdges() const;
 	const std::vector<BusStop *>& getBusStops() const;
 	void interpolateSchedules() const;
