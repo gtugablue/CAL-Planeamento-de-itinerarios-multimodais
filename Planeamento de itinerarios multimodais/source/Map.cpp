@@ -284,7 +284,7 @@ unsigned Map::Loader::levenshteinDistance(const string &s1, const string &s2) co
 Map Map::Loader::load()
 {
 	Map map;
-	busRoutes = loadBusRoutes();
-	metroRoutes = loadMetroRoutes();
+	map.busRoutes = loadBusRoutes();
+	map.metroRoutes = loadMetroRoutes();
 	return map;
 }
