@@ -127,11 +127,14 @@ vector<BusRoute> Map::Loader::loadBusRoutes() const
 		BusRoute busRoute(code, direction);
 
 		// Add adjacent edges to each vertex and add everything to the Bus Route
-		for (size_t i = 0; i < busStops.size(); ++i)
+		for (size_t i = 0; i < busStops.size() - 1; ++i)
 		{
 			busStops[i]->addEdge(new BusEdge(busEdges[i])); // TODO delete
 			busRoute.addStop(busStops[i]);
 		}
+
+		// Add last Bus Stop
+		busRoute.addStop(busStops[busStops.size() - 1]);
 	}
 }
 
