@@ -10,16 +10,12 @@
 
 #include <string>
 #include <vector>
+#include "TransportRoute.h"
 #include "MetroStop.h"
 
-class MetroRoute {
-private:
-	std::string code;
-	bool direction;
-	std::vector<MetroStop *> metroStops;
+class MetroRoute: public TransportRoute {
 public:
-	MetroRoute(const std::string code, bool direction, const std::vector<MetroStop *> &metroStops);
-	const std::string &getCode() const { return code; }
+	MetroRoute(const std::string code, bool direction);
 	virtual ~MetroRoute();
 };
 

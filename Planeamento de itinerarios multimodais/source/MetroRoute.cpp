@@ -7,11 +7,10 @@
 
 #include "MetroRoute.h"
 
-MetroRoute::MetroRoute(const std::string code, bool direction, const std::vector<MetroStop *> &metroStops):
-	code(code), direction(direction), metroStops(metroStops)
+MetroRoute::MetroRoute(const std::string code, bool direction):
+	TransportRoute(code, direction)
 {
 }
 
 MetroRoute::~MetroRoute() {
 }
-

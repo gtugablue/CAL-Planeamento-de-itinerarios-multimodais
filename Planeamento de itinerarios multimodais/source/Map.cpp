@@ -156,7 +156,6 @@ vector<MetroStop *> Map::Loader::loadMetroStops(rapidjson::Document &d) const
 			if (elements[i].HasMember("tags") && elements[i]["tags"].HasMember("name"))
 			{
 				const rapidjson::Value &tags = elements[i]["tags"];
-				cout << "type: " << tags["name"].GetType() << endl;
 				MetroStop *metroStop = new MetroStop(tags["name"].GetString(), coords); // TODO delete
 				metroStops.push_back(metroStop);
 			}
@@ -178,6 +177,11 @@ MetroStop *Map::Loader::findClosestMetroStop(const vector<MetroStop *> metroStop
 			minScore = score;
 		}
 	}
+	if (minScore > 3)
+	{
+		cout << "Warning: Couldn't find a corresponding Metro Stop in json data. Info:" << endl;
+		cout << "Score: " << minScore << " Searching: " << metroStopCode << " Found: " << closest->getName() << endl;
+	}
 	return closest;
 }
 
@@ -197,29 +201,31 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 		// Get line's name
 		string code = dLines[i]["code"].GetString();
 
-		vector<MetroStop *> finalMetroStops;
+		// Create Metro Route
+		MetroRoute metroRoute(code, true);
 
 		// Add first stop
-		finalMetroStops.push_back(findClosestMetroStop(metroStops, dLines[i]["stops"][0].GetString()));
+		MetroStop *metroStop = findClosestMetroStop(metroStops, dLines[i]["stops"][0].GetString());
+		metroRoute.addStop(metroStop);
 
 		// Loop through all other stops
 		for (size_t j = 1; j < dLines[i]["stops"].Size(); ++j)
 		{
-			MetroStop *metroStop = findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString());
-			finalMetroStops.push_back(metroStop);
+			metroStop = findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString());
+			metroRoute.addStop(metroStop);
 
 			// Create Metro Edge
 			vector<Coordinates> line;
-			line.push_back(finalMetroStops[j - 1]->getCoords());
-			line.push_back(finalMetroStops[j]->getCoords());
-			MetroEdge metroEdge(finalMetroStops[j - 1], finalMetroStops[j], line);
+			line.push_back(metroRoute.getStops()[j - 1]->getCoords());
+			line.push_back(metroStop->getCoords());
+			MetroEdge metroEdge(metroRoute.getStops()[j - 1], metroStop, line);
 
 			// Add Metro Edge as adjacent to Metro Stop
-			finalMetroStops[j - 1]->addEdge(new MetroEdge(metroEdge)); // TODO delete
+			metroRoute.getStops()[j - 1]->addEdge(new MetroEdge(metroEdge)); // TODO delete
 		}
 
-		// Add the stops to the Metro Route
-		metroRoutes.push_back(MetroRoute(code, true, finalMetroStops));
+		// Add the Route to the Metro Route vector
+		metroRoutes.push_back(metroRoute);
 	}
 
 	return metroRoutes;
