@@ -21,15 +21,6 @@ const string Map::Loader::timetablesFolder = Map::Loader::dataFolder + "horarios
 Map::Map() {
 }
 
-const std::vector<BusRoute>& Map::getBusRoutes() const {
-	return busRoutes;
-}
-
-const std::vector<BusStop *>& Map::getBusStops() const
-{
-	return busStops;
-}
-
 void Map::Loader::parseJsonFile(const std::string file, rapidjson::Document &d) const
 {
 	ifstream infile(file.c_str());
@@ -65,6 +56,14 @@ std::vector<std::string> Map::Loader::getFilesInFolder(const std::string &folder
 	}
 
 	return fileNames;
+}
+
+void Map::Loader::findBusInfoFromFileName(const string &fileName, std::string &code, bool &direction) const
+{
+	char temp[fileName.length() + 1];
+	strcpy(temp, fileName.c_str());
+	code = string(strtok(temp, "-."));
+	direction = string(strtok(NULL, "-.")) == "0" ? false : true;
 }
 
 vector<BusStop *> Map::Loader::loadBusStops(const rapidjson::Document &d) const
@@ -105,8 +104,40 @@ vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d) const
 	return busEdges;
 }
 
+vector<BusRoute> Map::Loader::loadBusRoutes() const
+{
+	vector<BusRoute> busRoutes;
+
+	// Loop through all Bus Routes
+	vector<string> fileNames = getFilesInFolder(BusEdgesFolder);
+	for (size_t i = 0; i < fileNames.size(); ++i)
+	{
+		// Load Bus Stops code, name and coordinates
+		rapidjson::Document d;
+		parseJsonFile(BusEdgesFolder + fileNames[i], d);
+		vector<BusStop *> busStops = loadBusStops(d);
+
+		// Load corresponding Bus Edges
+		vector<BusEdge> busEdges = loadBusEdges(d);
+
+		// Load Bus Route info
+		bool direction;
+		string code;
+		findBusInfoFromFileName(fileNames[i], code, direction);
+		BusRoute busRoute(code, direction);
+
+		// Add adjacent edges to each vertex and add everything to the Bus Route
+		for (size_t i = 0; i < busStops.size(); ++i)
+		{
+			busStops[i]->addEdge(new BusEdge(busEdges[i])); // TODO delete
+			busRoute.addStop(busStops[i]);
+		}
+	}
+}
+
 void Map::Loader::loadSchedule(const BusRoute &busRoute) const
 {
+	/*
 	rapidxml::xml_document<> d;
 	rapidxml::file<> xmlFile((timetablesFolder + busRoute.getCode() + "-0-1-1").c_str());
 	parseXMLFile(xmlFile, d);
@@ -140,7 +171,7 @@ void Map::Loader::loadSchedule(const BusRoute &busRoute) const
 			keyBusStops[i]->addHour(Hour(td->value()));
 		}
 	}
-	busRoute.interpolateSchedules();
+	busRoute.interpolateSchedules();*/
 }
 
 vector<MetroStop *> Map::Loader::loadMetroStops(rapidjson::Document &d) const
@@ -253,43 +284,7 @@ unsigned Map::Loader::levenshteinDistance(const string &s1, const string &s2) co
 Map Map::Loader::load()
 {
 	Map map;
-	vector<string> fileNames = getFilesInFolder(BusEdgesFolder);
-	for (size_t i = 0; i < fileNames.size(); ++i)
-	{
-		//cout << "Progress: " <<( unsigned)(100 * ((double)i/fileNames.size())) << "%" << endl;
-		rapidjson::Document d;
-		parseJsonFile(BusEdgesFolder + fileNames[i], d);
-		vector<BusStop *> loadedBusStops = loadBusStops(d);
-		map.busStops.insert(map.busStops.end(), loadedBusStops.begin(), loadedBusStops.end());
-		vector<BusEdge> busEdges = loadBusEdges(d);
-		char temp[fileNames[i].length() + 1];
-		strcpy(temp, fileNames[i].c_str());
-		string code = string(strtok(temp, "-."));
-		bool direction = string(strtok(NULL, "-.")) == "0" ? false : true;
-		BusRoute busRoute(code, direction, loadedBusStops, busEdges);
-		loadSchedule(busRoute);
-		map.busRoutes.push_back(busRoute);
-		//map.busRoutes[i].print();
-	}
-	loadMetroRoutes();
-	/*// Road test
-	rapidxml::xml_document<> d;
-	rapidxml::file<> xmlFile("data/map.xml");
-	cout << "Parsing map..." << endl;
-	parseXMLFile(xmlFile, d);
-	cout << "Map parsed! Transversing it..." << endl;
-
-	rapidxml::xml_node<> *node = d.first_node("osm");
-	for (rapidxml::xml_node<> *child = node->first_node(); child; child = child->next_sibling())
-	{
-		if (string(child->name()) != "node")
-			continue;
-		Coordinates coords(strtod(child->first_attribute("lat")->value(), NULL),
-				strtod(child->first_attribute("lon")->value(), NULL));
-		Vertex vertex(coords);
-		map.vertices.push_back(new Vertex(vertex));
-	}
-	cout << "Map transversed!" << endl;*/
-
+	busRoutes = loadBusRoutes();
+	metroRoutes = loadMetroRoutes();
 	return map;
 }

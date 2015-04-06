@@ -11,23 +11,14 @@
 
 using namespace std;
 
-BusRoute::BusRoute(const string code, bool direction, const vector<BusStop *> &busStops, const vector<BusEdge> &BusEdges):
-				code(code), direction(direction), busStops(busStops), BusEdges(BusEdges)
+BusRoute::BusRoute(const string code, bool direction):
+	TransportRoute(code, direction)
 {
-}
-
-const std::vector<BusEdge>& BusRoute::getBusEdges() const
-{
-	return BusEdges;
-}
-
-const std::vector<BusStop *>& BusRoute::getBusStops() const
-{
-	return busStops;
 }
 
 void BusRoute::interpolateSchedules() const
 {
+	/*
 	vector<unsigned> keyIDs;
 	for (size_t i = 0; i < busStops.size(); ++i)
 	{
@@ -59,16 +50,5 @@ void BusRoute::interpolateSchedules() const
 				busStops[l + 1]->addHour(h * (ranDist / dist) + h1);
 			}
 		}
-	}
-}
-
-void BusRoute::print() const
-{
-	for (size_t i = 0; i < BusEdges.size(); ++i)
-	{
-		//busStops[i].print();
-		//BusEdges[i].print();
-		//cout << endl;
-	}
-	//busStops[BusEdges.size()].print();
+	}*/
 }

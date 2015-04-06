@@ -14,19 +14,12 @@
 #include "BusEdge.h"
 #include "Hour.h"
 #include <set>
+#include "TransportRoute.h"
 
-class BusRoute {
+class BusRoute: public TransportRoute {
 private:
-	std::string code;
-	bool direction;
-	std::vector<BusStop *> busStops;
-	std::vector<BusEdge> BusEdges;
 public:
-	BusRoute(const std::string code, bool direction, const std::vector<BusStop *> &busStops, const std::vector<BusEdge> &BusEdges);
-	void print() const;
-	const std::string &getCode() const { return code; }
-	const std::vector<BusEdge>& getBusEdges() const;
-	const std::vector<BusStop *>& getBusStops() const;
+	BusRoute(const std::string code, bool direction);
 	void interpolateSchedules() const;
 };
 

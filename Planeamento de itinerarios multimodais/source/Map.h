@@ -29,7 +29,7 @@
 class Map {
 private:
 	std::vector<BusRoute> busRoutes;
-	std::vector<BusStop *> busStops;
+	std::vector<MetroRoute> metroRoutes;
 public:
 	Map();
 
@@ -42,8 +42,10 @@ public:
 		std::vector<std::string> getFilesInFolder(const std::string &folder) const;
 		void parseJsonFile(const std::string file, rapidjson::Document &d) const;
 		void parseXMLFile(rapidxml::file<> &file, rapidxml::xml_document<> &d) const;
+		void findBusInfoFromFileName(const string &fileName, std::string &code, bool &direction) const;
 		std::vector<BusStop *> loadBusStops(const rapidjson::Document &d) const;
 		std::vector<BusEdge> loadBusEdges(const rapidjson::Document &d) const;
+		std::vector<BusRoute> loadBusRoutes() const;
 		void loadSchedule(const BusRoute &busRoute) const;
 		std::vector<std::pair<MetroStop *, std::string> > loadMetroStopNodes(rapidjson::Document &d) const;
 		std::vector<MetroStop *> loadMetroStops(rapidjson::Document &d) const;
