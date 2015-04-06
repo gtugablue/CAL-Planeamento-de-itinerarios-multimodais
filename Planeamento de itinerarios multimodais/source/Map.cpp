@@ -9,12 +9,14 @@
 #include <dirent/dirent.h>
 #include <algorithm>
 #include <stdlib.h>
+#include "MetroEdge.h"
 
 using namespace std;
 
-const string Map::Loader::BusEdgesFolder = "data/linedraw/";
-const string Map::Loader::busStopsFolder = "data/linestops/";
-const string Map::Loader::timetablesFolder = "data/horarios_tab/";
+const string Map::Loader::dataFolder = "data/";
+const string Map::Loader::BusEdgesFolder = Map::Loader::dataFolder + "linedraw/";
+const string Map::Loader::busStopsFolder = Map::Loader::dataFolder + "linestops/";
+const string Map::Loader::timetablesFolder = Map::Loader::dataFolder + "horarios_tab/";
 
 Map::Map() {
 }
@@ -141,9 +143,9 @@ void Map::Loader::loadSchedule(const BusRoute &busRoute) const
 	busRoute.interpolateSchedules();
 }
 
-vector<pair<MetroStop *, string> > Map::Loader::loadMetroStopNodes(rapidjson::Document &d) const
+vector<MetroStop *> Map::Loader::loadMetroStops(rapidjson::Document &d) const
 {
-	vector<pair<MetroStop *, string> > metroStopNodes;
+	vector<MetroStop *> metroStops;
 
 	const rapidjson::Value &elements = d["elements"];
 	for (size_t i = 0; i < elements.Size(); ++i)
@@ -151,15 +153,76 @@ vector<pair<MetroStop *, string> > Map::Loader::loadMetroStopNodes(rapidjson::Do
 		if (elements[i]["type"] == "node")
 		{
 			Coordinates coords(elements[i]["lat"].GetDouble(), elements[i]["lon"].GetDouble());
-			if (elements[i].HasMember("tags"))
+			if (elements[i].HasMember("tags") && elements[i]["tags"].HasMember("name"))
 			{
 				const rapidjson::Value &tags = elements[i]["tags"];
+				cout << "type: " << tags["name"].GetType() << endl;
 				MetroStop *metroStop = new MetroStop(tags["name"].GetString(), coords); // TODO delete
-				metroStopNodes.push_back(make_pair(metroStop, elements[i]["id"].GetString()));
+				metroStops.push_back(metroStop);
 			}
 		}
 	}
-	return metroStopNodes;
+	return metroStops;
+}
+
+MetroStop *Map::Loader::findClosestMetroStop(const vector<MetroStop *> metroStops, const string metroStopCode) const
+{
+	MetroStop *closest;
+	unsigned minScore = -1;
+	for (size_t i = 0; i < metroStops.size(); ++i)
+	{
+		unsigned score = levenshteinDistance(metroStops[i]->getName(), metroStopCode);
+		if (score < minScore)
+		{
+			closest = metroStops[i];
+			minScore = score;
+		}
+	}
+	return closest;
+}
+
+vector<MetroRoute> Map::Loader::loadMetroRoutes() const
+{
+	vector<MetroRoute> metroRoutes;
+	rapidjson::Document dStops;
+	parseJsonFile(dataFolder + "metro.json", dStops);
+	vector<MetroStop *> metroStops = loadMetroStops(dStops);
+
+	rapidjson::Document dLines;
+	parseJsonFile(dataFolder + "metroLines.json", dLines);
+
+	// Loop through all lines
+	for (size_t i = 0; i < dLines.Size(); ++i)
+	{
+		// Get line's name
+		string code = dLines[i]["code"].GetString();
+
+		vector<MetroStop *> finalMetroStops;
+
+		// Add first stop
+		finalMetroStops.push_back(findClosestMetroStop(metroStops, dLines[i]["stops"][0].GetString()));
+
+		// Loop through all other stops
+		for (size_t j = 1; j < dLines[i]["stops"].Size(); ++j)
+		{
+			MetroStop *metroStop = findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString());
+			finalMetroStops.push_back(metroStop);
+
+			// Create Metro Edge
+			vector<Coordinates> line;
+			line.push_back(finalMetroStops[j - 1]->getCoords());
+			line.push_back(finalMetroStops[j]->getCoords());
+			MetroEdge metroEdge(finalMetroStops[j - 1], finalMetroStops[j], line);
+
+			// Add Metro Edge as adjacent to Metro Stop
+			finalMetroStops[j - 1]->addEdge(new MetroEdge(metroEdge)); // TODO delete
+		}
+
+		// Add the stops to the Metro Route
+		metroRoutes.push_back(MetroRoute(code, true, finalMetroStops));
+	}
+
+	return metroRoutes;
 }
 
 unsigned Map::Loader::levenshteinDistance(const string &s1, const string &s2) const
@@ -202,6 +265,7 @@ Map Map::Loader::load()
 		map.busRoutes.push_back(busRoute);
 		//map.busRoutes[i].print();
 	}
+	loadMetroRoutes();
 	/*// Road test
 	rapidxml::xml_document<> d;
 	rapidxml::file<> xmlFile("data/map.xml");

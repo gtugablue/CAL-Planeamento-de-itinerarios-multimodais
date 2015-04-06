@@ -201,6 +201,7 @@ int main(int argc, char* argv[]) {
 #include "Camera.h"
 #include "SDLGraphDraw.h"
 #include <queue>
+#include "Map.h"
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
@@ -248,6 +249,10 @@ Uint32 my_callbackfunc(Uint32 interval, void *param)
 }
 
 int main(int argc, char* argv[]) {
+	Map::Loader l;
+	Map map;
+	map = l.load();
+
 	if(! init() ){
 		std::cout << "Failed to initialize!" << endl;
 		exit(1);

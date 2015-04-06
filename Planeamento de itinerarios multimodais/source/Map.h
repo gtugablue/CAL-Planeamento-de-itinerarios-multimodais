@@ -24,6 +24,7 @@
 #include "BusRoute.h"
 #include "Vertex.h"
 #include "MetroStop.h"
+#include "MetroRoute.h"
 
 class Map {
 private:
@@ -34,6 +35,7 @@ public:
 
 	class Loader {
 	private:
+		static const std::string dataFolder;
 		static const std::string BusEdgesFolder;
 		static const std::string busStopsFolder;
 		static const std::string timetablesFolder;
@@ -44,7 +46,9 @@ public:
 		std::vector<BusEdge> loadBusEdges(const rapidjson::Document &d) const;
 		void loadSchedule(const BusRoute &busRoute) const;
 		std::vector<std::pair<MetroStop *, std::string> > loadMetroStopNodes(rapidjson::Document &d) const;
-		std::vector<MetroStop *> loadMetro(rapidjson::Document &d) const;
+		std::vector<MetroStop *> loadMetroStops(rapidjson::Document &d) const;
+		MetroStop *findClosestMetroStop(const std::vector<MetroStop *> metroStops, const std::string metroStopCode) const;
+		std::vector<MetroRoute> loadMetroRoutes() const;
 		unsigned levenshteinDistance(const string &s1, const string &s2) const;
 	public:
 		Map load();

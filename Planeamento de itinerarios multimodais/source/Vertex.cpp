@@ -10,4 +10,7 @@ void Vertex::addAdj(Vertex* v, double weight){
 		adj.push_back(e);
 	}
 
-
+void Vertex::addEdge(Edge *edge)
+{
+	adj.push_back(edge);
+}

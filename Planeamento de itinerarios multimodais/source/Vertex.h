@@ -19,6 +19,7 @@ public:
 	Vertex(const Coordinates &coords): coords(coords), x(coords.getLatitude()), y(coords.getLongitude()) { }
 	std::vector<Edge*> getAdj()const{return adj;};
 	void addAdj(Vertex* v, double weight =0);
+	void addEdge(Edge *edge);
 	Coordinates getCoords() const { return coords; }
 	double getRenderX() const { return coords.getLongitude(); }
 	double getRenderY() const { return coords.getLatitude(); }
