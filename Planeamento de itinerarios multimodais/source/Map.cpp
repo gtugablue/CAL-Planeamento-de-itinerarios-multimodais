@@ -135,7 +135,11 @@ vector<BusRoute> Map::Loader::loadBusRoutes() const
 
 		// Add last Bus Stop
 		busRoute.addStop(busStops[busStops.size() - 1]);
+
+		// Add Route to the Bus Routes vector
+		busRoutes.push_back(busRoute);
 	}
+	return busRoutes;
 }
 
 void Map::Loader::loadSchedule(const BusRoute &busRoute) const
