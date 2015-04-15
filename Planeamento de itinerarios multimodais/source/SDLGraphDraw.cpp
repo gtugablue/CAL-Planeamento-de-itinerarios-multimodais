@@ -93,4 +93,21 @@ void SDLGraphDraw::drawVertex(SDL_Renderer *renderer, Camera* c, Vertex* v, int 
 	}
 }
 
+void SDLGraphDraw::drawSlider(SDL_Renderer *renderer, Slider* slider, SDLRGB color1, SDLRGB color2){
+	SDL_Rect body;
+	SDL_Rect cursor;
+	body.x = slider->getX();
+	body.y = slider->getY();
+	body.w = slider->getWidth();
+	body.h = slider->getHeight();
+
+	cursor.x = slider->getCursorX();
+	cursor.y = slider->getCursorY();
+	cursor.w = slider->getCursorWidth();
+	cursor.h = slider->getCursorHeight();
+	SDL_SetRenderDrawColor( renderer,color1.red,color1.blue, color1.green, 0xFF);
+	SDL_RenderFillRect(renderer, &body);
+	SDL_SetRenderDrawColor( renderer,color1.red,color1.blue, color1.green, 0xFF);
+	SDL_RenderFillRect(renderer, &cursor);
+}
 

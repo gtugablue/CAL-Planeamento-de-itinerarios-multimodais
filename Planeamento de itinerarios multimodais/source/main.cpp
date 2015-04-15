@@ -202,6 +202,7 @@ int main(int argc, char* argv[]) {
 #include "SDLGraphDraw.h"
 #include <queue>
 #include "Map.h"
+#include "Slider.h"
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
@@ -261,12 +262,20 @@ int main(int argc, char* argv[]) {
 	Path* p = dijsktra(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 	SDL_Event e;
 	bool moving = false;
+	bool mouseLeftDown = false;
 	SDL_RenderDrawPoint(renderer,50, 50);
 	Camera* c = new Camera(0,0,SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes(), 100);
 
 	SDL_Cursor * cursormove = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_SIZEALL);
 	SDL_Cursor * cursorresize = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_WAIT);
 	SDL_Cursor * cursordefault = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
+	Slider * slider = new Slider(50,50,
+								SCREEN_WIDTH-100,50,
+								75,75,
+								0,100,
+								50,
+								true);
+
 	SDL_SetCursor(cursordefault);
 	SDL_TimerID  setTimer = 0;
 	queue<SDL_TimerID> timers;
@@ -275,11 +284,16 @@ int main(int argc, char* argv[]) {
 		if ((e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) || e.type == SDL_QUIT)
 			break;
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT){
-			std::cout << "left pressed"<<endl;
+			mouseLeftDown = true;
+			int x, y;
+			SDL_GetMouseState(&x, &y);
+			slider->select(x,y);
+			/*std::cout << "left pressed"<<endl;
 			delete g1;
 			delete p;
 			g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
-			p = dijsktra(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+			p = dijsktra(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);*/
+
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT){
 			moving = true;
@@ -296,11 +310,26 @@ int main(int argc, char* argv[]) {
 			SDL_SetCursor(cursordefault);
 			continue;
 		}
-		else if(e.type  ==  SDL_MOUSEMOTION && moving){
-			cout << "moving " << e.motion.xrel << ", " <<e.motion.yrel<< endl;
-			//c->moveRel(-c->getZoomScaleX(SDLGraphDraw::getHRes()) * e.motion.xrel, - c->getZoomScaleY(SDLGraphDraw::getVRes()) * e.motion.yrel);
-			//c->moveRelScaled(-e.motion.xrel, -e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
-			c->moveRelScreen(-e.motion.xrel, -e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
+		else if(e.type  ==  SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_LEFT){
+			mouseLeftDown = false;
+			int x, y;
+			SDL_GetMouseState(&x, &y);
+			slider->setSelected(false);
+		}
+		else if(e.type  ==  SDL_MOUSEMOTION){
+			if(moving){
+				cout << "moving " << e.motion.xrel << ", " <<e.motion.yrel<< endl;
+				c->moveRelScreen(-e.motion.xrel, -e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
+			}
+			if(mouseLeftDown){
+				if(slider->isSelected()){
+					int x, y;
+					SDL_GetMouseState(&x, &y);
+					slider->setValueUI(x);
+					cout << "value: " << slider->getValue() << endl;
+				}
+
+			}
 		}
 		else if(e.type  ==  SDL_MOUSEWHEEL ){
 			bool changed = false;
@@ -308,12 +337,9 @@ int main(int argc, char* argv[]) {
 			if( e.wheel.y > 0){
 				int x, y;
 				SDL_GetMouseState(&x, &y);
-				//c->movePartialAbsCentered(x, y , SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes(), 1);
-				//c->mulScale(.5,.5);
 				changed = c->uncenteredMulScale(.9,.9,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
 			}
 			else if( e.wheel.y < 0){
-				//c->mulScale(2,2);
 				int x, y;
 				SDL_GetMouseState(&x, &y);
 				changed = c->uncenteredMulScale(1.1,1.1,x,y,SDLGraphDraw::getHRes(),  SDLGraphDraw::getVRes() );
@@ -339,6 +365,7 @@ int main(int argc, char* argv[]) {
 		SDL_RenderClear(renderer );
 		SDLGraphDraw::drawGraph(renderer,c, g1);
 		SDLGraphDraw::drawPath(renderer, c, p);
+		SDLGraphDraw::drawSlider(renderer, slider, SDLRGB(0xFF, 0,0), SDLRGB(0, 0xFF,0));
 		SDL_RenderPresent(renderer);
 	}
 	close();
