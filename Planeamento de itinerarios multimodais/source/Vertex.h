@@ -43,6 +43,7 @@ public:
 	}
 	void setIndex(unsigned int index){
 		this->index = index;
+<<<<<<< HEAD
 	}
 
 	double getBestWeight() const {
@@ -85,6 +86,9 @@ public:
 		visits++;
 	}
 
+=======
+	}
+>>>>>>> refs/remotes/origin/Gustavo
 };
 
 
