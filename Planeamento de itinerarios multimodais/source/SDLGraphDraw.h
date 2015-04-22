@@ -9,6 +9,8 @@ using namespace std;
 #include "Path.h"
 #include "SDLRGB.h"
 #include "Camera.h"
+#include "Slider.h"
+
 #include <SDL2/SDL.h>
 
 class Graph;
@@ -33,6 +35,7 @@ public:
 	static void drawGraph(SDL_Renderer *renderer, Camera* c, Graph* e);
 	static void drawPath(SDL_Renderer *renderer, Camera* c, Path* e);
 	static void drawVertex(SDL_Renderer *renderer,Camera* c, Vertex* v, int size, SDLRGB color);
+	static void drawSlider(SDL_Renderer *renderer, Slider* slider, SDLRGB color1, SDLRGB color2);
 
     static unsigned int getHRes()
     {
