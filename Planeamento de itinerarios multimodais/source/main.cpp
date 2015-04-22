@@ -275,6 +275,7 @@ int main(int argc, char* argv[]) {
 		std::cout << "Failed to initialize!" << endl;
 		exit(1);
 	}
+
 	Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 	Path* p = dijsktra(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 	SDL_Event e;
@@ -381,7 +382,7 @@ int main(int argc, char* argv[]) {
 		SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(renderer );
 		SDLGraphDraw::drawGraph(renderer,c, g1);
-		SDLGraphDraw::drawPath(renderer, c, p);
+		//SDLGraphDraw::drawPath(renderer, c, p);
 		SDLGraphDraw::drawSlider(renderer, slider, SDLRGB(0xFF, 0,0), SDLRGB(0, 0xFF,0));
 		SDL_RenderPresent(renderer);
 	}
