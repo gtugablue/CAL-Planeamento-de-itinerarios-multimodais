@@ -366,13 +366,8 @@ int main(int argc, char* argv[]) {
 		SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(renderer );
 		SDLGraphDraw::drawGraph(renderer,c, g1);
-<<<<<<< HEAD
-		//SDLGraphDraw::drawPath(renderer, c, p);
-		SDLGraphDraw::drawSlider(renderer, slider, SDLRGB(0xFF, 0,0), SDLRGB(0, 0xFF,0));
-=======
 		SDLGraphDraw::drawPath(renderer, c, p);
 		//SDLGraphDraw::drawSlider(renderer, slider, SDLRGB(0xFF, 0,0), SDLRGB(0, 0xFF,0));
->>>>>>> refs/remotes/origin/Ricardo
 		SDL_RenderPresent(renderer);
 	}
 	close();

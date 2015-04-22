@@ -2,7 +2,7 @@
 
 Path* astar(Graph* g, Vertex* ini, Vertex* f){
 	vector<Vertex*> vertices = g->getVertexSet();
-	for(int i= 0; i < vertices.size(); i++){
+	for(size_t i= 0; i < vertices.size(); i++){
 		vertices[i]->resetProcessed();
 		vertices[i]->resetVisits();
 		vertices[i]->setParent(NULL);
@@ -16,23 +16,29 @@ Path* astar(Graph* g, Vertex* ini, Vertex* f){
 	ini->calculateH(f);
 	handles[ini->getIndex()] = vHeap.push(ini);
 	Vertex* current;
-	while(vHeap.size() != 0){
+	while(vHeap.size() != 0)
+	{
 		current = (Vertex*)vHeap.top();
 		vHeap.pop();
 		current->incProcessed();
 		if(current == f)
 			break;
 		vector<Edge*> adjs  = current->getAdj();
-		for(int i = 0; i < adjs.size(); i++){
-			if(!adjs[i]->getDst()->getProcessed()){
+		for(size_t i = 0; i < adjs.size(); i++)
+		{
+			if(!adjs[i]->getDst()->getProcessed())
+			{
 				double newWeight = current->getBestWeight() +adjs[i]->getWeight();
-				if(newWeight < adjs[i]->getDst()->getBestWeight()){
+				if(newWeight < adjs[i]->getDst()->getBestWeight())
+				{
 					adjs[i]->getDst()->setBestWeight(newWeight);
 					adjs[i]->getDst()->setParent(adjs[i]);
 					if(adjs[i]->getDst()->getVisits())
 					{
 						vHeap.increase(handles[adjs[i]->getDst()->getIndex()]);
-					}else{
+					}
+					else
+					{
 						adjs[i]->getDst()->calculateH(f);
 						handles[adjs[i]->getDst()->getIndex()] = vHeap.push(adjs[i]->getDst());
 					}
@@ -43,8 +49,8 @@ Path* astar(Graph* g, Vertex* ini, Vertex* f){
 	}
 
 	Path *p = new Path(f->getBestWeight());
-	if(f != current) return p;
 
+	if(f != current) return p;
 
 	while(current != ini)
 	{

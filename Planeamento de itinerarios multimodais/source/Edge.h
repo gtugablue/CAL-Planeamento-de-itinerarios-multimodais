@@ -10,61 +10,26 @@ using namespace std;
 class Vertex;
 
 class Edge{
+
+public:
+    Edge(Vertex* src, Vertex* dst, double storedWeight = 0);
+    virtual double getWeight() const;
+    void setStoredWeight(double storedWeight);
+    Vertex* getDst() const;
+    void setDst(Vertex* dst);
+    Vertex* getSrc() const;
+    void setSrc(Vertex* src);
+    void storeWeight();
+    double getStoredWeight() const;
+    virtual SDLRGB getColor();
+    virtual ~Edge();
+
+protected:
+	double storedWeight;
+
 private:
 	Vertex* src;
 	Vertex* dst;
-protected:
-	double storedWeight;
-public:
-    Edge(Vertex* src, Vertex* dst, double storedWeight = 0)
-    {
-        this->src = src;
-        this->dst = dst;
-        this->storedWeight = storedWeight;
-    }
-
-    virtual double getWeight() const;
-
-    void setStoredWeight(double storedWeight)
-    {
-        this->storedWeight = storedWeight;
-    }
-
-    Vertex* getDst() const
-    {
-        return dst;
-    }
-
-    void setDst(Vertex* dst)
-    {
-        this->dst = dst;
-    }
-
-    Vertex* getSrc() const
-    {
-        return src;
-    }
-
-    void setSrc(Vertex* src)
-    {
-        this->src = src;
-    }
-
-    void storeWeight()
-    {
-        storedWeight = getWeight();
-    };
-
-    double getStoredWeight() const
-    {
-        return storedWeight;
-    };
-
-    SDLRGB getColor()
-    {
-        return SDLRGB(0, 0xFF, 0);
-    }
-    virtual ~Edge() { }
 };
 
 
