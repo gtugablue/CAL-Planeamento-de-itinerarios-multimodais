@@ -5,6 +5,7 @@
 #include "Edge.h"
 #include "Coordinates.h"
 #include <iostream>
+#include <cfloat>
 
 class Vertex{
 private:
@@ -14,9 +15,10 @@ private:
 	unsigned int y;
 	std::vector<Edge*> adj;
 	double bestWeight;
-	Vertex* parent;
+	Edge* parent;
 	int visits;
 	int processed;
+	double storedH;
 
 protected:
 	Coordinates coords;
@@ -52,12 +54,14 @@ public:
 	void setBestWeight(double bestWeight) {
 		this->bestWeight = bestWeight;
 	}
-
-	const Vertex* getParent() const {
+	void resetBestWeight(){
+		setBestWeight(DBL_MAX);
+	}
+	Edge* getParent() const {
 		return parent;
 	}
 
-	void setParent( Vertex* parent) {
+	void setParent( Edge* parent) {
 		this->parent = parent;
 	}
 
@@ -85,6 +89,33 @@ public:
 		visits++;
 	}
 
+	virtual double calculateH(Vertex* v){
+		if(storedH == -1)
+			storedH = sqrt((x - v->x) *(x - v->x)+(y - v->y)*(y - v->y) );
+		return storedH;
+	}
+	double getStoredH() const {
+		return storedH;
+	}
+	void resetStoredH(){
+		storedH = -1;
+	}
+	struct DijsComp{
+		bool operator()(const Vertex* v1, const Vertex* v2)const {
+			return v1->getBestWeight() > v2->getBestWeight();
+		}
+	};
+	struct AStarComp{
+		bool operator()(const Vertex* v1, const Vertex* v2)const {
+			double f1 = v1->getBestWeight() + v1->getStoredH();
+			double f2 = v2->getBestWeight() + v2->getStoredH();
+			if(f1 == f2){
+				return v1->getStoredH() > v2->getStoredH();
+			}else {
+				return f1>f2;
+			}
+		}
+	};
 };
 
 

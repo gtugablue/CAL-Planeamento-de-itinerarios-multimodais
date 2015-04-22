@@ -26,13 +26,17 @@ unsigned int SDLGraphDraw::v_res = 0;
 //	for(size_t i = 0; i < e->getEdges().size(); i++){
 //		drawEdge(renderer, e->getEdges()[i], SDLRGB(0xFF, 0, 0));
 //	}
-	 if(e->getVertices().size() == 0)
-		 return;
+	// if(e->getVertices().size() == 0)
+		// return;
 	 SDLRGB color(0xFF, 0, 0);
-	 for(size_t i = 0; i < e->getVertices().size()-1; i++){
+	/* for(size_t i = 0; i < e->getVertices().size()-1; i++){
 		 SDL_SetRenderDrawColor( renderer, color.red,color.green, color.blue, 0xFF);
 		 SDL_RenderDrawLine(renderer, e->getVertices()[i]->getRenderX(), e->getVertices()[i]->getRenderY(),e->getVertices()[i+1]->getRenderX(), e->getVertices()[i+1]->getRenderY());
-	 }
+	 }*/
+	 for(size_t i = 0; i < e->getEdges().size(); i++){
+			 SDL_SetRenderDrawColor( renderer, color.red,color.green, color.blue, 0xFF);
+			 SDL_RenderDrawLine(renderer,e->getEdges()[i]->getSrc()->getRenderX(), e->getEdges()[i]->getSrc()->getRenderY(),e->getEdges()[i]->getDst()->getRenderX(),e->getEdges()[i]->getDst()->getRenderY());
+		 }
 }
 
  void SDLGraphDraw::drawVertex(SDL_Renderer *renderer, Vertex* v, int size, SDLRGB color){
@@ -69,13 +73,19 @@ void SDLGraphDraw::drawPath(SDL_Renderer *renderer, Camera* c, Path* e){
 	 //	for(size_t i = 0; i < e->getEdges().size(); i++){
 	 //		drawEdge(renderer, e->getEdges()[i], SDLRGB(0xFF, 0, 0));
 	 //	}
-	 	 if(e->getVertices().size() == 0)
+	 	 /*if(e->getVertices().size() == 0)
 	 		 return;
 	 	 SDLRGB color(0xFF, 0, 0);
 	 	 for(size_t i = 0; i < e->getVertices().size()-1; i++){
 	 		 SDL_SetRenderDrawColor( renderer, color.red,color.green, color.blue, 0xFF);
 	 		 SDL_RenderDrawLine(renderer,  c->getRenderX(h_res, e->getVertices()[i]->getRenderX()),  c->getRenderY(v_res, e->getVertices()[i]->getRenderY()), c->getRenderX(h_res, e->getVertices()[i+1]->getRenderX()),  c->getRenderY(v_res, e->getVertices()[i+1]->getRenderY()));
-	 	 }
+	 	 }*/
+	SDLRGB color(0xFF, 0, 0);
+	for(size_t i = 0; i < e->getEdges().size(); i++){
+		 SDL_SetRenderDrawColor( renderer, color.red,color.green, color.blue, 0xFF);
+		 SDL_RenderDrawLine(renderer,  c->getRenderX(h_res, e->getEdges()[i]->getSrc()->getRenderX()),  c->getRenderY(v_res, e->getEdges()[i]->getSrc()->getRenderY()), c->getRenderX(h_res, e->getEdges()[i]->getDst()->getRenderX()),  c->getRenderY(v_res,e->getEdges()[i]->getDst()->getRenderY()));
+	}
+
 }
 
 

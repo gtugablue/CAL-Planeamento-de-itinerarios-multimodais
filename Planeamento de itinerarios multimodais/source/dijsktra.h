@@ -9,7 +9,11 @@
 #include <vector>
 #include <iostream>
 #include <climits>
+#include <boost/heap/fibonacci_heap.hpp>
 
+
+typedef boost::heap::fibonacci_heap<Vertex*,  boost::heap::compare<Vertex::DijsComp> > dij_heap;
+typedef boost::heap::fibonacci_heap<Vertex*, boost::heap::compare<Vertex::DijsComp> >::handle_type dij_handle;
 
 Path* dijsktra(Graph* g, Vertex* ini, Vertex* f);
 
