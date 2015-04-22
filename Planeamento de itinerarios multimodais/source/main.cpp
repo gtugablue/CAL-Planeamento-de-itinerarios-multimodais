@@ -197,6 +197,7 @@ int main(int argc, char* argv[]) {
 #include "GraphGen.h"
 #include "Graph.h"
 #include "dijsktra.h"
+#include "AStar.h"
 #include <ctime>
 #include "Camera.h"
 #include "SDLGraphDraw.h"
@@ -248,25 +249,6 @@ Uint32 my_callbackfunc(Uint32 interval, void *param)
 }
 
 int main(int argc, char* argv[]) {
-	srand(time(NULL));
-	boost::heap::fibonacci_heap<int> fb;
-
-	int toteis = 1000;
-	vector<boost::heap::fibonacci_heap<int>::handle_type> refs;
-	vector<int> nums;
-	for(int i = 0; i < toteis; i++){
-		nums.push_back(rand());
-		refs.push_back(fb.push(nums[i]));
-	}
-	for(int i = 0; i < 10; i++){
-		int pos = rand()%refs.size();
-		fb.increase(refs[pos], 2*nums[pos]);
-	}
-	while(!fb.empty()){
-		cout << fb.top() << ", ";
-		fb.pop();
-	}
-	return 0;
 
 	Map::Loader l;
 	Map map;
@@ -277,7 +259,8 @@ int main(int argc, char* argv[]) {
 		exit(1);
 	}
 	Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
-	Path* p = dijsktra(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+	Path* p = astar(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+	cerr << "yay1\n";
 	SDL_Event e;
 	bool moving = false;
 	bool mouseLeftDown = false;
@@ -306,11 +289,11 @@ int main(int argc, char* argv[]) {
 			int x, y;
 			SDL_GetMouseState(&x, &y);
 			slider->select(x,y);
-			/*std::cout << "left pressed"<<endl;
+			std::cout << "left pressed"<<endl;
 			delete g1;
 			delete p;
 			g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
-			p = dijsktra(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);*/
+			p = astar(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT){
@@ -383,7 +366,7 @@ int main(int argc, char* argv[]) {
 		SDL_RenderClear(renderer );
 		SDLGraphDraw::drawGraph(renderer,c, g1);
 		SDLGraphDraw::drawPath(renderer, c, p);
-		SDLGraphDraw::drawSlider(renderer, slider, SDLRGB(0xFF, 0,0), SDLRGB(0, 0xFF,0));
+		//SDLGraphDraw::drawSlider(renderer, slider, SDLRGB(0xFF, 0,0), SDLRGB(0, 0xFF,0));
 		SDL_RenderPresent(renderer);
 	}
 	close();

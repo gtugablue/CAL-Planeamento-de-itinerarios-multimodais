@@ -11,28 +11,20 @@ class Edge;
 class Vertex;
 
 class Path{
-	static unsigned int lastID;
-	const unsigned int id;
 	vector<Edge*> edges;
-	vector<Vertex*> vertices;
 	double cost;
 public:
-	Path(double cost): id(0){
+	Path(double cost) {
 		this->cost = cost;
 	}
 	vector<Edge*> getEdges() const{
 		return edges;
 	}
-	void addEdge(Edge* e){
+	void addEdgeEnd(Edge* e){
 		edges.push_back(e);
 	}
-	vector<Vertex*> getVertices() const
-	{
-	    return vertices;
-	}
-	void addVertex(Vertex* v)
-	{
-	    vertices.push_back(v);
+	void addEdgeBeginning(Edge* e){
+		edges.insert(edges.begin(), e);
 	}
 };
 
