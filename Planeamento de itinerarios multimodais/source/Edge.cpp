@@ -1,6 +1,6 @@
 #include "Edge.h"
 
-Edge::Edge(Vertex* src, Vertex* dst, double storedWeight = 0){
+Edge::Edge(Vertex* src, Vertex* dst, double storedWeight){
 	this->src = src;
 	this->dst = dst;
 	this->storedWeight = storedWeight;
@@ -41,6 +41,6 @@ double Edge::getStoredWeight() const{
 SDLRGB Edge::getColor(){
 	return SDLRGB(0, 0xFF, 0);
 }
-virtual Edge::~Edge() {
+Edge::~Edge() {
 
 }
