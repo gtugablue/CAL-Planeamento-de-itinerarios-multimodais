@@ -54,6 +54,14 @@ public:
 		unsigned levenshteinDistance(const string &s1, const string &s2) const;
 	public:
 		Map load();
+
+		class InvalidInputException {
+			std::string info;
+		public:
+			InvalidInputException(const string &info): info(info) {}
+			const string &getInfo() { return info; }
+		};
+
 	};
 	friend class Loader;
 	const std::vector<BusRoute>& getBusRoutes() const;

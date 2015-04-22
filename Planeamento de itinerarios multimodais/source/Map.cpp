@@ -84,6 +84,7 @@ vector<BusStop *> Map::Loader::loadBusStops(const rapidjson::Document &d) const
 vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d) const
 {
 	vector<BusEdge> busEdges;
+	if (d["route"].Size() == 0) throw InvalidInputException("File has no data to be read.");
 	for (size_t i = 0; i < d["route"].Size(); ++i)
 	{
 		const rapidjson::Value &line = d["route"][i];
@@ -92,11 +93,28 @@ vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d) const
 		geo.Parse(geomdesc.c_str());
 		rapidjson::Value &coords = geo["coordinates"];
 		vector<Coordinates> coordinates;
-		for (size_t j = 0; j < coords.Size(); ++j)
+		if (string(geo["type"].GetString()) == "LineString")
 		{
-			Coordinates coord(coords[j][1].GetDouble(), coords[j][0].GetDouble());
-			coordinates.push_back(coord);
+			for (size_t j = 0; j < coords.Size(); ++j)
+			{
+				Coordinates coord(coords[j][1].GetDouble(), coords[j][0].GetDouble());
+				coordinates.push_back(coord);
+			}
 		}
+		else if (string(geo["type"].GetString()) == "MultiLineString")
+		{
+			for (size_t j = 0; j < coords.Size(); ++j)
+			{
+				rapidjson::Value &coords2 = coords[j];
+				for (size_t k = 0; k < coords2.Size(); ++k)
+				{
+					Coordinates coord(coords2[k][1].GetDouble(), coords2[k][0].GetDouble());
+					coordinates.push_back(coord);
+				}
+			}
+		}
+		else throw InvalidInputException("Unknown line type.");
+
 		Vertex *src = new Vertex(coordinates[0]);
 		Vertex *dst = new Vertex(coordinates[coordinates.size() - 1]);
 		busEdges.push_back(BusEdge(src, dst, coordinates));
@@ -112,6 +130,8 @@ vector<BusRoute> Map::Loader::loadBusRoutes() const
 	vector<string> fileNames = getFilesInFolder(BusEdgesFolder);
 	for (size_t i = 0; i < fileNames.size(); ++i)
 	{
+		try {
+		cout << "Loading file " << fileNames[i] << endl;
 		// Load Bus Stops code, name and coordinates
 		rapidjson::Document d;
 		parseJsonFile(BusEdgesFolder + fileNames[i], d);
@@ -138,6 +158,11 @@ vector<BusRoute> Map::Loader::loadBusRoutes() const
 
 		// Add Route to the Bus Routes vector
 		busRoutes.push_back(busRoute);
+		}
+		catch (InvalidInputException &e)
+		{
+			// Do nothing
+		}
 	}
 	return busRoutes;
 }
@@ -291,7 +316,11 @@ unsigned Map::Loader::levenshteinDistance(const string &s1, const string &s2) co
 Map Map::Loader::load()
 {
 	Map map;
+	cout << "Loading bus routes..." << endl;
 	map.busRoutes = loadBusRoutes();
+	cout << "Bus routes successfully loaded." << endl;
+	cout << "Loading metro routes..." << endl;
 	map.metroRoutes = loadMetroRoutes();
+	cout << "Metro routes successfully loaded." << endl;
 	return map;
 }

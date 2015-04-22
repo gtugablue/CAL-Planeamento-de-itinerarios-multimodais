@@ -266,7 +266,6 @@ int main(int argc, char* argv[]) {
 		cout << fb.top() << ", ";
 		fb.pop();
 	}
-	return 0;
 
 	Map::Loader l;
 	Map map;
