@@ -204,6 +204,8 @@ int main(int argc, char* argv[]) {
 #include "Map.h"
 #include "Slider.h"
 
+#include <boost/heap/fibonacci_heap.hpp>
+
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
 
@@ -233,10 +235,6 @@ Uint32 my_callbackfunc(Uint32 interval, void *param)
     SDL_Event event;
     SDL_UserEvent userevent;
 
-    /* In this example, our callback pushes an SDL_USEREVENT event
-    into the queue, and causes our callback to be called again at the
-    same interval: */
-
     userevent.type = SDL_USEREVENT;
     userevent.code = 0;
     userevent.data1 = NULL;
@@ -250,6 +248,26 @@ Uint32 my_callbackfunc(Uint32 interval, void *param)
 }
 
 int main(int argc, char* argv[]) {
+	srand(time(NULL));
+	boost::heap::fibonacci_heap<int> fb;
+
+	int toteis = 1000;
+	vector<boost::heap::fibonacci_heap<int>::handle_type> refs;
+	vector<int> nums;
+	for(int i = 0; i < toteis; i++){
+		nums.push_back(rand());
+		refs.push_back(fb.push(nums[i]));
+	}
+	for(int i = 0; i < 10; i++){
+		int pos = rand()%refs.size();
+		fb.increase(refs[pos], 2*nums[pos]);
+	}
+	while(!fb.empty()){
+		cout << fb.top() << ", ";
+		fb.pop();
+	}
+	return 0;
+
 	Map::Loader l;
 	Map map;
 	map = l.load();

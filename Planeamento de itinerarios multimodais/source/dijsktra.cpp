@@ -3,6 +3,15 @@
 using namespace std;
 
 Path* dijsktra(Graph* g, Vertex* ini, Vertex* f){
+	vector<Vertex*> vertices = g->getVertexSet();
+	for(int i= 0; i < vertices.size(); i++){
+		vertices[i]->resetProcessed();
+		vertices[i]->resetVisits();
+		vertices[i]->setParent(NULL);
+	}
+	//boost::heap
+
+/*
 	vector<double> best(g->getVertexSet().size());
 	vector<bool> completed(g->getVertexSet().size());
 	vector<unsigned int> parent(g->getVertexSet().size());
@@ -66,5 +75,7 @@ Path* dijsktra(Graph* g, Vertex* ini, Vertex* f){
 	else {
 		delete out;
 		return new Path(0);
-	}
+	}*/
+
+
 }

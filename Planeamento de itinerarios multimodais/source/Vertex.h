@@ -13,6 +13,11 @@ private:
 	unsigned int x;
 	unsigned int y;
 	std::vector<Edge*> adj;
+	double bestWeight;
+	Vertex* parent;
+	int visits;
+	int processed;
+
 protected:
 	Coordinates coords;
 public:
@@ -39,6 +44,47 @@ public:
 	void setIndex(unsigned int index){
 		this->index = index;
 	}
+
+	double getBestWeight() const {
+		return bestWeight;
+	}
+
+	void setBestWeight(double bestWeight) {
+		this->bestWeight = bestWeight;
+	}
+
+	const Vertex* getParent() const {
+		return parent;
+	}
+
+	void setParent( Vertex* parent) {
+		this->parent = parent;
+	}
+
+	void resetProcessed(){
+		processed = 0;
+	}
+
+	int getProcessed() const {
+		return processed;
+	}
+
+	void incProcessed(){
+		processed++;
+	}
+
+	int getVisits() const {
+		return visits;
+	}
+
+	void resetVisits(){
+		visits = 0;
+	}
+
+	void incVisits(){
+		visits++;
+	}
+
 };
 
 
