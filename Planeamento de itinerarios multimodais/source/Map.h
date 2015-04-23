@@ -25,6 +25,7 @@
 #include "Vertex.h"
 #include "MetroStop.h"
 #include "MetroRoute.h"
+#include "Graph.h"
 
 class Map {
 private:
@@ -52,6 +53,7 @@ public:
 		MetroStop *findClosestMetroStop(const std::vector<MetroStop *> metroStops, const std::string metroStopCode) const;
 		std::vector<MetroRoute> loadMetroRoutes() const;
 		unsigned levenshteinDistance(const string &s1, const string &s2) const;
+		Graph generateGraph() const;
 	public:
 		Map load();
 

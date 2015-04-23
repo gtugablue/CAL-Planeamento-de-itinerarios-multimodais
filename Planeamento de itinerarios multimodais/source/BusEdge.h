@@ -18,6 +18,7 @@ class BusEdge: public TransportEdge {
 public:
 	BusEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line);
 	void print() const;
+	virtual double calculateTime(double distance) const { return 0; }
 	virtual ~BusEdge() { }
 };
 

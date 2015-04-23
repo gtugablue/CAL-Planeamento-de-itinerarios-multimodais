@@ -5,7 +5,7 @@ double WeightInfo::distanceWeight = 0;
 double WeightInfo::switchWeight = 0;
 double WeightInfo::costWeight = 0;
 
-double WeightInfo::getWeight()const{
+double WeightInfo::getWeight(Hour currentHour) const{
 	return cost*costWeight + distance * distanceWeight + switchs * switchWeight + time * timeWeight;
 }
 

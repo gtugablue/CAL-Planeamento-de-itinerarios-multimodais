@@ -21,6 +21,7 @@ protected:
 public:
 	TransportStop(const std::string &name, const Coordinates &coords);
 	std::string getName() const { return name; }
+	const Hour &getArrivalTime() const { return arrival; }
 	void addHour(const Hour &hour);
 	const std::vector<Hour> &getSchedule() const;
 	bool hasSchedule() const { return schedule.size() > 0; }

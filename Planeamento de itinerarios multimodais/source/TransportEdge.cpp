@@ -6,17 +6,22 @@
  */
 
 #include "TransportEdge.h"
+#include "TransportStop.h"
 
 using namespace std;
 
 TransportEdge::TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
 	Edge(src, dst), line(line)
 {
-	storedWeight = 0;
+	double distance = 0;
 	for (size_t i = 1; i < line.size(); ++i)
 	{
-		storedWeight += line[i - 1].calcDist(line[i]);
+		distance += line[i - 1].calcDist(line[i]);
 	}
+	weight.setCost(0.20);
+	weight.setDistance(distance);
+	weight.setSwitchs(0);
+	weight.setTime(calculateTime(distance));
 }
 
 const vector<Coordinates> &TransportEdge::getLine() const
@@ -34,5 +39,5 @@ void TransportEdge::addPoint(const Coordinates &coords)
 
 double TransportEdge::getWeight() const
 {
-	//return weight.getWeight((TransportStop *)getSrc()->);
+	return weight.getWeight(((TransportStop *)getSrc())->getArrivalTime());
 }

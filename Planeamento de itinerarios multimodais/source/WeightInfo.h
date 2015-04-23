@@ -2,7 +2,6 @@
 #define WEIGHT_INFO_H
 
 #include "Hour.h"
-#include "publicTransportStart.h
 
 class WeightInfo{
 public:

@@ -21,6 +21,7 @@ private:
 public:
 	unsigned hours;
 	unsigned minutes;
+	Hour(): hours(hours), minutes(minutes) {}
 	Hour(const std::string &hour);
 	Hour(unsigned hours, unsigned minutes): hours(hours), minutes(minutes) { }
 	Hour& operator+=(const Hour &hour);
