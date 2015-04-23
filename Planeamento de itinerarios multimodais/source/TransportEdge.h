@@ -11,14 +11,16 @@
 #include "Edge.h"
 #include "Coordinates.h"
 #include <vector>
+#include "WeightInfo.h"
 
 class TransportEdge: public Edge {
 protected:
 	std::vector<Coordinates> line;
+	WeightInfo weight;
 public:
 	TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line);
 	void addPoint(const Coordinates &coords);
-	double getDist() const { return storedWeight; }
+	double getWeight(Hour currentHour, Coordinates publicTransportStart) const;
 	const std::vector<Coordinates> &getLine() const;
 	virtual ~TransportEdge() { }
 };

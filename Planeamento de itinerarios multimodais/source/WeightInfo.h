@@ -1,10 +1,12 @@
 #ifndef WEIGHT_INFO_H
 #define WEIGHT_INFO_H
 
+#include "Hour.h"
+#include "publicTransportStart.h
 
 class WeightInfo{
 public:
-	double getWeight()const;
+	double getWeight(Hour currentHour, Coordinates publicTransportStart)const;
 	double getCost() const;
 	void setCost(double cost);
 	static double getCostWeight();
