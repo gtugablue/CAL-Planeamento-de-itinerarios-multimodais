@@ -6,7 +6,7 @@
 
 class WeightInfo{
 public:
-	double getWeight(Hour currentHour, Coordinates publicTransportStart)const;
+	double getWeight(Hour currentHour) const;
 	double getCost() const;
 	void setCost(double cost);
 	static double getCostWeight();

@@ -32,7 +32,7 @@ void TransportEdge::addPoint(const Coordinates &coords)
 	line.push_back(coords);
 }
 
-double TransportEdge::getWeight(Hour currentHour, Coordinates publicTransportStart) const
+double TransportEdge::getWeight() const
 {
-	return weight.getWeight(currentHour, publicTransportStart);
+	return weight.getWeight(currentHour);
 }

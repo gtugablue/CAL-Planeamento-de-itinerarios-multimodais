@@ -20,7 +20,7 @@ protected:
 public:
 	TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line);
 	void addPoint(const Coordinates &coords);
-	double getWeight(Hour currentHour, Coordinates publicTransportStart) const;
+	double getWeight(Coordinates publicTransportStart) const;
 	const std::vector<Coordinates> &getLine() const;
 	virtual ~TransportEdge() { }
 };

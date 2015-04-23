@@ -17,6 +17,7 @@ class TransportStop: public Vertex {
 protected:
 	std::string name;
 	std::vector<Hour> schedule;
+	Hour arrival;
 public:
 	TransportStop(const std::string &name, const Coordinates &coords);
 	std::string getName() const { return name; }
