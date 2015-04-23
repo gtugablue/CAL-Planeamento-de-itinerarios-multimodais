@@ -21,7 +21,7 @@ private:
 public:
 	unsigned hours;
 	unsigned minutes;
-	Hour(): hours(hours), minutes(minutes) {}
+	Hour(): hours(0), minutes(0) {}
 	Hour(const std::string &hour);
 	Hour(unsigned hours, unsigned minutes): hours(hours), minutes(minutes) { }
 	Hour& operator+=(const Hour &hour);
@@ -36,6 +36,7 @@ public:
 	Hour operator/(double quocient) const;
 	bool operator<(const Hour &hour) const;
 	friend Hour operator*(const Hour &hour, double factor);
+	friend Hour operator+(const Hour &hour, double x);
 	friend std::ostream &operator<<(std::ostream &os, const Hour &hour);
 };
 

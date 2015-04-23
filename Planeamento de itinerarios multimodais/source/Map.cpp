@@ -10,6 +10,9 @@
 #include <algorithm>
 #include <stdlib.h>
 #include "MetroEdge.h"
+#include <stdlib.h>
+#include "BusRoute.h"
+#include "MetroRoute.h"
 
 using namespace std;
 
@@ -131,33 +134,36 @@ vector<BusRoute> Map::Loader::loadBusRoutes() const
 	for (size_t i = 0; i < fileNames.size(); ++i)
 	{
 		try {
-		cout << "Loading file " << fileNames[i] << endl;
-		// Load Bus Stops code, name and coordinates
-		rapidjson::Document d;
-		parseJsonFile(BusEdgesFolder + fileNames[i], d);
-		vector<BusStop *> busStops = loadBusStops(d);
+			cout << "Loading file " << fileNames[i] << endl;
+			// Load Bus Stops code, name and coordinates
+			rapidjson::Document d;
+			parseJsonFile(BusEdgesFolder + fileNames[i], d);
+			vector<BusStop *> busStops = loadBusStops(d);
 
-		// Load corresponding Bus Edges
-		vector<BusEdge> busEdges = loadBusEdges(d);
+			// Load corresponding Bus Edges
+			vector<BusEdge> busEdges = loadBusEdges(d);
 
-		// Load Bus Route info
-		bool direction;
-		string code;
-		findBusInfoFromFileName(fileNames[i], code, direction);
-		BusRoute busRoute(code, direction);
+			// Load Bus Route info
+			bool direction;
+			string code;
+			findBusInfoFromFileName(fileNames[i], code, direction);
+			BusRoute busRoute(code, direction);
 
-		// Add adjacent edges to each vertex and add everything to the Bus Route
-		for (size_t i = 0; i < busStops.size() - 1; ++i)
-		{
-			busStops[i]->addEdge(new BusEdge(busEdges[i])); // TODO delete
-			busRoute.addStop(busStops[i]);
-		}
+			// Add adjacent edges to each vertex and add everything to the Bus Route
+			for (size_t i = 0; i < busStops.size() - 1; ++i)
+			{
+				busStops[i]->addEdge(new BusEdge(busEdges[i])); // TODO delete
+				busRoute.addStop(busStops[i]);
+			}
 
-		// Add last Bus Stop
-		busRoute.addStop(busStops[busStops.size() - 1]);
+			// Add last Bus Stop
+			busRoute.addStop(busStops[busStops.size() - 1]);
 
-		// Add Route to the Bus Routes vector
-		busRoutes.push_back(busRoute);
+			// Generate a random schedule
+			generateRandomBusSchedule(busRoute);
+
+			// Add Route to the Bus Routes vector
+			busRoutes.push_back(busRoute);
 		}
 		catch (InvalidInputException &e)
 		{
@@ -293,6 +299,43 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 
 	return metroRoutes;
 }
+
+Hour Map::Loader::generateRandomHour() const
+{
+	return Hour(rand() % 24, rand() % 60);
+}
+
+void Map::Loader::generateRandomBusSchedule(BusRoute &busRoute) const
+{
+	vector<TransportStop *> busStops = busRoute.getStops();
+	vector<Hour> linearSchedule;
+	linearSchedule.push_back(generateRandomHour());
+	unsigned dailyFrequency = rand() % 50 + 15;
+	for (size_t i = 0; i < busStops.size(); ++i)
+	{
+		if (i == 0)
+			linearSchedule.push_back(generateRandomHour());
+		else
+		{
+			double dt = ((BusStop *)busStops[i - 1])->getCoords().calcDist(((BusStop *)busStops[i])->getCoords()) * BusRoute::velocity;
+			linearSchedule.push_back(linearSchedule[linearSchedule.size() - 1] + dt);
+		}
+		double period = 24 * 60 * 60 / dailyFrequency;
+		vector<Hour> schedule;
+		schedule.push_back(linearSchedule[i - 1]);
+		for (size_t j = 0; j < dailyFrequency; ++j)
+		{
+			schedule.push_back(schedule[j] + period);
+		}
+		busStops[i]->setSchedule(schedule);
+	}
+	busRoute.setStops(busStops);
+}
+
+/*void Map::Loader::generateRandomMetroSchedule(const MetroRoute &metroRoute)
+{
+
+}*/
 
 unsigned Map::Loader::levenshteinDistance(const string &s1, const string &s2) const
 {

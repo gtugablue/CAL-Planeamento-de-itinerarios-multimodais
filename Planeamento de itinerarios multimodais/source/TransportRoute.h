@@ -21,6 +21,7 @@ public:
 	TransportRoute(const std::string code, bool direction): code(code), direction(direction) { }
 	const std::string &getCode() const { return code; }
 	virtual void addStop(TransportStop *transportStop);
+	void setStops(std::vector<TransportStop *> stops) { transportStops = stops; }
 	const std::vector<TransportStop *> &getStops() const;
 	virtual ~TransportRoute() { };
 };

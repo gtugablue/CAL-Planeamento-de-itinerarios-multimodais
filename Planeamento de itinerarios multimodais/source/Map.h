@@ -52,8 +52,11 @@ public:
 		std::vector<MetroStop *> loadMetroStops(rapidjson::Document &d) const;
 		MetroStop *findClosestMetroStop(const std::vector<MetroStop *> metroStops, const std::string metroStopCode) const;
 		std::vector<MetroRoute> loadMetroRoutes() const;
+		Hour generateRandomHour() const;
+		void generateRandomBusSchedule(BusRoute &busRoute) const;
+		void generateRandomMetroSchedule(MetroRoute &metroRoute) const;
+		void generateRandomSchedules();
 		unsigned levenshteinDistance(const string &s1, const string &s2) const;
-		Graph generateGraph() const;
 	public:
 		Map load();
 
@@ -68,6 +71,7 @@ public:
 	friend class Loader;
 	const std::vector<BusRoute>& getBusRoutes() const;
 	const std::vector<BusStop *>& getBusStops() const;
+	Graph generateGraph() const;
 };
 
 #endif /* SOURCE_MAP_H_ */

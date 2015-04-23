@@ -13,12 +13,12 @@
 #include "BusStop.h"
 #include "BusEdge.h"
 #include "Hour.h"
-#include <set>
 #include "TransportRoute.h"
 
 class BusRoute: public TransportRoute {
 private:
 public:
+	static const double velocity = 1;
 	BusRoute(const std::string code, bool direction);
 	void interpolateSchedules() const;
 };

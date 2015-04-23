@@ -35,10 +35,10 @@ void Hour::setHourstamp(unsigned hourstamp)
 }
 
 Hour& Hour::operator+=(const Hour &hour)
-{
+		{
 	setHourstamp((getHourstamp() + hour.getHourstamp()) % minutesPerDay);
 	return *this;
-}
+		}
 
 Hour Hour::operator+(const Hour &hour) const
 {
@@ -46,7 +46,7 @@ Hour Hour::operator+(const Hour &hour) const
 }
 
 Hour& Hour::operator-=(const Hour &hour)
-{
+		{
 	if (getHourstamp() < hour.getHourstamp())
 	{
 		setHourstamp(minutesPerDay - (hour.getHourstamp() - getHourstamp()));
@@ -56,7 +56,7 @@ Hour& Hour::operator-=(const Hour &hour)
 		setHourstamp(getHourstamp() - hour.getHourstamp());
 	}
 	return *this;
-}
+		}
 
 Hour Hour::operator-(const Hour &hour) const
 {
@@ -85,10 +85,10 @@ Hour Hour::operator-(const Hour &hour) const
 }*/
 
 Hour& Hour::operator/=(double quocient)
-{
+		{
 	setHourstamp(getHourstamp() / quocient);
 	return *this;
-}
+		}
 
 Hour Hour::operator/(double quocient) const
 {
@@ -110,6 +110,13 @@ Hour operator*(const Hour &hour, double factor)
 {
 	Hour hour2(hour);
 	hour2.setHourstamp((unsigned)(hour2.getHourstamp() * factor) % hour2.minutesPerDay);
+	return hour2;
+}
+
+Hour operator+(const Hour &hour, double x)
+{
+	Hour hour2(hour);
+	hour2.setHourstamp((unsigned)(hour2.getHourstamp() + x) % hour2.minutesPerDay);
 	return hour2;
 }
 

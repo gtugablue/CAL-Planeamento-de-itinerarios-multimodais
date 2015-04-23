@@ -24,6 +24,7 @@ public:
 	const Hour &getArrivalTime() const { return arrival; }
 	void addHour(const Hour &hour);
 	const std::vector<Hour> &getSchedule() const;
+	void setSchedule(std::vector<Hour> schedule) { this->schedule = schedule; }
 	bool hasSchedule() const { return schedule.size() > 0; }
 	virtual bool operator==(const TransportStop &transportStop) const;
 	virtual ~TransportStop();
