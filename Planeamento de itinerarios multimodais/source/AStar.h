@@ -9,6 +9,7 @@
 #include <vector>
 #include <iostream>
 #include <climits>
+#include <list>
 #include <boost/heap/fibonacci_heap.hpp>
 
 

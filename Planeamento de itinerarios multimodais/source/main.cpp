@@ -196,7 +196,7 @@ int main(int argc, char* argv[]) {
 #include <stdlib.h>
 #include "GraphGen.h"
 #include "Graph.h"
-#include "dijsktra.h"
+#include "Dijsktra.h"
 #include "AStar.h"
 #include <ctime>
 #include "Camera.h"
