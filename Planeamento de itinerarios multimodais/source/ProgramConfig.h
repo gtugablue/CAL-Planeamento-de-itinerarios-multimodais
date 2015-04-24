@@ -4,7 +4,7 @@
 #include "WeightInfo.h"
 #include <iostream>
 
-enum Algorithm { Dijkstra, AStar };
+enum Algorithm { Dijkstra, AStar, BruteForce };
 enum DataStructure { List, FibonacciHeap };
 enum RunningMode { NormalUser, Advanced, AllAlgorithms };
 
