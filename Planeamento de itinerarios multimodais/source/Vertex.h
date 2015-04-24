@@ -26,7 +26,7 @@ public:
 	void setBestWeight(double bestWeight);
 	void resetBestWeight();
 	Edge* getParent() const;
-	void setParent( Edge* parent);
+	virtual void setParent( Edge* parent);
 	void resetProcessed();
 	int getProcessed() const;
 	void incProcessed();

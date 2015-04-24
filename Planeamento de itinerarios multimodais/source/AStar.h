@@ -5,6 +5,9 @@
 #include "Edge.h"
 #include "Graph.h"
 #include "Path.h"
+#include "GraphQueue.h"
+#include "GraphQueueFib.h"
+#include "GraphQueueList.h"
 #include <cfloat>
 #include <vector>
 #include <iostream>
