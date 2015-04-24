@@ -194,18 +194,18 @@ int main(int argc, char* argv[]) {
 #include <vector>
 #include <iostream>
 #include <stdlib.h>
-#include "GraphGen.h"
-#include "Graph.h"
-#include "Dijsktra.h"
-#include "AStar.h"
-#include "BruteForce.h"
+#include "graph/GraphGen.h"
+#include "graph/Graph.h"
+#include "algorithms/Dijsktra.h"
+#include "algorithms/AStar.h"
+#include "algorithms/BruteForce.h"
 #include <ctime>
-#include "Camera.h"
-#include "SDLGraphDraw.h"
+#include "gui/Camera.h"
+#include "gui/SDLGraphDraw.h"
 #include <queue>
 #include <iomanip>
-#include "Map.h"
-#include "Slider.h"
+#include "transport/Map.h"
+#include "gui/Slider.h"
 #include "ProgramConfig.h"
 
 #include <boost/heap/fibonacci_heap.hpp>

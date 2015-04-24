@@ -4,7 +4,7 @@
 #include <boost/heap/fibonacci_heap.hpp>
 #include <vector>
 #include "GraphQueue.h"
-#include "Vertex.h"
+#include "../graph/Vertex.h"
 
 template<class Comp>
 class GraphQueueFib: public GraphQueue<Comp>{

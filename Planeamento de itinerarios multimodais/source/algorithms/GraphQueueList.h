@@ -2,7 +2,7 @@
 #define GRAPH_QUEUE_LIST_H
 
 #include "GraphQueue.h"
-#include "Vertex.h"
+#include "../graph/Vertex.h"
 #include <list>
 
 template<class Comp>

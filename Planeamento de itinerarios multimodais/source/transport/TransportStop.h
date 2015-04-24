@@ -8,10 +8,11 @@
 #ifndef SOURCE_TRANSPORTSTOP_H_
 #define SOURCE_TRANSPORTSTOP_H_
 
-#include "Vertex.h"
+#include "../graph/Vertex.h"
 #include "Coordinates.h"
 #include <string>
 #include "Hour.h"
+#include "WeightInfo.h"
 
 class TransportStop: public Vertex {
 protected:

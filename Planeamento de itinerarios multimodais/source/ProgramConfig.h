@@ -1,7 +1,7 @@
 #ifndef PROGRAM_COFIG_H
 #define PROGRAM_COFIG_H
 
-#include "WeightInfo.h"
+#include "transport/WeightInfo.h"
 #include <iostream>
 
 enum Algorithm { Dijkstra, AStar };

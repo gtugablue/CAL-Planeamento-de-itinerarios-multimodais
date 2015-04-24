@@ -1,7 +1,7 @@
 #ifndef GRAPH_QUEUE_H
 #define GRAPH_QUEUE_H
 
-#include "Vertex.h"
+#include "../graph/Vertex.h"
 template <class Comp>
 class GraphQueue{
 public:

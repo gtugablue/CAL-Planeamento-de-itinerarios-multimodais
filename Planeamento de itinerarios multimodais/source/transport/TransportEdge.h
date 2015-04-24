@@ -8,7 +8,7 @@
 #ifndef SOURCE_TRANSPORTEDGE_H_
 #define SOURCE_TRANSPORTEDGE_H_
 
-#include "Edge.h"
+#include "../graph/Edge.h"
 #include "Coordinates.h"
 #include <vector>
 #include "WeightInfo.h"
