@@ -14,8 +14,6 @@
 #include "GraphQueueFib.h"
 #include "GraphQueueList.h"
 
-typedef boost::heap::fibonacci_heap<Vertex*,  boost::heap::compare<Vertex::DijsComp> > dij_heap;
-typedef boost::heap::fibonacci_heap<Vertex*, boost::heap::compare<Vertex::DijsComp> >::handle_type dij_handle;
 
 Path* dijsktra_fib(Graph* g, Vertex* ini, Vertex* f);
 Path* dijsktra_list(Graph* g, Vertex* ini, Vertex* f);
