@@ -204,6 +204,7 @@ int main(int argc, char* argv[]) {
 #include <queue>
 #include "Map.h"
 #include "Slider.h"
+#include "ProgramConfig.h"
 
 #include <boost/heap/fibonacci_heap.hpp>
 
