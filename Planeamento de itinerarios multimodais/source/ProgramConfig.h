@@ -5,7 +5,7 @@
 #include <iostream>
 
 enum Algorithm { Dijkstra, AStar };
-enum DataStructure { Vector, FibonacciHeap };
+enum DataStructure { List, FibonacciHeap };
 enum RunningMode { NormalUser, Advanced, AllAlgorithms };
 
 /*

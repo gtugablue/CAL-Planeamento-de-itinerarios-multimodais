@@ -9,19 +9,19 @@ public:
 	double getCost() const;
 	void setCost(double cost);
 	static double getCostWeight();
-	void setCostWeight(double costWeight);
+	static void setCostWeight(double costWeight);
 	double getDistance() const;
 	void setDistance(double distance);
 	static double getDistanceWeight();
-	void setDistanceWeight(double distanceWeight);
+	static void setDistanceWeight(double distanceWeight);
 	double getSwitchs() const;
 	void setSwitchs(double switchs);
 	static double getSwitchWeight();
-	void setSwitchWeight(double switchWeight);
+	static void setSwitchWeight(double switchWeight);
 	double getTime() const;
 	void setTime(double time);
 	static double getTimeWeight();
-	void setTimeWeight(double timeWeight);
+	static void setTimeWeight(double timeWeight);
 
 private:
 	static double timeWeight;

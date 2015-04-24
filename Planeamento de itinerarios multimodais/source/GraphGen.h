@@ -23,8 +23,9 @@ public:
 			do{
 				index_dst = rand()% out->getVertexSet().size();
 			}while(index_src == index_dst);
-			out->getVertexSet()[index_src]->addAdj(out->getVertexSet()[index_dst]);
-			out->getVertexSet()[index_dst]->addAdj(out->getVertexSet()[index_src]);
+			double dist = sqrt((out->getVertexSet()[index_src]->getRenderX() - out->getVertexSet()[index_dst]->getRenderX())*(out->getVertexSet()[index_src]->getRenderX() - out->getVertexSet()[index_dst]->getRenderX()) + (out->getVertexSet()[index_src]->getRenderY() - out->getVertexSet()[index_dst]->getRenderY())*(out->getVertexSet()[index_src]->getRenderY() - out->getVertexSet()[index_dst]->getRenderY()) );
+			out->getVertexSet()[index_src]->addAdj(out->getVertexSet()[index_dst], dist);
+			out->getVertexSet()[index_dst]->addAdj(out->getVertexSet()[index_src], dist);
 		}
 		return out;
 	}

@@ -33,7 +33,7 @@ public:
 
 	static void drawEdge(SDL_Renderer *renderer, Camera* c, Edge* e, SDLRGB color);
 	static void drawGraph(SDL_Renderer *renderer, Camera* c, Graph* e);
-	static void drawPath(SDL_Renderer *renderer, Camera* c, Path* e);
+	static void drawPath(SDL_Renderer *renderer, Camera* c, Path* e, SDLRGB color);
 	static void drawVertex(SDL_Renderer *renderer,Camera* c, Vertex* v, int size, SDLRGB color);
 	static void drawSlider(SDL_Renderer *renderer, Slider* slider, SDLRGB color1, SDLRGB color2);
 

@@ -6,6 +6,7 @@
 #include "Coordinates.h"
 #include <iostream>
 #include <cfloat>
+#include <cmath>
 
 class Vertex{
 public:

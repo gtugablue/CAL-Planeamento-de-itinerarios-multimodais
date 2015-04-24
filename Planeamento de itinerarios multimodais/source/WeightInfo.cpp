@@ -22,7 +22,7 @@ double WeightInfo::getCostWeight() {
 }
 
 void WeightInfo::setCostWeight(double costWeight) {
-	this->costWeight = costWeight;
+	WeightInfo::costWeight = costWeight;
 }
 
 double WeightInfo::getDistance() const {
@@ -38,7 +38,7 @@ double WeightInfo::getDistanceWeight() {
 }
 
 void WeightInfo::setDistanceWeight(double distanceWeight) {
-	this->distanceWeight = distanceWeight;
+	WeightInfo::distanceWeight = distanceWeight;
 }
 
 double WeightInfo::getSwitchs() const {
@@ -54,7 +54,7 @@ double WeightInfo::getSwitchWeight() {
 }
 
 void WeightInfo::setSwitchWeight(double switchWeight) {
-	this->switchWeight = switchWeight;
+	WeightInfo::switchWeight = switchWeight;
 }
 
 double WeightInfo::getTime() const {
@@ -70,5 +70,5 @@ double WeightInfo::getTimeWeight() {
 }
 
 void WeightInfo::setTimeWeight(double timeWeight) {
-	this->timeWeight = timeWeight;
+	WeightInfo::timeWeight = timeWeight;
 }

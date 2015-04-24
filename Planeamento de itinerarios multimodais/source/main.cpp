@@ -202,6 +202,7 @@ int main(int argc, char* argv[]) {
 #include "Camera.h"
 #include "SDLGraphDraw.h"
 #include <queue>
+#include <iomanip>
 #include "Map.h"
 #include "Slider.h"
 #include "ProgramConfig.h"
@@ -255,13 +256,17 @@ int main(int argc, char* argv[]) {
 	Map map;
 	map = l.load();
 
+	ProgramConfig conf;
+	conf.getFromConsole();
+
 	if(! init() ){
 		std::cout << "Failed to initialize!" << endl;
 		exit(1);
 	}
 
 	Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
-	Path* p = astar(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+	Path* p = dijsktra(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+	Path* p2 = astar(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 	cerr << "yay1\n";
 	SDL_Event e;
 	bool moving = false;
@@ -294,8 +299,10 @@ int main(int argc, char* argv[]) {
 			std::cout << "left pressed"<<endl;
 			delete g1;
 			delete p;
+			delete p2;
 			g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
-			p = astar(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+			p = dijsktra(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+			p2 = astar(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT){
@@ -367,7 +374,8 @@ int main(int argc, char* argv[]) {
 		SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(renderer );
 		SDLGraphDraw::drawGraph(renderer,c, g1);
-		SDLGraphDraw::drawPath(renderer, c, p);
+		SDLGraphDraw::drawPath(renderer, c, p, SDLRGB(0xFF,0,0));
+		SDLGraphDraw::drawPath(renderer, c, p2,  SDLRGB(0,0,0xFF));
 		//SDLGraphDraw::drawSlider(renderer, slider, SDLRGB(0xFF, 0,0), SDLRGB(0, 0xFF,0));
 		SDL_RenderPresent(renderer);
 	}

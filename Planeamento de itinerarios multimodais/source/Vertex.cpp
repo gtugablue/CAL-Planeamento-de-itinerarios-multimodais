@@ -105,8 +105,7 @@ void Vertex::incVisits(){
 }
 
 double Vertex::calculateH(Vertex* v){
-	if(storedH == -1)
-		storedH = sqrt((x - v->x) *(x - v->x)+(y - v->y)*(y - v->y) );
+	storedH = sqrt((x - v->x) *(x - v->x)+(y - v->y)*(y - v->y) );
 	return storedH;
 }
 
