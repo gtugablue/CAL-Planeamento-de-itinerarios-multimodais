@@ -121,6 +121,8 @@ Path* astar(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::AStarComp>* que
 Path* astar_list(Graph* g, Vertex* ini, Vertex* f){
 	GraphQueue<Vertex::AStarComp>* queue = new GraphQueueList<Vertex::AStarComp>(g->getVertexSet().size());
 	Path* p = astar(g, ini, f, queue);
+	Vertex::AStarComp()(ini, f);
+	Vertex::DijsComp()(ini, f);
 	delete queue;
 	return p;
 }

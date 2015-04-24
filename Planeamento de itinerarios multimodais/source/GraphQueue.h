@@ -11,7 +11,6 @@ public:
 	virtual Vertex* top() const = 0;
 	virtual Vertex* pop() = 0;
 	virtual void increase(Vertex * v) = 0;
-	virtual ~GraphQueue();
 };
 
 

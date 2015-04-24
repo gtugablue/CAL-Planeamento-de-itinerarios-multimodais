@@ -117,16 +117,4 @@ void Vertex::resetStoredH(){
 	storedH = -1;
 }
 
-bool  Vertex::AStarComp::operator()(const Vertex* v1, const Vertex* v2)const {
-	double f1 = v1->getBestWeight() + v1->getStoredH();
-	double f2 = v2->getBestWeight() + v2->getStoredH();
-	if(f1 == f2)
-		return v1->getStoredH() > v2->getStoredH();
-	else
-		return f1>f2;
-}
-bool Vertex::DijsComp::operator()(const Vertex* v1, const Vertex* v2)const {
-	return v1->getBestWeight() > v2->getBestWeight();
-}
-
 
