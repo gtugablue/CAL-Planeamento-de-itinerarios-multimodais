@@ -25,6 +25,7 @@ public:
 	bool hasSchedule() const { return schedule.size() > 0; }
 	virtual bool operator==(const TransportStop &transportStop) const;
 	virtual ~TransportStop();
+	double calculateH(Vertex * v);
 };
 
 #endif /* SOURCE_TRANSPORTSTOP_H_ */
