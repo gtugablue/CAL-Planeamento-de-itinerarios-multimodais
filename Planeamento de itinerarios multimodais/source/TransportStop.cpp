@@ -33,3 +33,6 @@ TransportStop::~TransportStop()
 {
 
 }
+double TransportStop::calculateH(Vertex * v){
+	return 0;
+}
