@@ -10,7 +10,7 @@
 
 using namespace std;
 
-TransportStop *TransportStopDistCompare::reference = NULL;
+Coordinates TransportStopDistCompare::reference = Coordinates(0, 0);
 
 TransportStop::TransportStop(const std::string &name, const Coordinates &coords):
 	Vertex(coords), name(name)

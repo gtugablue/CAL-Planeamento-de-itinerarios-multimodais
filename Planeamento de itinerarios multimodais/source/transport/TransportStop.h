@@ -39,10 +39,10 @@ public:
 class TransportStopDistCompare
 {
 public:
-	static TransportStop *reference;
+	static Coordinates reference;
     bool operator() (const TransportStop *ts1, const TransportStop *ts2)
     {
-        return reference->getCoords().calcDirectDistSquare(ts1->getCoords()) > reference->getCoords().calcDirectDistSquare(ts2->getCoords());
+        return reference.calcDirectDistSquare(ts1->getCoords()) > reference.calcDirectDistSquare(ts2->getCoords());
     }
 };
 

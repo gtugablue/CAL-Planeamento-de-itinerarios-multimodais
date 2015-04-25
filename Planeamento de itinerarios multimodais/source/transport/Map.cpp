@@ -23,6 +23,7 @@ const string Map::Loader::dataFolder = "data/";
 const string Map::Loader::BusEdgesFolder = Map::Loader::dataFolder + "linedraw/";
 const string Map::Loader::busStopsFolder = Map::Loader::dataFolder + "linestops/";
 const string Map::Loader::timetablesFolder = Map::Loader::dataFolder + "horarios_tab/";
+const string Map::Loader::connectingEdgesPreProcessingFile = Map::Loader::dataFolder + "connectingEdges.txt";
 
 Map::Map() {
 }
@@ -370,7 +371,7 @@ void Map::Loader::createConnectingEdges(vector<BusRoute> &busRoutes, vector<Metr
 
 void Map::Loader::connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRoute> &metroRoutes, TransportStop *transportStop) const
 {
-	TransportStopDistCompare::reference = transportStop;
+	TransportStopDistCompare::reference = transportStop->getCoords();
 	priority_queue<TransportStop *, vector<TransportStop *>, TransportStopDistCompare> transportStops;
 	for (size_t i = 0; i < busRoutes.size(); ++i)
 	{
@@ -380,12 +381,12 @@ void Map::Loader::connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRou
 		}
 	}
 	for (size_t i = 0; i < metroRoutes.size(); ++i)
+	{
+		for (size_t j = 0; j < metroRoutes[i].getStops().size(); ++j)
 		{
-			for (size_t j = 0; j < metroRoutes[i].getStops().size(); ++j)
-			{
-				transportStops.push(metroRoutes[i].getStops()[j]);
-			}
+			transportStops.push(metroRoutes[i].getStops()[j]);
 		}
+	}
 	size_t counter = 0;
 	while (counter < 10)
 	{
@@ -401,6 +402,57 @@ void Map::Loader::connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRou
 	}
 }
 
+void Map::Loader::saveConnectingEdges(const vector<BusRoute> &busRoutes, const vector<MetroRoute> &metroRoutes) const
+{
+	vector<vector<TransportStop *> > dests;
+	for (size_t i = 0; i < busRoutes.size(); ++i)
+	{
+		for (size_t j = 0; j < busRoutes[i].getStops().size(); ++j)
+		{
+			vector<TransportStop *> innerDests;
+			TransportStop *transportStop = busRoutes[i].getStops()[j];
+			for (size_t k = 0; k < transportStop->getAdj().size(); k++)
+			{
+				TransportStop *dest;
+				if (transportStop == transportStop->getAdj()[k]->getDst())
+					continue;
+				innerDests.push_back(dest);
+			}
+			dests.push_back(innerDests);
+		}
+	}
+	for (size_t i = 0; i < metroRoutes.size(); ++i)
+	{
+		for (size_t j = 0; j < metroRoutes[i].getStops().size(); ++j)
+		{
+			vector<TransportStop *> innerDests;
+			TransportStop *transportStop = busRoutes[i].getStops()[j];
+			for (size_t k = 0; k < transportStop->getAdj().size(); k++)
+			{
+				TransportStop *dest;
+				if (transportStop == transportStop->getAdj()[k]->getDst())
+					continue;
+				innerDests.push_back(dest);
+			}
+			dests.push_back(innerDests);
+		}
+	}
+
+	ofstream outfile(connectingEdgesPreProcessingFile.c_str());
+
+	outfile << dests.size() << endl;
+	for (size_t i = 0; i < dests.size(); ++i)
+	{
+		outfile << dests[i].size() << endl;
+		for (size_t j = 0; j < dests[i].size(); ++j)
+		{
+			outfile << dests[i][j] << endl;
+		}
+	}
+
+	outfile.close();
+}
+
 Map Map::Loader::load()
 {
 	Map map;
@@ -410,9 +462,9 @@ Map Map::Loader::load()
 	cout << "Loading metro routes..." << endl;
 	map.metroRoutes = loadMetroRoutes();
 	cout << "Metro routes successfully loaded." << endl;
-	//cout << "Creating connecting edges.." << endl;
-	//createConnectingEdges(map.busRoutes, map.metroRoutes);
-	//cout << "Connecting edges successfully created." << endl;
+	cout << "Creating connecting edges.." << endl;
+	createConnectingEdges(map.busRoutes, map.metroRoutes);
+	cout << "Connecting edges successfully created." << endl;
 	return map;
 }
 
