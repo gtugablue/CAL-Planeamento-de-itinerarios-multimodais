@@ -14,6 +14,7 @@
 #include "TransportEdge.h"
 #include <string>
 #include "Hour.h"
+#include "TransportSpeeds.h"
 #include <queue>
 
 class TransportRoute;
