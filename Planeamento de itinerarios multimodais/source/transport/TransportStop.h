@@ -13,9 +13,12 @@
 #include <string>
 #include "Hour.h"
 
+class TransportRoute;
+
 class TransportStop: public Vertex {
 protected:
 	std::string name;
+	TransportRoute *transportRoute;
 	std::vector<Hour> schedule;
 	Hour arrival;
 public:
@@ -23,7 +26,9 @@ public:
 	std::string getName() const { return name; }
 	const Hour &getArrivalTime() const { return arrival; }
 	void addHour(const Hour &hour);
+	TransportRoute *getTransportRoute() const;
 	const std::vector<Hour> &getSchedule() const;
+	void setTransportRoute(TransportRoute *transportRoute);
 	void setSchedule(std::vector<Hour> schedule) { this->schedule = schedule; }
 	bool hasSchedule() const { return schedule.size() > 0; }
 	double calculateH(Vertex * v) const;
@@ -37,7 +42,7 @@ public:
 	static TransportStop *reference;
     bool operator() (const TransportStop *ts1, const TransportStop *ts2)
     {
-        return true;
+        return reference->getCoords().calcDirectDistSquare(ts1->getCoords()) > reference->getCoords().calcDirectDistSquare(ts2->getCoords());
     }
 };
 

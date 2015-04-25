@@ -379,7 +379,15 @@ void Map::Loader::connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRou
 			transportStops.push(busRoutes[i].getStops()[j]);
 		}
 	}
-	for (size_t i = 0; i < 10; i++)
+	for (size_t i = 0; i < metroRoutes.size(); ++i)
+		{
+			for (size_t j = 0; j < metroRoutes[i].getStops().size(); ++j)
+			{
+				transportStops.push(metroRoutes[i].getStops()[j]);
+			}
+		}
+	size_t counter = 0;
+	while (counter < 10)
 	{
 		TransportStop *closest = transportStops.top();
 		transportStops.pop();
@@ -387,6 +395,7 @@ void Map::Loader::connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRou
 		TransportEdge *edge2 = new TransportEdge(closest, transportStop); // TODO delete
 		transportStop->addEdge(edge1);
 		transportStop->addEdge(edge2);
+		++counter;
 	}
 }
 

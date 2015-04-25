@@ -22,9 +22,19 @@ void TransportStop::addHour(const Hour &hour)
 	schedule.push_back(hour);
 }
 
+TransportRoute *TransportStop::getTransportRoute() const
+{
+	return transportRoute;
+}
+
 const vector<Hour> &TransportStop::getSchedule() const
 {
 	return schedule;
+}
+
+void TransportStop::setTransportRoute(TransportRoute *transportRoute)
+{
+	this->transportRoute = transportRoute;
 }
 
 bool TransportStop::operator==(const TransportStop &transportStop) const
