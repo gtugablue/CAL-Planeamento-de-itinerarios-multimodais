@@ -403,10 +403,10 @@ void Map::Loader::connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRou
 		transportStops.pop();
 		if (transportStop->getTransportRoute() == closest->getTransportRoute())
 			continue;
-		//TransportEdge *edge1 = new TransportEdge(transportStop, closest); // TODO delete
-		//TransportEdge *edge2 = new TransportEdge(closest, transportStop); // TODO delete
-		//transportStop->addEdge(edge1);
-		//transportStop->addEdge(edge2);
+		TransportEdge *edge1 = new TransportEdge(transportStop, closest); // TODO delete
+		TransportEdge *edge2 = new TransportEdge(closest, transportStop); // TODO delete
+		transportStop->addEdge(edge1);
+		transportStop->addEdge(edge2);
 		++counter;
 	}
 }

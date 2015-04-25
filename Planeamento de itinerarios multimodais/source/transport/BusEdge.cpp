@@ -16,11 +16,6 @@ BusEdge::BusEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
 	weight.setTime(calculateTime(weight.getDistance()));
 }
 
-double BusEdge::calculateTime(double distance) const
-{
-	return distance / Bus::getInstance().getSpeed();
-}
-
 double BusEdge::getSpeed() const
 {
 	return Bus::getInstance().getSpeed();

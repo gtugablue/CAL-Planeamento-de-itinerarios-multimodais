@@ -10,6 +10,8 @@
 
 using namespace std;
 
+const double TransportEdge::walkingSpeed = 3;
+
 TransportEdge::TransportEdge(Vertex *src, Vertex *dst):
 	Edge(src, dst)
 {

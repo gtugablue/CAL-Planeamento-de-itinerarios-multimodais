@@ -17,11 +17,6 @@ MetroEdge::MetroEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
 	weight.setTime(calculateTime(weight.getDistance()));
 }
 
-double MetroEdge::calculateTime(double distance) const
-{
-	return distance / Metro::getInstance().getSpeed();
-}
-
 double MetroEdge::getSpeed() const
 {
 	return Metro::getInstance().getSpeed();

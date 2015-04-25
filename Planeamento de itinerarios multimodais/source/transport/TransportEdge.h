@@ -15,6 +15,7 @@
 
 class TransportEdge: public Edge {
 protected:
+	static const double walkingSpeed;
 	std::vector<Coordinates> line;
 	WeightInfo weight;
 public:
@@ -23,8 +24,8 @@ public:
 	void addPoint(const Coordinates &coords);
 	double getWeight() const;
 	const std::vector<Coordinates> &getLine() const;
-	virtual double getSpeed() const = 0;
-	virtual double calculateTime(double distance) const = 0;
+	virtual double getSpeed() const { return walkingSpeed; }
+	virtual double calculateTime(double distance) const { return distance / getSpeed(); }
 	virtual ~TransportEdge() { }
 };
 
