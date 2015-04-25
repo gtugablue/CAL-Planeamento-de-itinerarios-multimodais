@@ -288,8 +288,9 @@ int main(int argc, char* argv[]) {
 	//Path* p = astar_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 	//Path* p = brute_force(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 
-	Path* p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
+	Path* p = PathFinder::find_path(g1, g1->getVertexSet()[5], g1->getVertexSet()[50], conf);
 	cerr << "Alg end" << endl;
+	cout << *p << endl;
 
 	SDL_Event e;
 	bool moving = false;

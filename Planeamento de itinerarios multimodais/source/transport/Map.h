@@ -58,6 +58,7 @@ public:
 		void createConnectingEdges(vector<BusRoute> &busRoutes, vector<MetroRoute> &metroRoutes) const;
 		void connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRoute> &metroRoutes, TransportStop *transportStop) const;
 		void saveConnectingEdges(const vector<BusRoute> &busRoutes, const vector<MetroRoute> &metroRoutes) const;
+		void loadConnectingEdges(const vector<BusRoute> &busRoutes, const vector<MetroRoute> &metroRoutes) const;
 		unsigned levenshteinDistance(const string &s1, const string &s2) const;
 	public:
 		Map load();
