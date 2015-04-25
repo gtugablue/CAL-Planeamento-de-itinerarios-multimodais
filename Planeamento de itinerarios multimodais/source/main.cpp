@@ -278,7 +278,7 @@ int main(int argc, char* argv[]) {
 	//Graph graph = map.generateGraph();
 	//Graph* g1 = &graph;
 
-	//Path* p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+	//Path* p = dijsktra_list(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 	Path* p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
 
 	SDL_Event e;
