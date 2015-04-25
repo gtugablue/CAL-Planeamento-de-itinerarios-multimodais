@@ -109,19 +109,33 @@ public:
 		for(size_t i = 0; i < verts.size(); i++){
 			vector<Edge*> eds =  verts[i]->getAdj();
 			for(size_t j = 0; j < eds.size(); j++){
-				line = ((TransportEdge*)(eds[j]))->getLine();
-				for(size_t k = 0; k < line.size()-1; k++){
-					//c1 = eds[j]->getSrc()->getCoords();
-					//c2 = eds[j]->getDst()->getCoords();
-					c1 = line[k];
-					c2 = line[k+1];
+				/*c1 = eds[j]->getSrc()->getCoords();
+				c2 =  eds[j]->getDst()->getCoords();
+				if((c1.getLongitude()< c->getX() || c1.getLongitude() > c->getFinalX()) && (c1.getLatitude()< c->getY() || c1.getLatitude() > c->getFinalY()))
+					continue;
+				if(c->getZoomScaleX() > 50){
 					srcscreenx =c->getRenderX(h_res, c1.getLongitude());
 					srcsreeny = c->getRenderY(v_res, c1.getLatitude());
 					dstscreenx = c->getRenderX(h_res,c2.getLongitude());
 					dstscreeny =  c->getRenderY(v_res, c2.getLatitude());
 					SDL_RenderDrawLine(renderer,srcscreenx , srcsreeny , dstscreenx,dstscreeny );
 				}
-
+				else{*/
+					line = ((TransportEdge*)(eds[j]))->getLine();
+					for(size_t k = 0; k < line.size()-1; k++){
+						//c1 = eds[j]->getSrc()->getCoords();
+						//c2 = eds[j]->getDst()->getCoords();
+						c1 = line[k];
+						c2 = line[k+1];
+						if((c1.getLongitude()< c->getX() || c1.getLongitude() > c->getFinalX()) && (c1.getLatitude()< c->getY() || c1.getLatitude() > c->getFinalY()))
+							continue;
+						srcscreenx =c->getRenderX(h_res, c1.getLongitude());
+						srcsreeny = c->getRenderY(v_res, c1.getLatitude());
+						dstscreenx = c->getRenderX(h_res,c2.getLongitude());
+						dstscreeny =  c->getRenderY(v_res, c2.getLatitude());
+						SDL_RenderDrawLine(renderer,srcscreenx , srcsreeny , dstscreenx,dstscreeny );
+					}
+				//}
 			}
 		}
 	}

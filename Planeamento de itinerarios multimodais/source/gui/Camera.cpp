@@ -43,7 +43,7 @@ void  Camera::moveRelScreen(double x, double y, int h_res, int v_res){
 	moveAbs(getWorldX(h_res,  x), getWorldY(v_res, y));
 }
 void Camera::movePartialAbsCentered(double x, double y,  int h_res, int v_res, double extent){
-	moveRel((x-(x1+x0)/2)*extent * min(getZoomScaleX(h_res), 1),(y-(y1+y0)/2)*extent * min(getZoomScaleY(v_res), 1));
+	moveRel((x-(x1+x0)/2)*extent * min(getZoomScaleX(), 1),(y-(y1+y0)/2)*extent * min(getZoomScaleY(), 1));
 }
 
 bool Camera::mulScale(double factorx, double factory){
@@ -125,15 +125,15 @@ double Camera::getWorldY(int v_res, double renderY) const{
 	return y0+renderY*(y1-y0)/v_res;
 }
 
-double Camera::getZoomScaleX(int h_res)const{
-	return ((double)(x1-x0))/h_res;
+double Camera::getZoomScaleX()const{
+	return ((double)(x1-x0))/minWidth;
 }
-double Camera::getZoomScaleY(int v_res)const{
-	return ((double)(y1-y0))/v_res;
+double Camera::getZoomScaleY()const{
+	return ((double)(y1-y0))/minWidth;
 }
 void Camera::moveRelScaled(double x, double y, int h_res, int v_res){
-	double movex = x*getZoomScaleX(h_res);
-	double movey = y*getZoomScaleY(v_res);
+	double movex = x*getZoomScaleX();
+	double movey = y*getZoomScaleY();
 	if(movex == 0 && x != 0){
 		if(x < 0)
 			movex =-1;
