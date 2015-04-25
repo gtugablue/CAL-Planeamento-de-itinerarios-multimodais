@@ -15,7 +15,7 @@ private:
 	static Bus *instance;
 	Bus() {}
 
-	static const double speed = 2;
+	static const double speed = 11;
 public:
 	static Bus& getInstance()
 	{
