@@ -6,6 +6,7 @@ double  SDLGraphDraw::minlat = 0;
 double  SDLGraphDraw::maxlat = 0;
 double SDLGraphDraw::minlong = 0;
 double  SDLGraphDraw::maxlong = 0;
+
  void SDLGraphDraw::drawEdge(SDL_Renderer *renderer,Edge* e, SDLRGB color){
 
 		SDL_RenderDrawLine(renderer, getDrawX(e->getSrc()->getRenderX()), getDrawY(e->getSrc()->getRenderY()),getDrawX(e->getDst()->getRenderX()), getDrawY(e->getDst()->getRenderY()));

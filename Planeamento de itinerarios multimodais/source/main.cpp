@@ -291,13 +291,13 @@ int main(int argc, char* argv[]) {
 	SDL_Event e;
 	bool moving = false;
 	bool mouseLeftDown = false;
-	double minx = graph.getVertexSet()[0]->getCoords().getLatitude();
+	double minx = graph.getVertexSet()[0]->getCoords().getLongitude();
 	double maxx = minx;
-	double miny = graph.getVertexSet()[0]->getCoords().getLongitude();
+	double miny = graph.getVertexSet()[0]->getCoords().getLatitude();
 	double maxy = miny;
 	for(int i =  0; i < graph.getVertexSet().size(); i++){
-		double x = graph.getVertexSet()[i]->getCoords().getLatitude();
-		double y = graph.getVertexSet()[i]->getCoords().getLongitude();
+		double x = graph.getVertexSet()[i]->getCoords().getLongitude();
+		double y = graph.getVertexSet()[i]->getCoords().getLatitude();
 		if(x < minx){
 			minx = x;
 		}
@@ -311,9 +311,9 @@ int main(int argc, char* argv[]) {
 			maxy = y;
 		}
 	}
-	SDLGraphDraw::setValues(minx, miny, maxx, -maxy);
+	SDLGraphDraw::setValues(minx, miny, maxx, maxy);
 	//Camera* c = new Camera(0,0,SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes(), 100);
-	Camera* c = new Camera(minx,miny,maxx,-maxy, 100);
+	Camera* c = new Camera(minx,miny,maxx,maxy, 100);
 	cout << minx << "  " << miny << "  " << maxx << "  " << maxy << "  "<< graph.getVertexSet().size() << endl;
 	SDL_Cursor * cursormove = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_SIZEALL);
 	SDL_Cursor * cursorresize = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_WAIT);
@@ -329,7 +329,7 @@ int main(int argc, char* argv[]) {
 	SDL_TimerID  setTimer = 0;
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF );
 	SDL_RenderClear(renderer);
-	SDLGraphDraw::drawGraph(renderer,c, g1);
+	SDLGraphDraw::drawMapGraph(renderer,c, g1);
 	while( SDL_WaitEvent(&e) )
 	{
 		if ((e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) || e.type == SDL_QUIT)
@@ -412,13 +412,13 @@ int main(int argc, char* argv[]) {
 			SDL_SetCursor(cursordefault);
 			SDL_RemoveTimer(setTimer);
 			setTimer = 0;
-			cout << "timer"<< endl;
 		}
 		else {continue;}
 		SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(renderer );
 		//SDLGraphDraw::drawGraph(renderer,c, g1);
-		SDLGraphDraw::drawGraph(renderer,g1);
+		//SDLGraphDraw::drawGraph(renderer,g1);
+		SDLGraphDraw::drawMapGraph(renderer,c, g1);
 		//SDLGraphDraw::drawPath(renderer, c, p, SDLRGB(0xFF,0,0));
 		SDL_RenderPresent(renderer);
 	}
