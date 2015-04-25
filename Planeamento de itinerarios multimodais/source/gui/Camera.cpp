@@ -40,7 +40,7 @@ void Camera::moveRel(double x, double y){
 }
 
 void  Camera::moveRelScreen(double x, double y, int h_res, int v_res){
-	moveAbs(getWorldX(h_res,  x), getWorldY(v_res, y));
+	moveAbs(getWorldX(h_res,  h_res - x), getWorldY(v_res, v_res - y));
 }
 void Camera::movePartialAbsCentered(double x, double y,  int h_res, int v_res, double extent){
 	moveRel((x-(x1+x0)/2)*extent * min(getZoomScaleX(), 1),(y-(y1+y0)/2)*extent * min(getZoomScaleY(), 1));
@@ -110,21 +110,19 @@ double Camera::getHeight() const {
 }
 
 double Camera::getRenderX(int h_res, double worldX) const{
-	return (worldX-x0)*h_res/(x1-x0);
+	return h_res -  (worldX-x0)*h_res/(x1-x0);
 }
 
 double Camera::getRenderY(int v_res, double worldY) const{
-	return (worldY-y0)*v_res/(y1-y0);
+	return v_res - (worldY-y0)*v_res/(y1-y0);
 }
 
 
 double Camera::getWorldX(int h_res, double renderX) const{
-	return x0+renderX*(x1-x0)/h_res;
+	return x0+(h_res - renderX)*(x1-x0)/h_res;
 }
-
-
 double Camera::getWorldY(int v_res, double renderY) const{
-	return y0+renderY*(y1-y0)/v_res;
+	return y0+(v_res - renderY)*(y1-y0)/v_res;
 }
 
 double Camera::getZoomScaleX()const{

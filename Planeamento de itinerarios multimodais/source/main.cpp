@@ -371,7 +371,7 @@ int main(int argc, char* argv[]) {
 				((TransportStop*)dst)->userAddToGraph(g1);
 				//p = PathFinder::find_path(g1, src, dst, conf);
 				cerr << "calculating" << endl;
-				p = dijsktra_fib(g1, src, dst);
+				p = dijsktra_list(g1, src, dst);
 				cerr << "done calculating" << endl;
 			}
 
@@ -415,7 +415,7 @@ int main(int argc, char* argv[]) {
 		}
 		else if(e.type  ==  SDL_MOUSEMOTION){
 			if(moving){
-				c->moveRelScreen(-e.motion.xrel, -e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
+				c->moveRelScreen(e.motion.xrel, e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
 			}
 			if(mouseLeftDown){
 				if(slider->isSelected()){

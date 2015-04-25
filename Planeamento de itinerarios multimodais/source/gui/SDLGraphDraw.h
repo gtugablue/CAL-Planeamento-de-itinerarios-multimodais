@@ -163,9 +163,7 @@ public:
 			int srcsreeny = c->getRenderY(v_res, c1.getLatitude());
 			int dstscreenx = c->getRenderX(h_res,c2.getLongitude());
 			int dstscreeny =  c->getRenderY(v_res, c2.getLatitude());
-			if(dynamic_cast<MetroEdge*>(e) == NULL)
-				SDL_SetRenderDrawColor(renderer,0xFF,0, 0, 0xFF);
-			else SDL_SetRenderDrawColor(renderer,0,0, 0xFF, 0xFF);
+
 			SDL_RenderDrawLine(renderer,srcscreenx , srcsreeny , dstscreenx,dstscreeny );
 		}
 		static void drawMapVertex(SDL_Renderer *renderer, Camera* c, Vertex* e, SDLRGB color){
@@ -195,6 +193,9 @@ public:
 					for(size_t j = 0; j < eds.size(); j++){
 						if(!((TransportEdge*)eds[j])->getVisible())
 							continue;
+						if(dynamic_cast<MetroEdge*>(eds[j]) == NULL)
+							SDL_SetRenderDrawColor(renderer,0xFF,0, 0, 0xFF);
+						else SDL_SetRenderDrawColor(renderer,0,0, 0xFF, 0xFF);
 						drawMapEdge(renderer,c,eds[j]);
 					}
 				}
@@ -216,6 +217,7 @@ public:
 					drawMapVertex(renderer,c, dst, SDLRGB (0,0xFF,0));
 				}
 				if(p != NULL){
+					SDL_SetRenderDrawColor(renderer,0,0xFF, 0, 0xFF);
 					for(size_t i = 0 ; i < p->getEdges().size(); i++){
 						drawMapEdge(renderer,c, p->getEdges()[i]);
 					}

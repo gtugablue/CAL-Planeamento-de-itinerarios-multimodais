@@ -74,6 +74,7 @@ Path* dijsktra(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::DijsComp>* q
 	while(queue->size() != 0){
 		cerr << "queue size:" << queue->size() << endl;
 		current = queue->pop();
+		cerr << "indexcurrent " << current->getIndex() << endl;
 		cerr << "update1" << endl;
 		current->incProcessed();
 		if(current == f)
@@ -83,6 +84,7 @@ Path* dijsktra(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::DijsComp>* q
 		for(int i = 0; i < adjs.size(); i++){
 			cerr << "update3" << endl;
 			if(!adjs[i]->getDst()->getProcessed()){
+				cerr << "index " << adjs[i]->getDst()->getIndex() << endl;
 				cerr << "update4" << endl;
 				double newWeight = current->getBestWeight() +adjs[i]->getWeight();
 				cerr << "update5" << endl;

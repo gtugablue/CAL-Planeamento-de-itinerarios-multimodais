@@ -60,7 +60,7 @@ void GraphQueueFib<Comp>::increase(Vertex * v){
 
 template <class Comp>
 void GraphQueueFib<Comp>::reset(int numVertices){
-	heap.empty();
+	heap.clear();
 	handles.resize(numVertices);
 }
 
