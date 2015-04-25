@@ -140,7 +140,7 @@ public:
 				//}*/
 			}
 		}
-		/*for(size_t i = 0; i < verts.size(); i++){
+		for(size_t i = 0; i < verts.size(); i++){
 			int offset = (float) 5 / 2 +.5;
 			int renderx = c->getRenderX(h_res,verts[i]->getCoords().getLongitude());
 			int rendery =  c->getRenderY(v_res,verts[i]->getCoords().getLatitude());
@@ -150,7 +150,7 @@ public:
 					SDL_RenderDrawPoint(renderer, i, j);
 				}
 			}
-		}*/
+		}
 	}
 
 };
