@@ -20,7 +20,7 @@ private:
 public:
 	static const double speed = 1;
 	BusRoute(const std::string code, bool direction);
-	double getSpeed();
+	double getSpeed() const;
 };
 
 #endif /* SOURCE_BUSROUTE_H_ */

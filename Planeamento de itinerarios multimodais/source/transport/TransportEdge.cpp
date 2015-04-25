@@ -24,7 +24,6 @@ TransportEdge::TransportEdge(Vertex *src, Vertex *dst):
 	weight.setCost(0.20);
 	weight.setDistance(distance);
 	weight.setSwitchs(0);
-	weight.setTime(calculateTime(distance));
 }
 
 TransportEdge::TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
@@ -38,7 +37,6 @@ TransportEdge::TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates>
 	weight.setCost(0.20);
 	weight.setDistance(distance);
 	weight.setSwitchs(0);
-	weight.setTime(calculateTime(distance));
 }
 
 const vector<Coordinates> &TransportEdge::getLine() const

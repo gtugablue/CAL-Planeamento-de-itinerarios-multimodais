@@ -23,7 +23,7 @@ public:
 	virtual void addStop(TransportStop *transportStop);
 	void setStops(std::vector<TransportStop *> stops);
 	const std::vector<TransportStop *> &getStops() const;
-	virtual double getSpeed() = 0;
+	virtual double getSpeed() const = 0;
 	virtual ~TransportRoute() { };
 };
 

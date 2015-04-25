@@ -362,9 +362,18 @@ void Map::Loader::createConnectingEdges(vector<BusRoute> &busRoutes, vector<Metr
 {
 	for (size_t i = 0; i < busRoutes.size(); ++i)
 	{
+		cout << i << endl;
 		for (size_t j = 0; j < busRoutes[i].getStops().size(); ++j)
 		{
 			connectToClosests(busRoutes, metroRoutes, busRoutes[i].getStops()[j]);
+		}
+	}
+	for (size_t i = 0; i < metroRoutes.size(); ++i)
+	{
+		cout << i << endl;
+		for (size_t j = 0; j < metroRoutes[i].getStops().size(); ++j)
+		{
+			connectToClosests(busRoutes, metroRoutes, metroRoutes[i].getStops()[j]);
 		}
 	}
 }
@@ -394,10 +403,10 @@ void Map::Loader::connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRou
 		transportStops.pop();
 		if (transportStop->getTransportRoute() == closest->getTransportRoute())
 			continue;
-		TransportEdge *edge1 = new TransportEdge(transportStop, closest); // TODO delete
-		TransportEdge *edge2 = new TransportEdge(closest, transportStop); // TODO delete
-		transportStop->addEdge(edge1);
-		transportStop->addEdge(edge2);
+		//TransportEdge *edge1 = new TransportEdge(transportStop, closest); // TODO delete
+		//TransportEdge *edge2 = new TransportEdge(closest, transportStop); // TODO delete
+		//transportStop->addEdge(edge1);
+		//transportStop->addEdge(edge2);
 		++counter;
 	}
 }
@@ -426,7 +435,7 @@ void Map::Loader::saveConnectingEdges(const vector<BusRoute> &busRoutes, const v
 		for (size_t j = 0; j < metroRoutes[i].getStops().size(); ++j)
 		{
 			vector<TransportStop *> innerDests;
-			TransportStop *transportStop = busRoutes[i].getStops()[j];
+			TransportStop *transportStop = metroRoutes[i].getStops()[j];
 			for (size_t k = 0; k < transportStop->getAdj().size(); k++)
 			{
 				TransportStop *dest;
@@ -449,7 +458,6 @@ void Map::Loader::saveConnectingEdges(const vector<BusRoute> &busRoutes, const v
 			outfile << dests[i][j] << endl;
 		}
 	}
-
 	outfile.close();
 }
 
@@ -463,8 +471,10 @@ Map Map::Loader::load()
 	map.metroRoutes = loadMetroRoutes();
 	cout << "Metro routes successfully loaded." << endl;
 	cout << "Creating connecting edges.." << endl;
-	//createConnectingEdges(map.busRoutes, map.metroRoutes);
+	createConnectingEdges(map.busRoutes, map.metroRoutes);
 	cout << "Connecting edges successfully created." << endl;
+	saveConnectingEdges(map.busRoutes, map.metroRoutes);
+	cout << "Saved connecting edges." << endl;
 	return map;
 }
 

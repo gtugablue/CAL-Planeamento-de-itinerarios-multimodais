@@ -6,13 +6,23 @@
  */
 
 #include "MetroEdge.h"
+#include "MetroRoute.h"
+#include "Metro.h"
 
 using namespace std;
 
 MetroEdge::MetroEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
 	TransportEdge(src, dst, line)
 {
-	// TODO Auto-generated constructor stub
-
+	weight.setTime(calculateTime(weight.getDistance()));
 }
 
+double MetroEdge::calculateTime(double distance) const
+{
+	return distance / Metro::getInstance().getSpeed();
+}
+
+double MetroEdge::getSpeed() const
+{
+	return Metro::getInstance().getSpeed();
+}

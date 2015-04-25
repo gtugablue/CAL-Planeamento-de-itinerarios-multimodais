@@ -14,7 +14,8 @@
 class MetroEdge: public TransportEdge {
 public:
 	MetroEdge(Vertex *src, Vertex *dst, const std::vector<Coordinates> &line);
-	double calculateTime(double distance) const { return 0; }
+	double calculateTime(double distance) const;
+	double getSpeed() const;
 };
 
 #endif /* SOURCE_METROEDGE_H_ */

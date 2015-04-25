@@ -23,7 +23,8 @@ public:
 	void addPoint(const Coordinates &coords);
 	double getWeight() const;
 	const std::vector<Coordinates> &getLine() const;
-	virtual double calculateTime(double distance) const { return 0; }
+	virtual double getSpeed() const = 0;
+	virtual double calculateTime(double distance) const = 0;
 	virtual ~TransportEdge() { }
 };
 

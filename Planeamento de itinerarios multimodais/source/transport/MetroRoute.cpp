@@ -6,15 +6,16 @@
  */
 
 #include "MetroRoute.h"
+#include "Metro.h"
 
 MetroRoute::MetroRoute(const std::string code, bool direction):
 	TransportRoute(code, direction)
 {
 }
 
-double MetroRoute::getSpeed()
+double MetroRoute::getSpeed() const
 {
-	return speed;
+	return Metro::getInstance().getSpeed();
 }
 
 MetroRoute::~MetroRoute() {
