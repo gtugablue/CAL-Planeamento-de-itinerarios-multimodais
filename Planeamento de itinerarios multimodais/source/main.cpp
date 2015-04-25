@@ -189,7 +189,7 @@ int main(int argc, char* argv[]) {
 
 	return 0;
 }
-*/
+ */
 #include <SDL2/SDL.h>
 #include <vector>
 #include <iostream>
@@ -207,6 +207,10 @@ int main(int argc, char* argv[]) {
 #include "Map.h"
 #include "Slider.h"
 #include "ProgramConfig.h"
+#include <time.h>
+#include <iomanip>
+#include <conio.h>
+#include <Windows.h>
 
 #include <boost/heap/fibonacci_heap.hpp>
 
@@ -236,38 +240,44 @@ void close(){
 
 Uint32 my_callbackfunc(Uint32 interval, void *param)
 {
-    SDL_Event event;
-    SDL_UserEvent userevent;
+	SDL_Event event;
+	SDL_UserEvent userevent;
 
-    userevent.type = SDL_USEREVENT;
-    userevent.code = 0;
-    userevent.data1 = NULL;
-    userevent.data2 = NULL;
+	userevent.type = SDL_USEREVENT;
+	userevent.code = 0;
+	userevent.data1 = NULL;
+	userevent.data2 = NULL;
 
-    event.type = SDL_USEREVENT;
-    event.user = userevent;
+	event.type = SDL_USEREVENT;
+	event.user = userevent;
 
-    SDL_PushEvent(&event);
-    return(interval);
+	SDL_PushEvent(&event);
+	return(interval);
 }
 
 int main(int argc, char* argv[]) {
+
+	double ini, fin;
 
 	Map::Loader l;
 	Map map;
 	map = l.load();
 
 	ProgramConfig conf;
-	conf.getFromConsole();
+	//conf.getFromConsole();
 
 	if(! init() ){
-		std::cout << "Failed to initialize!" << endl;
+		std::cerr << "Failed to initialize!" << endl;
 		exit(1);
 	}
 
 	Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
+
+
 	Path* p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 	Path* p2 = astar_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+
+
 	SDL_Event e;
 	bool moving = false;
 	bool mouseLeftDown = false;
@@ -278,11 +288,11 @@ int main(int argc, char* argv[]) {
 	SDL_Cursor * cursorresize = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_WAIT);
 	SDL_Cursor * cursordefault = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
 	Slider * slider = new Slider(50,50,
-								SCREEN_WIDTH-100,50,
-								75,75,
-								0,100,
-								50,
-								true);
+			SCREEN_WIDTH-100,50,
+			75,75,
+			0,100,
+			50,
+			true);
 
 	SDL_SetCursor(cursordefault);
 	SDL_TimerID  setTimer = 0;
@@ -301,9 +311,16 @@ int main(int argc, char* argv[]) {
 			delete p;
 			delete p2;
 			g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
-			p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-			p2 = brute_force(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 
+			ini = GetTickCount();
+			p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+			fin = GetTickCount();
+			cout << "Dijkstra : " << fixed << setprecision(20) << setw(20) << (double)(fin-ini) << endl;
+
+			ini = GetTickCount();
+			p2 = brute_force(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+			fin = GetTickCount();
+			cout << "Brute Force : " << fixed << setprecision(20) << setw(20) << (double)(fin-ini) << endl;
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT){
 			moving = true;
