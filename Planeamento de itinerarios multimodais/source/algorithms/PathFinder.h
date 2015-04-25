@@ -31,14 +31,60 @@ public:
 private:
 	static Path* find_path_normal(Graph *g, Vertex* ini, Vertex* f, ProgramConfig conf)
 	{
-		cout << "Normal User" << endl;
 		return astar_fib(g, ini, f);
 	}
 
 	static Path* find_path_advanced(Graph *g, Vertex* ini, Vertex* f, ProgramConfig conf)
 	{
-		cout << "Advanced User" << endl;
-		return astar_fib(g, ini, f);
+		Path *p = new Path(0);
+		double ini_d, fin_d;
+
+		switch(conf.desiredAlgorithm())
+		{
+		case Dijkstra:
+		{
+			if(conf.desiredDataStructure() == List)
+			{
+				ini_d = GetTickCount();
+				p = dijsktra_list(g, ini, f);
+				fin_d = GetTickCount();
+			}
+			else if (conf.desiredDataStructure() == FibonacciHeap)
+			{
+				ini_d = GetTickCount();
+				p = dijsktra_fib(g, ini, f);
+				fin_d = GetTickCount();
+			}
+		}
+		case AStar:
+		{
+			if(conf.desiredDataStructure() == List)
+			{
+				ini_d = GetTickCount();
+				p = astar_list(g, ini, f);
+				fin_d = GetTickCount();
+			}
+			else if (conf.desiredDataStructure() == FibonacciHeap)
+			{
+				ini_d = GetTickCount();
+				p = astar_fib(g, ini, f);
+				fin_d = GetTickCount();
+			}
+		}
+		case BruteForce:
+		{
+			ini_d = GetTickCount();
+			p = brute_force(g, ini, f);
+			fin_d = GetTickCount();
+		}
+		}
+
+		if(conf.wantsAlgorithmPerformance())
+		{
+			cout << " Algorithm run-time (ms) : " << fixed << setprecision(20) << setw(20) << (double)(fin_d-ini_d) << endl;
+		}
+
+		return p;
 	}
 
 	static Path* find_path_all(Graph *g, Vertex* ini, Vertex* f, ProgramConfig conf)

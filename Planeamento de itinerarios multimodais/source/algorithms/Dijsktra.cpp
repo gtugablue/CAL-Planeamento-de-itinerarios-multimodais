@@ -55,8 +55,9 @@ using namespace std;
 }*/
 
 Path* dijsktra(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::DijsComp>* queue){
+
 	vector<Vertex*> vertices = g->getVertexSet();
-		queue->reset(vertices.size());
+	queue->reset(vertices.size());
 	for(int i= 0; i < vertices.size(); i++){
 		vertices[i]->resetProcessed();
 		vertices[i]->resetVisits();

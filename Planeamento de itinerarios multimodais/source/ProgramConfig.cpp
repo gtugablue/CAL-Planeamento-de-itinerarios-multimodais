@@ -21,7 +21,7 @@ void ProgramConfig::getFromConsole()
 {
 	string answer = "";
 
-	cout << "==> Do you wish to access internal features such as algorithm choice and performance? (Y/N) : ";
+	cout << endl << endl << "==> Do you wish to access internal features such as algorithm choice and performance? (Y/N) : ";
 	cin >> answer;
 	while(answer.size() != 1 || (toupper(answer[0]) != 'N' && toupper(answer[0]) != 'Y'))
 	{
@@ -71,22 +71,25 @@ void ProgramConfig::getFromConsole()
 			else if(answer == "3")
 				this->algorithm = BruteForce;
 
-			cout << endl << "==> What data structure do you wish to use?" << endl;
-			cout << " 1 - List" << endl;
-			cout << " 2 - Fibonacci Heap" << endl;
-			cout << "Option: ";
-			cin >> answer;
-
-			while(answer != "1" && answer != "2")
+			if(this->algorithm != BruteForce)
 			{
-				cout << "Invalid option. New option: ";
+				cout << endl << "==> What data structure do you wish to use?" << endl;
+				cout << " 1 - List" << endl;
+				cout << " 2 - Fibonacci Heap" << endl;
+				cout << "Option: ";
 				cin >> answer;
-			}
 
-			if(answer == "1")
-				this->dataStructure = List;
-			else if(answer == "2")
-				this->dataStructure = FibonacciHeap;
+				while(answer != "1" && answer != "2")
+				{
+					cout << "Invalid option. New option: ";
+					cin >> answer;
+				}
+
+				if(answer == "1")
+					this->dataStructure = List;
+				else if(answer == "2")
+					this->dataStructure = FibonacciHeap;
+			}
 		}
 	}
 
