@@ -397,7 +397,7 @@ void Map::Loader::connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRou
 		}
 	}
 	size_t counter = 0;
-	while (counter < 10)
+	while (counter < 10 && !transportStops.empty())
 	{
 		TransportStop *closest = transportStops.top();
 		transportStops.pop();
@@ -413,49 +413,61 @@ void Map::Loader::connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRou
 
 void Map::Loader::saveConnectingEdges(const vector<BusRoute> &busRoutes, const vector<MetroRoute> &metroRoutes) const
 {
-	vector<vector<TransportStop *> > dests;
+	vector<vector<pair <unsigned, unsigned> > > dests1;
+	vector<vector<pair <unsigned, unsigned> > > dests2;
 	for (size_t i = 0; i < busRoutes.size(); ++i)
 	{
 		for (size_t j = 0; j < busRoutes[i].getStops().size(); ++j)
 		{
-			vector<TransportStop *> innerDests;
+			vector<pair<unsigned, unsigned> > innerDests;
 			TransportStop *transportStop = busRoutes[i].getStops()[j];
 			for (size_t k = 0; k < transportStop->getAdj().size(); k++)
 			{
-				TransportStop *dest;
 				if (transportStop == transportStop->getAdj()[k]->getDst())
 					continue;
-				innerDests.push_back(dest);
+				innerDests.push_back(make_pair(i, j));
 			}
-			dests.push_back(innerDests);
+			dests1.push_back(innerDests);
 		}
 	}
 	for (size_t i = 0; i < metroRoutes.size(); ++i)
 	{
 		for (size_t j = 0; j < metroRoutes[i].getStops().size(); ++j)
 		{
-			vector<TransportStop *> innerDests;
+			vector<pair<unsigned, unsigned> > innerDests;
 			TransportStop *transportStop = metroRoutes[i].getStops()[j];
 			for (size_t k = 0; k < transportStop->getAdj().size(); k++)
 			{
-				TransportStop *dest;
 				if (transportStop == transportStop->getAdj()[k]->getDst())
 					continue;
-				innerDests.push_back(dest);
+				innerDests.push_back(make_pair(i, j));
 			}
-			dests.push_back(innerDests);
+			dests2.push_back(innerDests);
 		}
 	}
 
 	ofstream outfile(connectingEdgesPreProcessingFile.c_str());
 
-	outfile << dests.size() << endl;
-	for (size_t i = 0; i < dests.size(); ++i)
+	outfile << dests1.size() << endl;
+	for (size_t i = 0; i < dests1.size(); ++i)
 	{
-		outfile << dests[i].size() << endl;
-		for (size_t j = 0; j < dests[i].size(); ++j)
+		outfile << dests1[i].size() << endl;
+		for (size_t j = 0; j < dests1[i].size(); ++j)
 		{
-			outfile << dests[i][j] << endl;
+			outfile << "1" << endl;
+			outfile << dests1[i][j].first << endl;
+			outfile << dests1[i][j].second << endl;
+		}
+	}
+	outfile << dests2.size() << endl;
+	for (size_t i = 0; i < dests2.size(); ++i)
+	{
+		outfile << dests2[i].size() << endl;
+		for (size_t j = 0; j < dests2[i].size(); ++j)
+		{
+			outfile << "2" << endl;
+			outfile << dests2[i][j].first << endl;
+			outfile << dests2[i][j].second << endl;
 		}
 	}
 	outfile.close();

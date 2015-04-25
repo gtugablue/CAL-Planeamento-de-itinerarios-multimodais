@@ -18,6 +18,7 @@ class BusStop : public TransportStop {
 	std::string code;
 public:
 	BusStop(const std::string &code, const std::string &name, const Coordinates &coords);
+	const string &getCode() const { return code; }
 	void print() const;
 };
 
