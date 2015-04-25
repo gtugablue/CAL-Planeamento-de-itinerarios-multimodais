@@ -361,7 +361,6 @@ void Map::Loader::createConnectingEdges(vector<BusRoute> &busRoutes, vector<Metr
 {
 	for (size_t i = 0; i < busRoutes.size(); ++i)
 	{
-		cout << i << endl;
 		for (size_t j = 0; j < busRoutes[i].getStops().size(); ++j)
 		{
 			connectToClosests(busRoutes, metroRoutes, busRoutes[i].getStops()[j]);
