@@ -211,6 +211,7 @@ int main(int argc, char* argv[]) {
 #include <iomanip>
 #include <conio.h>
 #include <Windows.h>
+#include "algorithms/PathFinder.h"
 
 #include <boost/heap/fibonacci_heap.hpp>
 
@@ -264,7 +265,7 @@ int main(int argc, char* argv[]) {
 	map = l.load();
 
 	ProgramConfig conf;
-	//conf.getFromConsole();
+	conf.getFromConsole();
 
 	if(! init() ){
 		std::cerr << "Failed to initialize!" << endl;
@@ -276,9 +277,8 @@ int main(int argc, char* argv[]) {
 	//Graph graph = map.generateGraph();
 	//Graph* g1 = &graph;
 
-	Path* p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-	Path* p2 = astar_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-
+	//Path* p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+	Path* p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
 
 	SDL_Event e;
 	bool moving = false;
@@ -309,18 +309,9 @@ int main(int argc, char* argv[]) {
 			//std::cout << "left pressed"<<endl;
 			delete g1;
 			delete p;
-			delete p2;
 			g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 
-			ini = GetTickCount();
-			p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-			fin = GetTickCount();
-			cout << "Dijkstra : " << fixed << setprecision(20) << setw(20) << (double)(fin-ini) << endl;
-
-			ini = GetTickCount();
-			p2 = brute_force(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-			fin = GetTickCount();
-			cout << "Brute Force : " << fixed << setprecision(20) << setw(20) << (double)(fin-ini) << endl;
+			Path* p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT){
 			moving = true;
@@ -387,11 +378,7 @@ int main(int argc, char* argv[]) {
 		SDL_RenderClear(renderer );
 		SDLGraphDraw::drawGraph(renderer,c, g1);
 
-		if(!(*p == *p2))
-			cerr << endl << "WRONG PATHS" << endl;
-
 		SDLGraphDraw::drawPath(renderer, c, p, SDLRGB(0xFF,0,0));
-		SDLGraphDraw::drawPath(renderer, c, p2,  SDLRGB(0,0,0xFF));
 		SDL_RenderPresent(renderer);
 	}
 	close();
