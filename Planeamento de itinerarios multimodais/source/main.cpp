@@ -312,7 +312,7 @@ int main(int argc, char* argv[]) {
 			delete p;
 			g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 
-			Path* p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
+			p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT){
 			moving = true;
