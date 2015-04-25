@@ -12,7 +12,6 @@
 #include "Coordinates.h"
 #include <string>
 #include "Hour.h"
-#include "WeightInfo.h"
 
 class TransportStop: public Vertex {
 protected:
@@ -27,9 +26,19 @@ public:
 	const std::vector<Hour> &getSchedule() const;
 	void setSchedule(std::vector<Hour> schedule) { this->schedule = schedule; }
 	bool hasSchedule() const { return schedule.size() > 0; }
+	double calculateH(Vertex * v) const;
 	virtual bool operator==(const TransportStop &transportStop) const;
 	virtual ~TransportStop();
-	double calculateH(Vertex * v);
+};
+
+class TransportStopDistCompare
+{
+public:
+	static TransportStop *reference;
+    bool operator() (const TransportStop *ts1, const TransportStop *ts2)
+    {
+        return true;
+    }
 };
 
 #endif /* SOURCE_TRANSPORTSTOP_H_ */

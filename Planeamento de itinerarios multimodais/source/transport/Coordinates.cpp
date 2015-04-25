@@ -32,3 +32,8 @@ double Coordinates::calcDist(const Coordinates &coordinates) const
 
 	return d;
 }
+
+double Coordinates::calcDirectDistSquare(const Coordinates &coordinates) const
+{
+	return pow(coordinates.getLatitude(), 2) + pow(coordinates.getLongitude(), 2);
+}

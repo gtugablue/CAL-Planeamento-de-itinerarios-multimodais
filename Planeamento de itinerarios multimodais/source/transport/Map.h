@@ -53,9 +53,9 @@ public:
 		MetroStop *findClosestMetroStop(const std::vector<MetroStop *> metroStops, const std::string metroStopCode) const;
 		std::vector<MetroRoute> loadMetroRoutes() const;
 		Hour generateRandomHour() const;
-		void generateRandomBusSchedule(BusRoute &busRoute) const;
-		void generateRandomMetroSchedule(MetroRoute &metroRoute) const;
-		void generateRandomSchedules();
+		void generateRandomTransportSchedule(TransportRoute *transportRoute) const;
+		void createConnectingEdges(vector<BusRoute> &busRoutes, vector<MetroRoute> &metroRoutes) const;
+		void connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRoute> &metroRoutes, TransportStop *transportStop) const;
 		unsigned levenshteinDistance(const string &s1, const string &s2) const;
 	public:
 		Map load();

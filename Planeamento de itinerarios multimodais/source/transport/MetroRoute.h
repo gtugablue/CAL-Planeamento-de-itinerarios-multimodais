@@ -15,7 +15,9 @@
 
 class MetroRoute: public TransportRoute {
 public:
+	static const double speed = 1;
 	MetroRoute(const std::string code, bool direction);
+	double getSpeed();
 	virtual ~MetroRoute();
 };
 

@@ -18,9 +18,9 @@
 class BusRoute: public TransportRoute {
 private:
 public:
-	static const double velocity = 1;
+	static const double speed = 1;
 	BusRoute(const std::string code, bool direction);
-	void interpolateSchedules() const;
+	double getSpeed();
 };
 
 #endif /* SOURCE_BUSROUTE_H_ */

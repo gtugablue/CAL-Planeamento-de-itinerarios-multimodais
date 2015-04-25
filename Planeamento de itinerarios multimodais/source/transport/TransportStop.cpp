@@ -6,8 +6,11 @@
  */
 
 #include "TransportStop.h"
+#include "WeightInfo.h"
 
 using namespace std;
+
+TransportStop *TransportStopDistCompare::reference = NULL;
 
 TransportStop::TransportStop(const std::string &name, const Coordinates &coords):
 	Vertex(coords), name(name)
@@ -29,11 +32,8 @@ bool TransportStop::operator==(const TransportStop &transportStop) const
 	return name == transportStop.name;
 }
 
-TransportStop::~TransportStop()
+double TransportStop::calculateH(Vertex * v) const
 {
-
-}
-double TransportStop::calculateH(Vertex * v){
 	TransportStop* ts = dynamic_cast<TransportStop*>(v);
 	if(ts == NULL)
 		return 0;
@@ -42,4 +42,9 @@ double TransportStop::calculateH(Vertex * v){
 	double maxv = 1;
 	//
 	return dist / maxv * WeightInfo::getTimeWeight() + dist*WeightInfo::getDistanceWeight();
+}
+
+TransportStop::~TransportStop()
+{
+
 }
