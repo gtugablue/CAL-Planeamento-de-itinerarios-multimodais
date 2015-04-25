@@ -11,14 +11,24 @@
 using namespace std;
 
 TransportEdge::TransportEdge(Vertex *src, Vertex *dst):
-		Edge(src, dst)
+	Edge(src, dst)
 {
 	line.push_back(src->getCoords());
 	line.push_back(dst->getCoords());
+
+	double distance = 0;
+	for (size_t i = 1; i < line.size(); ++i)
+	{
+		distance += line[i - 1].calcDist(line[i]);
+	}
+	weight.setCost(0.20);
+	weight.setDistance(distance);
+	weight.setSwitchs(0);
+	weight.setTime(calculateTime(distance));
 }
 
 TransportEdge::TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
-	Edge(src, dst), line(line)
+			Edge(src, dst), line(line)
 {
 	double distance = 0;
 	for (size_t i = 1; i < line.size(); ++i)
