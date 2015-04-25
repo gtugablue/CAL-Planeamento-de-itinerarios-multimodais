@@ -40,6 +40,7 @@ public:
 		static const std::string BusEdgesFolder;
 		static const std::string busStopsFolder;
 		static const std::string timetablesFolder;
+		static const std::string connectingEdgesPreProcessingFile;
 		std::vector<std::string> getFilesInFolder(const std::string &folder) const;
 		void parseJsonFile(const std::string file, rapidjson::Document &d) const;
 		void parseXMLFile(rapidxml::file<> &file, rapidxml::xml_document<> &d) const;
@@ -56,6 +57,7 @@ public:
 		void generateRandomTransportSchedule(TransportRoute *transportRoute) const;
 		void createConnectingEdges(vector<BusRoute> &busRoutes, vector<MetroRoute> &metroRoutes) const;
 		void connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRoute> &metroRoutes, TransportStop *transportStop) const;
+		void saveConnectingEdges() const;
 		unsigned levenshteinDistance(const string &s1, const string &s2) const;
 	public:
 		Map load();
