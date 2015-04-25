@@ -38,6 +38,7 @@ public:
 	virtual bool operator==(const TransportStop &transportStop) const;
 	virtual ~TransportStop();
 	void userAddToGraph(Graph* g);
+	void userRemovefromGraph(Graph* g);
 };
 
 class TransportStopDistCompare

@@ -82,3 +82,14 @@ void TransportStop::userAddToGraph(Graph* g){
 	g->addVertex(this);
 	cerr << "done" << endl;
 }
+
+void TransportStop::userRemovefromGraph(Graph* g){
+	for(int i = 0; i < this->getAdj().size(); i++){
+		for(int j; j < this->getAdj()[i]->getDst()->getAdj().size(); j++){
+			if(this->getAdj()[i]->getDst()->getAdj()[j]->getDst() == this)
+				this->getAdj()[i]->getDst()->removeEdge(j);
+		}
+	}
+	g->removeLast();
+}
+

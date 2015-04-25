@@ -335,8 +335,18 @@ int main(int argc, char* argv[]) {
 	SDLGraphDraw::drawMapGraph(renderer,c, g1);
 	while( SDL_WaitEvent(&e) )
 	{
-		if ((e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) || e.type == SDL_QUIT)
+		if ( e.type == SDL_QUIT)
 			break;
+		else if(e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE){
+			if(dst != NULL){
+				((TransportStop*)dst)->userRemovefromGraph(g1);
+				dst = NULL;
+			}
+			if(src != NULL){
+				((TransportStop*)src)->userRemovefromGraph(g1);
+				src = NULL;
+			}
+		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT){
 			mouseLeftDown = true;
 			int x, y;
