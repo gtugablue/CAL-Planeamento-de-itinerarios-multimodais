@@ -222,6 +222,8 @@ static SDL_Window* window = NULL;
 
 static SDL_Renderer* renderer = NULL;
 
+#define MIN_VERTEX_DIST 100;
+
 bool init(){
 
 	if(SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer))
@@ -277,7 +279,8 @@ int main(int argc, char* argv[]) {
 
 	Graph graph = map.generateGraph();
 	Graph* g1 = &graph;
-
+	Vertex* src = NULL;
+	Vertex* dst = NULL;
 	cerr << "Alg start" << endl;
 	//Path* p = dijsktra_list(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 	//Path* p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
@@ -338,21 +341,35 @@ int main(int argc, char* argv[]) {
 			mouseLeftDown = true;
 			int x, y;
 			SDL_GetMouseState(&x, &y);
-			slider->select(x,y);
+
+			Coordinates world( c->getWorldY(SDLGraphDraw::getVRes(), y),c->getWorldX(SDLGraphDraw::getHRes(), x)) ;
+			cerr << world.getLongitude() << world.getLatitude() << endl;
+			if(src == NULL){
+				src = new TransportStop("Source", world);
+				((TransportStop*)src)->userAddToGraph(g1);
+			}
+			else if(dst == NULL){
+				dst = new TransportStop("Destination", world);
+				((TransportStop*)dst)->userAddToGraph(g1);
+			}
+
+
+
+			//slider->select(x,y);
 			//std::cout << "left pressed"<<endl;
 			//delete g1;
 			//delete p;
 			//g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 
-			cerr << "Alg start" << endl;
+			//cerr << "Alg start" << endl;
 			//p = dijsktra_list(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 			//p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 			//p = astar_list(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 			//p = astar_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 			//p = brute_force(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 
-			p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
-			cerr << "Alg end" << endl;
+			//p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
+			//cerr << "Alg end" << endl;
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT){
 			moving = true;

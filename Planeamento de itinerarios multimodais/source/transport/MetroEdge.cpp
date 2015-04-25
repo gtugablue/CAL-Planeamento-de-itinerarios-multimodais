@@ -14,6 +14,7 @@ using namespace std;
 MetroEdge::MetroEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
 	TransportEdge(src, dst, line)
 {
+	this->visible = true;
 	weight.setTime(calculateTime(weight.getDistance()));
 }
 

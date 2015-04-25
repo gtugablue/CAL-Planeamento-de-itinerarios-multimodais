@@ -121,6 +121,8 @@ double Camera::getRenderY(int v_res, double worldY) const{
 double Camera::getWorldX(int h_res, double renderX) const{
 	return x0+renderX*(x1-x0)/h_res;
 }
+
+
 double Camera::getWorldY(int v_res, double renderY) const{
 	return y0+renderY*(y1-y0)/v_res;
 }
