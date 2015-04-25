@@ -369,6 +369,10 @@ int main(int argc, char* argv[]) {
 		SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(renderer );
 		SDLGraphDraw::drawGraph(renderer,c, g1);
+
+		if(!(*p == *p2))
+			cerr << endl << "WRONG PATHS" << endl;
+
 		SDLGraphDraw::drawPath(renderer, c, p, SDLRGB(0xFF,0,0));
 		SDLGraphDraw::drawPath(renderer, c, p2,  SDLRGB(0,0,0xFF));
 		SDL_RenderPresent(renderer);
