@@ -21,7 +21,6 @@ private:
 
 template<class Comp>
 GraphQueueList<Comp>::GraphQueueList(int numVertices){
-	vList.resize(numVertices);
 }
 
 template<class Comp>
