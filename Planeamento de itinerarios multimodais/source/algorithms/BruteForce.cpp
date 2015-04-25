@@ -30,6 +30,7 @@ Path* brute_force(Graph* g, Vertex* ini, Vertex* f){
 	Path* min = new Path(DBL_MAX);
 	Path* current = new Path(0);
 	brute_force_aux(g, ini, f, current, min);
+	delete current;
 	return min;
 }
 
