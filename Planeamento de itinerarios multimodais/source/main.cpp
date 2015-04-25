@@ -412,7 +412,6 @@ int main(int argc, char* argv[]) {
 			SDL_SetCursor(cursordefault);
 			SDL_RemoveTimer(setTimer);
 			setTimer = 0;
-			cout << "timer"<< endl;
 		}
 		else {continue;}
 		SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF );
