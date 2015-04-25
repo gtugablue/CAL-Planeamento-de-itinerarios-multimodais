@@ -29,8 +29,8 @@ public:
 	double getRenderY(int v_res, double worldY) const;
 	double getWorldX(int h_res, double renderX) const;
 	double getWorldY(int v_res, double renderY) const;
-	double getZoomScaleX(int h_res)const;
-	double getZoomScaleY(int v_res)const;
+	double getZoomScaleX()const;
+	double getZoomScaleY()const;
 
 };
 

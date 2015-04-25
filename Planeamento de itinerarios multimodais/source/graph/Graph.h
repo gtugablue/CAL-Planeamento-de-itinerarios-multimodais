@@ -15,6 +15,7 @@ public:
 	vector<Vertex*> getVertexSet() const;
 	void addVertex(Vertex* v);
 	unsigned int getNumEdges() const;
+	void userInsertVertex(Vertex* v) const;
 };
 
 #endif
