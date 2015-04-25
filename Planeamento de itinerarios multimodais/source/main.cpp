@@ -289,6 +289,7 @@ int main(int argc, char* argv[]) {
 	//Path* p = brute_force(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 
 	Path* p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
+	cout << *p << endl;
 	cerr << "Alg end" << endl;
 
 	SDL_Event e;

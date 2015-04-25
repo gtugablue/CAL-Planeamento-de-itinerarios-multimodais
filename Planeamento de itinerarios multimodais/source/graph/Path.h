@@ -3,6 +3,7 @@
 
 #include "Edge.h"
 #include "Vertex.h"
+#include "../transport/TransportStop.h"
 #include <vector>
 #include <string>
 
@@ -57,10 +58,33 @@ public:
 		return *this;
 	}
 
-	string toString()
+	ostream& operator<<(ostream& os) const
 	{
-		return "";
+		int i;
+		Vertex* v;
+		cerr << edges.size() << endl;
+
+		for(i = 0; i < edges.size(); i++)
+		{
+			cerr << i << endl;
+			v = edges[i]->getSrc();
+			TransportStop* ts = dynamic_cast<TransportStop*>(v);
+			if(ts == NULL)
+				cerr << "NOPE" << endl;
+			else
+				os << ((TransportStop*)edges[i]->getSrc())->getName() + '\n';
+		}
+
+		v = edges[edges.size() - 1]->getDst();
+		TransportStop* ts = dynamic_cast<TransportStop*>(v);
+		if(ts == NULL)
+			cerr << "NOPE" << endl;
+		else
+			os << ((TransportStop*)edges[i]->getSrc())->getName() + '\n';
+
+		return os;
 	}
+
 };
 
 
