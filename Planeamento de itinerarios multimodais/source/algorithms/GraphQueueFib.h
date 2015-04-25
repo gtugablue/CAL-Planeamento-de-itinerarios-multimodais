@@ -5,6 +5,7 @@
 #include <vector>
 #include "GraphQueue.h"
 #include "../graph/Vertex.h"
+#include "../transport/TransportStop.h"
 
 template<class Comp>
 class GraphQueueFib: public GraphQueue<Comp>{
@@ -47,6 +48,13 @@ Vertex* GraphQueueFib<Comp>::pop(){
 
 template <class Comp>
 void GraphQueueFib<Comp>::increase(Vertex * v){
+	cerr << "entered" << endl;
+	cerr << "increase: " << v->getIndex()  << ", "  << v->getVisits() << ", " << v->getProcessed()<< handles.size() << endl;
+	TransportStop* ts = dynamic_cast<TransportStop*>(v);
+	if(ts == NULL)
+		cerr << "oops";
+	//cerr << "increase: " << v->getIndex() << "name-" << ((TransportStop*)v)->getName() << "- " << ", " << handles.size() << endl;
+	cerr << "done printing" << endl;
 	heap.increase(handles[v->getIndex()]);
 }
 

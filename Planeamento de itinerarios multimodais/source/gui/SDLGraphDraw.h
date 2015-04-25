@@ -8,6 +8,7 @@ using namespace std;
 #include "../graph/Graph.h"
 #include "../graph/Path.h"
 #include "../transport/TransportEdge.h"
+#include "../transport/MetroEdge.h"
 #include "SDLRGB.h"
 #include "Camera.h"
 #include "Slider.h"
@@ -162,6 +163,9 @@ public:
 			int srcsreeny = c->getRenderY(v_res, c1.getLatitude());
 			int dstscreenx = c->getRenderX(h_res,c2.getLongitude());
 			int dstscreeny =  c->getRenderY(v_res, c2.getLatitude());
+			if(dynamic_cast<MetroEdge*>(e) == NULL)
+				SDL_SetRenderDrawColor(renderer,0xFF,0, 0, 0xFF);
+			else SDL_SetRenderDrawColor(renderer,0,0, 0xFF, 0xFF);
 			SDL_RenderDrawLine(renderer,srcscreenx , srcsreeny , dstscreenx,dstscreeny );
 		}
 		static void drawMapVertex(SDL_Renderer *renderer, Camera* c, Vertex* e, SDLRGB color){

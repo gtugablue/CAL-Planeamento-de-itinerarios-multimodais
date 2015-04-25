@@ -278,10 +278,11 @@ int main(int argc, char* argv[]) {
 	//Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 
 	Graph graph = map.generateGraph();
+
 	Graph* g1 = &graph;
 	Vertex* src = NULL;
 	Vertex* dst = NULL;
-	cerr << "Alg start" << endl;
+	//cerr << "Alg start" << endl;
 	//Path* p = dijsktra_list(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 	//Path* p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 	//Path* p = astar_list(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
@@ -290,7 +291,7 @@ int main(int argc, char* argv[]) {
 
 	//Path* p = PathFinder::find_path(g1, g1->getVertexSet()[5], g1->getVertexSet()[50], conf);
 	Path* p = NULL;
-	cerr << "Alg end" << endl;
+	//cerr << "Alg end" << endl;
 	//cout << *p << endl;
 
 	SDL_Event e;
@@ -361,7 +362,6 @@ int main(int argc, char* argv[]) {
 			SDL_GetMouseState(&x, &y);
 
 			Coordinates world( c->getWorldY(SDLGraphDraw::getVRes(), y),c->getWorldX(SDLGraphDraw::getHRes(), x)) ;
-			cerr << world.getLongitude() << world.getLatitude() << endl;
 			if(src == NULL){
 				src = new TransportStop("Source", world);
 				((TransportStop*)src)->userAddToGraph(g1);
@@ -369,7 +369,10 @@ int main(int argc, char* argv[]) {
 			else if(dst == NULL){
 				dst = new TransportStop("Destination", world);
 				((TransportStop*)dst)->userAddToGraph(g1);
-				p = PathFinder::find_path(g1, src, dst, conf);
+				//p = PathFinder::find_path(g1, src, dst, conf);
+				cerr << "calculating" << endl;
+				p = dijsktra_fib(g1, src, dst);
+				cerr << "done calculating" << endl;
 			}
 
 

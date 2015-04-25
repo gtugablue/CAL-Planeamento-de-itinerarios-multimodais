@@ -59,34 +59,50 @@ Path* dijsktra(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::DijsComp>* q
 	vector<Vertex*> vertices = g->getVertexSet();
 	queue->reset(vertices.size());
 	for(int i= 0; i < vertices.size(); i++){
+		cerr << vertices[i]->getIndex()  << " " << endl;
 		vertices[i]->resetProcessed();
 		vertices[i]->resetVisits();
 		vertices[i]->setParent(NULL);
 		vertices[i]->resetBestWeight();
 	}
+	cerr<<endl;
 	ini->setBestWeight(0);
 	ini->setParent(NULL);
 	ini->incVisits();
 	queue->push(ini);
 	Vertex* current;
 	while(queue->size() != 0){
+		cerr << "queue size:" << queue->size() << endl;
 		current = queue->pop();
+		cerr << "update1" << endl;
 		current->incProcessed();
 		if(current == f)
 			break;
 		vector<Edge*> adjs  = current->getAdj();
+		cerr << "update2" << endl;
 		for(int i = 0; i < adjs.size(); i++){
+			cerr << "update3" << endl;
 			if(!adjs[i]->getDst()->getProcessed()){
+				cerr << "update4" << endl;
 				double newWeight = current->getBestWeight() +adjs[i]->getWeight();
+				cerr << "update5" << endl;
 				if(newWeight < adjs[i]->getDst()->getBestWeight()){
+					cerr << "update6" << endl;
 					adjs[i]->getDst()->setBestWeight(newWeight);
+					cerr << "update7" << endl;
 					adjs[i]->getDst()->setParent(adjs[i]);
+					cerr << "update8" << endl;
 					if(adjs[i]->getDst()->getVisits())
 					{
+						cerr << "update9" << endl;
 						queue->increase(adjs[i]->getDst());
+						cerr << "update10" << endl;
 					}else{
+						cerr << "update11" << endl;
 						queue->push(adjs[i]->getDst());
+						cerr << "update12" << endl;
 					}
+					cerr << "update1" << endl;
 				}
 			}
 			adjs[i]->getDst()->incVisits();
