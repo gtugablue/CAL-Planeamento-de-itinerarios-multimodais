@@ -14,13 +14,13 @@ class Edge{
 public:
     Edge(Vertex* src, Vertex* dst, double storedWeight = 0);
     virtual double getWeight() const;
-    void setStoredWeight(double storedWeight);
-    Vertex* getDst() const;
-    void setDst(Vertex* dst);
-    Vertex* getSrc() const;
-    void setSrc(Vertex* src);
-    void storeWeight();
-    double getStoredWeight() const;
+    virtual void setStoredWeight(double storedWeight);
+    virtual Vertex* getDst() const;
+    virtual void setDst(Vertex* dst);
+    virtual Vertex* getSrc() const;
+    virtual void setSrc(Vertex* src);
+    virtual void storeWeight();
+    virtual double getStoredWeight() const;
     virtual SDLRGB getColor();
     virtual ~Edge();
 

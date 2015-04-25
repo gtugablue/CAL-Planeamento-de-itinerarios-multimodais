@@ -26,7 +26,7 @@ public:
 	void setBestWeight(double bestWeight);
 	void resetBestWeight();
 	Edge* getParent() const;
-	void setParent( Edge* parent);
+	virtual void setParent( Edge* parent);
 	void resetProcessed();
 	int getProcessed() const;
 	void incProcessed();
@@ -37,10 +37,19 @@ public:
 	double getStoredH() const;
 	void resetStoredH();
 	struct AStarComp{
-		bool operator()(const Vertex* v1, const Vertex* v2) const;
+		bool operator()(Vertex* v1, Vertex* v2)const {
+			double f1 = v1->getBestWeight() + v1->getStoredH();
+			double f2 = v2->getBestWeight() + v2->getStoredH();
+			if(f1 == f2)
+				return v1->getStoredH() > v2->getStoredH();
+			else
+				return f1>f2;
+		}
 	};
 	struct DijsComp{
-		bool operator()(const Vertex* v1, const Vertex* v2) const;
+		bool operator()(Vertex* v1, Vertex* v2) const{
+			return v1->getBestWeight() > v2->getBestWeight();
+		}
 	};
 protected:
 	Coordinates coords;

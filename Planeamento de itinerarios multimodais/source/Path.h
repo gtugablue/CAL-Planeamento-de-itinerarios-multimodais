@@ -39,6 +39,22 @@ public:
 
 		return true;
 	}
+	void removeEdgeEnd(){
+		edges.pop_back();
+	}
+
+	double getCost() const {
+		return cost;
+	}
+
+	void setCost(double cost) {
+		this->cost = cost;
+	}
+	Path& operator=(const Path& p){
+		edges = p.edges;
+		cost = p.cost;
+		return *this;
+	}
 };
 
 

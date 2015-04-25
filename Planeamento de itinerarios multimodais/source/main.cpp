@@ -198,6 +198,7 @@ int main(int argc, char* argv[]) {
 #include "Graph.h"
 #include "Dijsktra.h"
 #include "AStar.h"
+#include "BruteForce.h"
 #include <ctime>
 #include "Camera.h"
 #include "SDLGraphDraw.h"
@@ -265,9 +266,8 @@ int main(int argc, char* argv[]) {
 	}
 
 	Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
-	Path* p = dijsktra(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-	Path* p2 = astar(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-	cerr << "yay1\n";
+	Path* p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+	Path* p2 = astar_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 	SDL_Event e;
 	bool moving = false;
 	bool mouseLeftDown = false;
@@ -301,8 +301,8 @@ int main(int argc, char* argv[]) {
 			delete p;
 			delete p2;
 			g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
-			p = dijsktra(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-			p2 = astar(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+			p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+			p2 = brute_force(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT){
