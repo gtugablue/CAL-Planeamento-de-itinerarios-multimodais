@@ -257,17 +257,17 @@ int main(int argc, char* argv[]) {
 	Map map;
 	map = l.load();
 
-	/*ProgramConfig conf;
+	ProgramConfig conf;
 	conf.getFromConsole();
 
 	if(! init() ){
 		std::cout << "Failed to initialize!" << endl;
 		exit(1);
-	}*/
+	}
 
-	//Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
-	Graph graph = map.generateGraph();
-	Graph* g1 = &graph;
+	Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
+	//Graph graph = map.generateGraph();
+	//Graph* g1 = &graph;
 	Path* p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 	Path* p2 = astar_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 	SDL_Event e;
@@ -297,12 +297,12 @@ int main(int argc, char* argv[]) {
 			SDL_GetMouseState(&x, &y);
 			slider->select(x,y);
 			//std::cout << "left pressed"<<endl;
-			//delete g1;
-			//delete p;
-			//delete p2;
-			//g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
-			//p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-			//p2 = brute_force(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+			delete g1;
+			delete p;
+			delete p2;
+			g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
+			p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+			p2 = brute_force(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT){
@@ -327,7 +327,7 @@ int main(int argc, char* argv[]) {
 		}
 		else if(e.type  ==  SDL_MOUSEMOTION){
 			if(moving){
-				cout << "moving " << e.motion.xrel << ", " <<e.motion.yrel<< endl;
+				c->moveRelScreen(-e.motion.xrel, -e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
 			}
 			if(mouseLeftDown){
 				if(slider->isSelected()){
