@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#include "SDLRGB.h"
+#include "../gui/SDLRGB.h"
 #include "math.h"
 
 class Vertex;

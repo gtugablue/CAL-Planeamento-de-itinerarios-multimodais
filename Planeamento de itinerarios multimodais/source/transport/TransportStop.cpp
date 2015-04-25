@@ -34,5 +34,12 @@ TransportStop::~TransportStop()
 
 }
 double TransportStop::calculateH(Vertex * v){
-	return 0;
+	TransportStop* ts = dynamic_cast<TransportStop*>(v);
+	if(ts == NULL)
+		return 0;
+	double dist = this->getCoords().calcDist(v->getCoords());
+	//TODO alterar!!!
+	double maxv = 1;
+	//
+	return dist / maxv * WeightInfo::getTimeWeight() + dist*WeightInfo::getDistanceWeight();
 }

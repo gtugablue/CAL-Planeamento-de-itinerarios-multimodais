@@ -9,7 +9,7 @@
 #define SOURCE_METROSTOP_H_
 
 #include "TransportStop.h"
-#include "Vertex.h"
+#include "../graph/Vertex.h"
 #include <string>
 #include "Coordinates.h"
 

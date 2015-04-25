@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "Edge.h"
-#include "Coordinates.h"
+#include "../transport/Coordinates.h"
 #include <iostream>
 #include <cfloat>
 #include <cmath>
@@ -43,7 +43,7 @@ public:
 			if(f1 == f2)
 				return v1->getStoredH() > v2->getStoredH();
 			else
-				return f1>f2;
+				return f1 > f2;
 		}
 	};
 	struct DijsComp{

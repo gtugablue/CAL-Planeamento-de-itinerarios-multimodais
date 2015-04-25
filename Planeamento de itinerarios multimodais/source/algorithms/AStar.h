@@ -1,10 +1,10 @@
 #ifndef ASTAR_H
 #define ASTAR_H
 
-#include "Vertex.h"
-#include "Edge.h"
-#include "Graph.h"
-#include "Path.h"
+#include "../graph/Vertex.h"
+#include "../graph/Edge.h"
+#include "../graph/Graph.h"
+#include "../graph/Path.h"
 #include "GraphQueue.h"
 #include "GraphQueueFib.h"
 #include "GraphQueueList.h"

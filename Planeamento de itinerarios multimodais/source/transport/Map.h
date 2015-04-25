@@ -13,19 +13,19 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "include/rapidjson/document.h"
-#include "include/rapidjson/writer.h"
-#include "include/rapidjson/stringbuffer.h"
-#include "include/rapidxml/rapidxml.hpp"
-#include "include/rapidxml/rapidxml_utils.hpp"
-#include "include/rapidxml/rapidxml_print.hpp"
+#include "../include/rapidjson/document.h"
+#include "../include/rapidjson/writer.h"
+#include "../include/rapidjson/stringbuffer.h"
+#include "../include/rapidxml/rapidxml.hpp"
+#include "../include/rapidxml/rapidxml_utils.hpp"
+#include "../include/rapidxml/rapidxml_print.hpp"
 #include "BusStop.h"
 #include "BusEdge.h"
 #include "BusRoute.h"
-#include "Vertex.h"
+#include "../graph/Vertex.h"
 #include "MetroStop.h"
 #include "MetroRoute.h"
-#include "Graph.h"
+#include "../graph/Graph.h"
 
 class Map {
 private:

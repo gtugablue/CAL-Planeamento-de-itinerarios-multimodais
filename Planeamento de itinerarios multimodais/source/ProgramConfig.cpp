@@ -1,6 +1,5 @@
 #include "ProgramConfig.h"
 #include <string>
-#include "WeightInfo.h"
 
 using namespace std;
 

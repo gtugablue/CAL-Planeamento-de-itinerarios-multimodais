@@ -194,18 +194,18 @@ int main(int argc, char* argv[]) {
 #include <vector>
 #include <iostream>
 #include <stdlib.h>
-#include "GraphGen.h"
-#include "Graph.h"
-#include "Dijsktra.h"
-#include "AStar.h"
-#include "BruteForce.h"
+#include "graph/GraphGen.h"
+#include "graph/Graph.h"
+#include "algorithms/Dijsktra.h"
+#include "algorithms/AStar.h"
+#include "algorithms/BruteForce.h"
 #include <ctime>
-#include "Camera.h"
-#include "SDLGraphDraw.h"
+#include "gui/Camera.h"
+#include "gui/SDLGraphDraw.h"
 #include <queue>
 #include <iomanip>
-#include "Map.h"
-#include "Slider.h"
+#include "transport/Map.h"
+#include "gui/Slider.h"
 #include "ProgramConfig.h"
 #include <time.h>
 #include <iomanip>
@@ -273,6 +273,8 @@ int main(int argc, char* argv[]) {
 
 	Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 
+	//Graph graph = map.generateGraph();
+	//Graph* g1 = &graph;
 
 	Path* p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 	Path* p2 = astar_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
@@ -281,7 +283,6 @@ int main(int argc, char* argv[]) {
 	SDL_Event e;
 	bool moving = false;
 	bool mouseLeftDown = false;
-	SDL_RenderDrawPoint(renderer,50, 50);
 	Camera* c = new Camera(0,0,SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes(), 100);
 
 	SDL_Cursor * cursormove = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_SIZEALL);
@@ -296,7 +297,6 @@ int main(int argc, char* argv[]) {
 
 	SDL_SetCursor(cursordefault);
 	SDL_TimerID  setTimer = 0;
-	queue<SDL_TimerID> timers;
 	while( SDL_WaitEvent(&e) )
 	{
 		if ((e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) || e.type == SDL_QUIT)
@@ -306,7 +306,7 @@ int main(int argc, char* argv[]) {
 			int x, y;
 			SDL_GetMouseState(&x, &y);
 			slider->select(x,y);
-			std::cout << "left pressed"<<endl;
+			//std::cout << "left pressed"<<endl;
 			delete g1;
 			delete p;
 			delete p2;
@@ -330,7 +330,6 @@ int main(int argc, char* argv[]) {
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_MIDDLE){
 			int x, y;
 			SDL_GetMouseState(&x, &y);
-			//c->movePartialAbsCentered(x, y , .5);
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_RIGHT){
 			moving = false;
@@ -345,7 +344,6 @@ int main(int argc, char* argv[]) {
 		}
 		else if(e.type  ==  SDL_MOUSEMOTION){
 			if(moving){
-				cout << "moving " << e.motion.xrel << ", " <<e.motion.yrel<< endl;
 				c->moveRelScreen(-e.motion.xrel, -e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
 			}
 			if(mouseLeftDown){
@@ -353,7 +351,6 @@ int main(int argc, char* argv[]) {
 					int x, y;
 					SDL_GetMouseState(&x, &y);
 					slider->setValueUI(x);
-					cout << "value: " << slider->getValue() << endl;
 				}
 
 			}
@@ -378,8 +375,6 @@ int main(int argc, char* argv[]) {
 					SDL_RemoveTimer(setTimer);
 				setTimer = SDL_AddTimer(delay, my_callbackfunc, NULL);
 			}
-			std::cout << "mouse wheel "<< e.wheel.y <<endl;
-			std::cout << "x0 : "  << c->getX() << ", y0 : " << c->getY() <<  "; "<< "x1 : " <<  c->getFinalX() << ", y1 : "<< c->getFinalY() << endl;
 		}
 		else if(e.type == SDL_USEREVENT){
 			SDL_SetCursor(cursordefault);
@@ -397,7 +392,6 @@ int main(int argc, char* argv[]) {
 
 		SDLGraphDraw::drawPath(renderer, c, p, SDLRGB(0xFF,0,0));
 		SDLGraphDraw::drawPath(renderer, c, p2,  SDLRGB(0,0,0xFF));
-		//SDLGraphDraw::drawSlider(renderer, slider, SDLRGB(0xFF, 0,0), SDLRGB(0, 0xFF,0));
 		SDL_RenderPresent(renderer);
 	}
 	close();

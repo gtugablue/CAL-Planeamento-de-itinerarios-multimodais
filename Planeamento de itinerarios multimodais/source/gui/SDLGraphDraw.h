@@ -4,9 +4,9 @@
 
 using namespace std;
 
-#include "Edge.h"
-#include "Graph.h"
-#include "Path.h"
+#include "../graph/Edge.h"
+#include "../graph/Graph.h"
+#include "../graph/Path.h"
 #include "SDLRGB.h"
 #include "Camera.h"
 #include "Slider.h"
