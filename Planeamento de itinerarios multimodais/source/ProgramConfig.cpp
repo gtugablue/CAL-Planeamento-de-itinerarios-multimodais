@@ -51,6 +51,19 @@ void ProgramConfig::getFromConsole()
 		{
 			this->runMode = Advanced;
 
+			cout << endl << "==> Do you wish to see the algorithm performance? (Y/N) : ";
+			cin >> answer;
+			while(answer.size() != 1 || (toupper(answer[0]) != 'N' && toupper(answer[0]) != 'Y'))
+			{
+				cout << "Invalid answer. Must be Y/N : ";
+				cin >> answer;
+			}
+
+			if(toupper(answer[0]) == 'Y')
+				this->wantAlgorithmPerformance = true;
+			else
+				this->wantAlgorithmPerformance = false;
+
 			cout << endl << "==> What algorithm do you wish to use?" << endl;
 			cout << " 1 - Dijkstra" << endl;
 			cout << " 2 - AStar" << endl;
