@@ -18,6 +18,7 @@ protected:
 	static const double walkingSpeed;
 	std::vector<Coordinates> line;
 	WeightInfo weight;
+	bool visible;
 public:
 	TransportEdge(Vertex *src, Vertex *dst);
 	TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line);
@@ -27,6 +28,7 @@ public:
 	virtual double getSpeed() const { return walkingSpeed; }
 	virtual double calculateTime(double distance) const { return distance / getSpeed(); }
 	virtual ~TransportEdge() { }
+	bool getVisible(){return visible;}
 };
 
 #endif /* SOURCE_TRANSPORTEDGE_H_ */

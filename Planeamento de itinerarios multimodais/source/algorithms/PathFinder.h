@@ -55,6 +55,7 @@ private:
 				p = dijsktra_fib(g, ini, f);
 				fin_d = GetTickCount();
 			}
+			break;
 		}
 		case AStar:
 		{
@@ -70,12 +71,14 @@ private:
 				p = astar_fib(g, ini, f);
 				fin_d = GetTickCount();
 			}
+			break;
 		}
 		case BruteForce:
 		{
 			ini_d = GetTickCount();
 			p = brute_force(g, ini, f);
 			fin_d = GetTickCount();
+			break;
 		}
 		}
 
@@ -98,9 +101,7 @@ private:
 		cout << " Brute force run-time (ms) : " << fixed << setprecision(20) << setw(20) << (double)(fin_d-ini_d) << endl;
 
 		ini_d = GetTickCount();
-		cerr << "bef" << endl;
 		dijsktra_list(g, ini, f);
-		cerr << "aft" << endl;
 		fin_d = GetTickCount();
 		cout << " Dijkstra run-time using List (ms) : " << fixed << setprecision(20) << setw(20) << (double)(fin_d-ini_d) << endl;
 

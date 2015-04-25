@@ -19,3 +19,6 @@ void Graph::addVertex(Vertex* v){
 	v->setIndex(vertexSet.size());
 	vertexSet.push_back(v);
 }
+void Graph::removeLast(){
+	vertexSet.pop_back();
+}

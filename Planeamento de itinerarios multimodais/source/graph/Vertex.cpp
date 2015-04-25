@@ -116,5 +116,7 @@ double Vertex::getStoredH() const {
 void Vertex::resetStoredH(){
 	storedH = -1;
 }
-
+void Vertex::removeEdge(int i){
+	this->adj.erase(adj.begin()+i);
+}
 

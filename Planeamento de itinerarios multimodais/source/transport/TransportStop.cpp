@@ -58,3 +58,38 @@ TransportStop::~TransportStop()
 {
 
 }
+
+
+void TransportStop::userAddToGraph(Graph* g){
+	cerr << "adding" << endl;
+	TransportStopDistCompare::reference = this->getCoords();
+	priority_queue<TransportStop *, vector<TransportStop *>, TransportStopDistCompare> transportStops;
+	vector<Vertex*> verts = g->getVertexSet();
+	for(int i = 0; i < verts.size(); i++){
+		transportStops.push((TransportStop *) verts[i]);
+	}
+	size_t counter = 0;
+	while (counter < 10)
+	{
+		TransportStop *closest = transportStops.top();
+		transportStops.pop();
+		TransportEdge *edge1 = new TransportEdge(this, closest); // TODO delete
+		TransportEdge *edge2 = new TransportEdge(closest, this); // TODO delete
+		this->addEdge(edge1);
+		closest->addEdge(edge2);
+		++counter;
+	}
+	g->addVertex(this);
+	cerr << "done" << endl;
+}
+
+void TransportStop::userRemovefromGraph(Graph* g){
+	for(int i = 0; i < this->getAdj().size(); i++){
+		for(int j; j < this->getAdj()[i]->getDst()->getAdj().size(); j++){
+			if(this->getAdj()[i]->getDst()->getAdj()[j]->getDst() == this)
+				this->getAdj()[i]->getDst()->removeEdge(j);
+		}
+	}
+	g->removeLast();
+}
+

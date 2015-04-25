@@ -3,7 +3,9 @@
 
 #include "Edge.h"
 #include "Vertex.h"
+#include "../transport/TransportStop.h"
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -54,6 +56,60 @@ public:
 		edges = p.edges;
 		cost = p.cost;
 		return *this;
+	}
+
+	ostream& operator<<(ostream& os) const
+	{
+		int i;
+		Vertex* v;
+		cerr << edges.size() << endl;
+		cerr << "#" << endl;
+
+		for(i = 0; i < edges.size(); i++)
+		{
+			cerr << i << endl;
+			v = edges[i]->getSrc();
+			TransportStop* ts = dynamic_cast<TransportStop*>(v);
+			if(ts == NULL)
+				cerr << "NOPE" << endl;
+			else
+				os << ((TransportStop*)edges[i]->getSrc())->getName() + '\n';
+		}
+
+		v = edges[edges.size() - 1]->getDst();
+		TransportStop* ts = dynamic_cast<TransportStop*>(v);
+		if(ts == NULL)
+			cerr << "NOPE" << endl;
+		else
+			os << ((TransportStop*)edges[i]->getSrc())->getName() + '\n';
+
+		return os;
+	}
+
+	friend ostream& operator<<(ostream& os, Path& p){
+		size_t i;
+		Vertex* v;
+
+		for(i = 0; i < p.edges.size(); i++)
+		{
+			v = p.edges[i]->getSrc();
+
+			TransportStop* ts = dynamic_cast<TransportStop*>(v);
+			if(ts != NULL)
+				os << ((TransportStop*)p.edges[i]->getSrc())->getName() + '\n';
+		}
+
+		if(p.edges.size() > 1)
+		{
+			v = p.edges[p.edges.size() - 1]->getDst();
+			TransportStop* ts = dynamic_cast<TransportStop*>(v);
+			if(ts == NULL)
+				cerr << "NOPE" << endl;
+			else
+				os << ((TransportStop*)p.edges[i]->getSrc())->getName() + '\n';
+		}
+
+		return os;
 	}
 };
 

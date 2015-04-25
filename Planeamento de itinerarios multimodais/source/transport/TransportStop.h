@@ -9,9 +9,12 @@
 #define SOURCE_TRANSPORTSTOP_H_
 
 #include "../graph/Vertex.h"
+#include "../graph/Graph.h"
 #include "Coordinates.h"
+#include "TransportEdge.h"
 #include <string>
 #include "Hour.h"
+#include <queue>
 
 class TransportRoute;
 
@@ -34,6 +37,8 @@ public:
 	double calculateH(Vertex * v) const;
 	virtual bool operator==(const TransportStop &transportStop) const;
 	virtual ~TransportStop();
+	void userAddToGraph(Graph* g);
+	void userRemovefromGraph(Graph* g);
 };
 
 class TransportStopDistCompare

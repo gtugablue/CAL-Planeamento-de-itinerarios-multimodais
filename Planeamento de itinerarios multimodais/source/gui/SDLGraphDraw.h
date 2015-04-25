@@ -109,18 +109,20 @@ public:
 		for(size_t i = 0; i < verts.size(); i++){
 			vector<Edge*> eds =  verts[i]->getAdj();
 			for(size_t j = 0; j < eds.size(); j++){
-				/*c1 = eds[j]->getSrc()->getCoords();
+				if(!((TransportEdge*)eds[j])->getVisible())
+					continue;
+				c1 = eds[j]->getSrc()->getCoords();
 				c2 =  eds[j]->getDst()->getCoords();
 				if((c1.getLongitude()< c->getX() || c1.getLongitude() > c->getFinalX()) && (c1.getLatitude()< c->getY() || c1.getLatitude() > c->getFinalY()))
 					continue;
-				if(c->getZoomScaleX() > 50){
+				//if(c->getZoomScaleX() > 50){
 					srcscreenx =c->getRenderX(h_res, c1.getLongitude());
 					srcsreeny = c->getRenderY(v_res, c1.getLatitude());
 					dstscreenx = c->getRenderX(h_res,c2.getLongitude());
 					dstscreeny =  c->getRenderY(v_res, c2.getLatitude());
 					SDL_RenderDrawLine(renderer,srcscreenx , srcsreeny , dstscreenx,dstscreeny );
-				}
-				else{*/
+			/*	}
+				else{
 					line = ((TransportEdge*)(eds[j]))->getLine();
 					for(size_t k = 0; k < line.size()-1; k++){
 						//c1 = eds[j]->getSrc()->getCoords();
@@ -135,7 +137,18 @@ public:
 						dstscreeny =  c->getRenderY(v_res, c2.getLatitude());
 						SDL_RenderDrawLine(renderer,srcscreenx , srcsreeny , dstscreenx,dstscreeny );
 					}
-				//}
+				//}*/
+			}
+		}
+		for(size_t i = 0; i < verts.size(); i++){
+			int offset = (float) 5 / 2 +.5;
+			int renderx = c->getRenderX(h_res,verts[i]->getCoords().getLongitude());
+			int rendery =  c->getRenderY(v_res,verts[i]->getCoords().getLatitude());
+			for(size_t i = renderx-offset; i <  renderx + offset ; i++){
+				for(size_t j = rendery-offset; j <  rendery + offset ; j++){
+					SDL_SetRenderDrawColor( renderer,color.red,color.blue, color.green, 0xFF);
+					SDL_RenderDrawPoint(renderer, i, j);
+				}
 			}
 		}
 	}

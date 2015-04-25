@@ -51,6 +51,7 @@ public:
 			return v1->getBestWeight() > v2->getBestWeight();
 		}
 	};
+	void removeEdge(int i);
 protected:
 	Coordinates coords;
 private:
