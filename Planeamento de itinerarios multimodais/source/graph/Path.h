@@ -63,6 +63,7 @@ public:
 		int i;
 		Vertex* v;
 		cerr << edges.size() << endl;
+		cerr << "#" << endl;
 
 		for(i = 0; i < edges.size(); i++)
 		{
@@ -84,28 +85,29 @@ public:
 
 		return os;
 	}
+
 	friend ostream& operator<<(ostream& os, Path& p){
-		int i;
+		size_t i;
 		Vertex* v;
-		cerr << p.edges.size() << endl;
 
 		for(i = 0; i < p.edges.size(); i++)
 		{
-			cerr << i << endl;
 			v = p.edges[i]->getSrc();
+
+			TransportStop* ts = dynamic_cast<TransportStop*>(v);
+			if(ts != NULL)
+				os << ((TransportStop*)p.edges[i]->getSrc())->getName() + '\n';
+		}
+
+		if(p.edges.size() > 1)
+		{
+			v = p.edges[p.edges.size() - 1]->getDst();
 			TransportStop* ts = dynamic_cast<TransportStop*>(v);
 			if(ts == NULL)
 				cerr << "NOPE" << endl;
 			else
 				os << ((TransportStop*)p.edges[i]->getSrc())->getName() + '\n';
 		}
-
-		v = p.edges[p.edges.size() - 1]->getDst();
-		TransportStop* ts = dynamic_cast<TransportStop*>(v);
-		if(ts == NULL)
-			cerr << "NOPE" << endl;
-		else
-			os << ((TransportStop*)p.edges[i]->getSrc())->getName() + '\n';
 
 		return os;
 	}
