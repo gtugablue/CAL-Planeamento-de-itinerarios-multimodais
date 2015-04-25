@@ -410,9 +410,9 @@ Map Map::Loader::load()
 	cout << "Loading metro routes..." << endl;
 	map.metroRoutes = loadMetroRoutes();
 	cout << "Metro routes successfully loaded." << endl;
-	cout << "Creating connecting edges.." << endl;
-	createConnectingEdges(map.busRoutes, map.metroRoutes);
-	cout << "Connecting edges successfully created." << endl;
+	//cout << "Creating connecting edges.." << endl;
+	//createConnectingEdges(map.busRoutes, map.metroRoutes);
+	//cout << "Connecting edges successfully created." << endl;
 	return map;
 }
 
