@@ -1,11 +1,14 @@
 #include "Camera.h"
 
 #include <stdlib.h>
+#include <iostream>
+#include <cmath>
 #define min(a,b) ((a<=b)? a : b)
 
 bool Camera::setValues(double x0, double y0, double x1, double y1){
-	if(abs(x1-x0) > maxWidth || abs(y1-y0) > maxHeight || abs(x1-x0) < minWidth || abs(y1-y0) < minHeight)
+	if(fabs(x1-x0) > maxWidth || fabs(y1-y0) > maxHeight || fabs(x1-x0) < minWidth || fabs(y1-y0) < minHeight){
 		return false;
+	}
 	if(x0 < x1){
 		this->x0 = x0;
 		this->x1 = x1;
@@ -22,7 +25,8 @@ Camera::Camera(double x0, double y0, double x1, double y1, double limit){
 	this->maxHeight = (y1 - y0) * limit;
 	this->minWidth = (x1 - x0) / limit;
 	this->minHeight = (y1 - y0) / limit;
-	setValues(x0, y0, x1, y1);
+	if(!setValues(x0, y0, x1, y1))
+		std::cout << "oops!";
 }
 
 void Camera::moveAbs(double x, double y){

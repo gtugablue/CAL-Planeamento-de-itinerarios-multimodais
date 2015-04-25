@@ -7,6 +7,7 @@ using namespace std;
 #include "../graph/Edge.h"
 #include "../graph/Graph.h"
 #include "../graph/Path.h"
+#include "../transport/TransportEdge.h"
 #include "SDLRGB.h"
 #include "Camera.h"
 #include "Slider.h"
@@ -94,6 +95,37 @@ public:
 		minlong= minx;
 		maxlong = maxx;
 	}
+	static void drawMapGraph(SDL_Renderer *renderer, Camera* c, Graph* g){
+		SDLRGB color = SDLRGB(0xFF,0,0);
+		SDL_SetRenderDrawColor( renderer,color.red,color.blue, color.green, 0xFF);
+		vector<Vertex* >verts = g->getVertexSet();
+		Coordinates c1(0,0);
+		Coordinates c2(0,0);
+		int srcscreenx;
+		int srcsreeny;
+		int dstscreenx;
+		int dstscreeny;
+		vector<Coordinates> line;
+		for(size_t i = 0; i < verts.size(); i++){
+			vector<Edge*> eds =  verts[i]->getAdj();
+			for(size_t j = 0; j < eds.size(); j++){
+				line = ((TransportEdge*)(eds[j]))->getLine();
+				for(size_t k = 0; k < line.size()-1; k++){
+					//c1 = eds[j]->getSrc()->getCoords();
+					//c2 = eds[j]->getDst()->getCoords();
+					c1 = line[k];
+					c2 = line[k+1];
+					srcscreenx =c->getRenderX(h_res, c1.getLongitude());
+					srcsreeny = c->getRenderY(v_res, c1.getLatitude());
+					dstscreenx = c->getRenderX(h_res,c2.getLongitude());
+					dstscreeny =  c->getRenderY(v_res, c2.getLatitude());
+					SDL_RenderDrawLine(renderer,srcscreenx , srcsreeny , dstscreenx,dstscreeny );
+				}
+
+			}
+		}
+	}
+
 };
 
 
