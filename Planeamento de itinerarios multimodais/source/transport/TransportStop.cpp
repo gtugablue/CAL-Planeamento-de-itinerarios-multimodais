@@ -48,10 +48,8 @@ double TransportStop::calculateH(Vertex * v) const
 	if(ts == NULL)
 		return 0;
 	double dist = this->getCoords().calcDist(v->getCoords());
-	//TODO alterar!!!
-	double maxv = 1;
-	//
-	return dist / maxv * WeightInfo::getTimeWeight() + dist*WeightInfo::getDistanceWeight();
+
+	return dist / TransportSpeeds::getMaxSpeed() * WeightInfo::getTimeWeight() + dist*WeightInfo::getDistanceWeight();
 }
 
 TransportStop::~TransportStop()
@@ -61,7 +59,6 @@ TransportStop::~TransportStop()
 
 
 void TransportStop::userAddToGraph(Graph* g){
-	cerr << "adding" << endl;
 	TransportStopDistCompare::reference = this->getCoords();
 	priority_queue<TransportStop *, vector<TransportStop *>, TransportStopDistCompare> transportStops;
 	vector<Vertex*> verts = g->getVertexSet();
@@ -80,7 +77,6 @@ void TransportStop::userAddToGraph(Graph* g){
 		++counter;
 	}
 	g->addVertex(this);
-	cerr << "done" << endl;
 }
 
 void TransportStop::userRemovefromGraph(Graph* g){
