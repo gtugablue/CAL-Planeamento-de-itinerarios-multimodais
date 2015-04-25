@@ -30,4 +30,14 @@ public:
 	virtual ~TransportStop();
 };
 
+class TransportStopDistCompare
+{
+public:
+	static TransportStop *reference;
+    bool operator() (const TransportStop *ts1, const TransportStop *ts2)
+    {
+        return true;
+    }
+};
+
 #endif /* SOURCE_TRANSPORTSTOP_H_ */

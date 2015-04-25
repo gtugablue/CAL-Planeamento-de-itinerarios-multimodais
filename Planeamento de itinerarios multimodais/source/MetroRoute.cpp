@@ -12,5 +12,10 @@ MetroRoute::MetroRoute(const std::string code, bool direction):
 {
 }
 
+double MetroRoute::getSpeed()
+{
+	return speed;
+}
+
 MetroRoute::~MetroRoute() {
 }

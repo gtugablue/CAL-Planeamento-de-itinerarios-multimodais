@@ -16,7 +16,7 @@ BusRoute::BusRoute(const string code, bool direction):
 {
 }
 
-void BusRoute::interpolateSchedules() const
+/*void BusRoute::interpolateSchedules() const
 {
 	/*
 	vector<unsigned> keyIDs;
@@ -50,5 +50,11 @@ void BusRoute::interpolateSchedules() const
 				busStops[l + 1]->addHour(h * (ranDist / dist) + h1);
 			}
 		}
-	}*/
+	}
+}
+*/
+
+double BusRoute::getSpeed()
+{
+	return speed;
 }

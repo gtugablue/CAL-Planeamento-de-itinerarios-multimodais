@@ -18,6 +18,7 @@ protected:
 	std::vector<Coordinates> line;
 	WeightInfo weight;
 public:
+	TransportEdge(Vertex *src, Vertex *dst);
 	TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line);
 	void addPoint(const Coordinates &coords);
 	double getWeight() const;

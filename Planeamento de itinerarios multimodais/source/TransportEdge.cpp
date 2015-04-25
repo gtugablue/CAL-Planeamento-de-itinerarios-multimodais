@@ -10,6 +10,13 @@
 
 using namespace std;
 
+TransportEdge::TransportEdge(Vertex *src, Vertex *dst):
+		Edge(src, dst)
+{
+	line.push_back(src->getCoords());
+	line.push_back(dst->getCoords());
+}
+
 TransportEdge::TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
 	Edge(src, dst), line(line)
 {

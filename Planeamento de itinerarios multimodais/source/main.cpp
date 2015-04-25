@@ -254,6 +254,7 @@ int main(int argc, char* argv[]) {
 	Map::Loader l;
 	Map map;
 	map = l.load();
+	map.generateGraph();
 
 	if(! init() ){
 		std::cout << "Failed to initialize!" << endl;

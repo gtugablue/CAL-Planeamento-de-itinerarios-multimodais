@@ -19,6 +19,7 @@ public:
 	double getLatitude() const;
 	double getLongitude() const;
 	double calcDist(const Coordinates &coordinates) const;
+	double calcDirectDistSquare(const Coordinates &coordinates) const;
 };
 
 #endif /* SOURCE_COORDINATES_H_ */

@@ -9,6 +9,8 @@
 
 using namespace std;
 
+TransportStop *TransportStopDistCompare::reference = NULL;
+
 TransportStop::TransportStop(const std::string &name, const Coordinates &coords):
 	Vertex(coords), name(name)
 {

@@ -13,6 +13,9 @@
 #include <stdlib.h>
 #include "BusRoute.h"
 #include "MetroRoute.h"
+#include "TransportEdge.h"
+#include <queue>
+#include "TransportStop.h"
 
 using namespace std;
 
@@ -160,7 +163,7 @@ vector<BusRoute> Map::Loader::loadBusRoutes() const
 			busRoute.addStop(busStops[busStops.size() - 1]);
 
 			// Generate a random schedule
-			generateRandomBusSchedule(busRoute);
+			generateRandomTransportSchedule(&busRoute);
 
 			// Add Route to the Bus Routes vector
 			busRoutes.push_back(busRoute);
@@ -293,6 +296,9 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 			metroRoute.getStops()[j - 1]->addEdge(new MetroEdge(metroEdge)); // TODO delete
 		}
 
+		// Generate a random schedule
+		generateRandomTransportSchedule(&metroRoute);
+
 		// Add the Route to the Metro Route vector
 		metroRoutes.push_back(metroRoute);
 	}
@@ -305,19 +311,19 @@ Hour Map::Loader::generateRandomHour() const
 	return Hour(rand() % 24, rand() % 60);
 }
 
-void Map::Loader::generateRandomBusSchedule(BusRoute &busRoute) const
+void Map::Loader::generateRandomTransportSchedule(TransportRoute *transportRoute) const
 {
-	vector<TransportStop *> busStops = busRoute.getStops();
+	vector<TransportStop *> transportStops = transportRoute->getStops();
 	vector<Hour> linearSchedule;
 	linearSchedule.push_back(generateRandomHour());
 	unsigned dailyFrequency = rand() % 50 + 15;
-	for (size_t i = 0; i < busStops.size(); ++i)
+	for (size_t i = 0; i < transportStops.size(); ++i)
 	{
 		if (i == 0)
 			linearSchedule.push_back(generateRandomHour());
 		else
 		{
-			double dt = ((BusStop *)busStops[i - 1])->getCoords().calcDist(((BusStop *)busStops[i])->getCoords()) * BusRoute::velocity;
+			double dt = transportStops[i - 1]->getCoords().calcDist(transportStops[i]->getCoords()) * transportRoute->getSpeed();
 			linearSchedule.push_back(linearSchedule[linearSchedule.size() - 1] + dt);
 		}
 		double period = 24 * 60 * 60 / dailyFrequency;
@@ -327,15 +333,10 @@ void Map::Loader::generateRandomBusSchedule(BusRoute &busRoute) const
 		{
 			schedule.push_back(schedule[j] + period);
 		}
-		busStops[i]->setSchedule(schedule);
+		transportStops[i]->setSchedule(schedule);
 	}
-	busRoute.setStops(busStops);
+	transportRoute->setStops(transportStops);
 }
-
-/*void Map::Loader::generateRandomMetroSchedule(const MetroRoute &metroRoute)
-{
-
-}*/
 
 unsigned Map::Loader::levenshteinDistance(const string &s1, const string &s2) const
 {
@@ -356,6 +357,39 @@ unsigned Map::Loader::levenshteinDistance(const string &s1, const string &s2) co
 	return prevCol[len2];
 }
 
+void Map::Loader::createConnectingEdges(vector<BusRoute> &busRoutes, vector<MetroRoute> &metroRoutes) const
+{
+	for (size_t i = 0; i < busRoutes.size(); ++i)
+	{
+		for (size_t j = 0; j < busRoutes[i].getStops().size(); ++j)
+		{
+			connectToClosests(busRoutes, metroRoutes, busRoutes[i].getStops()[j]);
+		}
+	}
+}
+
+void Map::Loader::connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRoute> &metroRoutes, TransportStop *transportStop) const
+{
+	TransportStopDistCompare::reference = transportStop;
+	priority_queue<TransportStop *, vector<TransportStop *>, TransportStopDistCompare> transportStops;
+	for (size_t i = 0; i < busRoutes.size(); ++i)
+	{
+		for (size_t j = 0; j < busRoutes[i].getStops().size(); ++j)
+		{
+			transportStops.push(busRoutes[i].getStops()[j]);
+		}
+	}
+	for (size_t i = 0; i < 10; i++)
+	{
+		TransportStop *closest = transportStops.top();
+		transportStops.pop();
+		TransportEdge *edge1 = new TransportEdge(transportStop, closest); // TODO delete
+		TransportEdge *edge2 = new TransportEdge(closest, transportStop); // TODO delete
+		transportStop->addEdge(edge1);
+		transportStop->addEdge(edge2);
+	}
+}
+
 Map Map::Loader::load()
 {
 	Map map;
@@ -365,5 +399,28 @@ Map Map::Loader::load()
 	cout << "Loading metro routes..." << endl;
 	map.metroRoutes = loadMetroRoutes();
 	cout << "Metro routes successfully loaded." << endl;
+	cout << "Creating connecting edges.." << endl;
+	createConnectingEdges(map.busRoutes, map.metroRoutes);
+	cout << "Connecting edges successfully created." << endl;
 	return map;
+}
+
+Graph Map::generateGraph() const
+{
+	Graph graph;
+	for (size_t i = 0; i < busRoutes.size(); ++i)
+	{
+		for (size_t j = 0; j < busRoutes[i].getStops().size(); ++j)
+		{
+			graph.addVertex(busRoutes[i].getStops()[j]);
+		}
+	}
+	for (size_t i = 0; i < metroRoutes.size(); ++i)
+	{
+		for (size_t j = 0; j < metroRoutes[i].getStops().size(); ++j)
+		{
+			graph.addVertex(metroRoutes[i].getStops()[j]);
+		}
+	}
+	return graph;
 }
