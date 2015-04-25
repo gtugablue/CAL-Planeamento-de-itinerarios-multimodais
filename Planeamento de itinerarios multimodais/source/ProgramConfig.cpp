@@ -71,22 +71,25 @@ void ProgramConfig::getFromConsole()
 			else if(answer == "3")
 				this->algorithm = BruteForce;
 
-			cout << endl << "==> What data structure do you wish to use?" << endl;
-			cout << " 1 - List" << endl;
-			cout << " 2 - Fibonacci Heap" << endl;
-			cout << "Option: ";
-			cin >> answer;
-
-			while(answer != "1" && answer != "2")
+			if(this->algorithm != BruteForce)
 			{
-				cout << "Invalid option. New option: ";
+				cout << endl << "==> What data structure do you wish to use?" << endl;
+				cout << " 1 - List" << endl;
+				cout << " 2 - Fibonacci Heap" << endl;
+				cout << "Option: ";
 				cin >> answer;
-			}
 
-			if(answer == "1")
-				this->dataStructure = List;
-			else if(answer == "2")
-				this->dataStructure = FibonacciHeap;
+				while(answer != "1" && answer != "2")
+				{
+					cout << "Invalid option. New option: ";
+					cin >> answer;
+				}
+
+				if(answer == "1")
+					this->dataStructure = List;
+				else if(answer == "2")
+					this->dataStructure = FibonacciHeap;
+			}
 		}
 	}
 

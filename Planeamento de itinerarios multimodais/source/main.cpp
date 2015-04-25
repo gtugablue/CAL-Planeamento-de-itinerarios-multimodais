@@ -277,8 +277,15 @@ int main(int argc, char* argv[]) {
 	//Graph graph = map.generateGraph();
 	//Graph* g1 = &graph;
 
+	cerr << "Alg start" << endl;
 	//Path* p = dijsktra_list(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+	//Path* p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+	//Path* p = astar_list(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+	//Path* p = astar_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+	//Path* p = brute_force(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+
 	Path* p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
+	cerr << "Alg end" << endl;
 
 	SDL_Event e;
 	bool moving = false;
@@ -311,7 +318,15 @@ int main(int argc, char* argv[]) {
 			delete p;
 			g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 
+			cerr << "Alg start" << endl;
+			//p = dijsktra_list(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+			//p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+			//p = astar_list(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+			//p = astar_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+			//p = brute_force(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
+
 			p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
+			cerr << "Alg end" << endl;
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT){
 			moving = true;

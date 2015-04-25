@@ -55,8 +55,11 @@ using namespace std;
 }*/
 
 Path* dijsktra(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::DijsComp>* queue){
+
+	int i = 0;
+
 	vector<Vertex*> vertices = g->getVertexSet();
-		queue->reset(vertices.size());
+	queue->reset(vertices.size());
 	for(int i= 0; i < vertices.size(); i++){
 		vertices[i]->resetProcessed();
 		vertices[i]->resetVisits();
@@ -67,13 +70,18 @@ Path* dijsktra(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::DijsComp>* q
 	ini->setParent(NULL);
 	ini->incVisits();
 	queue->push(ini);
+	cerr << "in" << endl;
 	Vertex* current;
 	while(queue->size() != 0){
+		cerr << queue->size() << endl;
 		current = queue->pop();
+		cerr << i++ << endl;
 		current->incProcessed();
+		cerr << i++ << endl;
 		if(current == f)
 			break;
 		vector<Edge*> adjs  = current->getAdj();
+		cerr << i++ << endl;
 		for(int i = 0; i < adjs.size(); i++){
 			if(!adjs[i]->getDst()->getProcessed()){
 				double newWeight = current->getBestWeight() +adjs[i]->getWeight();
@@ -90,7 +98,9 @@ Path* dijsktra(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::DijsComp>* q
 			}
 			adjs[i]->getDst()->incVisits();
 		}
+		cerr << "cycle" << endl;
 	}
+	cerr << "out" << endl;
 
 	Path *p = new Path(f->getBestWeight());
 	if(f != current) return p;
