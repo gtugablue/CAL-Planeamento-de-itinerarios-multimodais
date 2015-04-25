@@ -265,27 +265,49 @@ int main(int argc, char* argv[]) {
 	map = l.load();
 	map.generateGraph();
 
-	ProgramConfig conf;
-	conf.getFromConsole();
+	/*ProgramConfig conf;
+	conf.getFromConsole();*/
 
 	if(! init() ){
 		std::cerr << "Failed to initialize!" << endl;
 		exit(1);
 	}
 
-	Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
+	//Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 
-	//Graph graph = map.generateGraph();
-	//Graph* g1 = &graph;
+	Graph graph = map.generateGraph();
+	Graph* g1 = &graph;
 
 	//Path* p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-	Path* p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
-
+	//Path* p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
+	Path* p = new Path(0);
 	SDL_Event e;
 	bool moving = false;
 	bool mouseLeftDown = false;
-	Camera* c = new Camera(0,0,SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes(), 100);
-
+	double minx = graph.getVertexSet()[0]->getCoords().getLatitude();
+	double maxx = minx;
+	double miny = graph.getVertexSet()[0]->getCoords().getLongitude();
+	double maxy = miny;
+	for(int i =  0; i < graph.getVertexSet().size(); i++){
+		double x = graph.getVertexSet()[i]->getCoords().getLatitude();
+		double y = graph.getVertexSet()[i]->getCoords().getLongitude();
+		if(x < minx){
+			minx = x;
+		}
+		if(x > maxx){
+			maxx = x;
+		}
+		if(y < miny){
+			miny = y;
+		}
+		if(y > maxy){
+			maxy = y;
+		}
+	}
+	SDLGraphDraw::setValues(minx, miny, maxx, -maxy);
+	//Camera* c = new Camera(0,0,SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes(), 100);
+	Camera* c = new Camera(minx,miny,maxx,-maxy, 100);
+	cout << minx << "  " << miny << "  " << maxx << "  " << maxy << "  "<< graph.getVertexSet().size() << endl;
 	SDL_Cursor * cursormove = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_SIZEALL);
 	SDL_Cursor * cursorresize = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_WAIT);
 	SDL_Cursor * cursordefault = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
@@ -298,6 +320,9 @@ int main(int argc, char* argv[]) {
 
 	SDL_SetCursor(cursordefault);
 	SDL_TimerID  setTimer = 0;
+	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+	SDL_RenderClear(renderer);
+	SDLGraphDraw::drawGraph(renderer,c, g1);
 	while( SDL_WaitEvent(&e) )
 	{
 		if ((e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) || e.type == SDL_QUIT)
@@ -308,11 +333,11 @@ int main(int argc, char* argv[]) {
 			SDL_GetMouseState(&x, &y);
 			slider->select(x,y);
 			//std::cout << "left pressed"<<endl;
-			delete g1;
-			delete p;
-			g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
+			//delete g1;
+			//delete p;
+			//g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 
-			p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
+			//p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT){
 			moving = true;
@@ -377,9 +402,9 @@ int main(int argc, char* argv[]) {
 		else {continue;}
 		SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(renderer );
-		SDLGraphDraw::drawGraph(renderer,c, g1);
-
-		SDLGraphDraw::drawPath(renderer, c, p, SDLRGB(0xFF,0,0));
+		//SDLGraphDraw::drawGraph(renderer,c, g1);
+		SDLGraphDraw::drawGraph(renderer,g1);
+		//SDLGraphDraw::drawPath(renderer, c, p, SDLRGB(0xFF,0,0));
 		SDL_RenderPresent(renderer);
 	}
 	close();
