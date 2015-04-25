@@ -265,8 +265,8 @@ int main(int argc, char* argv[]) {
 	map = l.load();
 	map.generateGraph();
 
-	/*ProgramConfig conf;
-	conf.getFromConsole();*/
+	ProgramConfig conf;
+	conf.getFromConsole();
 
 	if(! init() ){
 		std::cerr << "Failed to initialize!" << endl;
