@@ -61,7 +61,6 @@ public:
 	friend ostream& operator<<(ostream& os, Path& p){
 		size_t i;
 		Vertex* v;
-
 		for(i = 0; i < p.edges.size(); i++)
 		{
 			v = p.edges[i]->getSrc();
