@@ -22,7 +22,7 @@ public:
 		case Advanced:
 			return find_path_advanced(g, ini, f, conf);
 		case AllAlgorithms:
-			return find_path_advanced(g, ini, f, conf);
+			return find_path_all(g, ini, f, conf);
 		}
 
 		return NULL;
@@ -47,25 +47,31 @@ private:
 		Path* p;
 
 		ini_d = GetTickCount();
-		p = brute_force(g, ini, f);
+		brute_force(g, ini, f);
 		fin_d = GetTickCount();
 		cout << " Brute force run-time (ms) : " << fixed << setprecision(20) << setw(20) << (double)(fin_d-ini_d) << endl;
 
 		ini_d = GetTickCount();
-		if(conf.desiredDataStructure() == List)
-			p = dijsktra_list(g, ini, f);
-		else
-			p = dijsktra_fib(g, ini, f);
+		cerr << "bef" << endl;
+		dijsktra_list(g, ini, f);
+		cerr << "aft" << endl;
 		fin_d = GetTickCount();
-		cout << " Dijkstra run-time (ms) : " << fixed << setprecision(20) << setw(20) << (double)(fin_d-ini_d) << endl;
+		cout << " Dijkstra run-time using List (ms) : " << fixed << setprecision(20) << setw(20) << (double)(fin_d-ini_d) << endl;
 
 		ini_d = GetTickCount();
-		if(conf.desiredDataStructure() == List)
-			p = astar_list(g, ini, f);
-		else
-			p = astar_fib(g, ini, f);
+		dijsktra_fib(g, ini, f);
 		fin_d = GetTickCount();
-		cout << " A* run-time (ms) : " << fixed << setprecision(20) << setw(20) << (double)(fin_d-ini_d) << endl;
+		cout << " Dijkstra run-time using Fibonacci Heap (ms) : " << fixed << setprecision(20) << setw(20) << (double)(fin_d-ini_d) << endl;
+
+		ini_d = GetTickCount();
+		astar_list(g, ini, f);
+		fin_d = GetTickCount();
+		cout << " A* run-time using List (ms) : " << fixed << setprecision(20) << setw(20) << (double)(fin_d-ini_d) << endl;
+
+		ini_d = GetTickCount();
+		p = astar_fib(g, ini, f);
+		fin_d = GetTickCount();
+		cout << " A* run-time using Fibonacci Heaps (ms) : " << fixed << setprecision(20) << setw(20) << (double)(fin_d-ini_d) << endl;
 
 		return p;
 	}
