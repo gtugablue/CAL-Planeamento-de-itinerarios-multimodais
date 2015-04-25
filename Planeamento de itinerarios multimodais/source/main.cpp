@@ -288,9 +288,10 @@ int main(int argc, char* argv[]) {
 	//Path* p = astar_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 	//Path* p = brute_force(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
 
-	Path* p = PathFinder::find_path(g1, g1->getVertexSet()[5], g1->getVertexSet()[50], conf);
+	//Path* p = PathFinder::find_path(g1, g1->getVertexSet()[5], g1->getVertexSet()[50], conf);
+	Path* p = NULL;
 	cerr << "Alg end" << endl;
-	cout << *p << endl;
+	//cout << *p << endl;
 
 	SDL_Event e;
 	bool moving = false;
@@ -333,7 +334,7 @@ int main(int argc, char* argv[]) {
 	SDL_TimerID  setTimer = 0;
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF );
 	SDL_RenderClear(renderer);
-	SDLGraphDraw::drawMapGraph(renderer,c, g1);
+	SDLGraphDraw::drawMapGraph(renderer,c, g1, src , dst, p);
 	while( SDL_WaitEvent(&e) )
 	{
 		if ( e.type == SDL_QUIT)
@@ -341,11 +342,17 @@ int main(int argc, char* argv[]) {
 		else if(e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE){
 			if(dst != NULL){
 				((TransportStop*)dst)->userRemovefromGraph(g1);
+				delete dst;
 				dst = NULL;
 			}
 			if(src != NULL){
 				((TransportStop*)src)->userRemovefromGraph(g1);
+				delete src;
 				src = NULL;
+			}
+			if(p != NULL){
+				delete p;
+				p = NULL;
 			}
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT){
@@ -362,6 +369,7 @@ int main(int argc, char* argv[]) {
 			else if(dst == NULL){
 				dst = new TransportStop("Destination", world);
 				((TransportStop*)dst)->userAddToGraph(g1);
+				p = PathFinder::find_path(g1, src, dst, conf);
 			}
 
 
@@ -446,7 +454,7 @@ int main(int argc, char* argv[]) {
 		SDL_RenderClear(renderer );
 		//SDLGraphDraw::drawGraph(renderer,c, g1);
 		//SDLGraphDraw::drawGraph(renderer,g1);
-		SDLGraphDraw::drawMapGraph(renderer,c, g1);
+		SDLGraphDraw::drawMapGraph(renderer,c, g1, src, dst, p);
 		//SDLGraphDraw::drawPath(renderer, c, p, SDLRGB(0xFF,0,0));
 		SDL_RenderPresent(renderer);
 	}

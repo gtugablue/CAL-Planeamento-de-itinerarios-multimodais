@@ -15,7 +15,7 @@ private:
 	static Metro *instance;
 	Metro() {}
 
-	static const double speed = 2;
+	static const double speed = 15;
 public:
 	static Metro& getInstance()
 	{
