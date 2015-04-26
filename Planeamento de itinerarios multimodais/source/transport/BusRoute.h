@@ -19,7 +19,17 @@ class BusRoute: public TransportRoute {
 private:
 public:
 	static const double speed = 1;
+	/**
+	 * @brief bus route construtor
+	 * @param code code of busroute
+	 * @param direction direction of route
+	 */
 	BusRoute(const std::string code, bool direction);
+
+	/**
+	 * @brief get speed of buses
+	 * @return buss speed
+	 */
 	double getSpeed() const;
 };
 

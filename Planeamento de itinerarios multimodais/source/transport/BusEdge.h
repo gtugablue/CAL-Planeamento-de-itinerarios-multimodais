@@ -16,9 +16,27 @@
 
 class BusEdge: public TransportEdge {
 public:
+	/**
+	 * @brief bus edge constructor
+	 * @param src source vertex for edge
+	 * @param dst source vertex for edge
+	 * @param line set of points for the line
+	 */
 	BusEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line);
+	/**
+	 * @brief print the busedge
+	 */
 	void print() const;
+
+	/**
+	 * @brief get the speed of a bus
+	 * @return bus speed
+	 */
 	virtual double getSpeed() const;
+
+	/**
+	 * @brief edge destructor
+	 */
 	virtual ~BusEdge() { }
 };
 
