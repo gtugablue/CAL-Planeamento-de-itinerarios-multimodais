@@ -7,9 +7,23 @@ double readDouble()
 {
 	double temp;
 	cin >> temp;
-	while(cin.fail())
+	while(cin.fail() || temp < 0)
 	{
 		cout << "Invalid value. New value : ";
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cin >> temp;
+	}
+	return temp;
+}
+
+int readInt(int maxValue)
+{
+	int temp;
+	cin >> temp;
+	while(cin.fail() || temp < 0 || temp>maxValue)
+	{
+		cout << "Invalid value, must be 0-" << maxValue << ". New value : ";
 		cin.clear();
 		cin.ignore(1000, '\n');
 		cin >> temp;
@@ -126,6 +140,16 @@ void ProgramConfig::getFromConsole()
 	WeightInfo::setCostWeight(moneyCost);
 	WeightInfo::setDistanceWeight(distCost);
 	WeightInfo::setSwitchWeight(transbordCost);
+
+	int hours, minutes;
+	cout << endl << "==> Please indicate starting time." << endl;
+	cout << " Hours : ";
+	hours = readInt(23);
+	cout << " Minutes : ";
+	hours = readInt(59);
+
+	this->startHour.hours = hours;
+	this->startHour.minutes = minutes;
 }
 
 bool ProgramConfig::uponExitAction()

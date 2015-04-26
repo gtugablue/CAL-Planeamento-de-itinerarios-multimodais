@@ -2,6 +2,7 @@
 #define PROGRAM_COFIG_H
 
 #include "transport/WeightInfo.h"
+#include "transport/Hour.h"
 #include <iostream>
 
 enum Algorithm { Dijkstra, AStar, BruteForce };
@@ -33,13 +34,14 @@ public:
 	void getFromConsole();
 	bool uponExitAction();
 
-	ProgramConfig(): runMode(NormalUser), algorithm(AStar), dataStructure(FibonacciHeap), wantAlgorithmPerformance(false) {}
+	ProgramConfig(): runMode(NormalUser), algorithm(AStar), dataStructure(FibonacciHeap), wantAlgorithmPerformance(false), startHour(Hour()) {}
 
 private:
 	bool wantAlgorithmPerformance;
 	Algorithm algorithm;
 	DataStructure dataStructure;
 	RunningMode runMode;
+	Hour startHour;
 };
 
 
