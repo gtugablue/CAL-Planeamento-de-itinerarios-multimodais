@@ -414,7 +414,9 @@ void Map::Loader::connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRou
 	{
 		TransportStop *closest = transportStops.top();
 		transportStops.pop();
-		if (transportStop->getTransportRoute() == closest->getTransportRoute())
+		//if (transportStop->getTransportRoute() == closest->getTransportRoute())
+			//continue;
+		if(transportStop == closest)
 			continue;
 		TransportEdge *edge1 = new TransportEdge(transportStop, closest); // TODO delete
 		TransportEdge *edge2 = new TransportEdge(closest, transportStop); // TODO delete
@@ -553,10 +555,10 @@ Map Map::Loader::load()
 	map.metroRoutes = loadMetroRoutes();
 	cout << "Metro routes successfully loaded." << endl;
 	cout << "Creating connecting edges.." << endl;
-	//createConnectingEdges(map.busRoutes, map.metroRoutes);
+	createConnectingEdges(map.busRoutes, map.metroRoutes);
 	cout << "Connecting edges successfully created." << endl;
 	//saveConnectingEdges(map.busRoutes, map.metroRoutes);
-	loadConnectingEdges(map.busRoutes, map.metroRoutes);
+	//loadConnectingEdges(map.busRoutes, map.metroRoutes);
 	cout << "Loaded connecting edges." << endl;
 	return map;
 }
