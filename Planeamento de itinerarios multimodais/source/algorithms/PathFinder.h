@@ -81,13 +81,6 @@ private:
 			}
 			break;
 		}
-		case BruteForce:
-		{
-			ini_d = GetTickCount();
-			p = brute_force(g, ini, f);
-			fin_d = GetTickCount();
-			break;
-		}
 		}
 
 		if(conf.wantsAlgorithmPerformance())
@@ -102,11 +95,6 @@ private:
 	{
 		double ini_d, fin_d;
 		Path* p;
-
-		ini_d = GetTickCount();
-		brute_force(g, ini, f);
-		fin_d = GetTickCount();
-		cout << " Brute force run-time (ms) : " << fixed << setprecision(20) << setw(20) << (double)(fin_d-ini_d) << endl;
 
 		ini_d = GetTickCount();
 		dijsktra_list(g, ini, f);
