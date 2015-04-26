@@ -192,6 +192,7 @@ public:
 	void removeEdge(int i);
 protected:
 	Coordinates coords;
+	double storedH;
 private:
 	unsigned int index;
 	unsigned int x;
@@ -201,7 +202,6 @@ private:
 	Edge* parent;
 	int visits;
 	int processed;
-	double storedH;
 };
 
 

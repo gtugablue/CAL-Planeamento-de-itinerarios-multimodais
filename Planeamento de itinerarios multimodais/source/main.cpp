@@ -376,9 +376,9 @@ int main(int argc, char* argv[]) {
 			else if(dst == NULL){
 				dst = new TransportStop("Destination", world);
 				((TransportStop*)dst)->userAddToGraph(g1);
-				//p = PathFinder::find_path(g1, src, dst, conf);
-				cerr << "calculating" << endl;
 				p = PathFinder::find_path(g1, src, dst, conf);
+				cerr << "calculating" << endl;
+				//p = dijsktra_list(g1, src, dst);
 				//p = astar_fib(g1, src, dst);
 				cerr << "done calculating" << endl;
 				if(p->getEdges().size() == 0)
@@ -470,7 +470,10 @@ int main(int argc, char* argv[]) {
 		SDL_RenderClear(renderer );
 		//SDLGraphDraw::drawGraph(renderer,c, g1);
 		//SDLGraphDraw::drawGraph(renderer,g1);
-		SDLGraphDraw::drawMapGraph(renderer,c, g1, src, dst, p);
+
+		if(conf.wantsAlgorithmPerformance() && p != NULL)
+			SDLGraphDraw::drawMapGraphPerformance(renderer,c, g1, src, dst, p);
+		else SDLGraphDraw::drawMapGraph(renderer,c, g1, src, dst, p);
 		//SDLGraphDraw::drawPath(renderer, c, p, SDLRGB(0xFF,0,0));
 		SDL_RenderPresent(renderer);
 	}

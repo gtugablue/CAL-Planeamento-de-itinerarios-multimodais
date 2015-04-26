@@ -195,6 +195,7 @@ public:
 		}
 		static void drawMapVertexPos(SDL_Renderer *renderer, Camera* c,int renderx, int rendery, SDLRGB color){
 					int offset = (float) 5 / 2 +.5;
+					//int offset = 1;
 					SDL_SetRenderDrawColor( renderer,color.red,color.blue, color.green, 0xFF);
 					for(size_t i = renderx-offset; i <  renderx + offset ; i++){
 						for(size_t j = rendery-offset; j <  rendery + offset ; j++){
@@ -252,11 +253,21 @@ public:
 						//drawMapEdge(renderer,c, p->getEdges()[i], true);
 						SDL_SetRenderDrawColor(renderer,0,0xFF, 0, 0xFF);
 						drawMapEdge(renderer,c, p->getEdges()[i], false);
-						drawMapVertex(renderer, c, p->getEdges()[i]->getSrc(), SDLRGB(0xFF, 0,0));
-						drawMapVertex(renderer, c, p->getEdges()[i]->getDst(), SDLRGB(0xFF, 0,0));
+						drawMapVertex(renderer, c, p->getEdges()[i]->getSrc(), SDLRGB(0, 0xFF,0));
+						drawMapVertex(renderer, c, p->getEdges()[i]->getDst(), SDLRGB(0, 0xFF,0));
 					}
 				}
 			}
+
+		static void drawMapGraphPerformance(SDL_Renderer *renderer, Camera* c, Graph* g, Vertex* src, Vertex* dst, Path* p){
+			vector<Vertex* >verts = g->getVertexSet();
+			for(size_t i = 0; i < verts.size(); i++){
+				if(verts[i]->getProcessed()){
+					drawMapVertex(renderer, c, verts[i], SDLRGB(0xFF, 0xFF,0));
+				}
+			}
+			drawMapGraph(renderer, c, g, src, dst, p);
+		}
 };
 
 

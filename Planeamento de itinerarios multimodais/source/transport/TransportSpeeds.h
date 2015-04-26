@@ -20,7 +20,7 @@ public:
 	static double getMetroSpeed()  { return metroSpeed; }
 	static double getWalkingSpeed()  { return walkingSpeed; }
 	static double getMaxSpeed(){
-		return std::min(busSpeed, std::min(metroSpeed, walkingSpeed));
+		return std::max(busSpeed, std::max(metroSpeed, walkingSpeed));
 	}
 };
 

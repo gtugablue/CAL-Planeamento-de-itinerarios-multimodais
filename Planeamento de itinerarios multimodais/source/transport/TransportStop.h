@@ -37,7 +37,7 @@ public:
 	bool hasSchedule() const { return schedule.size() > 0; }
 	virtual void setParent( Edge* parent);
 	double calcWaitingTime(Hour currentHour) const;
-	double calculateH(Vertex * v) const;
+	double calculateH(Vertex * v);
 	virtual bool operator==(const TransportStop &transportStop) const;
 	virtual ~TransportStop();
 	void userAddToGraph(Graph* g);
