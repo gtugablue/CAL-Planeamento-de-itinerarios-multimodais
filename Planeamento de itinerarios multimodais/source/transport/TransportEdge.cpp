@@ -40,7 +40,6 @@ const vector<Coordinates> &TransportEdge::getLine() const
 	return line;
 }
 
-
 void TransportEdge::addPoint(const Coordinates &coords)
 {
 	if (line.size() > 0)

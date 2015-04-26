@@ -91,7 +91,7 @@ vector<BusStop *> Map::Loader::loadBusStops(const rapidjson::Document &d) const
 vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d, vector<BusStop *> &busStops) const
 {
 	vector<BusEdge> busEdges;
-	for (int i = d["route"].Size() - 1; i >= 0; --i)
+	for (size_t i = 0; i < d["route"].Size(); ++i)
 	{
 		const rapidjson::Value &line = d["route"][i];
 		string geomdesc = line["geomdesc"].GetString();
