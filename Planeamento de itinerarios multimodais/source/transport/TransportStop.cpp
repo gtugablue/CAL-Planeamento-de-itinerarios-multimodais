@@ -77,6 +77,7 @@ void TransportStop::userAddToGraph(Graph* g){
 		closest->addEdge(edge2);
 		++counter;
 	}
+	this->arrival = Hour(0, 0);
 	g->addVertex(this);
 }
 
@@ -110,6 +111,6 @@ double TransportStop::calcWaitingTime(Hour currentHour) const
 
 void TransportStop::setParent(Edge *parent)
 {
-	TransportStop::setParent(parent);
+	Vertex::setParent(parent);
 	arrival = ((TransportStop *)parent->getSrc())->getArrivalTime() + (((TransportEdge *)parent)->calculateTime());
 }
