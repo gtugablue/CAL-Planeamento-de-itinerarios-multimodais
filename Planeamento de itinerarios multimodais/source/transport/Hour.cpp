@@ -7,12 +7,15 @@
 
 #include "Hour.h"
 #include <cstdlib>
+#include <cmath>
 
 using namespace std;
 
-unsigned Hour::minutesPerHour = 60;
-unsigned Hour::hoursPerDay = 24;
-unsigned Hour::minutesPerDay = Hour::hoursPerDay * Hour::minutesPerHour;
+const unsigned Hour::secondsPerMinute = 60;
+const unsigned Hour::minutesPerHour = 60;
+const unsigned Hour::hoursPerDay = 24;
+const unsigned Hour::minutesPerDay = Hour::hoursPerDay * Hour::minutesPerHour;
+const unsigned Hour::secondsPerDay = Hour::minutesPerDay * Hour::secondsPerMinute;
 
 Hour::Hour(const string &hour)
 {
@@ -23,22 +26,29 @@ Hour::Hour(const string &hour)
 	minutes = strtol(temp, NULL, 10);
 }
 
+Hour::Hour(double time)
+{
+	time = fmod(time, secondsPerDay);
+	setHourstamp(round(time));
+}
+
 unsigned Hour::getHourstamp() const
 {
-	return hours * 60 + minutes;
+	return hours * minutesPerHour * secondsPerMinute + minutes;
 }
 
 void Hour::setHourstamp(unsigned hourstamp)
 {
+	hourstamp /= secondsPerMinute;
 	hours = hourstamp / minutesPerHour;
 	minutes = hourstamp % minutesPerHour;
 }
 
 Hour& Hour::operator+=(const Hour &hour)
-				{
-	setHourstamp((getHourstamp() + hour.getHourstamp()) % minutesPerDay);
+						{
+	setHourstamp((getHourstamp() + hour.getHourstamp()) % secondsPerDay);
 	return *this;
-				}
+						}
 
 Hour Hour::operator+(const Hour &hour) const
 {
@@ -46,17 +56,17 @@ Hour Hour::operator+(const Hour &hour) const
 }
 
 Hour& Hour::operator-=(const Hour &hour)
-				{
+						{
 	if (getHourstamp() < hour.getHourstamp())
 	{
-		setHourstamp(minutesPerDay - (hour.getHourstamp() - getHourstamp()));
+		setHourstamp(secondsPerDay - (hour.getHourstamp() - getHourstamp()));
 	}
 	else
 	{
 		setHourstamp(getHourstamp() - hour.getHourstamp());
 	}
 	return *this;
-				}
+						}
 
 Hour Hour::operator-(const Hour &hour) const
 {
@@ -85,10 +95,10 @@ Hour Hour::operator-(const Hour &hour) const
 }*/
 
 Hour& Hour::operator/=(double quocient)
-				{
+						{
 	setHourstamp(getHourstamp() / quocient);
 	return *this;
-				}
+						}
 
 Hour Hour::operator/(double quocient) const
 {
@@ -120,14 +130,14 @@ bool Hour::operator>(const Hour &hour) const
 Hour operator*(const Hour &hour, double factor)
 {
 	Hour hour2(hour);
-	hour2.setHourstamp((unsigned)(hour2.getHourstamp() * factor) % hour2.minutesPerDay);
+	hour2.setHourstamp((unsigned)(hour2.getHourstamp() * factor) % hour2.secondsPerDay);
 	return hour2;
 }
 
 Hour operator+(const Hour &hour, double x)
 {
 	Hour hour2(hour);
-	hour2.setHourstamp((unsigned)(hour2.getHourstamp() + x) % hour2.minutesPerDay);
+	hour2.setHourstamp((unsigned)(hour2.getHourstamp() + x) % hour2.secondsPerDay);
 	return hour2;
 }
 

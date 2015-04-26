@@ -92,9 +92,9 @@ WeightInfo WeightInfo::operator+(const WeightInfo& w) const
 
 std::ostream& operator<<(std::ostream& os, WeightInfo& w)
 {
-	os << "Time: " << w.getTime() << std::endl;
-	os << "Monetary cost: " << w.getCost() << std::endl;
-	os << "Distance: " << w.getDistance() << std::endl;
+	os << "Time: " << Hour(w.getTime()) << std::endl;
+	os << "Monetary cost: " << w.getCost() << " euros" << std::endl;
+	os << "Distance: " << w.getDistance() / 1000 << "km" << std::endl;
 	os << "Number of transport switches: " << w.getSwitchs() << std::endl;
 	return os;
 }

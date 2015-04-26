@@ -12,10 +12,10 @@
 #include "Coordinates.h"
 #include <vector>
 #include "WeightInfo.h"
+#include "TransportSpeeds.h"
 
 class TransportEdge: public Edge {
 protected:
-	static const double walkingSpeed;
 	std::vector<Coordinates> line;
 	WeightInfo weight;
 	bool visible;
@@ -23,10 +23,10 @@ public:
 	TransportEdge(Vertex *src, Vertex *dst);
 	TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line);
 	void addPoint(const Coordinates &coords);
-	double getWeight();
+	virtual double getWeight();
 	WeightInfo getWeightInfo() { return weight; }
 	const std::vector<Coordinates> &getLine() const;
-	virtual double getSpeed() const { return walkingSpeed; }
+	virtual double getSpeed() const { return TransportSpeeds::getWalkingSpeed(); }
 	virtual double calculateTime() const { return weight.getDistance() / getSpeed(); }
 	virtual ~TransportEdge() { }
 	bool getVisible(){return visible;}

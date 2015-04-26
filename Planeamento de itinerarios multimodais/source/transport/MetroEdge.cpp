@@ -15,7 +15,7 @@ MetroEdge::MetroEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
 	TransportEdge(src, dst, line)
 {
 	this->visible = true;
-	weight.setCost(0);
+	weight.setCost(0.2);
 	weight.setTime(calculateTime());
 	weight.setSwitchs(0);
 }

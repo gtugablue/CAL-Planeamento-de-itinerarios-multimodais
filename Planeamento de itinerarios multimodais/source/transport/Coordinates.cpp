@@ -28,7 +28,7 @@ double Coordinates::calcDist(const Coordinates &coordinates) const
 	double dlat = (coordinates.latitude - latitude) * d2r;
 	double a = pow(sin(dlat/2.0), 2) + cos(latitude*d2r) * cos(coordinates.latitude*d2r) * pow(sin(dlong/2.0), 2);
 	double c = 2 * atan2(sqrt(a), sqrt(1-a));
-	double d = 6367 * c;
+	double d = 6367000 * c;
 
 	return d;
 }
