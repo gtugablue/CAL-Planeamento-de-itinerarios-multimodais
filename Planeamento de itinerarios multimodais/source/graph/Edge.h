@@ -13,7 +13,7 @@ class Edge{
 
 public:
     Edge(Vertex* src, Vertex* dst, double storedWeight = 0);
-    virtual double getWeight() const;
+    virtual double getWeight();
     virtual void setStoredWeight(double storedWeight);
     virtual Vertex* getDst() const;
     virtual void setDst(Vertex* dst);

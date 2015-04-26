@@ -1,12 +1,18 @@
 #include "Edge.h"
 
+#include <iostream>
+
+using namespace std;
+
 Edge::Edge(Vertex* src, Vertex* dst, double storedWeight){
 	this->src = src;
 	this->dst = dst;
 	this->storedWeight = storedWeight;
 }
 
-double Edge::getWeight() const{
+double Edge::getWeight()
+{
+	cout << "Calling Edge's getWeight()" << endl;
 	return storedWeight;
 }
 

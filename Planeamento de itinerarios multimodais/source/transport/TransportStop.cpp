@@ -93,6 +93,7 @@ void TransportStop::userRemovefromGraph(Graph* g){
 
 double TransportStop::calcWaitingTime(Hour currentHour) const
 {
+	return 1;
 	Hour nextHour(0, 0);
 	bool found = false;
 	for (size_t i = 0; i < schedule.size(); ++i)
