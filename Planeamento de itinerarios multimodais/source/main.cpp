@@ -376,6 +376,8 @@ int main(int argc, char* argv[]) {
 				cerr << "done calculating" << endl;
 				if(p->getEdges().size() == 0)
 					cerr << "path not found!" << endl;
+				else
+					cout << "==> Path:" << endl << *p << endl;
 			}
 
 			//slider->select(x,y);
