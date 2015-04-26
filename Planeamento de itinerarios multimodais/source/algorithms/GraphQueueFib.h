@@ -90,6 +90,7 @@ void GraphQueueFib<Comp>::increase(Vertex * v){
 	//cerr << "increase: " << v->getIndex() << "name-" << ((TransportStop*)v)->getName() << "- " << ", " << handles.size() << endl;
 	cerr << "done printing" << endl;
 	heap.increase(handles[v->getIndex()]);
+	cerr << "out of increase" << endl;
 }
 
 template <class Comp>

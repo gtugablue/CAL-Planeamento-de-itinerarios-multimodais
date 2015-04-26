@@ -119,7 +119,7 @@ public:
 
 			TransportStop* ts = dynamic_cast<TransportStop*>(v);
 			if(ts != NULL)
-				os << ts->getNameAndType() + '\n';
+				os << ts->getNameAndType() << " [" << ts->getArrivalTime() << "]" << endl;
 
 			TransportEdge* te = dynamic_cast<TransportEdge*>(p.edges[i]);
 			if(te != NULL)
@@ -132,7 +132,7 @@ public:
 			TransportStop* ts = dynamic_cast<TransportStop*>(v);
 			if(ts != NULL)
 			{
-				os << ts->getNameAndType() + '\n';
+				os << ts->getNameAndType() << " [" << ts->getArrivalTime() << "]" << endl;
 			}
 		}
 
