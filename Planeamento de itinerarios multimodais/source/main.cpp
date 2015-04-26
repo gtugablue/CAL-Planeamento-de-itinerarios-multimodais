@@ -356,6 +356,10 @@ int main(int argc, char* argv[]) {
 				p = NULL;
 			}
 		}
+		else if(e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_LCTRL){
+			if(!conf.uponExitAction())
+				break;
+		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT){
 			mouseLeftDown = true;
 			int x, y;

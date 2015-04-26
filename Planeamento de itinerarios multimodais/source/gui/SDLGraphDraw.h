@@ -154,31 +154,33 @@ public:
 		}
 	}*/
 	static void drawMapEdge(SDL_Renderer *renderer, Camera* c, Edge* e, bool debug){
-		if(debug){
-			Coordinates c1 = e->getSrc()->getCoords();
-			Coordinates c2 =  e->getDst()->getCoords();
-			if((c1.getLongitude()< c->getX() || c1.getLongitude() > c->getFinalX()) && (c2.getLatitude()< c->getY() || c2.getLatitude() > c->getFinalY()))
-				return;
-			//if(c->getZoomScaleX() > 50){
-			int srcscreenx =c->getRenderX(h_res, c1.getLongitude());
-			int srcsreeny = c->getRenderY(v_res, c1.getLatitude());
-			int dstscreenx = c->getRenderX(h_res,c2.getLongitude());
-			int dstscreeny =  c->getRenderY(v_res, c2.getLatitude());
-
-			SDL_RenderDrawLine(renderer,srcscreenx , srcsreeny , dstscreenx,dstscreeny );
-		}
-		else {
+//		if(debug){
+//			Coordinates c1 = e->getSrc()->getCoords();
+//			Coordinates c2 =  e->getDst()->getCoords();
+//			if((c1.getLongitude()< c->getX() || c1.getLongitude() > c->getFinalX()) && (c2.getLatitude()< c->getY() || c2.getLatitude() > c->getFinalY()))
+//				return;
+//			//if(c->getZoomScaleX() > 50){
+//			int srcscreenx =c->getRenderX(h_res, c1.getLongitude());
+//			int srcsreeny = c->getRenderY(v_res, c1.getLatitude());
+//			int dstscreenx = c->getRenderX(h_res,c2.getLongitude());
+//			int dstscreeny =  c->getRenderY(v_res, c2.getLatitude());
+//
+//			SDL_RenderDrawLine(renderer,srcscreenx , srcsreeny , dstscreenx,dstscreeny );
+//		}
+//		else {
 			int num = ((TransportEdge*)e)->getLine().size();
 			//SDL_Point points[num];
 			SDL_Point* points = (SDL_Point*)malloc(sizeof(SDL_Point) * num);
 			for(int i = 0; i < num; i++){
 				points[i].x = c->getRenderX(h_res, ((TransportEdge*)e)->getLine()[i].getLongitude());
 				points[i].y = c->getRenderY(v_res, ((TransportEdge*)e)->getLine()[i].getLatitude());
+				if(debug && (i == 0 || i == num-1))
+					drawMapVertexPos(renderer,c, points[i].x,  points[i].y, SDLRGB (0,0, 0xFF));
 				//if(debug) cerr << ((TransportEdge*)e)->getLine()[i].getLongitude() << ", " <<  ((TransportEdge*)e)->getLine()[i].getLatitude() << endl;
 			}
 			SDL_RenderDrawLines(renderer, points, num);
 			delete points;
-		}
+		//}
 	}
 		static void drawMapVertex(SDL_Renderer *renderer, Camera* c, Vertex* e, SDLRGB color){
 			int offset = (float) 5 / 2 +.5;
@@ -191,6 +193,15 @@ public:
 				}
 			}
 		}
+		static void drawMapVertexPos(SDL_Renderer *renderer, Camera* c,int renderx, int rendery, SDLRGB color){
+					int offset = (float) 5 / 2 +.5;
+					SDL_SetRenderDrawColor( renderer,color.red,color.blue, color.green, 0xFF);
+					for(size_t i = renderx-offset; i <  renderx + offset ; i++){
+						for(size_t j = rendery-offset; j <  rendery + offset ; j++){
+							SDL_RenderDrawPoint(renderer, i, j);
+						}
+					}
+				}
 		static void drawMapGraph(SDL_Renderer *renderer, Camera* c, Graph* g, Vertex* src, Vertex* dst, Path* p){
 				SDLRGB color = SDLRGB(0xFF,0,0);
 				SDL_SetRenderDrawColor( renderer,color.red,color.blue, color.green, 0xFF);
@@ -235,6 +246,10 @@ public:
 				}
 				if(p != NULL){
 					for(size_t i = 0 ; i < p->getEdges().size(); i++){
+						//if(!((TransportEdge*)p->getEdges()[i])->getVisible())
+							//continue;
+						//SDL_SetRenderDrawColor(renderer,175,238,238, 0xFF);
+						//drawMapEdge(renderer,c, p->getEdges()[i], true);
 						SDL_SetRenderDrawColor(renderer,0,0xFF, 0, 0xFF);
 						drawMapEdge(renderer,c, p->getEdges()[i], false);
 						drawMapVertex(renderer, c, p->getEdges()[i]->getSrc(), SDLRGB(0xFF, 0,0));
@@ -243,6 +258,7 @@ public:
 				}
 			}
 };
+
 
 
 #endif
