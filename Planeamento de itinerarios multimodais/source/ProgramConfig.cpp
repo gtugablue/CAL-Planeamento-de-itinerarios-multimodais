@@ -81,11 +81,10 @@ void ProgramConfig::getFromConsole()
 			cout << endl << "==> What algorithm do you wish to use?" << endl;
 			cout << " 1 - Dijkstra" << endl;
 			cout << " 2 - AStar" << endl;
-			cout << " 3 - Brute Force" << endl;
 			cout << "Option: ";
 			cin >> answer;
 
-			while(answer != "1" && answer != "2" && answer != "3")
+			while(answer != "1" && answer != "2")
 			{
 				cout << "Invalid option. New option: ";
 				cin >> answer;
@@ -95,28 +94,24 @@ void ProgramConfig::getFromConsole()
 				this->algorithm = Dijkstra;
 			else if(answer == "2")
 				this->algorithm = AStar;
-			else if(answer == "3")
-				this->algorithm = BruteForce;
 
-			if(this->algorithm != BruteForce)
+
+			cout << endl << "==> What data structure do you wish to use?" << endl;
+			cout << " 1 - List" << endl;
+			cout << " 2 - Fibonacci Heap" << endl;
+			cout << "Option: ";
+			cin >> answer;
+
+			while(answer != "1" && answer != "2")
 			{
-				cout << endl << "==> What data structure do you wish to use?" << endl;
-				cout << " 1 - List" << endl;
-				cout << " 2 - Fibonacci Heap" << endl;
-				cout << "Option: ";
+				cout << "Invalid option. New option: ";
 				cin >> answer;
-
-				while(answer != "1" && answer != "2")
-				{
-					cout << "Invalid option. New option: ";
-					cin >> answer;
-				}
-
-				if(answer == "1")
-					this->dataStructure = List;
-				else if(answer == "2")
-					this->dataStructure = FibonacciHeap;
 			}
+
+			if(answer == "1")
+				this->dataStructure = List;
+			else if(answer == "2")
+				this->dataStructure = FibonacciHeap;
 		}
 	}
 

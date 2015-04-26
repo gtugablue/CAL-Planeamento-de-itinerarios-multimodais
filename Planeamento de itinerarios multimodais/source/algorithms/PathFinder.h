@@ -12,6 +12,14 @@
 class PathFinder{
 
 public:
+	/**
+	 * @brief search for lowest cost path in graph from one vertex to another using the specified data structure and specified algorithm
+	 * @param g graph on which to perform search
+	 * @param ini initial vertex
+	 * @param f goal vertex
+	 * @param conf configuration of program specifying chosen options
+	 * @return path from initial vertex to goal of lowest cost, if there is none, the path will have no edges
+	 */
 	static Path* find_path(Graph *g, Vertex* ini, Vertex* f, ProgramConfig conf)
 	{
 		RunningMode r = conf.runningMode();
@@ -73,13 +81,6 @@ private:
 			}
 			break;
 		}
-		case BruteForce:
-		{
-			ini_d = GetTickCount();
-			p = brute_force(g, ini, f);
-			fin_d = GetTickCount();
-			break;
-		}
 		}
 
 		if(conf.wantsAlgorithmPerformance())
@@ -94,11 +95,6 @@ private:
 	{
 		double ini_d, fin_d;
 		Path* p;
-
-		ini_d = GetTickCount();
-		brute_force(g, ini, f);
-		fin_d = GetTickCount();
-		cout << " Brute force run-time (ms) : " << fixed << setprecision(20) << setw(20) << (double)(fin_d-ini_d) << endl;
 
 		ini_d = GetTickCount();
 		dijsktra_list(g, ini, f);
