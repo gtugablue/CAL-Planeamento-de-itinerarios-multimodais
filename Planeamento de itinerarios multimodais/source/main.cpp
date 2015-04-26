@@ -266,6 +266,7 @@ int main(int argc, char* argv[]) {
 	Map map;
 	map = l.load();
 	map.generateGraph();
+	cout << endl << "==> Select the source and destination points with the mouse" << endl;
 
 	ProgramConfig conf;
 	conf.getFromConsole();
@@ -378,7 +379,10 @@ int main(int argc, char* argv[]) {
 				if(p->getEdges().size() == 0)
 					cerr << "path not found!" << endl;
 				else
+				{
 					cout << "==> Path:" << endl << *p << endl;
+					cout << endl << "==> Press ESC to select new points or Left-Ctrl to exit/change settings." << endl;
+				}
 			}
 
 			//slider->select(x,y);
