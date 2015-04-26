@@ -35,6 +35,7 @@ public:
 	void setTransportRoute(TransportRoute *transportRoute);
 	void setSchedule(std::vector<Hour> schedule) { this->schedule = schedule; }
 	bool hasSchedule() const { return schedule.size() > 0; }
+	double calcWaitingTime(Hour currentHour) const;
 	double calculateH(Vertex * v) const;
 	virtual bool operator==(const TransportStop &transportStop) const;
 	virtual ~TransportStop();

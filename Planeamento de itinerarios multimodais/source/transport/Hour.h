@@ -16,14 +16,14 @@ private:
 	static unsigned minutesPerHour;
 	static unsigned hoursPerDay;
 	static unsigned minutesPerDay;
-	unsigned getHourstamp() const;
-	void setHourstamp(unsigned hourstamp);
 public:
 	unsigned hours;
 	unsigned minutes;
 	Hour(): hours(0), minutes(0) {}
 	Hour(const std::string &hour);
 	Hour(unsigned hours, unsigned minutes): hours(hours), minutes(minutes) { }
+	unsigned getHourstamp() const;
+	void setHourstamp(unsigned hourstamp);
 	Hour& operator+=(const Hour &hour);
 	Hour operator+(const Hour &hour) const;
 	Hour& operator-=(const Hour &hour);
@@ -35,6 +35,7 @@ public:
 	Hour& operator/=(double quocient);
 	Hour operator/(double quocient) const;
 	bool operator<(const Hour &hour) const;
+	bool operator>(const Hour &hour) const;
 	friend Hour operator*(const Hour &hour, double factor);
 	friend Hour operator+(const Hour &hour, double x);
 	friend std::ostream &operator<<(std::ostream &os, const Hour &hour);

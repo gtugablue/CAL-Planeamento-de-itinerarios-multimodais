@@ -7,6 +7,7 @@
 
 #include "TransportStop.h"
 #include "WeightInfo.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -89,3 +90,20 @@ void TransportStop::userRemovefromGraph(Graph* g){
 	g->removeLast();
 }
 
+double TransportStop::calcWaitingTime(Hour currentHour) const
+{
+	Hour nextHour(0, 0);
+	bool found = false;
+	for (size_t i = 0; i < schedule.size(); ++i)
+	{
+		if (schedule[i] > currentHour && schedule[i] < nextHour)
+		{
+			nextHour = schedule[i];
+			found = true;
+		}
+	}
+	if (found)
+		return (nextHour - currentHour).getHourstamp();
+	else
+		return (schedule[0] - nextHour).getHourstamp();
+}
