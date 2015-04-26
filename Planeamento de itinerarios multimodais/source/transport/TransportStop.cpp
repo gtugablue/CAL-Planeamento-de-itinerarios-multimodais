@@ -43,14 +43,15 @@ bool TransportStop::operator==(const TransportStop &transportStop) const
 	return name == transportStop.name;
 }
 
-double TransportStop::calculateH(Vertex * v) const
+double TransportStop::calculateH(Vertex * v)
 {
 	TransportStop* ts = dynamic_cast<TransportStop*>(v);
 	if(ts == NULL)
 		return 0;
-	double dist = this->getCoords().calcDist(v->getCoords());
-
-	return dist / TransportSpeeds::getMaxSpeed() * WeightInfo::getTimeWeight() + dist*WeightInfo::getDistanceWeight();
+	//double dist = this->getCoords().calcDist(v->getCoords());
+	double dist = this->getCoords().calcDirectDistSquare(v->getCoords());
+	this->storedH = dist / TransportSpeeds::getMaxSpeed() * WeightInfo::getTimeWeight() + dist*WeightInfo::getDistanceWeight();
+	return storedH;
 }
 
 TransportStop::~TransportStop()
