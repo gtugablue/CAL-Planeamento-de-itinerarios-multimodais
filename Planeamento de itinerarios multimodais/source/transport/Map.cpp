@@ -101,7 +101,7 @@ vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d, vector<B
 		vector<Coordinates> coordinates;
 		if (string(geo["type"].GetString()) == "LineString")
 		{
-			for (size_t j = 0; j < coords.Size(); ++j)
+			for (int j = coords.Size() - 1; j >= 0; --j)
 			{
 				Coordinates coord(coords[j][1].GetDouble(), coords[j][0].GetDouble());
 				coordinates.push_back(coord);
@@ -120,7 +120,7 @@ vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d, vector<B
 			}
 		}
 		else throw InvalidInputException("Unknown line type.");
-		busEdges.push_back(BusEdge(busStops[i], busStops[d["locations"].Size() -  1], coordinates));
+		busEdges.push_back(BusEdge(busStops[i], busStops[i + 1], coordinates));
 	}
 	return busEdges;
 }
@@ -412,7 +412,7 @@ void Map::Loader::connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRou
 		}
 	}
 	size_t counter = 0;
-	while (counter < 10 && !transportStops.empty())
+	while (counter < 25 && !transportStops.empty())
 	{
 		TransportStop *closest = transportStops.top();
 		transportStops.pop();
