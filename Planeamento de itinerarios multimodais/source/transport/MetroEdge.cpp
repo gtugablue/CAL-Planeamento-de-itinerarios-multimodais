@@ -11,6 +11,15 @@
 
 using namespace std;
 
+MetroEdge::MetroEdge(Vertex *src, Vertex *dst):
+	TransportEdge(src, dst)
+{
+	this->visible = true;
+	weight.setCost(0.2);
+	weight.setTime(calculateTime());
+	weight.setSwitchs(0);
+}
+
 MetroEdge::MetroEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
 	TransportEdge(src, dst, line)
 {

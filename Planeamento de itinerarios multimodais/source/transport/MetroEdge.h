@@ -13,6 +13,7 @@
 
 class MetroEdge: public TransportEdge {
 public:
+	MetroEdge(Vertex *src, Vertex *dst);
 	MetroEdge(Vertex *src, Vertex *dst, const std::vector<Coordinates> &line);
 	double getSpeed() const;
 };

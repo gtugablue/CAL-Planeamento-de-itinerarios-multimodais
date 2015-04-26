@@ -32,7 +32,7 @@ TransportEdge::TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates>
 	}
 	weight.setCost(0);
 	weight.setDistance(distance);
-	weight.setSwitchs(0);
+	weight.setSwitchs(1);
 }
 
 const vector<Coordinates> &TransportEdge::getLine() const
