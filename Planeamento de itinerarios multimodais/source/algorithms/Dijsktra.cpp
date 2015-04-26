@@ -69,10 +69,10 @@ Path* dijsktra(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::DijsComp>* q
 	vector<Vertex*> vertices = g->getVertexSet();
 	queue->reset(vertices.size());
 	for(int i= 0; i < vertices.size(); i++){
-		for(int j= 0; j < vertices[i]->getAdj().size(); j++){
+		/*for(int j= 0; j < vertices[i]->getAdj().size(); j++){
 			if(vertices[i]->getAdj()[j]->getDst() == f)
 			cerr << "found -> " << vertices[i]->getIndex() << "  " <<endl;
-		}
+		}*/
 		vertices[i]->resetProcessed();
 		vertices[i]->resetVisits();
 		vertices[i]->setParent(NULL);
@@ -89,13 +89,13 @@ Path* dijsktra(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::DijsComp>* q
 		if(current == f)
 			break;
 		vector<Edge*> adjs  = current->getAdj();
-		cerr << "current node: " << current->getIndex() << ", best weight: " << current->getBestWeight() << endl;
-		cerr << "visiting: " << endl;
+		//cerr << "current node: " << current->getIndex() << ", best weight: " << current->getBestWeight() << endl;
+		//cerr << "visiting: " << endl;
 		for(int i = 0; i < adjs.size(); i++){
-			cerr << "node: " << adjs[i]->getDst()->getIndex() << ", best weight: " << adjs[i]->getDst()->getBestWeight();
+			//cerr << "node: " << adjs[i]->getDst()->getIndex() << ", best weight: " << adjs[i]->getDst()->getBestWeight();
 			if(!adjs[i]->getDst()->getProcessed()){
 				double newWeight = current->getBestWeight() +adjs[i]->getWeight();
-				cerr << ", newWeight: " << newWeight << endl;
+				//cerr << ", newWeight: " << newWeight << endl;
 				if(newWeight < adjs[i]->getDst()->getBestWeight()){
 					adjs[i]->getDst()->setBestWeight(newWeight);
 					adjs[i]->getDst()->setParent(adjs[i]);
@@ -109,7 +109,7 @@ Path* dijsktra(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::DijsComp>* q
 			}
 			adjs[i]->getDst()->incVisits();
 		}
-		cerr <<endl<< endl;
+		//cerr <<endl<< endl;
 	}
 
 	Path *p = new Path(f->getBestWeight());

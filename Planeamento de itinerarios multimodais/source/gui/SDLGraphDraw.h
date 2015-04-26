@@ -236,7 +236,7 @@ public:
 				if(p != NULL){
 					for(size_t i = 0 ; i < p->getEdges().size(); i++){
 						SDL_SetRenderDrawColor(renderer,0,0xFF, 0, 0xFF);
-						drawMapEdge(renderer,c, p->getEdges()[i], true);
+						drawMapEdge(renderer,c, p->getEdges()[i], false);
 						drawMapVertex(renderer, c, p->getEdges()[i]->getSrc(), SDLRGB(0xFF, 0,0));
 						drawMapVertex(renderer, c, p->getEdges()[i]->getDst(), SDLRGB(0xFF, 0,0));
 					}
