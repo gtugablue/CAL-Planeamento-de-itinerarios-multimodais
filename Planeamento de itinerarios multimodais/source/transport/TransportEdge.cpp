@@ -25,7 +25,7 @@ TransportEdge::TransportEdge(Vertex *src, Vertex *dst):
 	}
 	weight.setCost(0.20);
 	weight.setDistance(distance);
-	weight.setSwitchs(0);
+	weight.setSwitchs(1);
 	visible = false;
 }
 

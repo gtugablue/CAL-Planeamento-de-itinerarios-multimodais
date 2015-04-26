@@ -6,7 +6,7 @@
  */
 
 #include "MetroRoute.h"
-#include "Metro.h"
+#include "TransportSpeeds.h"
 
 MetroRoute::MetroRoute(const std::string code, bool direction):
 	TransportRoute(code, direction)
@@ -15,7 +15,7 @@ MetroRoute::MetroRoute(const std::string code, bool direction):
 
 double MetroRoute::getSpeed() const
 {
-	return Metro::getInstance().getSpeed();
+	return TransportSpeeds::getMetroSpeed();
 }
 
 MetroRoute::~MetroRoute() {

@@ -8,7 +8,7 @@
 #include "BusRoute.h"
 #include <iostream>
 #include "../include/rapidxml/rapidxml.hpp"
-#include "Bus.h"
+#include "TransportSpeeds.h"
 
 using namespace std;
 
@@ -57,5 +57,5 @@ BusRoute::BusRoute(const string code, bool direction):
 
 double BusRoute::getSpeed() const
 {
-	return Bus::getInstance().getSpeed();
+	return TransportSpeeds::getBusSpeed();
 }
