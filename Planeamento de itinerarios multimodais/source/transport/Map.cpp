@@ -414,7 +414,9 @@ void Map::Loader::connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRou
 	{
 		TransportStop *closest = transportStops.top();
 		transportStops.pop();
-		if (transportStop->getTransportRoute() == closest->getTransportRoute())
+		//if (transportStop->getTransportRoute() == closest->getTransportRoute())
+			//continue;
+		if(transportStop == closest)
 			continue;
 		TransportEdge *edge1 = new TransportEdge(transportStop, closest); // TODO delete
 		TransportEdge *edge2 = new TransportEdge(closest, transportStop); // TODO delete
