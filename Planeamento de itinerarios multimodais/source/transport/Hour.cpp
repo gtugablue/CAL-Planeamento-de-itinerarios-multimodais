@@ -8,6 +8,7 @@
 #include "Hour.h"
 #include <cstdlib>
 #include <cmath>
+#include <iomanip>
 
 using namespace std;
 
@@ -143,5 +144,5 @@ Hour operator+(const Hour &hour, double x)
 
 ostream &operator<<(ostream &os, const Hour &hour)
 {
-	return os << hour.hours << ':' << hour.minutes;
+	return os << setw(2) << setfill('0') << hour.hours << ':' << setw(2) << setfill('0') << hour.minutes;
 }

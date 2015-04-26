@@ -25,11 +25,13 @@ public:
 	Algorithm desiredAlgorithm() {return algorithm;}
 	DataStructure desiredDataStructure() {return dataStructure;}
 	RunningMode runningMode() {return runMode;}
+	Hour getStartHour() {return startHour;}
 
 	void setWantsAlgorithmPerformance(bool wants) {wantAlgorithmPerformance = wants;}
 	void setAlgorithm(Algorithm algorithm) {this->algorithm = algorithm;}
 	void setDataStructure(DataStructure dataStructure) {this->dataStructure = dataStructure;}
 	void setRunningMode(RunningMode runningMode) {this->runMode = runningMode;}
+	void setStartHour(Hour start) {startHour = start;}
 
 	void getFromConsole();
 	bool uponExitAction();

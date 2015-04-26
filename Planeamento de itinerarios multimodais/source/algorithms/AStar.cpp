@@ -115,7 +115,8 @@ Path* astar(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::AStarComp>* que
 
 	if(f != current) return p;
 
-	while(current != ini)
+	int limit = g->getVertexSet().size();		// to stop from infinite loop
+	while(current != ini && limit-- >= 0)
 	{
 		p->addEdgeBeginning(current->getParent());
 		current = current->getParent()->getSrc();

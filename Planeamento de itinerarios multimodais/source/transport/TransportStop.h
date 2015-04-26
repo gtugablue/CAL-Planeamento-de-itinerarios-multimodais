@@ -43,6 +43,7 @@ public:
 	void userAddToGraph(Graph* g);
 	void userRemovefromGraph(Graph* g);
 	virtual std::string getNameAndType() const { return name; }
+	void setArrivalTime(Hour newarrival) {this->arrival = newarrival;}
 };
 
 class TransportStopDistCompare

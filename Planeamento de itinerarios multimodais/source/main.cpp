@@ -266,15 +266,16 @@ int main(int argc, char* argv[]) {
 	Map map;
 	map = l.load();
 	map.generateGraph();
-	cout << endl << "==> Select the source and destination points with the mouse" << endl;
 
 	ProgramConfig conf;
 	conf.getFromConsole();
+	cout << endl << "==> Select the source and destination points with the mouse" << endl;
 
 	if(! init() ){
 		std::cerr << "Failed to initialize!" << endl;
 		exit(1);
 	}
+
 
 	//Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 
@@ -370,6 +371,7 @@ int main(int argc, char* argv[]) {
 
 			if(src == NULL){
 				src = new TransportStop("Source", world);
+				((TransportStop*)src)->setArrivalTime(conf.getStartHour());
 				((TransportStop*)src)->userAddToGraph(g1);
 			}
 			else if(dst == NULL){
