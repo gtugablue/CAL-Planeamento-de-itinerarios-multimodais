@@ -82,15 +82,11 @@ Vertex* GraphQueueFib<Comp>::pop(){
 
 template <class Comp>
 void GraphQueueFib<Comp>::increase(Vertex * v){
-	cerr << "entered" << endl;
-	cerr << "increase: " << v->getIndex()  << ", "  << v->getVisits() << ", " << v->getProcessed()<< handles.size() << endl;
 	TransportStop* ts = dynamic_cast<TransportStop*>(v);
 	if(ts == NULL)
 		cerr << "oops";
 	//cerr << "increase: " << v->getIndex() << "name-" << ((TransportStop*)v)->getName() << "- " << ", " << handles.size() << endl;
-	cerr << "done printing" << endl;
 	heap.increase(handles[v->getIndex()]);
-	cerr << "out of increase" << endl;
 }
 
 template <class Comp>

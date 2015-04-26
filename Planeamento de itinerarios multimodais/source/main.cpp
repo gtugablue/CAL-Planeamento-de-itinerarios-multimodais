@@ -276,6 +276,7 @@ int main(int argc, char* argv[]) {
 		exit(1);
 	}
 
+
 	//Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 
 	Graph graph = map.generateGraph();

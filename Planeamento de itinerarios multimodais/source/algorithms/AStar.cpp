@@ -78,17 +78,13 @@ Path* astar(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::AStarComp>* que
 	Vertex* current;
 	while(queue->size() != 0)
 	{
-		cerr << "cycle" << endl;
 		current = queue->pop();
 		current->incProcessed();
-		cerr << "processed" << endl;
 		if(current == f)
 			break;
-		cerr << "getting adjs" << endl;
 		vector<Edge*> adjs  = current->getAdj();
 		for(size_t i = 0; i < adjs.size(); i++)
 		{
-			cerr << "seeing adjacency" << endl;
 			if(adjs[i]->getDst()->getProcessed() == 0)
 			{
 				double newWeight = current->getBestWeight() +adjs[i]->getWeight();
@@ -98,9 +94,7 @@ Path* astar(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::AStarComp>* que
 					adjs[i]->getDst()->setParent(adjs[i]);
 					if(adjs[i]->getDst()->getVisits() > 0)
 					{
-						cerr << "increasing" << endl;
 						queue->increase(adjs[i]->getDst());
-						cerr << "increased" << endl;
 					}
 					else
 					{
@@ -109,7 +103,6 @@ Path* astar(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::AStarComp>* que
 					}
 				}
 			}
-			cerr << "done with adj" << endl;
 			adjs[i]->getDst()->incVisits();
 		}
 	}
@@ -118,14 +111,12 @@ Path* astar(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::AStarComp>* que
 
 	if(f != current) return p;
 
-	cerr <<"second cycle" << endl;
 	int limit = g->getVertexSet().size();		// to stop from infinite loop
 	while(current != ini && limit-- >= 0)
 	{
 		p->addEdgeBeginning(current->getParent());
 		current = current->getParent()->getSrc();
 	}
-	cerr <<"out of astar" << endl;
 	return p;
 }
 Path* astar_list(Graph* g, Vertex* ini, Vertex* f){
