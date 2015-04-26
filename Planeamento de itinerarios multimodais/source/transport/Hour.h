@@ -12,16 +12,18 @@
 #include <iostream>
 
 class Hour {
-private:
-	static unsigned minutesPerHour;
-	static unsigned hoursPerDay;
-	static unsigned minutesPerDay;
 public:
+	static const unsigned secondsPerMinute;
+	static const unsigned minutesPerHour;
+	static const unsigned hoursPerDay;
+	static const unsigned minutesPerDay;
+	static const unsigned secondsPerDay;
 	unsigned hours;
 	unsigned minutes;
 	Hour(): hours(0), minutes(0) {}
 	Hour(const std::string &hour);
 	Hour(unsigned hours, unsigned minutes): hours(hours), minutes(minutes) { }
+	Hour(double time);
 	unsigned getHourstamp() const;
 	void setHourstamp(unsigned hourstamp);
 	Hour& operator+=(const Hour &hour);

@@ -93,8 +93,11 @@ void TransportStop::userRemovefromGraph(Graph* g){
 
 double TransportStop::calcWaitingTime(Hour currentHour) const
 {
-	return 1;
-	Hour nextHour(0, 0);
+	return 0;
+	if (schedule.size() == 0)
+		return 0;
+
+	Hour nextHour(23, 59);
 	bool found = false;
 	for (size_t i = 0; i < schedule.size(); ++i)
 	{
@@ -105,9 +108,15 @@ double TransportStop::calcWaitingTime(Hour currentHour) const
 		}
 	}
 	if (found)
+	{
+		cout << (nextHour - currentHour).getHourstamp() << endl;
 		return (nextHour - currentHour).getHourstamp();
+	}
 	else
+	{
+		cerr << "--------- " << (schedule[0] - nextHour).getHourstamp() << " -----------" << " size: " << schedule.size() << " current: " << currentHour << endl;
 		return (schedule[0] - nextHour).getHourstamp();
+	}
 }
 
 void TransportStop::setParent(Edge *parent)
