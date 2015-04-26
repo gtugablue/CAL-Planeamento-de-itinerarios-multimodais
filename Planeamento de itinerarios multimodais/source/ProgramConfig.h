@@ -31,6 +31,7 @@ public:
 	void setRunningMode(RunningMode runningMode) {this->runMode = runningMode;}
 
 	void getFromConsole();
+	bool uponExitAction();
 
 	ProgramConfig(): runMode(NormalUser), algorithm(AStar), dataStructure(FibonacciHeap), wantAlgorithmPerformance(false) {}
 

@@ -127,3 +127,22 @@ void ProgramConfig::getFromConsole()
 	WeightInfo::setDistanceWeight(distCost);
 	WeightInfo::setSwitchWeight(transbordCost);
 }
+
+bool ProgramConfig::uponExitAction()
+{
+	string answer = "";
+	cout << "==> Do you wish to change the settings and try again? Choosing \"No\" will close the application. (Y/N) : ";
+	cin >> answer;
+	while(answer.size() != 1 || (toupper(answer[0]) != 'N' && toupper(answer[0]) != 'Y'))
+	{
+		cout << "Invalid answer. Must be Y/N : ";
+		cin >> answer;
+	}
+
+	if(toupper(answer[0]) == 'Y')
+		this->getFromConsole();
+	else
+		return false;
+
+	return true;
+}
