@@ -11,12 +11,20 @@
 using namespace std;
 
 BusEdge::BusEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
-	TransportEdge(src, dst, line)
+			TransportEdge(src, dst, line)
 {
 	weight.setCost(0.2);
 	weight.setTime(calculateTime());
 	weight.setSwitchs(0);
 	this->visible = true;
+}
+
+double BusEdge::getWeight()
+{
+	weight.setTime(
+					calculateTime()
+	);
+	return weight.getWeight();
 }
 
 double BusEdge::getSpeed() const

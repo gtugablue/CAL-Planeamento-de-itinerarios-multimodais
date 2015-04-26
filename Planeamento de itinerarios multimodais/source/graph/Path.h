@@ -123,7 +123,11 @@ public:
 
 			TransportEdge* te = dynamic_cast<TransportEdge*>(p.edges[i]);
 			if(te != NULL)
+			{
 				w = w + te->getWeightInfo();
+				if(te->getWeightInfo().getSwitchs() > 0)
+					os << "TRANSBORD DETECTED [" << te->getWeightInfo().getSwitchs() << " switches]" << endl;
+			}
 		}
 
 		if(p.edges.size() > 0)

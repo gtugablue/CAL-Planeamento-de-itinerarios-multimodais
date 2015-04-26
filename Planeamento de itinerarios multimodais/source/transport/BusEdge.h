@@ -35,6 +35,12 @@ public:
 	virtual double getSpeed() const;
 
 	/**
+	 * @brief get weight of edge
+	 * @return  weight of edge
+	 */
+	double getWeight();
+
+	/**
 	 * @brief edge destructor
 	 */
 	virtual ~BusEdge() { }
