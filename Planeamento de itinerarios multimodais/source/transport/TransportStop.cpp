@@ -107,3 +107,9 @@ double TransportStop::calcWaitingTime(Hour currentHour) const
 	else
 		return (schedule[0] - nextHour).getHourstamp();
 }
+
+void TransportStop::setParent(Edge *parent)
+{
+	TransportStop::setParent(parent);
+	arrival = ((TransportStop *)parent->getSrc())->getArrivalTime() + (((TransportEdge *)parent)->calculateTime());
+}

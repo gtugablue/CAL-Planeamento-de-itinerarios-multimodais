@@ -13,7 +13,7 @@ using namespace std;
 const double TransportEdge::walkingSpeed = 1.2;
 
 TransportEdge::TransportEdge(Vertex *src, Vertex *dst):
-	Edge(src, dst)
+					Edge(src, dst)
 {
 	line.push_back(src->getCoords());
 	line.push_back(dst->getCoords());
@@ -30,7 +30,7 @@ TransportEdge::TransportEdge(Vertex *src, Vertex *dst):
 }
 
 TransportEdge::TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
-			Edge(src, dst), line(line)
+							Edge(src, dst), line(line)
 {
 	double distance = 0;
 	for (size_t i = 1; i < line.size(); ++i)
@@ -57,6 +57,6 @@ void TransportEdge::addPoint(const Coordinates &coords)
 
 double TransportEdge::getWeight()
 {
-	weight.setTime(((TransportStop *)getDst())->calcWaitingTime(((TransportStop *)getSrc())->getArrivalTime()) + calculateTime(weight.getDistance()));
+	weight.setTime(((TransportStop *)getDst())->calcWaitingTime(((TransportStop *)getSrc())->getArrivalTime()) + calculateTime());
 	return weight.getWeight();
 }
