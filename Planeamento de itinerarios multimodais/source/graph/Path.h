@@ -67,7 +67,7 @@ public:
 
 			TransportStop* ts = dynamic_cast<TransportStop*>(v);
 			if(ts != NULL)
-				os << ts->getName() + '\n';
+				os << ts->getNameAndType() + '\n';
 		}
 
 		if(p.edges.size() > 0)
@@ -76,7 +76,7 @@ public:
 			TransportStop* ts = dynamic_cast<TransportStop*>(v);
 			if(ts != NULL)
 			{
-				os << ts->getName() + '\n';
+				os << ts->getNameAndType() + '\n';
 			}
 		}
 
