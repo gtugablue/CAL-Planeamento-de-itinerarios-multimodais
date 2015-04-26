@@ -1,5 +1,5 @@
 #include "TransportSpeeds.h"
 
-double TransportSpeeds::busSpeed = 15;
-double TransportSpeeds::metroSpeed = 25;
-double TransportSpeeds::walkingSpeed = 3;
+double TransportSpeeds::busSpeed = 7;
+double TransportSpeeds::metroSpeed = 10;
+double TransportSpeeds::walkingSpeed = 2.5;
