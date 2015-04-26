@@ -91,8 +91,7 @@ vector<BusStop *> Map::Loader::loadBusStops(const rapidjson::Document &d) const
 vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d, vector<BusStop *> &busStops) const
 {
 	vector<BusEdge> busEdges;
-	if (d["route"].Size() == 0) throw InvalidInputException("File has no data to be read.");
-	for (size_t i = 0; i < d["route"].Size(); ++i)
+	for (int i = d["route"].Size() - 1; i >= 0; --i)
 	{
 		const rapidjson::Value &line = d["route"][i];
 		string geomdesc = line["geomdesc"].GetString();
@@ -121,8 +120,7 @@ vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d, vector<B
 			}
 		}
 		else throw InvalidInputException("Unknown line type.");
-
-		busEdges.push_back(BusEdge(busStops[i], busStops[i + 1], coordinates));
+		busEdges.push_back(BusEdge(busStops[i], busStops[d["locations"].Size() -  1], coordinates));
 	}
 	return busEdges;
 }
@@ -140,6 +138,10 @@ vector<BusRoute> Map::Loader::loadBusRoutes() const
 			// Load Bus Stops code, name and coordinates
 			rapidjson::Document d;
 			parseJsonFile(BusEdgesFolder + fileNames[i], d);
+
+			if (d["route"].Size() == 0) throw InvalidInputException("File has no data to be read.");
+			if (d["route"].Size() != d["locations"].Size() - 1) throw InvalidInputException("File is corrupt.");
+
 			vector<BusStop *> busStops = loadBusStops(d);
 
 			// Load corresponding Bus Edges
@@ -415,7 +417,7 @@ void Map::Loader::connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRou
 		TransportStop *closest = transportStops.top();
 		transportStops.pop();
 		//if (transportStop->getTransportRoute() == closest->getTransportRoute())
-			//continue;
+		//continue;
 		if(transportStop == closest)
 			continue;
 		TransportEdge *edge1 = new TransportEdge(transportStop, closest); // TODO delete

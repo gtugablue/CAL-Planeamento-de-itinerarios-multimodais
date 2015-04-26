@@ -136,10 +136,7 @@ Hour operator*(const Hour &hour, double factor)
 
 Hour operator+(const Hour &hour, double x)
 {
-
-	cout << "Debug: " << hour << "+" << x << "=";
 	Hour hour2(hour);
-	cout << (hour2.getHourstamp() + x) << endl;
 	hour2.setHourstamp((unsigned)(hour2.getHourstamp() + x) % hour2.secondsPerDay);
 	return hour2;
 }
