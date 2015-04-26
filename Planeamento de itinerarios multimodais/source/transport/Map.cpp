@@ -88,7 +88,7 @@ vector<BusStop *> Map::Loader::loadBusStops(const rapidjson::Document &d) const
 	return busStops;
 }
 
-vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d) const
+vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d, vector<BusStop *> &busStops) const
 {
 	vector<BusEdge> busEdges;
 	if (d["route"].Size() == 0) throw InvalidInputException("File has no data to be read.");
@@ -122,9 +122,7 @@ vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d) const
 		}
 		else throw InvalidInputException("Unknown line type.");
 
-		Vertex *src = new Vertex(coordinates[0]);
-		Vertex *dst = new Vertex(coordinates[coordinates.size() - 1]);
-		busEdges.push_back(BusEdge(src, dst, coordinates));
+		busEdges.push_back(BusEdge(busStops[i], busStops[i + 1], coordinates));
 	}
 	return busEdges;
 }
@@ -145,7 +143,7 @@ vector<BusRoute> Map::Loader::loadBusRoutes() const
 			vector<BusStop *> busStops = loadBusStops(d);
 
 			// Load corresponding Bus Edges
-			vector<BusEdge> busEdges = loadBusEdges(d);
+			vector<BusEdge> busEdges = loadBusEdges(d, busStops);
 
 			// Load Bus Route info
 			bool direction;
@@ -324,8 +322,7 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 	return metroRoutes;
 }
 
-Hour Map::Loader::generateRandomHour(
-) const
+Hour Map::Loader::generateRandomHour() const
 {
 	return Hour(rand() % 24, rand() % 60);
 }
@@ -380,7 +377,6 @@ void Map::Loader::createConnectingEdges(vector<BusRoute> &busRoutes, vector<Metr
 {
 	for (size_t i = 0; i < busRoutes.size(); ++i)
 	{
-		cout << i << endl;
 		for (size_t j = 0; j < busRoutes[i].getStops().size(); ++j)
 		{
 			connectToClosests(busRoutes, metroRoutes, busRoutes[i].getStops()[j]);
@@ -388,7 +384,6 @@ void Map::Loader::createConnectingEdges(vector<BusRoute> &busRoutes, vector<Metr
 	}
 	for (size_t i = 0; i < metroRoutes.size(); ++i)
 	{
-		cout << i << endl;
 		for (size_t j = 0; j < metroRoutes[i].getStops().size(); ++j)
 		{
 			connectToClosests(busRoutes, metroRoutes, metroRoutes[i].getStops()[j]);
@@ -500,7 +495,6 @@ void Map::Loader::loadConnectingEdges(const vector<BusRoute> &busRoutes, const v
 		infile >> m;
 		for (size_t j = 0; j < m; ++j)
 		{
-			cout << i << " " << j << endl;
 			unsigned o, p, q;
 			infile >> o;
 			if (o == 1) // Bus dst
@@ -558,11 +552,11 @@ Map Map::Loader::load()
 	cout << "Loading metro routes..." << endl;
 	map.metroRoutes = loadMetroRoutes();
 	cout << "Metro routes successfully loaded." << endl;
-	//cout << "Creating connecting edges.." << endl;
-	//createConnectingEdges(map.busRoutes, map.metroRoutes);
-	//cout << "Connecting edges successfully created." << endl;
-	//saveConnectingEdges(map.busRoutes, map.metroRoutes);
-	loadConnectingEdges(map.busRoutes, map.metroRoutes);
+	cout << "Creating connecting edges.." << endl;
+	createConnectingEdges(map.busRoutes, map.metroRoutes);
+	cout << "Connecting edges successfully created." << endl;
+	saveConnectingEdges(map.busRoutes, map.metroRoutes);
+	//loadConnectingEdges(map.busRoutes, map.metroRoutes);
 	cout << "Loaded connecting edges." << endl;
 	return map;
 }
@@ -575,6 +569,10 @@ Graph Map::generateGraph() const
 		for (size_t j = 0; j < busRoutes[i].getStops().size(); ++j)
 		{
 			graph.addVertex(busRoutes[i].getStops()[j]);
+			for (size_t k = 0; k < busRoutes[i].getStops()[j]->getAdj().size(); ++k)
+			{
+				graph.addVertex(busRoutes[i].getStops()[j]->getAdj()[k]->getDst());
+			}
 		}
 	}
 	for (size_t i = 0; i < metroRoutes.size(); ++i)
@@ -582,6 +580,10 @@ Graph Map::generateGraph() const
 		for (size_t j = 0; j < metroRoutes[i].getStops().size(); ++j)
 		{
 			graph.addVertex(metroRoutes[i].getStops()[j]);
+			for (size_t k = 0; k < metroRoutes[i].getStops()[j]->getAdj().size(); ++k)
+			{
+				graph.addVertex(metroRoutes[i].getStops()[j]->getAdj()[k]->getDst());
+			}
 		}
 	}
 	return graph;
