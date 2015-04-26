@@ -23,7 +23,7 @@ TransportEdge::TransportEdge(Vertex *src, Vertex *dst):
 	{
 		distance += line[i - 1].calcDist(line[i]);
 	}
-	weight.setCost(0.20);
+	weight.setCost(0);
 	weight.setDistance(distance);
 	weight.setSwitchs(1);
 	visible = false;
@@ -37,7 +37,7 @@ TransportEdge::TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates>
 	{
 		distance += line[i - 1].calcDist(line[i]);
 	}
-	weight.setCost(0.20);
+	weight.setCost(0);
 	weight.setDistance(distance);
 	weight.setSwitchs(0);
 }

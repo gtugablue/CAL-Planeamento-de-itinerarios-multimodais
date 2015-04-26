@@ -13,6 +13,7 @@ using namespace std;
 BusEdge::BusEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
 	TransportEdge(src, dst, line)
 {
+	weight.setCost(0.2);
 	weight.setTime(calculateTime(weight.getDistance()));
 	weight.setSwitchs(0);
 	this->visible = true;
