@@ -324,7 +324,8 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 	return metroRoutes;
 }
 
-Hour Map::Loader::generateRandomHour() const
+Hour Map::Loader::generateRandomHour(
+) const
 {
 	return Hour(rand() % 24, rand() % 60);
 }
@@ -496,6 +497,7 @@ void Map::Loader::loadConnectingEdges(const vector<BusRoute> &busRoutes, const v
 	for (size_t i = 0; i < busRoutes.size(); ++i)
 	{
 		unsigned m;
+		infile >> m;
 		for (size_t j = 0; j < m; ++j)
 		{
 			cout << i << " " << j << endl;
