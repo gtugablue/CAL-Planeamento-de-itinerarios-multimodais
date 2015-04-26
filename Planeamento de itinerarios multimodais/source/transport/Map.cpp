@@ -312,7 +312,6 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 			metroStop = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString())); // TODO delete
 			last->addEdge(new MetroEdge(last, metroStop));
 			metroRoute2.addStop(metroStop);
-			cout << metroRoute2.getStops()[metroRoute2.getStops().size() - 1]->getAdj()[0] << " - " << metroRoute2.getStops()[metroRoute2.getStops().size() - 1] << endl;
 			last = metroStop;
 		}
 		cout << endl;
