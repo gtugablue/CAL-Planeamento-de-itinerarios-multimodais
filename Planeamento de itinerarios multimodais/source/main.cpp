@@ -380,9 +380,6 @@ int main(int argc, char* argv[]) {
 						cerr << "error"<< endl;
 				}
 			}
-
-
-
 			//slider->select(x,y);
 			//std::cout << "left pressed"<<endl;
 			//delete g1;
