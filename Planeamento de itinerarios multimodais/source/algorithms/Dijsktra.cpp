@@ -74,6 +74,7 @@ Path* dijsktra(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::DijsComp>* q
 	while(queue->size() != 0){
 		cerr << "queue size:" << queue->size() << endl;
 		current = queue->pop();
+		cerr << current;
 		cerr << "indexcurrent " << current->getIndex() << endl;
 		cerr << "update1" << endl;
 		current->incProcessed();

@@ -25,8 +25,7 @@ Camera::Camera(double x0, double y0, double x1, double y1, double limit){
 	this->maxHeight = (y1 - y0) * limit;
 	this->minWidth = (x1 - x0) / limit;
 	this->minHeight = (y1 - y0) / limit;
-	if(!setValues(x0, y0, x1, y1))
-		std::cout << "oops!";
+	setValues(x0, y0, x1, y1);
 }
 
 void Camera::moveAbs(double x, double y){
@@ -40,7 +39,7 @@ void Camera::moveRel(double x, double y){
 }
 
 void  Camera::moveRelScreen(double x, double y, int h_res, int v_res){
-	moveAbs(getWorldX(h_res,  h_res - x), getWorldY(v_res, v_res - y));
+	moveAbs(getWorldX(h_res,x), getWorldY(v_res, v_res - y));
 }
 void Camera::movePartialAbsCentered(double x, double y,  int h_res, int v_res, double extent){
 	moveRel((x-(x1+x0)/2)*extent * min(getZoomScaleX(), 1),(y-(y1+y0)/2)*extent * min(getZoomScaleY(), 1));
@@ -110,7 +109,7 @@ double Camera::getHeight() const {
 }
 
 double Camera::getRenderX(int h_res, double worldX) const{
-	return h_res -  (worldX-x0)*h_res/(x1-x0);
+	return  (worldX-x0)*h_res/(x1-x0);
 }
 
 double Camera::getRenderY(int v_res, double worldY) const{
@@ -119,7 +118,7 @@ double Camera::getRenderY(int v_res, double worldY) const{
 
 
 double Camera::getWorldX(int h_res, double renderX) const{
-	return x0+(h_res - renderX)*(x1-x0)/h_res;
+	return x0+( renderX)*(x1-x0)/h_res;
 }
 double Camera::getWorldY(int v_res, double renderY) const{
 	return y0+(v_res - renderY)*(y1-y0)/v_res;

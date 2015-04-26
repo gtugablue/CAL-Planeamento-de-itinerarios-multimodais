@@ -39,6 +39,7 @@ Vertex* GraphQueueList<Comp>::top() const{
 }
 template<class Comp>
 Vertex* GraphQueueList<Comp>::pop(){
+	cerr << "popping" << endl;
 	list<Vertex*>::iterator it = vList.begin();
 	list<Vertex*>::iterator ite = vList.end();
 	for(list<Vertex*>::iterator it2 = ++it; it2 != ite; ++it2){
@@ -47,6 +48,7 @@ Vertex* GraphQueueList<Comp>::pop(){
 	}
 	Vertex* out = *it;
 	vList.erase(it);
+	cerr << "done popping" << endl;
 	return out;
 }
 template<class Comp>

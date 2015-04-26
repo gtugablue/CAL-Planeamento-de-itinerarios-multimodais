@@ -415,7 +415,7 @@ int main(int argc, char* argv[]) {
 		}
 		else if(e.type  ==  SDL_MOUSEMOTION){
 			if(moving){
-				c->moveRelScreen(e.motion.xrel, e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
+				c->moveRelScreen(-e.motion.xrel, e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
 			}
 			if(mouseLeftDown){
 				if(slider->isSelected()){
