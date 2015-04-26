@@ -32,6 +32,9 @@ private:
 	std::vector<BusRoute> busRoutes;
 	std::vector<MetroRoute> metroRoutes;
 public:
+	/**
+	 * @brief map construtor
+	 */
 	Map();
 
 	class Loader {

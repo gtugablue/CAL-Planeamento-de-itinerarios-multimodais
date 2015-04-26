@@ -29,6 +29,14 @@ MetroEdge::MetroEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
 	weight.setSwitchs(0);
 }
 
+double MetroEdge::getWeight()
+{
+	weight.setTime(
+					calculateTime()
+	);
+	return weight.getWeight();
+}
+
 double MetroEdge::getSpeed() const
 {
 	return TransportSpeeds::getMetroSpeed();
