@@ -305,18 +305,17 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 
 		// Do the same but in the opposite order
 		MetroRoute metroRoute2(code, true);
-		metroStop = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][dLines[i]["stops"].Size() - 1].GetString())); // TODO delete
+		MetroStop *last = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][dLines[i]["stops"].Size() - 1].GetString())); // TODO delete
 		metroRoute2.addStop(metroStop);
 		for (int j = dLines[i]["stops"].Size() - 2; j >= 0; --j)
 		{
 			metroStop = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString())); // TODO delete
+			last->addEdge(new MetroEdge(last, metroStop));
 			metroRoute2.addStop(metroStop);
-			vector<Coordinates> line;
-			line.push_back(metroRoute2.getStops()[metroRoute2.getStops().size() - 1]->getCoords());
-			line.push_back(metroStop->getCoords());
-			MetroEdge metroEdge(metroRoute2.getStops()[metroRoute2.getStops().size() - 1], metroStop, line);
-			metroRoute2.getStops()[metroRoute2.getStops().size() - 1]->addEdge(new MetroEdge(metroEdge)); // TODO delete
+			cout << metroRoute2.getStops()[metroRoute2.getStops().size() - 1]->getAdj()[0] << " - " << metroRoute2.getStops()[metroRoute2.getStops().size() - 1] << endl;
+			last = metroStop;
 		}
+		cout << endl;
 		generateRandomTransportSchedule(&metroRoute2);
 		metroRoutes.push_back(metroRoute2);
 	}
