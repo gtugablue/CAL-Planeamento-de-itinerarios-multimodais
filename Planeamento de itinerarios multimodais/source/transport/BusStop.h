@@ -20,6 +20,7 @@ public:
 	BusStop(const std::string &code, const std::string &name, const Coordinates &coords);
 	const string &getCode() const { return code; }
 	void print() const;
+	virtual std::string getNameAndType() const { return "Bus: " + name; }
 };
 
 #endif /* SOURCE_BUSSTOP_H_ */

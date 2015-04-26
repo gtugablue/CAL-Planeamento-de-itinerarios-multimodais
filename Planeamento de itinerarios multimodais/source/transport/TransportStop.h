@@ -40,6 +40,7 @@ public:
 	virtual ~TransportStop();
 	void userAddToGraph(Graph* g);
 	void userRemovefromGraph(Graph* g);
+	virtual std::string getNameAndType() const { return name; }
 };
 
 class TransportStopDistCompare

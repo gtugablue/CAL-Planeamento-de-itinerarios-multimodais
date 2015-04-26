@@ -75,6 +75,7 @@ void TransportStop::userAddToGraph(Graph* g){
 		closest->addEdge(edge2);
 		++counter;
 	}
+	this->arrival = Hour(0, 0);
 	g->addVertex(this);
 }
 
@@ -88,3 +89,27 @@ void TransportStop::userRemovefromGraph(Graph* g){
 	g->removeLast();
 }
 
+double TransportStop::calcWaitingTime(Hour currentHour) const
+{
+	Hour nextHour(0, 0);
+	bool found = false;
+	for (size_t i = 0; i < schedule.size(); ++i)
+	{
+		if (schedule[i] > currentHour && schedule[i] < nextHour)
+		{
+			nextHour = schedule[i];
+			found = true;
+		}
+	}
+	if (found)
+		return (nextHour - currentHour).getHourstamp();
+	else
+		return (schedule[0] - nextHour).getHourstamp();
+}
+
+void TransportStop::setParent(Edge *parent)
+{
+	Vertex::setParent(parent);
+	if(parent != NULL)
+		arrival = ((TransportStop *)parent->getSrc())->getArrivalTime() + (((TransportEdge *)parent)->calculateTime());
+}

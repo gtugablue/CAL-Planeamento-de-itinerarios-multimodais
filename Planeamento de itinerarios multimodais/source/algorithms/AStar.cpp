@@ -85,14 +85,14 @@ Path* astar(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::AStarComp>* que
 		vector<Edge*> adjs  = current->getAdj();
 		for(size_t i = 0; i < adjs.size(); i++)
 		{
-			if(!adjs[i]->getDst()->getProcessed())
+			if(adjs[i]->getDst()->getProcessed() == 0)
 			{
 				double newWeight = current->getBestWeight() +adjs[i]->getWeight();
 				if(newWeight < adjs[i]->getDst()->getBestWeight())
 				{
 					adjs[i]->getDst()->setBestWeight(newWeight);
 					adjs[i]->getDst()->setParent(adjs[i]);
-					if(adjs[i]->getDst()->getVisits())
+					if(adjs[i]->getDst()->getVisits() > 0)
 					{
 						queue->increase(adjs[i]->getDst());
 					}

@@ -2,10 +2,12 @@
 #define WEIGHT_INFO_H
 
 #include "Hour.h"
+#include <ostream>
 
 class WeightInfo{
 public:
-	double getWeight(Hour currentHour) const;
+	WeightInfo(): time(0), cost(0), distance(0), switchs(0) {}
+	double getWeight() const;
 	double getCost() const;
 	void setCost(double cost);
 	static double getCostWeight();
@@ -22,6 +24,8 @@ public:
 	void setTime(double time);
 	static double getTimeWeight();
 	static void setTimeWeight(double timeWeight);
+	WeightInfo operator+(const WeightInfo& w) const;
+	friend std::ostream& operator<<(std::ostream& os, WeightInfo& w);
 
 private:
 	static double timeWeight;

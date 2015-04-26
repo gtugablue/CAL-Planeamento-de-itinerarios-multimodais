@@ -362,6 +362,7 @@ int main(int argc, char* argv[]) {
 			SDL_GetMouseState(&x, &y);
 
 			Coordinates world( c->getWorldY(SDLGraphDraw::getVRes(), y),c->getWorldX(SDLGraphDraw::getHRes(), x)) ;
+
 			if(src == NULL){
 				src = new TransportStop("Source", world);
 				((TransportStop*)src)->userAddToGraph(g1);
@@ -375,10 +376,8 @@ int main(int argc, char* argv[]) {
 				cerr << "done calculating" << endl;
 				if(p->getEdges().size() == 0)
 					cerr << "path not found!" << endl;
-				for(int i = 0; i < p->getEdges().size()-1; i++){
-					if(p->getEdges()[i]->getDst() != p->getEdges()[i+1]->getSrc())
-						cerr << "error"<< endl;
-				}
+				else
+					cout << "==> Path:" << endl << *p << endl;
 			}
 			//slider->select(x,y);
 			//std::cout << "left pressed"<<endl;

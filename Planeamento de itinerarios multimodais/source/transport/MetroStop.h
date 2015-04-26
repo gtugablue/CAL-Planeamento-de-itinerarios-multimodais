@@ -17,6 +17,7 @@ class MetroStop: public TransportStop {
 public:
 	static const double speed = 1;
 	MetroStop(const std::string name, const Coordinates &coords);
+	virtual std::string getNameAndType() const { return "Metro: " + name; }
 };
 
 #endif /* SOURCE_METROSTOP_H_ */

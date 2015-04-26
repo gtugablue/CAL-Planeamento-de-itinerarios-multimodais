@@ -1,4 +1,5 @@
-#include "WeightInfo.h"
+#include "WeightInfo.h"´
+#include <iostream>
 
 double WeightInfo::timeWeight = 0;
 double WeightInfo::distanceWeight = 0;
@@ -71,4 +72,29 @@ double WeightInfo::getTimeWeight() {
 
 void WeightInfo::setTimeWeight(double timeWeight) {
 	WeightInfo::timeWeight = timeWeight;
+}
+
+WeightInfo WeightInfo::operator+(const WeightInfo& w) const
+{
+	WeightInfo ret;
+	ret.cost = this->cost;
+	ret.time = this->time;
+	ret.distance = this->distance;
+	ret.switchs = this->switchs;
+
+	ret.cost += w.cost;
+	ret.time += w.time;
+	ret.distance += w.distance;
+	ret.switchs += w.switchs;
+
+	return ret;
+}
+
+std::ostream& operator<<(std::ostream& os, WeightInfo& w)
+{
+	os << "Time: " << w.getTime() << std::endl;
+	os << "Monetary cost: " << w.getCost() << std::endl;
+	os << "Distance: " << w.getDistance() << std::endl;
+	os << "Number of transport switches: " << w.getSwitchs() << std::endl;
+	return os;
 }
