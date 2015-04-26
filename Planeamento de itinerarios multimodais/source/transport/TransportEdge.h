@@ -24,6 +24,7 @@ public:
 	TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line);
 	void addPoint(const Coordinates &coords);
 	double getWeight();
+	WeightInfo getWeightInfo() { return weight; }
 	const std::vector<Coordinates> &getLine() const;
 	virtual double getSpeed() const { return walkingSpeed; }
 	virtual double calculateTime() const { return weight.getDistance() / getSpeed(); }

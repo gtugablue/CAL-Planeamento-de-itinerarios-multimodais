@@ -6,6 +6,7 @@
 #include "../transport/TransportStop.h"
 #include <vector>
 #include <string>
+#include "../transport/WeightInfo.h"
 
 using namespace std;
 
@@ -59,6 +60,9 @@ public:
 	}
 
 	friend ostream& operator<<(ostream& os, Path& p){
+
+		WeightInfo w;
+
 		size_t i;
 		Vertex* v;
 		for(i = 0; i < p.edges.size(); i++)
@@ -68,6 +72,10 @@ public:
 			TransportStop* ts = dynamic_cast<TransportStop*>(v);
 			if(ts != NULL)
 				os << ts->getNameAndType() + '\n';
+
+			TransportEdge* te = dynamic_cast<TransportEdge*>(p.edges[i]);
+			if(te != NULL)
+				w = w + te->getWeightInfo();
 		}
 
 		if(p.edges.size() > 0)
@@ -79,6 +87,8 @@ public:
 				os << ts->getNameAndType() + '\n';
 			}
 		}
+
+		os << endl << "==> Total path cost:" << endl << w << endl;
 
 		return os;
 	}
