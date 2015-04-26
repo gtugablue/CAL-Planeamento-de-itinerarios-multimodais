@@ -13,7 +13,7 @@ using namespace std;
 const double TransportEdge::walkingSpeed = 1.2;
 
 TransportEdge::TransportEdge(Vertex *src, Vertex *dst):
-	Edge(src, dst)
+					Edge(src, dst)
 {
 	line.push_back(src->getCoords());
 	line.push_back(dst->getCoords());
@@ -23,21 +23,21 @@ TransportEdge::TransportEdge(Vertex *src, Vertex *dst):
 	{
 		distance += line[i - 1].calcDist(line[i]);
 	}
-	weight.setCost(0.20);
+	weight.setCost(0);
 	weight.setDistance(distance);
-	weight.setSwitchs(0);
+	weight.setSwitchs(1);
 	visible = false;
 }
 
 TransportEdge::TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
-			Edge(src, dst), line(line)
+							Edge(src, dst), line(line)
 {
 	double distance = 0;
 	for (size_t i = 1; i < line.size(); ++i)
 	{
 		distance += line[i - 1].calcDist(line[i]);
 	}
-	weight.setCost(0.20);
+	weight.setCost(0);
 	weight.setDistance(distance);
 	weight.setSwitchs(0);
 }
@@ -55,7 +55,10 @@ void TransportEdge::addPoint(const Coordinates &coords)
 	line.push_back(coords);
 }
 
-double TransportEdge::getWeight() const
+double TransportEdge::getWeight()
 {
-	return weight.getWeight(((TransportStop *)getSrc())->getArrivalTime());
+	cout << "getting weight" << endl;
+	weight.setTime(((TransportStop *)getDst())->calcWaitingTime(((TransportStop *)getSrc())->getArrivalTime()) + calculateTime());
+	return weight.getWeight();
+	cout << "weight gotten" << endl;
 }

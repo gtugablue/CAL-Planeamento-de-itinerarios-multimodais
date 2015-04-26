@@ -5,7 +5,7 @@
 
 class WeightInfo{
 public:
-	double getWeight(Hour currentHour) const;
+	double getWeight() const;
 	double getCost() const;
 	void setCost(double cost);
 	static double getCostWeight();

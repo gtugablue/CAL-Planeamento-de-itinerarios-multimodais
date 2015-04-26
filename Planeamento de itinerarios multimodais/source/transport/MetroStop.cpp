@@ -13,4 +13,3 @@ MetroStop::MetroStop(const string name, const Coordinates &coords):
 		TransportStop(name, coords)
 {
 }
-

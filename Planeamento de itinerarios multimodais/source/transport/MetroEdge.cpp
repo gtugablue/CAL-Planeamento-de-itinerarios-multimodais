@@ -7,7 +7,7 @@
 
 #include "MetroEdge.h"
 #include "MetroRoute.h"
-#include "Metro.h"
+#include "TransportSpeeds.h"
 
 using namespace std;
 
@@ -15,10 +15,12 @@ MetroEdge::MetroEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
 	TransportEdge(src, dst, line)
 {
 	this->visible = true;
-	weight.setTime(calculateTime(weight.getDistance()));
+	weight.setCost(0);
+	weight.setTime(calculateTime());
+	weight.setSwitchs(0);
 }
 
 double MetroEdge::getSpeed() const
 {
-	return Metro::getInstance().getSpeed();
+	return TransportSpeeds::getMetroSpeed();
 }

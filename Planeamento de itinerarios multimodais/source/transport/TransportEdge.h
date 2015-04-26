@@ -23,10 +23,10 @@ public:
 	TransportEdge(Vertex *src, Vertex *dst);
 	TransportEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line);
 	void addPoint(const Coordinates &coords);
-	double getWeight() const;
+	double getWeight();
 	const std::vector<Coordinates> &getLine() const;
 	virtual double getSpeed() const { return walkingSpeed; }
-	virtual double calculateTime(double distance) const { return distance / getSpeed(); }
+	virtual double calculateTime() const { return weight.getDistance() / getSpeed(); }
 	virtual ~TransportEdge() { }
 	bool getVisible(){return visible;}
 };

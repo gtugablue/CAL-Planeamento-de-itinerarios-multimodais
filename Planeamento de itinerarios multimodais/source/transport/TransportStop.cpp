@@ -7,6 +7,7 @@
 
 #include "TransportStop.h"
 #include "WeightInfo.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -76,12 +77,13 @@ void TransportStop::userAddToGraph(Graph* g){
 		closest->addEdge(edge2);
 		++counter;
 	}
+	this->arrival = Hour(0, 0);
 	g->addVertex(this);
 }
 
 void TransportStop::userRemovefromGraph(Graph* g){
 	for(int i = 0; i < this->getAdj().size(); i++){
-		for(int j; j < this->getAdj()[i]->getDst()->getAdj().size(); j++){
+		for(int j = 0; j < this->getAdj()[i]->getDst()->getAdj().size(); j++){
 			if(this->getAdj()[i]->getDst()->getAdj()[j]->getDst() == this)
 				this->getAdj()[i]->getDst()->removeEdge(j);
 		}
@@ -89,3 +91,26 @@ void TransportStop::userRemovefromGraph(Graph* g){
 	g->removeLast();
 }
 
+double TransportStop::calcWaitingTime(Hour currentHour) const
+{
+	Hour nextHour(0, 0);
+	bool found = false;
+	for (size_t i = 0; i < schedule.size(); ++i)
+	{
+		if (schedule[i] > currentHour && schedule[i] < nextHour)
+		{
+			nextHour = schedule[i];
+			found = true;
+		}
+	}
+	if (found)
+		return (nextHour - currentHour).getHourstamp();
+	else
+		return (schedule[0] - nextHour).getHourstamp();
+}
+
+void TransportStop::setParent(Edge *parent)
+{
+	Vertex::setParent(parent);
+	arrival = ((TransportStop *)parent->getSrc())->getArrivalTime() + (((TransportEdge *)parent)->calculateTime());
+}

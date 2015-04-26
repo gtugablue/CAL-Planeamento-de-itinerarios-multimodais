@@ -14386,6 +14386,17 @@
     {
       "type": "node",
       "id": 280197618,
+      "lat": 41.2535584,
+      "lon": -8.6283049,
+      "tags": {
+        "name": "Mandim",
+        "railway": "tram_stop",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 280197618,
       "lat": 41.183908,
       "lon": -8.691469,
       "tags": {

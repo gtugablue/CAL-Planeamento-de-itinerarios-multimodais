@@ -6,18 +6,20 @@
  */
 
 #include "BusEdge.h"
-#include "Bus.h"
+#include "TransportSpeeds.h"
 
 using namespace std;
 
 BusEdge::BusEdge(Vertex *src, Vertex *dst, const vector<Coordinates> &line):
 	TransportEdge(src, dst, line)
 {
-	weight.setTime(calculateTime(weight.getDistance()));
+	weight.setCost(0.2);
+	weight.setTime(calculateTime());
+	weight.setSwitchs(0);
 	this->visible = true;
 }
 
 double BusEdge::getSpeed() const
 {
-	return Bus::getInstance().getSpeed();
+	return TransportSpeeds::getBusSpeed();
 }
