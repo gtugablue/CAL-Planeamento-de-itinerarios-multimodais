@@ -84,7 +84,7 @@ private:
 
 		if(conf.wantsAlgorithmPerformance())
 		{
-			cout << " Algorithm run-time (ms) : " << fixed << setprecision(20) << setw(20) << (double)(fin_d-ini_d) << endl;
+			cout << " Algorithm run-time (ms) : " << (double)(fin_d-ini_d) << endl;
 		}
 
 		return p;
