@@ -4,6 +4,7 @@
 #include "GraphQueue.h"
 #include "../graph/Vertex.h"
 #include <list>
+#include <algorithm>
 
 template<class Comp>
 class GraphQueueList: public GraphQueue<Comp>{
@@ -29,26 +30,13 @@ void GraphQueueList<Comp>::push(Vertex * v){
 }
 template<class Comp>
 Vertex* GraphQueueList<Comp>::top() const{
-	list<Vertex*>::const_iterator it = vList.begin();
-	list<Vertex*>::const_iterator ite = vList.end();
-	for(list<Vertex*>::const_iterator it2 = ++it; it2 != ite; ++it2){
-		if(Comp()(*it , *it2))
-			it = it2;
-	}
-	return *it;
+	return *max_element(vList.begin(), vList.end(), Comp());
 }
 template<class Comp>
 Vertex* GraphQueueList<Comp>::pop(){
-	cerr << "popping" << endl;
-	list<Vertex*>::iterator it = vList.begin();
-	list<Vertex*>::iterator ite = vList.end();
-	for(list<Vertex*>::iterator it2 = ++it; it2 != ite; ++it2){
-		if(Comp()(*it , *it2))
-			it = it2;
-	}
+	list<Vertex*>::iterator it = max_element(vList.begin(), vList.end(),Comp());
 	Vertex* out = *it;
 	vList.erase(it);
-	cerr << "done popping" << endl;
 	return out;
 }
 template<class Comp>
@@ -58,7 +46,7 @@ void GraphQueueList<Comp>::increase(Vertex * v){
 
 template <class Comp>
 void GraphQueueList<Comp>::reset(int numVertices){
-	vList.empty();
+	vList.clear();
 }
 template <class Comp>
 int GraphQueueList<Comp>::size(){

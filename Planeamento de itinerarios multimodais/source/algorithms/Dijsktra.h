@@ -13,6 +13,7 @@
 #include "GraphQueue.h"
 #include "GraphQueueFib.h"
 #include "GraphQueueList.h"
+#include <boost/heap/fibonacci_heap.hpp>
 
 
 Path* dijsktra_fib(Graph* g, Vertex* ini, Vertex* f);

@@ -54,68 +54,69 @@ using namespace std;
 	return p;
 }*/
 
+bool reachable(int num, Vertex* ini, Vertex* f){
+	cerr << num << endl;
+	if(ini == f)
+		return true;
+	for(int i = 0; i < ini->getAdj().size(); i++){
+		return reachable(num+1, ini->getAdj()[i]->getDst(), f);
+	}
+	return false;
+}
+
 Path* dijsktra(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::DijsComp>* queue){
 
 	vector<Vertex*> vertices = g->getVertexSet();
 	queue->reset(vertices.size());
+	if(reachable(0, ini, f))
+		cerr << "Reachable" << endl;
+	else cerr << "Not Reachable" << endl;
 	for(int i= 0; i < vertices.size(); i++){
-		cerr << vertices[i]->getIndex()  << " " << endl;
+		for(int j= 0; j < vertices[i]->getAdj().size(); j++){
+			if(vertices[i]->getAdj()[j]->getDst() == f)
+			cerr << "found -> " << vertices[i]->getIndex() << "  " <<endl;
+		}
 		vertices[i]->resetProcessed();
 		vertices[i]->resetVisits();
 		vertices[i]->setParent(NULL);
 		vertices[i]->resetBestWeight();
 	}
-	cerr<<endl;
 	ini->setBestWeight(0);
 	ini->setParent(NULL);
 	ini->incVisits();
 	queue->push(ini);
 	Vertex* current;
 	while(queue->size() != 0){
-		cerr << "queue size:" << queue->size() << endl;
 		current = queue->pop();
-		cerr << current;
-		cerr << "indexcurrent " << current->getIndex() << endl;
-		cerr << "update1" << endl;
 		current->incProcessed();
 		if(current == f)
 			break;
 		vector<Edge*> adjs  = current->getAdj();
-		cerr << "update2" << endl;
+		cerr << "current node: " << current->getIndex() << ", best weight: " << current->getBestWeight() << endl;
+		cerr << "visiting: " << endl;
 		for(int i = 0; i < adjs.size(); i++){
-			cerr << "update3" << endl;
+			cerr << "node: " << adjs[i]->getDst()->getIndex() << ", best weight: " << adjs[i]->getDst()->getBestWeight();
 			if(!adjs[i]->getDst()->getProcessed()){
-				cerr << "index " << adjs[i]->getDst()->getIndex() << endl;
-				cerr << "update4" << endl;
 				double newWeight = current->getBestWeight() +adjs[i]->getWeight();
-				cerr << "update5" << endl;
+				cerr << ", newWeight: " << newWeight << endl;
 				if(newWeight < adjs[i]->getDst()->getBestWeight()){
-					cerr << "update6" << endl;
 					adjs[i]->getDst()->setBestWeight(newWeight);
-					cerr << "update7" << endl;
 					adjs[i]->getDst()->setParent(adjs[i]);
-					cerr << "update8" << endl;
 					if(adjs[i]->getDst()->getVisits())
 					{
-						cerr << "update9" << endl;
 						queue->increase(adjs[i]->getDst());
-						cerr << "update10" << endl;
 					}else{
-						cerr << "update11" << endl;
 						queue->push(adjs[i]->getDst());
-						cerr << "update12" << endl;
 					}
-					cerr << "update1" << endl;
 				}
 			}
 			adjs[i]->getDst()->incVisits();
 		}
+		cerr <<endl<< endl;
 	}
 
 	Path *p = new Path(f->getBestWeight());
 	if(f != current) return p;
-
-
 	while(current != ini)
 	{
 		p->addEdgeBeginning(current->getParent());

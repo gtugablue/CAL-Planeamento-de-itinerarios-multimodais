@@ -191,8 +191,8 @@ public:
 				for(size_t i = 0; i < verts.size(); i++){
 					vector<Edge*> eds =  verts[i]->getAdj();
 					for(size_t j = 0; j < eds.size(); j++){
-						if(!((TransportEdge*)eds[j])->getVisible())
-							continue;
+						//if(!((TransportEdge*)eds[j])->getVisible())
+							//continue;
 						if(dynamic_cast<MetroEdge*>(eds[j]) == NULL)
 							SDL_SetRenderDrawColor(renderer,0xFF,0, 0, 0xFF);
 						else SDL_SetRenderDrawColor(renderer,0,0, 0xFF, 0xFF);

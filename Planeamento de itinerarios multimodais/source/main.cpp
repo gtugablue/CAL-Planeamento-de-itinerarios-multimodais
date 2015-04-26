@@ -371,8 +371,10 @@ int main(int argc, char* argv[]) {
 				((TransportStop*)dst)->userAddToGraph(g1);
 				//p = PathFinder::find_path(g1, src, dst, conf);
 				cerr << "calculating" << endl;
-				p = dijsktra_list(g1, src, dst);
+				p = astar_fib(g1, src, dst);
 				cerr << "done calculating" << endl;
+				if(p->getEdges().size() == 0)
+					cerr << "path not found!" << endl;
 			}
 
 
