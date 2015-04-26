@@ -12,12 +12,46 @@ class GraphQueueFib: public GraphQueue<Comp>{
 	typedef typename boost::heap::fibonacci_heap<Vertex*,  boost::heap::compare<Comp> > fib_heap;
 	typedef typename boost::heap::fibonacci_heap<Vertex*, boost::heap::compare<Comp> >::handle_type fib_handle;
 public:
+	/**
+	 * @brief queue constructor
+	 * @param numVertices number of vertices of grah the structure will be used on
+	 */
 	GraphQueueFib(int numVertices);
+
+	/**
+	 * @brief add vertex to the queue
+	 * @param v vertex to add
+	 */
 	void push(Vertex * v);
+
+	/**
+	 * @brief get the highest priority vertex in queue
+	 * @return highest priority vertex in queue
+	 */
 	Vertex* top()const;
+
+	/**
+	 * @brief remove highest priority vertex in queu
+	 * @return highest priority vertex in queue
+	 */
 	Vertex* pop();
+
+	/**
+	 * @brief increase priority of vertex in queue
+	 * @param v vertex to increase
+	 */
 	void increase(Vertex * v);
+
+	/**
+	 * @brief reset the queue
+	 * @param numVertices number of vertices of grah the structure will be used on
+	 */
 	void reset(int numVertices);
+
+	/**
+	 * @brief get the size of the queue
+	 * @return number of elements in queue
+	 */
 	int size();
 private:
 	fib_heap heap;

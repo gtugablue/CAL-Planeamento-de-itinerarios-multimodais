@@ -17,19 +17,43 @@ class Path{
 	vector<Edge*> edges;
 	double cost;
 public:
+	/**
+	 * @brief constructor for path
+	 * @param cost initial cost of path
+	 */
 	Path(double cost) {
 		this->cost = cost;
 	}
+
+	/**
+	 * @brief get edges that form this path
+	 * @return edges of path
+	 */
 	vector<Edge*> getEdges() const{
 		return edges;
 	}
+
+	/**
+	 * @brief add edge to end of path
+	 * @param e new edge to add
+	 */
 	void addEdgeEnd(Edge* e){
 		edges.push_back(e);
 	}
+
+	/**
+	 * @brief add edge to beginning of path
+	 * @param e new edge to add
+	 */
 	void addEdgeBeginning(Edge* e){
 		edges.insert(edges.begin(), e);
 	}
 
+	/**
+	 * @brief equalitycomparison for paths
+	 * @param p2 path to check for equality
+	 * @return true if paths are equal
+	 */
 	bool operator==(const Path p2) const{
 		if(edges.size() != p2.edges.size())
 			return false;
@@ -42,23 +66,47 @@ public:
 
 		return true;
 	}
+
+	/**
+	 * @brief remove the last edge from the path
+	 */
 	void removeEdgeEnd(){
 		edges.pop_back();
 	}
 
+	/**
+	 * @brief get the total weight of the path, assuming the it was correctly set
+	 * @return total cost of path
+	 */
 	double getCost() const {
 		return cost;
 	}
 
+	/**
+	 * @brief set the total weight of the path
+	 * @param cost new cost of path
+	 */
 	void setCost(double cost) {
 		this->cost = cost;
 	}
+
+	/**
+	 * @brief set this path to be equal to another
+	 * @param p path
+	 * @return this path
+	 */
 	Path& operator=(const Path& p){
 		edges = p.edges;
 		cost = p.cost;
 		return *this;
 	}
 
+	/**
+	 * @brief write path to outputstream
+	 * @param os outputstream
+	 * @param p path to write
+	 * @return used outputstream
+	 */
 	friend ostream& operator<<(ostream& os, Path& p){
 
 		WeightInfo w;
