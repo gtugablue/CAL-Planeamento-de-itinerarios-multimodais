@@ -112,5 +112,6 @@ double TransportStop::calcWaitingTime(Hour currentHour) const
 void TransportStop::setParent(Edge *parent)
 {
 	Vertex::setParent(parent);
-	arrival = ((TransportStop *)parent->getSrc())->getArrivalTime() + (((TransportEdge *)parent)->calculateTime());
+	if(parent != NULL)
+		arrival = ((TransportStop *)parent->getSrc())->getArrivalTime() + (((TransportEdge *)parent)->calculateTime());
 }
