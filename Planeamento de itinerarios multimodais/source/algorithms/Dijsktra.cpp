@@ -68,9 +68,6 @@ Path* dijsktra(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::DijsComp>* q
 
 	vector<Vertex*> vertices = g->getVertexSet();
 	queue->reset(vertices.size());
-	if(reachable(0, ini, f))
-		cerr << "Reachable" << endl;
-	else cerr << "Not Reachable" << endl;
 	for(int i= 0; i < vertices.size(); i++){
 		for(int j= 0; j < vertices[i]->getAdj().size(); j++){
 			if(vertices[i]->getAdj()[j]->getDst() == f)

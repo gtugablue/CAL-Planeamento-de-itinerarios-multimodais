@@ -76,7 +76,7 @@ Edge* Vertex::getParent() const {
 	return parent;
 }
 
-void Vertex::setParent( Edge* parent) {
+void Vertex::setParent(Edge* parent) {
 	this->parent = parent;
 }
 

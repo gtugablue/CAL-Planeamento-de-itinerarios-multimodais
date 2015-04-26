@@ -54,7 +54,6 @@ double TransportStop::calculateH(Vertex * v) const
 
 TransportStop::~TransportStop()
 {
-
 }
 
 

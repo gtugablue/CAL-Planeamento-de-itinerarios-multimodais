@@ -371,10 +371,14 @@ int main(int argc, char* argv[]) {
 				((TransportStop*)dst)->userAddToGraph(g1);
 				//p = PathFinder::find_path(g1, src, dst, conf);
 				cerr << "calculating" << endl;
-				p = astar_fib(g1, src, dst);
+				p = dijsktra_fib(g1, src, dst);
 				cerr << "done calculating" << endl;
 				if(p->getEdges().size() == 0)
 					cerr << "path not found!" << endl;
+				for(int i = 0; i < p->getEdges().size()-1; i++){
+					if(p->getEdges()[i]->getDst() != p->getEdges()[i+1]->getSrc())
+						cerr << "error"<< endl;
+				}
 			}
 
 
@@ -419,7 +423,7 @@ int main(int argc, char* argv[]) {
 			if(moving){
 				c->moveRelScreen(-e.motion.xrel, e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
 			}
-			if(mouseLeftDown){
+			else if(mouseLeftDown){
 				if(slider->isSelected()){
 					int x, y;
 					SDL_GetMouseState(&x, &y);
@@ -427,6 +431,7 @@ int main(int argc, char* argv[]) {
 				}
 
 			}
+			else continue;
 		}
 		else if(e.type  ==  SDL_MOUSEWHEEL ){
 			bool changed = false;
