@@ -7,6 +7,9 @@
 #include "../graph/Vertex.h"
 #include "../transport/TransportStop.h"
 
+/**
+ * @brief Implements FibonacciHeaps able to be used with the algorithm's template
+ */
 template<class Comp>
 class GraphQueueFib: public GraphQueue<Comp>{
 	typedef typename boost::heap::fibonacci_heap<Vertex*,  boost::heap::compare<Comp> > fib_heap;

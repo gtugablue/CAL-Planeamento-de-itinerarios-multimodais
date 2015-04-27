@@ -8,6 +8,9 @@
 #include <cfloat>
 #include <cmath>
 
+/**
+ * @brief generic inteface of a graph vertex
+ */
 class Vertex{
 public:
 	/**

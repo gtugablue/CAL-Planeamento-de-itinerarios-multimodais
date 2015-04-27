@@ -1,0 +1,37 @@
+\hypertarget{struct_stream_traits}{}\section{Stream\+Traits$<$ Stream $>$ Struct Template Reference}
+\label{struct_stream_traits}\index{Stream\+Traits$<$ Stream $>$@{Stream\+Traits$<$ Stream $>$}}
+
+
+Provides additional information for stream.  
+
+
+
+
+{\ttfamily \#include $<$rapidjson.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ {\bfseries copy\+Optimization} = 0
+ \}
+\begin{DoxyCompactList}\small\item\em Whether to make local copy of stream for optimization during parsing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Stream$>$struct Stream\+Traits$<$ Stream $>$}
+
+Provides additional information for stream. 
+
+By using traits pattern, this type provides a default configuration for stream. For custom stream, this type can be specialized for other configuration. See T\+E\+S\+T(\+Reader, Custom\+String\+Stream) in readertest.\+cpp for example. 
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{struct_stream_traits_a396e8fd5cbb7c0a9e4c1f509e4d490f5}{}\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Stream $>$ anonymous enum}\label{struct_stream_traits_a396e8fd5cbb7c0a9e4c1f509e4d490f5}
+
+
+Whether to make local copy of stream for optimization during parsing. 
+
+By default, for safety, streams do not use local copy optimization. Stream that can be copied fast should specialize this, like Stream\+Traits$<$\+String\+Stream$>$. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/include/rapidjson/\hyperlink{rapidjson_8h}{rapidjson.\+h}\end{DoxyCompactItemize}

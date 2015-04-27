@@ -1,6 +1,9 @@
 #ifndef SLIDER_H
 #define SLIDER_H
 
+/**
+ * @brief A slider interface, with a bar able to slide over another, representing a value between two limits
+ */
 class Slider{
 public:
 	Slider(int x, int y, int width, int height,int cursorWidth, int cursorHeight,  double min, double max, double value, bool horizontal = true){

@@ -14,6 +14,9 @@
 
 class TransportStop;
 
+/**
+ * @brief represents a route, i.e., the set of stops that a "line" is made of
+ */
 class TransportRoute {
 protected:
 	std::string code;

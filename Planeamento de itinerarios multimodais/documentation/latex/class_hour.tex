@@ -1,0 +1,134 @@
+\hypertarget{class_hour}{}\section{Hour Class Reference}
+\label{class_hour}\index{Hour@{Hour}}
+
+
+Interface for a hour-\/minute-\/second timestamp.  
+
+
+
+
+{\ttfamily \#include $<$Hour.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_hour_a596868e9c3802335f81f538efc0911f3}{Hour} (const std\+::string \&hour)
+\begin{DoxyCompactList}\small\item\em construct hour object from a string \end{DoxyCompactList}\item 
+\hypertarget{class_hour_a2fd12606e010fc8a07af09de5cd28d83}{}{\bfseries Hour} (unsigned seconds)\label{class_hour_a2fd12606e010fc8a07af09de5cd28d83}
+
+\item 
+\hyperlink{class_hour_a3da244a601fba002d20eb9a7de724574}{Hour} (unsigned hours, unsigned minutes, unsigned seconds=0)
+\begin{DoxyCompactList}\small\item\em construct hour object from a number of hours, minutes and seconds \end{DoxyCompactList}\item 
+\hypertarget{class_hour_aa370ac8ba17cf52dc7f00e6f3b529c2b}{}unsigned \hyperlink{class_hour_aa370ac8ba17cf52dc7f00e6f3b529c2b}{get\+Hourstamp} () const \label{class_hour_aa370ac8ba17cf52dc7f00e6f3b529c2b}
+
+\begin{DoxyCompactList}\small\item\em get the number of seconds \end{DoxyCompactList}\item 
+\hypertarget{class_hour_a4aa915a1163bfbc028d2e31a6a8a3b90}{}void {\bfseries set\+Hourstamp} (unsigned hourstamp)\label{class_hour_a4aa915a1163bfbc028d2e31a6a8a3b90}
+
+\item 
+\hypertarget{class_hour_a07e78b2131a713ec25f88c459032987c}{}\hyperlink{class_hour}{Hour} \& {\bfseries operator+=} (const \hyperlink{class_hour}{Hour} \&hour)\label{class_hour_a07e78b2131a713ec25f88c459032987c}
+
+\item 
+\hypertarget{class_hour_a4883bfa83e28707fc3088bba441fcecd}{}\hyperlink{class_hour}{Hour} {\bfseries operator+} (const \hyperlink{class_hour}{Hour} \&hour) const \label{class_hour_a4883bfa83e28707fc3088bba441fcecd}
+
+\item 
+\hypertarget{class_hour_a9e38c8fb275a7c298889be34f706573a}{}\hyperlink{class_hour}{Hour} \& {\bfseries operator-\/=} (const \hyperlink{class_hour}{Hour} \&hour)\label{class_hour_a9e38c8fb275a7c298889be34f706573a}
+
+\item 
+\hypertarget{class_hour_a7a8530d730ee3cf31523543bd0af2508}{}\hyperlink{class_hour}{Hour} {\bfseries operator-\/} (const \hyperlink{class_hour}{Hour} \&hour) const \label{class_hour_a7a8530d730ee3cf31523543bd0af2508}
+
+\item 
+\hypertarget{class_hour_ae0122e41355427701ff951470432e7bd}{}\hyperlink{class_hour}{Hour} \& {\bfseries operator/=} (double quocient)\label{class_hour_ae0122e41355427701ff951470432e7bd}
+
+\item 
+\hypertarget{class_hour_a593c1d0d96ddf7ac7f0ce786a0865955}{}\hyperlink{class_hour}{Hour} {\bfseries operator/} (double quocient) const \label{class_hour_a593c1d0d96ddf7ac7f0ce786a0865955}
+
+\item 
+\hypertarget{class_hour_a208b4071e81037cf9c65a385cff0beb4}{}bool {\bfseries operator$<$} (const \hyperlink{class_hour}{Hour} \&hour) const \label{class_hour_a208b4071e81037cf9c65a385cff0beb4}
+
+\item 
+\hypertarget{class_hour_a1e97cf9ea7a47499516c62462af7c4a2}{}bool {\bfseries operator$>$} (const \hyperlink{class_hour}{Hour} \&hour) const \label{class_hour_a1e97cf9ea7a47499516c62462af7c4a2}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_hour_a564c0da9badbb2e51b882f5655fc4cff}{}static const unsigned {\bfseries seconds\+Per\+Minute} = 60\label{class_hour_a564c0da9badbb2e51b882f5655fc4cff}
+
+\item 
+\hypertarget{class_hour_accca3564855b553925b64af70ee735a8}{}static const unsigned {\bfseries minutes\+Per\+Hour} = 60\label{class_hour_accca3564855b553925b64af70ee735a8}
+
+\item 
+\hypertarget{class_hour_a03cdb980e42ccbe6897559ff28c51439}{}static const unsigned {\bfseries hours\+Per\+Day} = 24\label{class_hour_a03cdb980e42ccbe6897559ff28c51439}
+
+\item 
+\hypertarget{class_hour_aebe16a850ba082b7b5a056ac41aaade9}{}static const unsigned {\bfseries minutes\+Per\+Day} = Hour\+::hours\+Per\+Day $\ast$ Hour\+::minutes\+Per\+Hour\label{class_hour_aebe16a850ba082b7b5a056ac41aaade9}
+
+\item 
+\hypertarget{class_hour_af4843be5f00f94cf53ce1770d15d4b77}{}static const unsigned {\bfseries seconds\+Per\+Day} = Hour\+::minutes\+Per\+Day $\ast$ Hour\+::seconds\+Per\+Minute\label{class_hour_af4843be5f00f94cf53ce1770d15d4b77}
+
+\item 
+\hypertarget{class_hour_aedcfa9fbea1342493ba563723a01b37c}{}static const unsigned {\bfseries seconds\+Per\+Hour} = Hour\+::minutes\+Per\+Hour $\ast$ Hour\+::seconds\+Per\+Minute\label{class_hour_aedcfa9fbea1342493ba563723a01b37c}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_hour_ac4eba5ff16ebc7f457a494230cd0ac5d}{}\hyperlink{class_hour}{Hour} {\bfseries operator$\ast$} (const \hyperlink{class_hour}{Hour} \&hour, double factor)\label{class_hour_ac4eba5ff16ebc7f457a494230cd0ac5d}
+
+\item 
+\hypertarget{class_hour_a5a8828bbd135c58b3a15a30ac2e512e4}{}\hyperlink{class_hour}{Hour} {\bfseries operator+} (const \hyperlink{class_hour}{Hour} \&hour, double x)\label{class_hour_a5a8828bbd135c58b3a15a30ac2e512e4}
+
+\item 
+\hypertarget{class_hour_ad5e7eb1ac08edb6d5aad033e54136a5a}{}std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \hyperlink{class_hour}{Hour} \&hour)\label{class_hour_ad5e7eb1ac08edb6d5aad033e54136a5a}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface for a hour-\/minute-\/second timestamp. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_hour_a596868e9c3802335f81f538efc0911f3}{}\index{Hour@{Hour}!Hour@{Hour}}
+\index{Hour@{Hour}!Hour@{Hour}}
+\subsubsection[{Hour}]{\setlength{\rightskip}{0pt plus 5cm}Hour\+::\+Hour (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{hour}
+\end{DoxyParamCaption}
+)}\label{class_hour_a596868e9c3802335f81f538efc0911f3}
+
+
+construct hour object from a string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hour} & string in format H\+H\+:M\+M \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_hour_a3da244a601fba002d20eb9a7de724574}{}\index{Hour@{Hour}!Hour@{Hour}}
+\index{Hour@{Hour}!Hour@{Hour}}
+\subsubsection[{Hour}]{\setlength{\rightskip}{0pt plus 5cm}Hour\+::\+Hour (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{hours, }
+\item[{unsigned}]{minutes, }
+\item[{unsigned}]{seconds = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_hour_a3da244a601fba002d20eb9a7de724574}
+
+
+construct hour object from a number of hours, minutes and seconds 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hours} & hours \\
+\hline
+{\em minutes} & minutes \\
+\hline
+{\em seconds} & seconds (optional) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+André/\+Desktop/test/transport/Hour.\+h\item 
+C\+:/\+Users/\+André/\+Desktop/test/transport/Hour.\+cpp\end{DoxyCompactItemize}

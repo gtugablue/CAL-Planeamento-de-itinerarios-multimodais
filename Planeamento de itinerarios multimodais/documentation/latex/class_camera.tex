@@ -1,0 +1,89 @@
+\hypertarget{class_camera}{}\section{Camera Class Reference}
+\label{class_camera}\index{Camera@{Camera}}
+
+
+Implements a camera, able to zoom and drag in the graphical interface.  
+
+
+
+
+{\ttfamily \#include $<$Camera.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_camera_a216588630410cfa52c6adaf374e240da}{}{\bfseries Camera} (double x0, double y0, double x1, double y1, double limit)\label{class_camera_a216588630410cfa52c6adaf374e240da}
+
+\item 
+\hypertarget{class_camera_a7133510d8b81dd969f44d21f07323246}{}void {\bfseries move\+Abs} (double x, double y)\label{class_camera_a7133510d8b81dd969f44d21f07323246}
+
+\item 
+\hypertarget{class_camera_aaa843df2a2989b898215726effa15cac}{}void {\bfseries move\+Partial\+Abs\+Centered} (double x, double y, int h\+\_\+res, int v\+\_\+res, double extent=1.\+0)\label{class_camera_aaa843df2a2989b898215726effa15cac}
+
+\item 
+\hypertarget{class_camera_a7dd0597323b13c42fee51a6dbb9ca935}{}void {\bfseries move\+Rel} (double x, double y)\label{class_camera_a7dd0597323b13c42fee51a6dbb9ca935}
+
+\item 
+\hypertarget{class_camera_a7ae9de71e0fa685debfc94db003b9d8b}{}void {\bfseries move\+Rel\+Scaled} (double x, double y, int h\+\_\+res, int v\+\_\+res)\label{class_camera_a7ae9de71e0fa685debfc94db003b9d8b}
+
+\item 
+\hypertarget{class_camera_a0e4d6f609f47758434f7d699226a5450}{}void {\bfseries move\+Rel\+Screen} (double x, double y, int h\+\_\+res, int v\+\_\+res)\label{class_camera_a0e4d6f609f47758434f7d699226a5450}
+
+\item 
+\hypertarget{class_camera_a389acf34b48d163f610f7fda36f715da}{}bool {\bfseries mul\+Scale} (double factorx, double factory)\label{class_camera_a389acf34b48d163f610f7fda36f715da}
+
+\item 
+\hypertarget{class_camera_a6da74cb911cf06f04bfaf38418fc77a9}{}bool {\bfseries uncentered\+Mul\+Scale} (double factorx, double factory, double x, double y, int h\+\_\+res, int v\+\_\+res)\label{class_camera_a6da74cb911cf06f04bfaf38418fc77a9}
+
+\item 
+\hypertarget{class_camera_ae21745d73e59d4a4a4e27a12a9cf91cb}{}void {\bfseries add\+Scale} (double addx, double addy)\label{class_camera_ae21745d73e59d4a4a4e27a12a9cf91cb}
+
+\item 
+\hypertarget{class_camera_a1f42a416c08d8328a4f6723bf7feafd9}{}void {\bfseries add\+Scale\+Uniform} (double add, bool on\+Width=true)\label{class_camera_a1f42a416c08d8328a4f6723bf7feafd9}
+
+\item 
+\hypertarget{class_camera_a379f195daa407ca0a9e76f47dae01ea2}{}double {\bfseries get\+X} () const \label{class_camera_a379f195daa407ca0a9e76f47dae01ea2}
+
+\item 
+\hypertarget{class_camera_a7f40c406bf769ac6fd6f3898f661f9b6}{}double {\bfseries get\+Y} () const \label{class_camera_a7f40c406bf769ac6fd6f3898f661f9b6}
+
+\item 
+\hypertarget{class_camera_abb31feca14c773a36d08d44d19f957ba}{}double {\bfseries get\+Final\+X} () const \label{class_camera_abb31feca14c773a36d08d44d19f957ba}
+
+\item 
+\hypertarget{class_camera_a842f8054c5348f32df5df432d88e9560}{}double {\bfseries get\+Final\+Y} () const \label{class_camera_a842f8054c5348f32df5df432d88e9560}
+
+\item 
+\hypertarget{class_camera_aee1e6f2957c75bb15068cd94d5cf08c4}{}double {\bfseries get\+Width} () const \label{class_camera_aee1e6f2957c75bb15068cd94d5cf08c4}
+
+\item 
+\hypertarget{class_camera_a8ce5a105319bd85379b669b004b1b3c9}{}double {\bfseries get\+Height} () const \label{class_camera_a8ce5a105319bd85379b669b004b1b3c9}
+
+\item 
+\hypertarget{class_camera_aeb960f4f7775bbc7abb34b8d7f667866}{}double {\bfseries get\+Render\+X} (int h\+\_\+res, double world\+X) const \label{class_camera_aeb960f4f7775bbc7abb34b8d7f667866}
+
+\item 
+\hypertarget{class_camera_a6af6702c0ef40d7cdb1d396a673af290}{}double {\bfseries get\+Render\+Y} (int v\+\_\+res, double world\+Y) const \label{class_camera_a6af6702c0ef40d7cdb1d396a673af290}
+
+\item 
+\hypertarget{class_camera_a509ea65044ffbd771f2ca3aa72040ef5}{}double {\bfseries get\+World\+X} (int h\+\_\+res, double render\+X) const \label{class_camera_a509ea65044ffbd771f2ca3aa72040ef5}
+
+\item 
+\hypertarget{class_camera_acfe0129236a227ab6203f83421552c83}{}double {\bfseries get\+World\+Y} (int v\+\_\+res, double render\+Y) const \label{class_camera_acfe0129236a227ab6203f83421552c83}
+
+\item 
+\hypertarget{class_camera_acca75da7b31a6d894673250ece0eb9c1}{}double {\bfseries get\+Zoom\+Scale\+X} () const \label{class_camera_acca75da7b31a6d894673250ece0eb9c1}
+
+\item 
+\hypertarget{class_camera_ae87bd07393cdd700fcc87d698d1011c2}{}double {\bfseries get\+Zoom\+Scale\+Y} () const \label{class_camera_ae87bd07393cdd700fcc87d698d1011c2}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements a camera, able to zoom and drag in the graphical interface. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+André/\+Desktop/test/gui/Camera.\+h\item 
+C\+:/\+Users/\+André/\+Desktop/test/gui/Camera.\+cpp\end{DoxyCompactItemize}

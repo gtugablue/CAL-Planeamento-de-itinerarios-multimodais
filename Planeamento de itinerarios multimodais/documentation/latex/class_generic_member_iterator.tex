@@ -1,0 +1,193 @@
+\hypertarget{class_generic_member_iterator}{}\section{Generic\+Member\+Iterator$<$ Const, Encoding, Allocator $>$ Class Template Reference}
+\label{class_generic_member_iterator}\index{Generic\+Member\+Iterator$<$ Const, Encoding, Allocator $>$@{Generic\+Member\+Iterator$<$ Const, Encoding, Allocator $>$}}
+
+
+(Constant) member iterator for a J\+S\+O\+N object value  
+
+
+
+
+{\ttfamily \#include $<$document.\+h$>$}
+
+Inheritance diagram for Generic\+Member\+Iterator$<$ Const, Encoding, Allocator $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.462141cm]{class_generic_member_iterator}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_generic_member_iterator_ad1cf1ecf6210b47906c9f179c893a8b8}{}typedef \hyperlink{class_generic_member_iterator}{Generic\+Member\+Iterator} \hyperlink{class_generic_member_iterator_ad1cf1ecf6210b47906c9f179c893a8b8}{Iterator}\label{class_generic_member_iterator_ad1cf1ecf6210b47906c9f179c893a8b8}
+
+\begin{DoxyCompactList}\small\item\em Iterator type itself. \end{DoxyCompactList}\item 
+\hypertarget{class_generic_member_iterator_ae5be27a73dce0be58ee2776db896d591}{}typedef \hyperlink{class_generic_member_iterator}{Generic\+Member\+Iterator}$<$ true, Encoding, Allocator $>$ \hyperlink{class_generic_member_iterator_ae5be27a73dce0be58ee2776db896d591}{Const\+Iterator}\label{class_generic_member_iterator_ae5be27a73dce0be58ee2776db896d591}
+
+\begin{DoxyCompactList}\small\item\em Constant iterator type. \end{DoxyCompactList}\item 
+\hypertarget{class_generic_member_iterator_abc26eb06f2962765b11dcd06ce84ac02}{}typedef \hyperlink{class_generic_member_iterator}{Generic\+Member\+Iterator}$<$ false, Encoding, Allocator $>$ \hyperlink{class_generic_member_iterator_abc26eb06f2962765b11dcd06ce84ac02}{Non\+Const\+Iterator}\label{class_generic_member_iterator_abc26eb06f2962765b11dcd06ce84ac02}
+
+\begin{DoxyCompactList}\small\item\em Non-\/constant iterator type. \end{DoxyCompactList}\item 
+\hypertarget{class_generic_member_iterator_ac69f141f1fde31c1f550f524a69c5de9}{}typedef Base\+Type\+::pointer \hyperlink{class_generic_member_iterator_ac69f141f1fde31c1f550f524a69c5de9}{Pointer}\label{class_generic_member_iterator_ac69f141f1fde31c1f550f524a69c5de9}
+
+\begin{DoxyCompactList}\small\item\em Pointer to (const) \hyperlink{struct_generic_member}{Generic\+Member}. \end{DoxyCompactList}\item 
+\hypertarget{class_generic_member_iterator_ae80f6b601eb9e24f73aa75fb32b35c65}{}typedef Base\+Type\+::reference \hyperlink{class_generic_member_iterator_ae80f6b601eb9e24f73aa75fb32b35c65}{Reference}\label{class_generic_member_iterator_ae80f6b601eb9e24f73aa75fb32b35c65}
+
+\begin{DoxyCompactList}\small\item\em Reference to (const) \hyperlink{struct_generic_member}{Generic\+Member}. \end{DoxyCompactList}\item 
+\hypertarget{class_generic_member_iterator_a902b99c8ae351cd7626514dc5f30740a}{}typedef Base\+Type\+::difference\+\_\+type \hyperlink{class_generic_member_iterator_a902b99c8ae351cd7626514dc5f30740a}{Difference\+Type}\label{class_generic_member_iterator_a902b99c8ae351cd7626514dc5f30740a}
+
+\begin{DoxyCompactList}\small\item\em Signed integer type (e.\+g. {\ttfamily ptrdiff\+\_\+t}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_generic_member_iterator_a2708717d497a0aadacdf75900de4c5b4}{Generic\+Member\+Iterator} ()
+\begin{DoxyCompactList}\small\item\em Default constructor (singular value) \end{DoxyCompactList}\item 
+\hyperlink{class_generic_member_iterator_a2697fd327a90654b0bf91c988e43f95e}{Generic\+Member\+Iterator} (const \hyperlink{class_generic_member_iterator_abc26eb06f2962765b11dcd06ce84ac02}{Non\+Const\+Iterator} \&it)
+\begin{DoxyCompactList}\small\item\em Iterator conversions to more const. \end{DoxyCompactList}\item 
+\hypertarget{class_generic_member_iterator_a056851821e75c4be13b297604bc37c0b}{}\hyperlink{class_generic_member_iterator_a902b99c8ae351cd7626514dc5f30740a}{Difference\+Type} \hyperlink{class_generic_member_iterator_a056851821e75c4be13b297604bc37c0b}{operator-\/} (\hyperlink{class_generic_member_iterator_ae5be27a73dce0be58ee2776db896d591}{Const\+Iterator} that) const \label{class_generic_member_iterator_a056851821e75c4be13b297604bc37c0b}
+
+\begin{DoxyCompactList}\small\item\em Distance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}{\bf stepping}\par
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_generic_member_iterator_afd6c9a104e2285d1d0b50bde53c9109e}{}\hyperlink{class_generic_member_iterator_ad1cf1ecf6210b47906c9f179c893a8b8}{Iterator} \& {\bfseries operator++} ()\label{class_generic_member_iterator_afd6c9a104e2285d1d0b50bde53c9109e}
+
+\item 
+\hypertarget{class_generic_member_iterator_a6db8972f02d74b663b6ef90ee3ff34f6}{}\hyperlink{class_generic_member_iterator_ad1cf1ecf6210b47906c9f179c893a8b8}{Iterator} \& {\bfseries operator-\/-\/} ()\label{class_generic_member_iterator_a6db8972f02d74b663b6ef90ee3ff34f6}
+
+\item 
+\hypertarget{class_generic_member_iterator_a83c8be6d960213ce32d68a880a8d9089}{}\hyperlink{class_generic_member_iterator_ad1cf1ecf6210b47906c9f179c893a8b8}{Iterator} {\bfseries operator++} (\hyperlink{_s_d_l__thread_8h_a6a64f9be4433e4de6e2f2f548cf3c08e}{int})\label{class_generic_member_iterator_a83c8be6d960213ce32d68a880a8d9089}
+
+\item 
+\hypertarget{class_generic_member_iterator_a4606c8baec5ea2b5139a503f7caa5444}{}\hyperlink{class_generic_member_iterator_ad1cf1ecf6210b47906c9f179c893a8b8}{Iterator} {\bfseries operator-\/-\/} (\hyperlink{_s_d_l__thread_8h_a6a64f9be4433e4de6e2f2f548cf3c08e}{int})\label{class_generic_member_iterator_a4606c8baec5ea2b5139a503f7caa5444}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf increment/decrement}\par
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_generic_member_iterator_ac533ee1f689563a7276c3ace44dfe4e0}{}\hyperlink{class_generic_member_iterator_ad1cf1ecf6210b47906c9f179c893a8b8}{Iterator} {\bfseries operator+} (\hyperlink{class_generic_member_iterator_a902b99c8ae351cd7626514dc5f30740a}{Difference\+Type} n) const \label{class_generic_member_iterator_ac533ee1f689563a7276c3ace44dfe4e0}
+
+\item 
+\hypertarget{class_generic_member_iterator_a0152d4ec06c14f50279aa108a97216a7}{}\hyperlink{class_generic_member_iterator_ad1cf1ecf6210b47906c9f179c893a8b8}{Iterator} {\bfseries operator-\/} (\hyperlink{class_generic_member_iterator_a902b99c8ae351cd7626514dc5f30740a}{Difference\+Type} n) const \label{class_generic_member_iterator_a0152d4ec06c14f50279aa108a97216a7}
+
+\item 
+\hypertarget{class_generic_member_iterator_a1fc75f09d68b0f5d92f18ae8c4133e6a}{}\hyperlink{class_generic_member_iterator_ad1cf1ecf6210b47906c9f179c893a8b8}{Iterator} \& {\bfseries operator+=} (\hyperlink{class_generic_member_iterator_a902b99c8ae351cd7626514dc5f30740a}{Difference\+Type} n)\label{class_generic_member_iterator_a1fc75f09d68b0f5d92f18ae8c4133e6a}
+
+\item 
+\hypertarget{class_generic_member_iterator_a7cd0c5f194007ec24fa9fa5c13e2502a}{}\hyperlink{class_generic_member_iterator_ad1cf1ecf6210b47906c9f179c893a8b8}{Iterator} \& {\bfseries operator-\/=} (\hyperlink{class_generic_member_iterator_a902b99c8ae351cd7626514dc5f30740a}{Difference\+Type} n)\label{class_generic_member_iterator_a7cd0c5f194007ec24fa9fa5c13e2502a}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf relations}\par
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_generic_member_iterator_aacbaf8c5dfded8148a5ecd400338d457}{}bool {\bfseries operator==} (\hyperlink{class_generic_member_iterator_ae5be27a73dce0be58ee2776db896d591}{Const\+Iterator} that) const \label{class_generic_member_iterator_aacbaf8c5dfded8148a5ecd400338d457}
+
+\item 
+\hypertarget{class_generic_member_iterator_a829ba40cafa98fd5ced56a07658ce0b7}{}bool {\bfseries operator!=} (\hyperlink{class_generic_member_iterator_ae5be27a73dce0be58ee2776db896d591}{Const\+Iterator} that) const \label{class_generic_member_iterator_a829ba40cafa98fd5ced56a07658ce0b7}
+
+\item 
+\hypertarget{class_generic_member_iterator_a395f81480589f78cb2497509730e36c3}{}bool {\bfseries operator$<$=} (\hyperlink{class_generic_member_iterator_ae5be27a73dce0be58ee2776db896d591}{Const\+Iterator} that) const \label{class_generic_member_iterator_a395f81480589f78cb2497509730e36c3}
+
+\item 
+\hypertarget{class_generic_member_iterator_afe815c6a0cd2f72f800b59fdb443d223}{}bool {\bfseries operator$>$=} (\hyperlink{class_generic_member_iterator_ae5be27a73dce0be58ee2776db896d591}{Const\+Iterator} that) const \label{class_generic_member_iterator_afe815c6a0cd2f72f800b59fdb443d223}
+
+\item 
+\hypertarget{class_generic_member_iterator_a6a897b2e89822d798c985008fc3a9a18}{}bool {\bfseries operator$<$} (\hyperlink{class_generic_member_iterator_ae5be27a73dce0be58ee2776db896d591}{Const\+Iterator} that) const \label{class_generic_member_iterator_a6a897b2e89822d798c985008fc3a9a18}
+
+\item 
+\hypertarget{class_generic_member_iterator_a89c57197cd49cfa6cf98e3bdf1454640}{}bool {\bfseries operator$>$} (\hyperlink{class_generic_member_iterator_ae5be27a73dce0be58ee2776db896d591}{Const\+Iterator} that) const \label{class_generic_member_iterator_a89c57197cd49cfa6cf98e3bdf1454640}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf dereference}\par
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_generic_member_iterator_a37f5cb3b669682da70fe3e5ec6bc4775}{}\hyperlink{class_generic_member_iterator_ae80f6b601eb9e24f73aa75fb32b35c65}{Reference} {\bfseries operator$\ast$} () const \label{class_generic_member_iterator_a37f5cb3b669682da70fe3e5ec6bc4775}
+
+\item 
+\hypertarget{class_generic_member_iterator_a2e3d0e0f9a5c0ca69f09e4927ed985c3}{}\hyperlink{class_generic_member_iterator_ac69f141f1fde31c1f550f524a69c5de9}{Pointer} {\bfseries operator-\/$>$} () const \label{class_generic_member_iterator_a2e3d0e0f9a5c0ca69f09e4927ed985c3}
+
+\item 
+\hypertarget{class_generic_member_iterator_ae83095869e033554257e3f33df59fcfb}{}\hyperlink{class_generic_member_iterator_ae80f6b601eb9e24f73aa75fb32b35c65}{Reference} {\bfseries operator\mbox{[}$\,$\mbox{]}} (\hyperlink{class_generic_member_iterator_a902b99c8ae351cd7626514dc5f30740a}{Difference\+Type} n) const \label{class_generic_member_iterator_ae83095869e033554257e3f33df59fcfb}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_generic_member_iterator_a82bdd5798f1a5ac0e3e7ba4bd6938cfc}{}class {\bfseries Generic\+Value$<$ Encoding, Allocator $>$}\label{class_generic_member_iterator_a82bdd5798f1a5ac0e3e7ba4bd6938cfc}
+
+\item 
+\hypertarget{class_generic_member_iterator_aa375aeb1ffac85cddc3a72a6c24ec6e1}{}{\footnotesize template$<$bool , typename , typename $>$ }\\class {\bfseries Generic\+Member\+Iterator}\label{class_generic_member_iterator_aa375aeb1ffac85cddc3a72a6c24ec6e1}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$bool Const, typename Encoding, typename Allocator$>$class Generic\+Member\+Iterator$<$ Const, Encoding, Allocator $>$}
+
+(Constant) member iterator for a J\+S\+O\+N object value 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Const} & Is this a constant iterator? \\
+\hline
+{\em Encoding} & Encoding of the value. (Even non-\/string values need to have the same encoding in a document) \\
+\hline
+{\em Allocator} & Allocator type for allocating memory of object, array and string.\\
+\hline
+\end{DoxyTemplParams}
+This class implements a Random Access Iterator for \hyperlink{struct_generic_member}{Generic\+Member} elements of a \hyperlink{class_generic_value}{Generic\+Value}, see I\+S\+O/\+I\+E\+C 14882\+:2003(E) C++ standard, 24.\+1 \mbox{[}lib.\+iterator.\+requirements\mbox{]}.
+
+\begin{DoxyNote}{Note}
+This iterator implementation is mainly intended to avoid implicit conversions from iterator values to {\ttfamily N\+U\+L\+L}, e.\+g. from Generic\+Value\+::\+Find\+Member.
+
+Define {\ttfamily R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+N\+O\+M\+E\+M\+B\+E\+R\+I\+T\+E\+R\+A\+T\+O\+R\+C\+L\+A\+S\+S} to fall back to a pointer-\/based implementation, if your platform doesn\textquotesingle{}t provide the C++ $<$iterator$>$ header.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{struct_generic_member}{Generic\+Member}, \hyperlink{class_generic_value_a349b8faae61edc42b4289726820be439}{Generic\+Value\+::\+Member\+Iterator}, \hyperlink{class_generic_value_aac08c3e660a9036d3dcb8b10ff6c61f4}{Generic\+Value\+::\+Const\+Member\+Iterator} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_generic_member_iterator_a2708717d497a0aadacdf75900de4c5b4}{}\index{Generic\+Member\+Iterator@{Generic\+Member\+Iterator}!Generic\+Member\+Iterator@{Generic\+Member\+Iterator}}
+\index{Generic\+Member\+Iterator@{Generic\+Member\+Iterator}!Generic\+Member\+Iterator@{Generic\+Member\+Iterator}}
+\subsubsection[{Generic\+Member\+Iterator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$bool Const, typename Encoding, typename Allocator$>$ {\bf Generic\+Member\+Iterator}$<$ Const, Encoding, Allocator $>$\+::{\bf Generic\+Member\+Iterator} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_generic_member_iterator_a2708717d497a0aadacdf75900de4c5b4}
+
+
+Default constructor (singular value) 
+
+Creates an iterator pointing to no element. \begin{DoxyNote}{Note}
+All operations, except for comparisons, are undefined on such values. 
+\end{DoxyNote}
+\hypertarget{class_generic_member_iterator_a2697fd327a90654b0bf91c988e43f95e}{}\index{Generic\+Member\+Iterator@{Generic\+Member\+Iterator}!Generic\+Member\+Iterator@{Generic\+Member\+Iterator}}
+\index{Generic\+Member\+Iterator@{Generic\+Member\+Iterator}!Generic\+Member\+Iterator@{Generic\+Member\+Iterator}}
+\subsubsection[{Generic\+Member\+Iterator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$bool Const, typename Encoding, typename Allocator$>$ {\bf Generic\+Member\+Iterator}$<$ Const, Encoding, Allocator $>$\+::{\bf Generic\+Member\+Iterator} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Non\+Const\+Iterator} \&}]{it}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_generic_member_iterator_a2697fd327a90654b0bf91c988e43f95e}
+
+
+Iterator conversions to more const. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em it} & (Non-\/const) iterator to copy from\\
+\hline
+\end{DoxyParams}
+Allows the creation of an iterator from another \hyperlink{class_generic_member_iterator}{Generic\+Member\+Iterator} that is \char`\"{}less const\char`\"{}. Especially, creating a non-\/constant iterator from a constant iterator are disabled\+: \begin{DoxyItemize}
+\item const -\/$>$ non-\/const (not ok) \item const -\/$>$ const (ok) \item non-\/const -\/$>$ const (ok) \item non-\/const -\/$>$ non-\/const (ok)\end{DoxyItemize}
+\begin{DoxyNote}{Note}
+If the {\ttfamily Const} template parameter is already {\ttfamily false}, this constructor effectively defines a regular copy-\/constructor. Otherwise, the copy constructor is implicitly defined. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/include/rapidjson/\hyperlink{document_8h}{document.\+h}\end{DoxyCompactItemize}

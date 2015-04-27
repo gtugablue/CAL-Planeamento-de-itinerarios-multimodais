@@ -10,6 +10,9 @@
 
 #include <math.h>
 
+/**
+ * @brief Interface to store latitude and longitude of points
+ */
 class Coordinates{
 private:
 	double latitude;

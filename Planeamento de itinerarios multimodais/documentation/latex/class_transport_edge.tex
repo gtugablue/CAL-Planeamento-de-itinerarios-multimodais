@@ -1,0 +1,221 @@
+\hypertarget{class_transport_edge}{}\section{Transport\+Edge Class Reference}
+\label{class_transport_edge}\index{Transport\+Edge@{Transport\+Edge}}
+
+
+represents the connection between two stops  
+
+
+
+
+{\ttfamily \#include $<$Transport\+Edge.\+h$>$}
+
+Inheritance diagram for Transport\+Edge\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_transport_edge}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_transport_edge_a17138b409239b50080a9401bd1f5d55b}{Transport\+Edge} (\hyperlink{class_vertex}{Vertex} $\ast$src, \hyperlink{class_vertex}{Vertex} $\ast$dst)
+\begin{DoxyCompactList}\small\item\em class constructor \end{DoxyCompactList}\item 
+\hyperlink{class_transport_edge_a1b92b947e39bf283dfd9288559f44132}{Transport\+Edge} (\hyperlink{class_vertex}{Vertex} $\ast$src, \hyperlink{class_vertex}{Vertex} $\ast$dst, const vector$<$ \hyperlink{class_coordinates}{Coordinates} $>$ \&line)
+\begin{DoxyCompactList}\small\item\em class constructor \end{DoxyCompactList}\item 
+void \hyperlink{class_transport_edge_aa1da957ea215ff6ec5aa6dc8132eb381}{add\+Point} (const \hyperlink{class_coordinates}{Coordinates} \&coords)
+\begin{DoxyCompactList}\small\item\em adds a geographical point to the edge\textquotesingle{}s set of points \end{DoxyCompactList}\item 
+virtual double \hyperlink{class_transport_edge_ad2b8f66adec9223e97752ae1fb621c0e}{get\+Weight} ()
+\begin{DoxyCompactList}\small\item\em calculates the edge\textquotesingle{}s weight (using Wight\+Info) \end{DoxyCompactList}\item 
+\hyperlink{class_weight_info}{Weight\+Info} \hyperlink{class_transport_edge_a0087341702150f0cd7fe35c667222ee8}{get\+Weight\+Info} ()
+\begin{DoxyCompactList}\small\item\em returns the \hyperlink{class_weight_info}{Weight\+Info} of the edge (thus separating the different weights of crossing the edge) \end{DoxyCompactList}\item 
+const std\+::vector$<$ \hyperlink{class_coordinates}{Coordinates} $>$ \& \hyperlink{class_transport_edge_a9332ec7a11cd5d9b5f01df7422a8a178}{get\+Line} () const 
+\begin{DoxyCompactList}\small\item\em returns the set of points that represent the edge \end{DoxyCompactList}\item 
+virtual double \hyperlink{class_transport_edge_a1e85cb198714507e2b1466b86f97b676}{get\+Speed} () const 
+\begin{DoxyCompactList}\small\item\em calculates the speed of the edge\textquotesingle{}s transport \end{DoxyCompactList}\item 
+virtual double \hyperlink{class_transport_edge_ac9ece7be6c95ec5fa56cae347f2716dd}{calculate\+Time} () const 
+\begin{DoxyCompactList}\small\item\em calculates the time it takes to cross the edge \end{DoxyCompactList}\item 
+\hypertarget{class_transport_edge_a36780733e6cf6784e895e2562042abee}{}virtual \hyperlink{class_transport_edge_a36780733e6cf6784e895e2562042abee}{$\sim$\+Transport\+Edge} ()\label{class_transport_edge_a36780733e6cf6784e895e2562042abee}
+
+\begin{DoxyCompactList}\small\item\em class destructor \end{DoxyCompactList}\item 
+bool \hyperlink{class_transport_edge_ac1513075a93041cea50ea82927760bec}{get\+Visible} ()
+\begin{DoxyCompactList}\small\item\em returns a boolean that represents wether the edge must be drawn or not \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_transport_edge_a907da2ef63c5d90cfe12a78b21e2292e}{}std\+::vector$<$ \hyperlink{class_coordinates}{Coordinates} $>$ {\bfseries line}\label{class_transport_edge_a907da2ef63c5d90cfe12a78b21e2292e}
+
+\item 
+\hypertarget{class_transport_edge_aac54ca3f2f4fc0248dc20efd93806f0c}{}\hyperlink{class_weight_info}{Weight\+Info} {\bfseries weight}\label{class_transport_edge_aac54ca3f2f4fc0248dc20efd93806f0c}
+
+\item 
+\hypertarget{class_transport_edge_a3f7f7bfb6bdcbca7ce1d58e5fe102e86}{}bool {\bfseries visible}\label{class_transport_edge_a3f7f7bfb6bdcbca7ce1d58e5fe102e86}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+represents the connection between two stops 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_transport_edge_a17138b409239b50080a9401bd1f5d55b}{}\index{Transport\+Edge@{Transport\+Edge}!Transport\+Edge@{Transport\+Edge}}
+\index{Transport\+Edge@{Transport\+Edge}!Transport\+Edge@{Transport\+Edge}}
+\subsubsection[{Transport\+Edge}]{\setlength{\rightskip}{0pt plus 5cm}Transport\+Edge\+::\+Transport\+Edge (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertex} $\ast$}]{src, }
+\item[{{\bf Vertex} $\ast$}]{dst}
+\end{DoxyParamCaption}
+)}\label{class_transport_edge_a17138b409239b50080a9401bd1f5d55b}
+
+
+class constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & \hyperlink{class_edge}{Edge}\textquotesingle{}s source vertex \\
+\hline
+{\em dst} & \hyperlink{class_edge}{Edge}\textquotesingle{}s destination vertex \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_transport_edge_a1b92b947e39bf283dfd9288559f44132}{}\index{Transport\+Edge@{Transport\+Edge}!Transport\+Edge@{Transport\+Edge}}
+\index{Transport\+Edge@{Transport\+Edge}!Transport\+Edge@{Transport\+Edge}}
+\subsubsection[{Transport\+Edge}]{\setlength{\rightskip}{0pt plus 5cm}Transport\+Edge\+::\+Transport\+Edge (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertex} $\ast$}]{src, }
+\item[{{\bf Vertex} $\ast$}]{dst, }
+\item[{const vector$<$ {\bf Coordinates} $>$ \&}]{line}
+\end{DoxyParamCaption}
+)}\label{class_transport_edge_a1b92b947e39bf283dfd9288559f44132}
+
+
+class constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & \hyperlink{class_edge}{Edge}\textquotesingle{}s source vertex \\
+\hline
+{\em dst} & \hyperlink{class_edge}{Edge}\textquotesingle{}s destination vertex \\
+\hline
+{\em line} & set of points representing the edge\textquotesingle{}s path (so that it might not be a straight line) \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_transport_edge_aa1da957ea215ff6ec5aa6dc8132eb381}{}\index{Transport\+Edge@{Transport\+Edge}!add\+Point@{add\+Point}}
+\index{add\+Point@{add\+Point}!Transport\+Edge@{Transport\+Edge}}
+\subsubsection[{add\+Point}]{\setlength{\rightskip}{0pt plus 5cm}void Transport\+Edge\+::add\+Point (
+\begin{DoxyParamCaption}
+\item[{const {\bf Coordinates} \&}]{coords}
+\end{DoxyParamCaption}
+)}\label{class_transport_edge_aa1da957ea215ff6ec5aa6dc8132eb381}
+
+
+adds a geographical point to the edge\textquotesingle{}s set of points 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coords} & point to be added \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_transport_edge_ac9ece7be6c95ec5fa56cae347f2716dd}{}\index{Transport\+Edge@{Transport\+Edge}!calculate\+Time@{calculate\+Time}}
+\index{calculate\+Time@{calculate\+Time}!Transport\+Edge@{Transport\+Edge}}
+\subsubsection[{calculate\+Time}]{\setlength{\rightskip}{0pt plus 5cm}virtual double Transport\+Edge\+::calculate\+Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_transport_edge_ac9ece7be6c95ec5fa56cae347f2716dd}
+
+
+calculates the time it takes to cross the edge 
+
+\begin{DoxyReturn}{Returns}
+time in seconds 
+\end{DoxyReturn}
+\hypertarget{class_transport_edge_a9332ec7a11cd5d9b5f01df7422a8a178}{}\index{Transport\+Edge@{Transport\+Edge}!get\+Line@{get\+Line}}
+\index{get\+Line@{get\+Line}!Transport\+Edge@{Transport\+Edge}}
+\subsubsection[{get\+Line}]{\setlength{\rightskip}{0pt plus 5cm}const vector$<$ {\bf Coordinates} $>$ \& Transport\+Edge\+::get\+Line (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_transport_edge_a9332ec7a11cd5d9b5f01df7422a8a178}
+
+
+returns the set of points that represent the edge 
+
+\begin{DoxyReturn}{Returns}
+vector of points (\hyperlink{class_coordinates}{Coordinates}) 
+\end{DoxyReturn}
+\hypertarget{class_transport_edge_a1e85cb198714507e2b1466b86f97b676}{}\index{Transport\+Edge@{Transport\+Edge}!get\+Speed@{get\+Speed}}
+\index{get\+Speed@{get\+Speed}!Transport\+Edge@{Transport\+Edge}}
+\subsubsection[{get\+Speed}]{\setlength{\rightskip}{0pt plus 5cm}virtual double Transport\+Edge\+::get\+Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_transport_edge_a1e85cb198714507e2b1466b86f97b676}
+
+
+calculates the speed of the edge\textquotesingle{}s transport 
+
+\begin{DoxyReturn}{Returns}
+speed of the transport 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_bus_edge_ad89c82a7f0bf9a49610b5ef437f3dcca}{Bus\+Edge}, and \hyperlink{class_metro_edge_a4cba8dae978df61bc931879b7ef2d528}{Metro\+Edge}.
+
+\hypertarget{class_transport_edge_ac1513075a93041cea50ea82927760bec}{}\index{Transport\+Edge@{Transport\+Edge}!get\+Visible@{get\+Visible}}
+\index{get\+Visible@{get\+Visible}!Transport\+Edge@{Transport\+Edge}}
+\subsubsection[{get\+Visible}]{\setlength{\rightskip}{0pt plus 5cm}bool Transport\+Edge\+::get\+Visible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_transport_edge_ac1513075a93041cea50ea82927760bec}
+
+
+returns a boolean that represents wether the edge must be drawn or not 
+
+\begin{DoxyReturn}{Returns}
+true if the edge must be drawn, false otherwise 
+\end{DoxyReturn}
+\hypertarget{class_transport_edge_ad2b8f66adec9223e97752ae1fb621c0e}{}\index{Transport\+Edge@{Transport\+Edge}!get\+Weight@{get\+Weight}}
+\index{get\+Weight@{get\+Weight}!Transport\+Edge@{Transport\+Edge}}
+\subsubsection[{get\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}double Transport\+Edge\+::get\+Weight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_transport_edge_ad2b8f66adec9223e97752ae1fb621c0e}
+
+
+calculates the edge\textquotesingle{}s weight (using Wight\+Info) 
+
+\begin{DoxyReturn}{Returns}
+edge\textquotesingle{}s weighted cost 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_edge_a3a776c1ccafacdbdb10fdedd9cb329af}{Edge}.
+
+
+
+Reimplemented in \hyperlink{class_bus_edge_a186045a2fc5cf2694390552627b5f985}{Bus\+Edge}, and \hyperlink{class_metro_edge_abe40bacd0e3d7e72fcdf7d0e38b2b311}{Metro\+Edge}.
+
+\hypertarget{class_transport_edge_a0087341702150f0cd7fe35c667222ee8}{}\index{Transport\+Edge@{Transport\+Edge}!get\+Weight\+Info@{get\+Weight\+Info}}
+\index{get\+Weight\+Info@{get\+Weight\+Info}!Transport\+Edge@{Transport\+Edge}}
+\subsubsection[{get\+Weight\+Info}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Weight\+Info} Transport\+Edge\+::get\+Weight\+Info (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_transport_edge_a0087341702150f0cd7fe35c667222ee8}
+
+
+returns the \hyperlink{class_weight_info}{Weight\+Info} of the edge (thus separating the different weights of crossing the edge) 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{class_weight_info}{Weight\+Info} object representing edge 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+André/\+Desktop/test/transport/Transport\+Edge.\+h\item 
+C\+:/\+Users/\+André/\+Desktop/test/transport/Transport\+Edge.\+cpp\end{DoxyCompactItemize}

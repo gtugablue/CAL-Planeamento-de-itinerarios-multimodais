@@ -13,6 +13,9 @@
 #include <string>
 #include "Coordinates.h"
 
+/**
+ * @brief Represents a Metro Stop
+ */
 class MetroStop: public TransportStop {
 public:
 	static const double speed = 1;

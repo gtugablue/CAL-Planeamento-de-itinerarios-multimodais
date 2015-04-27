@@ -1,0 +1,84 @@
+\hypertarget{struct_memory_stream}{}\section{Memory\+Stream Struct Reference}
+\label{struct_memory_stream}\index{Memory\+Stream@{Memory\+Stream}}
+
+
+Represents an in-\/memory input byte stream.  
+
+
+
+
+{\ttfamily \#include $<$memorystream.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{struct_memory_stream_a62a1cbd052c325c83dbdb387d2f89088}{}typedef char {\bfseries Ch}\label{struct_memory_stream_a62a1cbd052c325c83dbdb387d2f89088}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{struct_memory_stream_a2472317ef00fcd44e5cc209e04c49756}{}{\bfseries Memory\+Stream} (const Ch $\ast$src, size\+\_\+t size)\label{struct_memory_stream_a2472317ef00fcd44e5cc209e04c49756}
+
+\item 
+\hypertarget{struct_memory_stream_aa6ea0b20b8687b2ee6779b879bfa846d}{}Ch {\bfseries Peek} () const \label{struct_memory_stream_aa6ea0b20b8687b2ee6779b879bfa846d}
+
+\item 
+\hypertarget{struct_memory_stream_a14ff92deda5d39c9b166aaa07e82a0ee}{}Ch {\bfseries Take} ()\label{struct_memory_stream_a14ff92deda5d39c9b166aaa07e82a0ee}
+
+\item 
+\hypertarget{struct_memory_stream_a0b92aeeb6cc21f8f4c79b679d7034a1c}{}size\+\_\+t {\bfseries Tell} () const \label{struct_memory_stream_a0b92aeeb6cc21f8f4c79b679d7034a1c}
+
+\item 
+\hypertarget{struct_memory_stream_a5674d10aa2faa05cb326e2e16715cc3d}{}Ch $\ast$ {\bfseries Put\+Begin} ()\label{struct_memory_stream_a5674d10aa2faa05cb326e2e16715cc3d}
+
+\item 
+\hypertarget{struct_memory_stream_ac445f93c23c9e85f1f5381911c4ed870}{}\hyperlink{_s_d_l__audio_8h_a52835ae37c4bb905b903cbaf5d04b05f}{void} {\bfseries Put} (Ch)\label{struct_memory_stream_ac445f93c23c9e85f1f5381911c4ed870}
+
+\item 
+\hypertarget{struct_memory_stream_a305e141314ae0e3afacb04aaf2d8bcc6}{}\hyperlink{_s_d_l__audio_8h_a52835ae37c4bb905b903cbaf5d04b05f}{void} {\bfseries Flush} ()\label{struct_memory_stream_a305e141314ae0e3afacb04aaf2d8bcc6}
+
+\item 
+\hypertarget{struct_memory_stream_a74fb36c1f6f95d189502cf7a6be79135}{}size\+\_\+t {\bfseries Put\+End} (Ch $\ast$)\label{struct_memory_stream_a74fb36c1f6f95d189502cf7a6be79135}
+
+\item 
+\hypertarget{struct_memory_stream_a49ab99772a16ead12bd56357b4801d94}{}const Ch $\ast$ {\bfseries Peek4} () const \label{struct_memory_stream_a49ab99772a16ead12bd56357b4801d94}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{struct_memory_stream_a57cf6cb5766e931a62928b9f92507443}{}const Ch $\ast$ \hyperlink{struct_memory_stream_a57cf6cb5766e931a62928b9f92507443}{src\+\_\+}\label{struct_memory_stream_a57cf6cb5766e931a62928b9f92507443}
+
+\begin{DoxyCompactList}\small\item\em Current read position. \end{DoxyCompactList}\item 
+\hypertarget{struct_memory_stream_a91f0767b4f0ed2476d835e8344848a2f}{}const Ch $\ast$ \hyperlink{struct_memory_stream_a91f0767b4f0ed2476d835e8344848a2f}{begin\+\_\+}\label{struct_memory_stream_a91f0767b4f0ed2476d835e8344848a2f}
+
+\begin{DoxyCompactList}\small\item\em Original head of the string. \end{DoxyCompactList}\item 
+\hypertarget{struct_memory_stream_a55fb302ba0492419757e3ba318c8c654}{}const Ch $\ast$ \hyperlink{struct_memory_stream_a55fb302ba0492419757e3ba318c8c654}{end\+\_\+}\label{struct_memory_stream_a55fb302ba0492419757e3ba318c8c654}
+
+\begin{DoxyCompactList}\small\item\em End of stream. \end{DoxyCompactList}\item 
+\hypertarget{struct_memory_stream_ab26a1b5c6d5e8f52c0f6982feba47f36}{}size\+\_\+t \hyperlink{struct_memory_stream_ab26a1b5c6d5e8f52c0f6982feba47f36}{size\+\_\+}\label{struct_memory_stream_ab26a1b5c6d5e8f52c0f6982feba47f36}
+
+\begin{DoxyCompactList}\small\item\em Size of the stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents an in-\/memory input byte stream. 
+
+This class is mainly for being wrapped by \hyperlink{class_encoded_input_stream}{Encoded\+Input\+Stream} or \hyperlink{class_auto_u_t_f_input_stream}{Auto\+U\+T\+F\+Input\+Stream}.
+
+It is similar to File\+Read\+Buffer but the source is an in-\/memory buffer instead of a file.
+
+Differences between \hyperlink{struct_memory_stream}{Memory\+Stream} and String\+Stream\+:
+\begin{DoxyEnumerate}
+\item String\+Stream has encoding but \hyperlink{struct_memory_stream}{Memory\+Stream} is a byte stream.
+\item \hyperlink{struct_memory_stream}{Memory\+Stream} needs size of the source buffer and the buffer don\textquotesingle{}t need to be null terminated. String\+Stream assume null-\/terminated string as source.
+\item \hyperlink{struct_memory_stream}{Memory\+Stream} supports Peek4() for encoding detection. String\+Stream is specified with an encoding so it should not have Peek4(). \begin{DoxyNote}{Note}
+implements Stream concept 
+\end{DoxyNote}
+
+\end{DoxyEnumerate}
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/include/rapidjson/memorystream.\+h\end{DoxyCompactItemize}

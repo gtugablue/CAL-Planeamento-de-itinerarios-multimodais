@@ -1,0 +1,129 @@
+\hypertarget{class_transport_route}{}\section{Transport\+Route Class Reference}
+\label{class_transport_route}\index{Transport\+Route@{Transport\+Route}}
+
+
+represents a route, i.\+e., the set of stops that a \char`\"{}line\char`\"{} is made of  
+
+
+
+
+{\ttfamily \#include $<$Transport\+Route.\+h$>$}
+
+Inheritance diagram for Transport\+Route\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_transport_route}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_transport_route_a5eaa150e32517b46d0b642bdfdf28647}{Transport\+Route} (const std\+::string code, bool direction)
+\begin{DoxyCompactList}\small\item\em class constructor \end{DoxyCompactList}\item 
+\hypertarget{class_transport_route_a7b33d609c63e776244eca94632371a9f}{}const std\+::string \& \hyperlink{class_transport_route_a7b33d609c63e776244eca94632371a9f}{get\+Code} () const \label{class_transport_route_a7b33d609c63e776244eca94632371a9f}
+
+\begin{DoxyCompactList}\small\item\em returns the route\textquotesingle{}s code \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_transport_route_a79f31c2682d702c1c0a44baed7dbf520}{add\+Stop} (\hyperlink{class_transport_stop}{Transport\+Stop} $\ast$transport\+Stop)
+\begin{DoxyCompactList}\small\item\em adds a stop to the route \end{DoxyCompactList}\item 
+void \hyperlink{class_transport_route_a3a358665ed7bf5d69d7135f4032c5da0}{set\+Stops} (std\+::vector$<$ \hyperlink{class_transport_stop}{Transport\+Stop} $\ast$ $>$ stops)
+\begin{DoxyCompactList}\small\item\em sets the route\textquotesingle{}s stops to a given vector \end{DoxyCompactList}\item 
+const std\+::vector$<$ \hyperlink{class_transport_stop}{Transport\+Stop} $\ast$ $>$ \& \hyperlink{class_transport_route_ada9ff1cd5c1a2c9ae57f6371a18f864f}{get\+Stops} () const 
+\begin{DoxyCompactList}\small\item\em gets the set of stops of the route \end{DoxyCompactList}\item 
+\hypertarget{class_transport_route_a76a8834e9595e973f61f3376ff3d9d34}{}virtual double \hyperlink{class_transport_route_a76a8834e9595e973f61f3376ff3d9d34}{get\+Speed} () const =0\label{class_transport_route_a76a8834e9595e973f61f3376ff3d9d34}
+
+\begin{DoxyCompactList}\small\item\em returns the speed of the route\textquotesingle{}s transport \end{DoxyCompactList}\item 
+\hypertarget{class_transport_route_a824d48902634ab05f08c348583584466}{}virtual \hyperlink{class_transport_route_a824d48902634ab05f08c348583584466}{$\sim$\+Transport\+Route} ()\label{class_transport_route_a824d48902634ab05f08c348583584466}
+
+\begin{DoxyCompactList}\small\item\em class destructor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_transport_route_a6184b1d4457a4a986619b9ab0c720461}{}std\+::string {\bfseries code}\label{class_transport_route_a6184b1d4457a4a986619b9ab0c720461}
+
+\item 
+\hypertarget{class_transport_route_a3b429737a6897a21ef4ef328e9a517db}{}bool {\bfseries direction}\label{class_transport_route_a3b429737a6897a21ef4ef328e9a517db}
+
+\item 
+\hypertarget{class_transport_route_a6d5816ad9c6821cd5bea3a5cf8ca7cd6}{}std\+::vector$<$ \hyperlink{class_transport_stop}{Transport\+Stop} $\ast$ $>$ {\bfseries transport\+Stops}\label{class_transport_route_a6d5816ad9c6821cd5bea3a5cf8ca7cd6}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+represents a route, i.\+e., the set of stops that a \char`\"{}line\char`\"{} is made of 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_transport_route_a5eaa150e32517b46d0b642bdfdf28647}{}\index{Transport\+Route@{Transport\+Route}!Transport\+Route@{Transport\+Route}}
+\index{Transport\+Route@{Transport\+Route}!Transport\+Route@{Transport\+Route}}
+\subsubsection[{Transport\+Route}]{\setlength{\rightskip}{0pt plus 5cm}Transport\+Route\+::\+Transport\+Route (
+\begin{DoxyParamCaption}
+\item[{const std\+::string}]{code, }
+\item[{bool}]{direction}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_transport_route_a5eaa150e32517b46d0b642bdfdf28647}
+
+
+class constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & Codename for the route (e.\+x. 603) \\
+\hline
+{\em direction} & each value represents a direction, each being the reverse of the other \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_transport_route_a79f31c2682d702c1c0a44baed7dbf520}{}\index{Transport\+Route@{Transport\+Route}!add\+Stop@{add\+Stop}}
+\index{add\+Stop@{add\+Stop}!Transport\+Route@{Transport\+Route}}
+\subsubsection[{add\+Stop}]{\setlength{\rightskip}{0pt plus 5cm}void Transport\+Route\+::add\+Stop (
+\begin{DoxyParamCaption}
+\item[{{\bf Transport\+Stop} $\ast$}]{transport\+Stop}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_transport_route_a79f31c2682d702c1c0a44baed7dbf520}
+
+
+adds a stop to the route 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transport\+Stop} & Stop to be added \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_transport_route_ada9ff1cd5c1a2c9ae57f6371a18f864f}{}\index{Transport\+Route@{Transport\+Route}!get\+Stops@{get\+Stops}}
+\index{get\+Stops@{get\+Stops}!Transport\+Route@{Transport\+Route}}
+\subsubsection[{get\+Stops}]{\setlength{\rightskip}{0pt plus 5cm}const vector$<$ {\bf Transport\+Stop} $\ast$ $>$ \& Transport\+Route\+::get\+Stops (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_transport_route_ada9ff1cd5c1a2c9ae57f6371a18f864f}
+
+
+gets the set of stops of the route 
+
+\begin{DoxyReturn}{Returns}
+vector of stops 
+\end{DoxyReturn}
+\hypertarget{class_transport_route_a3a358665ed7bf5d69d7135f4032c5da0}{}\index{Transport\+Route@{Transport\+Route}!set\+Stops@{set\+Stops}}
+\index{set\+Stops@{set\+Stops}!Transport\+Route@{Transport\+Route}}
+\subsubsection[{set\+Stops}]{\setlength{\rightskip}{0pt plus 5cm}void Transport\+Route\+::set\+Stops (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf Transport\+Stop} $\ast$ $>$}]{stops}
+\end{DoxyParamCaption}
+)}\label{class_transport_route_a3a358665ed7bf5d69d7135f4032c5da0}
+
+
+sets the route\textquotesingle{}s stops to a given vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stops} & vector with the new set of stops \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+André/\+Desktop/test/transport/Transport\+Route.\+h\item 
+C\+:/\+Users/\+André/\+Desktop/test/transport/Transport\+Route.\+cpp\end{DoxyCompactItemize}
