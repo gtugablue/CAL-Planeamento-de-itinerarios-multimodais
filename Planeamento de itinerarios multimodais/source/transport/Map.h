@@ -50,12 +50,12 @@ public:
 		void findBusInfoFromFileName(const string &fileName, std::string &code, bool &direction) const;
 		std::vector<BusStop *> loadBusStops(const rapidjson::Document &d) const;
 		std::vector<BusEdge> loadBusEdges(const rapidjson::Document &d, vector<BusStop *> &busStops) const;
-		std::vector<BusRoute> loadBusRoutes() const;
+		void loadBusRoutes(std::vector<BusRoute> &busRoutes) const;
 		void loadSchedule(const BusRoute &busRoute) const;
 		std::vector<std::pair<MetroStop *, std::string> > loadMetroStopNodes(rapidjson::Document &d) const;
 		std::vector<MetroStop *> loadMetroStops(rapidjson::Document &d) const;
 		MetroStop *findClosestMetroStop(const std::vector<MetroStop *> metroStops, const std::string metroStopCode) const;
-		std::vector<MetroRoute> loadMetroRoutes() const;
+		void loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const;
 		Hour generateRandomHour() const;
 		void generateRandomTransportSchedule(unsigned dailyFrequency, TransportRoute *transportRoute) const;
 		void createConnectingEdges(vector<BusRoute> &busRoutes, vector<MetroRoute> &metroRoutes) const;
