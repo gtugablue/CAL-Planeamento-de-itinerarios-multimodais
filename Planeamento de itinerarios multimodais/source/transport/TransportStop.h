@@ -16,6 +16,7 @@
 #include "Hour.h"
 #include "TransportSpeeds.h"
 #include <queue>
+#include "TransportRoute.h"
 
 class TransportRoute;
 

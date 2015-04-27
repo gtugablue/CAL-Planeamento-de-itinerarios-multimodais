@@ -109,10 +109,11 @@ vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d, vector<B
 		}
 		else if (string(geo["type"].GetString()) == "MultiLineString")
 		{
-			for (size_t j = 0; j < coords.Size(); ++j)
+			cout << "aaaa" << endl;
+			for (int j = coords.Size() - 1; j >= 0; --j)
 			{
 				rapidjson::Value &coords2 = coords[j];
-				for (size_t k = 0; k < coords2.Size(); ++k)
+				for (int k = coords2.Size() - 1; k >= 0; --k)
 				{
 					Coordinates coord(coords2[k][1].GetDouble(), coords2[k][0].GetDouble());
 					coordinates.push_back(coord);
@@ -314,7 +315,6 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 			metroRoute2.addStop(metroStop);
 			last = metroStop;
 		}
-		cout << endl;
 		generateRandomTransportSchedule(&metroRoute2);
 		metroRoutes.push_back(metroRoute2);
 	}

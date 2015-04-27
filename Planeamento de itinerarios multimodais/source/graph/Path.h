@@ -126,7 +126,14 @@ public:
 			{
 				w = w + te->getWeightInfo();
 				if(te->getWeightInfo().getSwitchs() > 0)
-					os << "TRANSBORD DETECTED [" << te->getWeightInfo().getSwitchs() << " switches]" << endl;
+				{
+					if(i == 0)
+						os << "==> Enter transport:" << endl;
+					else if (i < p.edges.size() - 1)
+						os << "==> Switch to transport:" << endl;
+					else
+						os << "==> Exit to:" << endl;
+				}
 			}
 		}
 

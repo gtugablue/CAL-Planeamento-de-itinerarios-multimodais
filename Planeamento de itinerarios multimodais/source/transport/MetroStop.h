@@ -16,8 +16,19 @@
 class MetroStop: public TransportStop {
 public:
 	static const double speed = 1;
+
+	/**
+	 * @brief class constructor
+	 * @param name Stop's name
+	 * @param coords Coordinates of the Stop
+	 */
 	MetroStop(const std::string name, const Coordinates &coords);
-	virtual std::string getNameAndType() const { return "Metro: " + name; }
+
+	/**
+	 * @brief returns the stop's name and type (e.x. Metro: IPO)
+	 * @return string with stop name and type
+	 */
+	virtual std::string getNameAndType() const { return "Metro: " + name + "[ Line " + this->getTransportRoute()->getCode() + " ]"; }
 };
 
 #endif /* SOURCE_METROSTOP_H_ */
