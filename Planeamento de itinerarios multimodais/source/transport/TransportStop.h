@@ -32,27 +32,29 @@ public:
 	 * @brief Default class constructor
 	 * @param name TransportStop's name (e.x. "AV. DOS ALIADOS")
 	 * @param coords Coordinates of the stop
-	 * @param route_name Name of the stop's route
+	 * @param route_name name for the Stop's route
 	 */
-	TransportStop(const std::string &name, const Coordinates &coords, const std::string& route_name);
+	TransportStop(const std::string &name, const Coordinates &coords, const std::string &route_name);
 
-	/**
-	 * @brief get the stop's route name
-	 * @return stop's route name
-	 */
-	std::string getRouteName() const { return route_name; }
-
-	/**
-	 * @brief set the stop's route name
-	 * @param route name to be set
-	 */
-	void setRouteName(std::string rt_name) { route_name = rt_name; }
+	string getRouteName() const {return route_name;}
 
 	/**
 	 * @brief Get Stop name
 	 * @return Name of the transport stop
 	 */
 	std::string getName() const { return name; }
+
+	/**
+	 * @brief set Stop name
+	 * @return Name of the transport stop
+	 */
+	void setRouteName(std::string name) {route_name = name;}
+
+	/**
+	 * @brief Get Stop's route name
+	 * @return Name of the transport stop route
+	 */
+	std::string getRoute() const {return route_name; }
 
 	/**
 	 * @brief Get arrival time at stop
@@ -164,10 +166,10 @@ public:
 	 * @param ts2 second transportstop
 	 * @return true if ts1 is closest to ts2
 	 */
-    bool operator() (const TransportStop *ts1, const TransportStop *ts2)
-    {
-        return reference.calcDirectDistSquare(ts1->getCoords()) > reference.calcDirectDistSquare(ts2->getCoords());
-    }
+	bool operator() (const TransportStop *ts1, const TransportStop *ts2)
+	{
+		return reference.calcDirectDistSquare(ts1->getCoords()) > reference.calcDirectDistSquare(ts2->getCoords());
+	}
 };
 
 #endif /* SOURCE_TRANSPORTSTOP_H_ */

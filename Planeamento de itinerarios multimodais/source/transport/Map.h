@@ -48,7 +48,7 @@ public:
 		void parseJsonFile(const std::string file, rapidjson::Document &d) const;
 		void parseXMLFile(rapidxml::file<> &file, rapidxml::xml_document<> &d) const;
 		void findBusInfoFromFileName(const string &fileName, std::string &code, bool &direction) const;
-		std::vector<BusStop *> loadBusStops(const rapidjson::Document &d, const string& rt_code) const;
+		std::vector<BusStop *> loadBusStops(const rapidjson::Document &d, const std::string& route_code) const;
 		std::vector<BusEdge> loadBusEdges(const rapidjson::Document &d, vector<BusStop *> &busStops) const;
 		void loadBusRoutes(std::vector<BusRoute> &busRoutes) const;
 		void loadSchedule(const BusRoute &busRoute) const;
@@ -75,7 +75,7 @@ public:
 
 	};
 	friend class Loader;
-	const std::vector<BusRoute>& getBusRoutes() const;
+	const std::vector<BusRoute>& getBusRoutes() const {return busRoutes;}
 	const std::vector<BusStop *>& getBusStops() const;
 	Graph generateGraph() const;
 };

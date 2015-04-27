@@ -22,6 +22,7 @@ public:
 	 * @param code code of bus stop
 	 * @param name name of bus stop
 	 * @param coords coordinates of bus stop to create
+	 * @param route_name name of the stop's route
 	 */
 	BusStop(const std::string &code, const std::string &name, const Coordinates &coords, const std::string &route_name);
 

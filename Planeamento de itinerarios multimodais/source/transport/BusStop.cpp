@@ -9,7 +9,9 @@
 #include <iostream>
 
 BusStop::BusStop(const std::string &code, const std::string &name, const Coordinates &coords, const std::string &route_name):
-	TransportStop(name, coords, route_name), code(code) {}
+	TransportStop(name, coords, route_name), code(code)
+{
+}
 
 void BusStop::print() const
 {

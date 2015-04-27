@@ -14,10 +14,8 @@ using namespace std;
 
 Coordinates TransportStopDistCompare::reference = Coordinates(0, 0);
 
-TransportStop::TransportStop(const std::string &name, const Coordinates &coords, const std::string& route_name):
-	Vertex(coords), name(name), transportRoute(NULL), route_name(route_name)
-{
-}
+TransportStop::TransportStop(const std::string &name, const Coordinates &coords, const std::string &route_name):
+	Vertex(coords), name(name), transportRoute(NULL), route_name(route_name) {}
 
 void TransportStop::addHour(const Hour &hour)
 {
