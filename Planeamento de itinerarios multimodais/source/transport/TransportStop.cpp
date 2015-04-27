@@ -8,13 +8,14 @@
 #include "TransportStop.h"
 #include "WeightInfo.h"
 #include <algorithm>
+#include <stdlib.h>
 
 using namespace std;
 
 Coordinates TransportStopDistCompare::reference = Coordinates(0, 0);
 
 TransportStop::TransportStop(const std::string &name, const Coordinates &coords):
-	Vertex(coords), name(name)
+	Vertex(coords), name(name), transportRoute(NULL)
 {
 }
 
