@@ -16,12 +16,25 @@ private:
 	static double metroSpeed ;
 	static double walkingSpeed;
 public:
+	/**
+	 * @brief Returns the estimated bus speed
+	 */
 	static double getBusSpeed()  { return busSpeed; }
+
+	/**
+	 * @brief Returns the estimated metro speed
+	 */
 	static double getMetroSpeed()  { return metroSpeed; }
+
+	/**
+	 * @brief Returns the estimated walking speed
+	 */
 	static double getWalkingSpeed()  { return walkingSpeed; }
-	static double getMaxSpeed(){
-		return std::max(busSpeed, std::max(metroSpeed, walkingSpeed));
-	}
+
+	/**
+	 * @brief Returns the maximum of the transport's speed
+	 */
+	static double getMaxSpeed() { return std::max(busSpeed, std::max(metroSpeed, walkingSpeed)); }
 };
 
 #endif
