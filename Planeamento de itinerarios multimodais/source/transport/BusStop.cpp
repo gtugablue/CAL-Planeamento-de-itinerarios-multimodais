@@ -7,6 +7,7 @@
 
 #include "BusStop.h"
 #include <iostream>
+#include "BusEdge.h"
 
 BusStop::BusStop(const std::string &code, const std::string &name, const Coordinates &coords, const std::string &route_name):
 	TransportStop(name, coords, route_name), code(code)

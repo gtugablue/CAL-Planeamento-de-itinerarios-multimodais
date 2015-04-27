@@ -1,0 +1,379 @@
+\hypertarget{class_vertex}{}\section{Vertex Class Reference}
+\label{class_vertex}\index{Vertex@{Vertex}}
+
+
+generic inteface of a graph vertex  
+
+
+
+
+{\ttfamily \#include $<$Vertex.\+h$>$}
+
+Inheritance diagram for Vertex\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_vertex}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_vertex_1_1_a_star_comp}{A\+Star\+Comp}
+\begin{DoxyCompactList}\small\item\em comparison struct for ordering of vertex pointers for use in A$\ast$ algorithm \end{DoxyCompactList}\item 
+struct \hyperlink{struct_vertex_1_1_dijs_comp}{Dijs\+Comp}
+\begin{DoxyCompactList}\small\item\em comparison struct for ordering of vertex pointers for use in Dijkstra\textquotesingle{}s algorithm \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_vertex_ae86a694fcad11ed1078c3761deaa0d1f}{Vertex} (const \hyperlink{class_coordinates}{Coordinates} \&coords)
+\begin{DoxyCompactList}\small\item\em vertex constructor \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{class_edge}{Edge} $\ast$ $>$ \hyperlink{class_vertex_abe6306ddafb1250080563fbe645e382f}{get\+Adj} () const 
+\begin{DoxyCompactList}\small\item\em get the edges that exit this vertex \end{DoxyCompactList}\item 
+void \hyperlink{class_vertex_a24b15df4ff9b1969ccad22db8187273a}{add\+Adj} (\hyperlink{class_vertex}{Vertex} $\ast$v, double weight=0)
+\begin{DoxyCompactList}\small\item\em add vertex to list of adjacents \end{DoxyCompactList}\item 
+void \hyperlink{class_vertex_a8680da16057ec72dde00eb7ebf43e4d7}{add\+Edge} (\hyperlink{class_edge}{Edge} $\ast$edge)
+\begin{DoxyCompactList}\small\item\em add edge to vertex \end{DoxyCompactList}\item 
+\hyperlink{class_coordinates}{Coordinates} \hyperlink{class_vertex_a383f8757d8642562efb1cd36523623fb}{get\+Coords} () const 
+\begin{DoxyCompactList}\small\item\em get the coordinates of this vertex \end{DoxyCompactList}\item 
+double \hyperlink{class_vertex_a5df81beb3e6f7577891665142da3a000}{get\+Render\+X} () const 
+\begin{DoxyCompactList}\small\item\em get x position of vertex \end{DoxyCompactList}\item 
+double \hyperlink{class_vertex_a1b50b9fe0d0581df53751c5085f4e077}{get\+Render\+Y} () const 
+\begin{DoxyCompactList}\small\item\em get y position of vertex \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_vertex_ab265879de21dc8c08ece53523ceab31f}{get\+Index} () const 
+\begin{DoxyCompactList}\small\item\em get index of vertex, its position in vertex\+Set of its containing graph \end{DoxyCompactList}\item 
+virtual unsigned int \hyperlink{class_vertex_a4f6652186dc60a82b78a631cf0fcbed7}{get\+Render\+X} ()
+\begin{DoxyCompactList}\small\item\em get x position of vertex \end{DoxyCompactList}\item 
+virtual unsigned int \hyperlink{class_vertex_a7daa9b7383e6514bdf3dcfa9d755cd64}{get\+Render\+Y} ()
+\begin{DoxyCompactList}\small\item\em get x position of vertex \end{DoxyCompactList}\item 
+\hypertarget{class_vertex_ad7a0ce588b7f688dc4488a0f567d9155}{}virtual \hyperlink{class_vertex_ad7a0ce588b7f688dc4488a0f567d9155}{$\sim$\+Vertex} ()\label{class_vertex_ad7a0ce588b7f688dc4488a0f567d9155}
+
+\begin{DoxyCompactList}\small\item\em destructor for class \end{DoxyCompactList}\item 
+void \hyperlink{class_vertex_a587727c9d4e4cb9bbd7d9cda6ad2bc50}{set\+Index} (unsigned int index)
+\begin{DoxyCompactList}\small\item\em set index of vertex, its position in vertex\+Set of its containing graph \end{DoxyCompactList}\item 
+double \hyperlink{class_vertex_ab014e707dfcbee8a7a0e6a4251600dce}{get\+Best\+Weight} () const 
+\begin{DoxyCompactList}\small\item\em get the best value for edge weight obtained during the course of an algorithm \end{DoxyCompactList}\item 
+void \hyperlink{class_vertex_a72550c460ff084a7d167688bd9b3d7c2}{set\+Best\+Weight} (double best\+Weight)
+\begin{DoxyCompactList}\small\item\em set the best value for edge weight obtained during the course of an algorithm \end{DoxyCompactList}\item 
+\hypertarget{class_vertex_ab9e1ca696e9322fd8d32316ef752eee4}{}void \hyperlink{class_vertex_ab9e1ca696e9322fd8d32316ef752eee4}{reset\+Best\+Weight} ()\label{class_vertex_ab9e1ca696e9322fd8d32316ef752eee4}
+
+\begin{DoxyCompactList}\small\item\em reset the best value for edge weight obtained during the course of an algorithm, positive infinity, vertex unreached \end{DoxyCompactList}\item 
+\hyperlink{class_edge}{Edge} $\ast$ \hyperlink{class_vertex_afa6a4c6fa429a1b1f4d707a226e0fc9a}{get\+Parent} () const 
+\begin{DoxyCompactList}\small\item\em get the last edge of the path that produced the lowest weight so far \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_vertex_a330546da58f086e183ae8ee41f5eb7fb}{set\+Parent} (\hyperlink{class_edge}{Edge} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em set the last edge of the path that produced the lowest weight so far \end{DoxyCompactList}\item 
+\hypertarget{class_vertex_a42a3c40617d40971eb5745738166b3a8}{}void \hyperlink{class_vertex_a42a3c40617d40971eb5745738166b3a8}{reset\+Processed} ()\label{class_vertex_a42a3c40617d40971eb5745738166b3a8}
+
+\begin{DoxyCompactList}\small\item\em set the number of times the vertex has been processed to 0 \end{DoxyCompactList}\item 
+\hypertarget{class_vertex_ae43f5e09052c8ae57f98f00d60d6c053}{}int \hyperlink{class_vertex_ae43f5e09052c8ae57f98f00d60d6c053}{get\+Processed} () const \label{class_vertex_ae43f5e09052c8ae57f98f00d60d6c053}
+
+\begin{DoxyCompactList}\small\item\em get the number of times the vertex has been processed since the counter was reset \end{DoxyCompactList}\item 
+\hypertarget{class_vertex_adf49c348f0412081ce1a479724797894}{}void \hyperlink{class_vertex_adf49c348f0412081ce1a479724797894}{inc\+Processed} ()\label{class_vertex_adf49c348f0412081ce1a479724797894}
+
+\begin{DoxyCompactList}\small\item\em increment the number of times the vertex has been processed since the counter was reset \end{DoxyCompactList}\item 
+\hypertarget{class_vertex_a625f7958571b972389493203547c5b42}{}int \hyperlink{class_vertex_a625f7958571b972389493203547c5b42}{get\+Visits} () const \label{class_vertex_a625f7958571b972389493203547c5b42}
+
+\begin{DoxyCompactList}\small\item\em get the number of times the vertex has been visited since the counter was reset \end{DoxyCompactList}\item 
+\hypertarget{class_vertex_a422fe102e53b0f35653fd22f250be8cf}{}void \hyperlink{class_vertex_a422fe102e53b0f35653fd22f250be8cf}{reset\+Visits} ()\label{class_vertex_a422fe102e53b0f35653fd22f250be8cf}
+
+\begin{DoxyCompactList}\small\item\em reset the number of times the vertex has been visited \end{DoxyCompactList}\item 
+\hypertarget{class_vertex_a6367bff88517bb53500eb1648c18b82e}{}void \hyperlink{class_vertex_a6367bff88517bb53500eb1648c18b82e}{inc\+Visits} ()\label{class_vertex_a6367bff88517bb53500eb1648c18b82e}
+
+\begin{DoxyCompactList}\small\item\em increment the number of times the vertex has been visited \end{DoxyCompactList}\item 
+virtual double \hyperlink{class_vertex_a17ef9b29d37ff0ddbc769802b2fb307e}{calculate\+H} (\hyperlink{class_vertex}{Vertex} $\ast$v)
+\begin{DoxyCompactList}\small\item\em calculate and store heuristic value from this vertex to a destination vertex \end{DoxyCompactList}\item 
+double \hyperlink{class_vertex_aaa2fa5fe6903406f9bef70617fb3a16e}{get\+Stored\+H} () const 
+\begin{DoxyCompactList}\small\item\em retrive stored heuristic value \end{DoxyCompactList}\item 
+\hypertarget{class_vertex_ab46427731c017d3cb63bdb9cf951bd71}{}void \hyperlink{class_vertex_ab46427731c017d3cb63bdb9cf951bd71}{reset\+Stored\+H} ()\label{class_vertex_ab46427731c017d3cb63bdb9cf951bd71}
+
+\begin{DoxyCompactList}\small\item\em retrive stored heuristic value \end{DoxyCompactList}\item 
+\hypertarget{class_vertex_a6c6def262e5b1950fc71bafe1d529899}{}void {\bfseries remove\+Edge} (int i)\label{class_vertex_a6c6def262e5b1950fc71bafe1d529899}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_vertex_a51e8014823c3d58071383d89bc3340a4}{}\hyperlink{class_coordinates}{Coordinates} {\bfseries coords}\label{class_vertex_a51e8014823c3d58071383d89bc3340a4}
+
+\item 
+\hypertarget{class_vertex_ab8a4928af1bf9d4039a55a9c938e20db}{}double {\bfseries stored\+H}\label{class_vertex_ab8a4928af1bf9d4039a55a9c938e20db}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+generic inteface of a graph vertex 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_vertex_ae86a694fcad11ed1078c3761deaa0d1f}{}\index{Vertex@{Vertex}!Vertex@{Vertex}}
+\index{Vertex@{Vertex}!Vertex@{Vertex}}
+\subsubsection[{Vertex}]{\setlength{\rightskip}{0pt plus 5cm}Vertex\+::\+Vertex (
+\begin{DoxyParamCaption}
+\item[{const {\bf Coordinates} \&}]{coords}
+\end{DoxyParamCaption}
+)}\label{class_vertex_ae86a694fcad11ed1078c3761deaa0d1f}
+
+
+vertex constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coords} & coordinates of vertex \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_vertex_a24b15df4ff9b1969ccad22db8187273a}{}\index{Vertex@{Vertex}!add\+Adj@{add\+Adj}}
+\index{add\+Adj@{add\+Adj}!Vertex@{Vertex}}
+\subsubsection[{add\+Adj}]{\setlength{\rightskip}{0pt plus 5cm}void Vertex\+::add\+Adj (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertex} $\ast$}]{v, }
+\item[{double}]{weight = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\label{class_vertex_a24b15df4ff9b1969ccad22db8187273a}
+
+
+add vertex to list of adjacents 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vertex to add \\
+\hline
+{\em weight} & weight of edge to create \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex_a8680da16057ec72dde00eb7ebf43e4d7}{}\index{Vertex@{Vertex}!add\+Edge@{add\+Edge}}
+\index{add\+Edge@{add\+Edge}!Vertex@{Vertex}}
+\subsubsection[{add\+Edge}]{\setlength{\rightskip}{0pt plus 5cm}void Vertex\+::add\+Edge (
+\begin{DoxyParamCaption}
+\item[{{\bf Edge} $\ast$}]{edge}
+\end{DoxyParamCaption}
+)}\label{class_vertex_a8680da16057ec72dde00eb7ebf43e4d7}
+
+
+add edge to vertex 
+
+
+\begin{DoxyParams}{Parameters}
+{\em edge} & edge to add \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex_a17ef9b29d37ff0ddbc769802b2fb307e}{}\index{Vertex@{Vertex}!calculate\+H@{calculate\+H}}
+\index{calculate\+H@{calculate\+H}!Vertex@{Vertex}}
+\subsubsection[{calculate\+H}]{\setlength{\rightskip}{0pt plus 5cm}double Vertex\+::calculate\+H (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertex} $\ast$}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_vertex_a17ef9b29d37ff0ddbc769802b2fb307e}
+
+
+calculate and store heuristic value from this vertex to a destination vertex 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & goal vertex \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+heuristic value 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_transport_stop_a2cce3ec4e28f8952981d14d5913f058e}{Transport\+Stop}.
+
+\hypertarget{class_vertex_abe6306ddafb1250080563fbe645e382f}{}\index{Vertex@{Vertex}!get\+Adj@{get\+Adj}}
+\index{get\+Adj@{get\+Adj}!Vertex@{Vertex}}
+\subsubsection[{get\+Adj}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ {\bf Edge} $\ast$ $>$ Vertex\+::get\+Adj (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_vertex_abe6306ddafb1250080563fbe645e382f}
+
+
+get the edges that exit this vertex 
+
+\begin{DoxyReturn}{Returns}
+adjacent vertices 
+\end{DoxyReturn}
+\hypertarget{class_vertex_ab014e707dfcbee8a7a0e6a4251600dce}{}\index{Vertex@{Vertex}!get\+Best\+Weight@{get\+Best\+Weight}}
+\index{get\+Best\+Weight@{get\+Best\+Weight}!Vertex@{Vertex}}
+\subsubsection[{get\+Best\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}double Vertex\+::get\+Best\+Weight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_vertex_ab014e707dfcbee8a7a0e6a4251600dce}
+
+
+get the best value for edge weight obtained during the course of an algorithm 
+
+\begin{DoxyReturn}{Returns}
+best value for weight so far 
+\end{DoxyReturn}
+\hypertarget{class_vertex_a383f8757d8642562efb1cd36523623fb}{}\index{Vertex@{Vertex}!get\+Coords@{get\+Coords}}
+\index{get\+Coords@{get\+Coords}!Vertex@{Vertex}}
+\subsubsection[{get\+Coords}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Coordinates} Vertex\+::get\+Coords (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_vertex_a383f8757d8642562efb1cd36523623fb}
+
+
+get the coordinates of this vertex 
+
+\begin{DoxyReturn}{Returns}
+coordinate of vertex 
+\end{DoxyReturn}
+\hypertarget{class_vertex_ab265879de21dc8c08ece53523ceab31f}{}\index{Vertex@{Vertex}!get\+Index@{get\+Index}}
+\index{get\+Index@{get\+Index}!Vertex@{Vertex}}
+\subsubsection[{get\+Index}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Vertex\+::get\+Index (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_vertex_ab265879de21dc8c08ece53523ceab31f}
+
+
+get index of vertex, its position in vertex\+Set of its containing graph 
+
+\begin{DoxyReturn}{Returns}
+index of vertex 
+\end{DoxyReturn}
+\hypertarget{class_vertex_afa6a4c6fa429a1b1f4d707a226e0fc9a}{}\index{Vertex@{Vertex}!get\+Parent@{get\+Parent}}
+\index{get\+Parent@{get\+Parent}!Vertex@{Vertex}}
+\subsubsection[{get\+Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Edge} $\ast$ Vertex\+::get\+Parent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_vertex_afa6a4c6fa429a1b1f4d707a226e0fc9a}
+
+
+get the last edge of the path that produced the lowest weight so far 
+
+\begin{DoxyReturn}{Returns}
+edge with this vertex as dst 
+\end{DoxyReturn}
+\hypertarget{class_vertex_a5df81beb3e6f7577891665142da3a000}{}\index{Vertex@{Vertex}!get\+Render\+X@{get\+Render\+X}}
+\index{get\+Render\+X@{get\+Render\+X}!Vertex@{Vertex}}
+\subsubsection[{get\+Render\+X}]{\setlength{\rightskip}{0pt plus 5cm}double Vertex\+::get\+Render\+X (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_vertex_a5df81beb3e6f7577891665142da3a000}
+
+
+get x position of vertex 
+
+\begin{DoxyReturn}{Returns}
+x postiton of vertex 
+\end{DoxyReturn}
+\hypertarget{class_vertex_a4f6652186dc60a82b78a631cf0fcbed7}{}\index{Vertex@{Vertex}!get\+Render\+X@{get\+Render\+X}}
+\index{get\+Render\+X@{get\+Render\+X}!Vertex@{Vertex}}
+\subsubsection[{get\+Render\+X}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Vertex\+::get\+Render\+X (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_vertex_a4f6652186dc60a82b78a631cf0fcbed7}
+
+
+get x position of vertex 
+
+\begin{DoxyReturn}{Returns}
+x postiton of vertex 
+\end{DoxyReturn}
+\hypertarget{class_vertex_a1b50b9fe0d0581df53751c5085f4e077}{}\index{Vertex@{Vertex}!get\+Render\+Y@{get\+Render\+Y}}
+\index{get\+Render\+Y@{get\+Render\+Y}!Vertex@{Vertex}}
+\subsubsection[{get\+Render\+Y}]{\setlength{\rightskip}{0pt plus 5cm}double Vertex\+::get\+Render\+Y (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_vertex_a1b50b9fe0d0581df53751c5085f4e077}
+
+
+get y position of vertex 
+
+\begin{DoxyReturn}{Returns}
+y postiton of vertex 
+\end{DoxyReturn}
+\hypertarget{class_vertex_a7daa9b7383e6514bdf3dcfa9d755cd64}{}\index{Vertex@{Vertex}!get\+Render\+Y@{get\+Render\+Y}}
+\index{get\+Render\+Y@{get\+Render\+Y}!Vertex@{Vertex}}
+\subsubsection[{get\+Render\+Y}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Vertex\+::get\+Render\+Y (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_vertex_a7daa9b7383e6514bdf3dcfa9d755cd64}
+
+
+get x position of vertex 
+
+\begin{DoxyReturn}{Returns}
+x postiton of vertex 
+\end{DoxyReturn}
+\hypertarget{class_vertex_aaa2fa5fe6903406f9bef70617fb3a16e}{}\index{Vertex@{Vertex}!get\+Stored\+H@{get\+Stored\+H}}
+\index{get\+Stored\+H@{get\+Stored\+H}!Vertex@{Vertex}}
+\subsubsection[{get\+Stored\+H}]{\setlength{\rightskip}{0pt plus 5cm}double Vertex\+::get\+Stored\+H (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_vertex_aaa2fa5fe6903406f9bef70617fb3a16e}
+
+
+retrive stored heuristic value 
+
+\begin{DoxyReturn}{Returns}
+stored heuristic value 
+\end{DoxyReturn}
+\hypertarget{class_vertex_a72550c460ff084a7d167688bd9b3d7c2}{}\index{Vertex@{Vertex}!set\+Best\+Weight@{set\+Best\+Weight}}
+\index{set\+Best\+Weight@{set\+Best\+Weight}!Vertex@{Vertex}}
+\subsubsection[{set\+Best\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}void Vertex\+::set\+Best\+Weight (
+\begin{DoxyParamCaption}
+\item[{double}]{best\+Weight}
+\end{DoxyParamCaption}
+)}\label{class_vertex_a72550c460ff084a7d167688bd9b3d7c2}
+
+
+set the best value for edge weight obtained during the course of an algorithm 
+
+
+\begin{DoxyParams}{Parameters}
+{\em best\+Weight} & best value for weight so far \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex_a587727c9d4e4cb9bbd7d9cda6ad2bc50}{}\index{Vertex@{Vertex}!set\+Index@{set\+Index}}
+\index{set\+Index@{set\+Index}!Vertex@{Vertex}}
+\subsubsection[{set\+Index}]{\setlength{\rightskip}{0pt plus 5cm}void Vertex\+::set\+Index (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{index}
+\end{DoxyParamCaption}
+)}\label{class_vertex_a587727c9d4e4cb9bbd7d9cda6ad2bc50}
+
+
+set index of vertex, its position in vertex\+Set of its containing graph 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new} & index in graph \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex_a330546da58f086e183ae8ee41f5eb7fb}{}\index{Vertex@{Vertex}!set\+Parent@{set\+Parent}}
+\index{set\+Parent@{set\+Parent}!Vertex@{Vertex}}
+\subsubsection[{set\+Parent}]{\setlength{\rightskip}{0pt plus 5cm}void Vertex\+::set\+Parent (
+\begin{DoxyParamCaption}
+\item[{{\bf Edge} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_vertex_a330546da58f086e183ae8ee41f5eb7fb}
+
+
+set the last edge of the path that produced the lowest weight so far 
+
+\begin{DoxyReturn}{Returns}
+edge with this vertex as dst, to set as parent 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_transport_stop_a862190c81155a2aca27493d268a6c1d6}{Transport\+Stop}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+André/\+Desktop/test/graph/Vertex.\+h\item 
+C\+:/\+Users/\+André/\+Desktop/test/graph/Vertex.\+cpp\end{DoxyCompactItemize}

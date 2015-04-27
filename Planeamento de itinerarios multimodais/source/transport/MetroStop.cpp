@@ -6,6 +6,7 @@
  */
 
 #include "MetroStop.h"
+#include "MetroEdge.h"
 
 using namespace std;
 

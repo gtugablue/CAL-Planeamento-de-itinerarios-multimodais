@@ -13,6 +13,9 @@ using namespace std;
 class Edge;
 class Vertex;
 
+/**
+ * @brief A set of edges representing a path between two points
+ */
 class Path{
 	vector<Edge*> edges;
 	double cost;
@@ -110,6 +113,7 @@ public:
 	friend ostream& operator<<(ostream& os, Path& p){
 
 		WeightInfo w;
+		string prev_line = "";
 
 		size_t i;
 		Vertex* v;
@@ -125,13 +129,27 @@ public:
 			if(te != NULL)
 			{
 				w = w + te->getWeightInfo();
-				if(te->getWeightInfo().getSwitchs() > 0)
+
+				if(i == 0)
+					os << "Walk to:" << endl;
+				if(i != 0 && prev_line != ts->getRouteName())
 				{
+					if(i != 1)
+					{
+						Vertex * v2 = p.edges[i-1]->getSrc();
+						TransportStop* ts2 = dynamic_cast<TransportStop*>(v2);
+						if(ts2 != NULL)
+						{
+							os << "Switch from " << ts2->getName() << " to:" << endl;
+						}
+						else
+							os << "Switch to:" << endl;
+					}
+					os << ts->getName() << " - Line " << ts->getRouteName() << " [" << ts->getArrivalTime() << "]" << endl;
 				}
 
-				if(i != 0)
-					os << ts->getName() << " - Line " << ts->getRouteName() << " [" << ts->getArrivalTime() << "]" << endl;
 			}
+			prev_line = ts->getRouteName();
 		}
 
 		if(p.edges.size() > 0)
@@ -140,11 +158,30 @@ public:
 			TransportStop* ts = dynamic_cast<TransportStop*>(v);
 			if(ts != NULL)
 			{
+				if(p.edges.size() > 1)
+				{
+					Vertex * v2 = p.edges[p.edges.size() - 1]->getSrc();
+					TransportStop* ts2 = dynamic_cast<TransportStop*>(v2);
+					if(ts2 != NULL)
+						os << "Leave at " << ts2->getName() << " and walk to:" << endl;
+					else
+						os << "Walk to:" << endl;
+				}
+
 				os << ts->getNameAndType() << " [" << ts->getArrivalTime() << "]" << endl;
 			}
 		}
 
-		os << endl << "==> Total path cost:" << endl << w << endl;
+		int temp = w.getSwitchs();
+		temp -= 2;
+		if(temp<0) temp = 0;
+		w.setSwitchs(temp);
+
+		os << endl << "==> Total path cost:" << endl;
+		os << "Time: " << (((TransportStop*)p.edges[p.edges.size() - 1]->getDst())->getArrivalTime() - ((TransportStop*)p.edges[0]->getSrc())->getArrivalTime()) << " minutes" << endl;
+		os << "Monetary cost: " << w.getCost() << " euros" << endl;
+		os << "Distance: " << w.getDistance() / 1000 << "km" << endl;
+		os << "Number of transport switches: " << w.getSwitchs() << endl << endl;
 
 		return os;
 	}

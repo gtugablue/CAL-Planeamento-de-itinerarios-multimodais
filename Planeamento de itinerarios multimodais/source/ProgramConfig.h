@@ -17,6 +17,9 @@ enum RunningMode { NormalUser, Advanced, AllAlgorithms };
  * AllAlgorithms - does everything the AdvancedUser does, but runs the program through all algorithms to compare their performances
  */
 
+/**
+ * @brief Stores the user configurations for the program's execution
+ */
 class ProgramConfig{
 
 public:

@@ -1,0 +1,79 @@
+\hypertarget{class_metro_edge}{}\section{Metro\+Edge Class Reference}
+\label{class_metro_edge}\index{Metro\+Edge@{Metro\+Edge}}
+
+
+Connection between two metro stops.  
+
+
+
+
+{\ttfamily \#include $<$Metro\+Edge.\+h$>$}
+
+Inheritance diagram for Metro\+Edge\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_metro_edge}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_metro_edge_acebfc5acd956610cf5dfd5c8dc3b645a}{}{\bfseries Metro\+Edge} (\hyperlink{class_vertex}{Vertex} $\ast$src, \hyperlink{class_vertex}{Vertex} $\ast$dst)\label{class_metro_edge_acebfc5acd956610cf5dfd5c8dc3b645a}
+
+\item 
+\hypertarget{class_metro_edge_aebaa11e7a8370e6adc2c525d97c36a1f}{}{\bfseries Metro\+Edge} (\hyperlink{class_vertex}{Vertex} $\ast$src, \hyperlink{class_vertex}{Vertex} $\ast$dst, const std\+::vector$<$ \hyperlink{class_coordinates}{Coordinates} $>$ \&line)\label{class_metro_edge_aebaa11e7a8370e6adc2c525d97c36a1f}
+
+\item 
+double \hyperlink{class_metro_edge_abe40bacd0e3d7e72fcdf7d0e38b2b311}{get\+Weight} ()
+\begin{DoxyCompactList}\small\item\em calculates the edge\textquotesingle{}s weight (using Wight\+Info) \end{DoxyCompactList}\item 
+double \hyperlink{class_metro_edge_a4cba8dae978df61bc931879b7ef2d528}{get\+Speed} () const 
+\begin{DoxyCompactList}\small\item\em calculates the speed of the edge\textquotesingle{}s transport \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Connection between two metro stops. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_metro_edge_a4cba8dae978df61bc931879b7ef2d528}{}\index{Metro\+Edge@{Metro\+Edge}!get\+Speed@{get\+Speed}}
+\index{get\+Speed@{get\+Speed}!Metro\+Edge@{Metro\+Edge}}
+\subsubsection[{get\+Speed}]{\setlength{\rightskip}{0pt plus 5cm}double Metro\+Edge\+::get\+Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_metro_edge_a4cba8dae978df61bc931879b7ef2d528}
+
+
+calculates the speed of the edge\textquotesingle{}s transport 
+
+\begin{DoxyReturn}{Returns}
+speed of the transport 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_transport_edge_a1e85cb198714507e2b1466b86f97b676}{Transport\+Edge}.
+
+\hypertarget{class_metro_edge_abe40bacd0e3d7e72fcdf7d0e38b2b311}{}\index{Metro\+Edge@{Metro\+Edge}!get\+Weight@{get\+Weight}}
+\index{get\+Weight@{get\+Weight}!Metro\+Edge@{Metro\+Edge}}
+\subsubsection[{get\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}double Metro\+Edge\+::get\+Weight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_metro_edge_abe40bacd0e3d7e72fcdf7d0e38b2b311}
+
+
+calculates the edge\textquotesingle{}s weight (using Wight\+Info) 
+
+\begin{DoxyReturn}{Returns}
+edge\textquotesingle{}s weighted cost 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_transport_edge_ad2b8f66adec9223e97752ae1fb621c0e}{Transport\+Edge}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+André/\+Desktop/test/transport/Metro\+Edge.\+h\item 
+C\+:/\+Users/\+André/\+Desktop/test/transport/Metro\+Edge.\+cpp\end{DoxyCompactItemize}

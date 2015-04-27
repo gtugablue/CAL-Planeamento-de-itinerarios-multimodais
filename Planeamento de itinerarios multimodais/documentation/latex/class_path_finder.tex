@@ -1,0 +1,56 @@
+\hypertarget{class_path_finder}{}\section{Path\+Finder Class Reference}
+\label{class_path_finder}\index{Path\+Finder@{Path\+Finder}}
+
+
+Interface to read user configurations and select algorithms and data structures to use.  
+
+
+
+
+{\ttfamily \#include $<$Path\+Finder.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_path}{Path} $\ast$ \hyperlink{class_path_finder_a7dcc8ea6a25e5ac9e42a94cb76340467}{find\+\_\+path} (\hyperlink{class_graph}{Graph} $\ast$g, \hyperlink{class_vertex}{Vertex} $\ast$ini, \hyperlink{class_vertex}{Vertex} $\ast$f, \hyperlink{class_program_config}{Program\+Config} conf)
+\begin{DoxyCompactList}\small\item\em search for lowest cost path in graph from one vertex to another using the specified data structure and specified algorithm \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface to read user configurations and select algorithms and data structures to use. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_path_finder_a7dcc8ea6a25e5ac9e42a94cb76340467}{}\index{Path\+Finder@{Path\+Finder}!find\+\_\+path@{find\+\_\+path}}
+\index{find\+\_\+path@{find\+\_\+path}!Path\+Finder@{Path\+Finder}}
+\subsubsection[{find\+\_\+path}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Path} $\ast$ Path\+Finder\+::find\+\_\+path (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g, }
+\item[{{\bf Vertex} $\ast$}]{ini, }
+\item[{{\bf Vertex} $\ast$}]{f, }
+\item[{{\bf Program\+Config}}]{conf}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_path_finder_a7dcc8ea6a25e5ac9e42a94cb76340467}
+
+
+search for lowest cost path in graph from one vertex to another using the specified data structure and specified algorithm 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & graph on which to perform search \\
+\hline
+{\em ini} & initial vertex \\
+\hline
+{\em f} & goal vertex \\
+\hline
+{\em conf} & configuration of program specifying chosen options \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+path from initial vertex to goal of lowest cost, if there is none, the path will have no edges 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+André/\+Desktop/test/algorithms/Path\+Finder.\+h\item 
+C\+:/\+Users/\+André/\+Desktop/test/algorithms/Path\+Finder.\+cpp\end{DoxyCompactItemize}

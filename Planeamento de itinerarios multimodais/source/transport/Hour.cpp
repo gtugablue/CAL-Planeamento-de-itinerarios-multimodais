@@ -26,7 +26,7 @@ Hour::Hour(const string &hour)
 	temp[0] = hour[3];
 	temp[1] = hour[4];
 	unsigned minutes = strtol(temp, NULL, 10);
-	seconds = hours * secondsPerHour + minutes * minutesPerHour;
+	seconds = hours * secondsPerHour + minutes * secondsPerMinute;
 }
 
 unsigned Hour::getHourstamp() const
@@ -36,7 +36,7 @@ unsigned Hour::getHourstamp() const
 
 void Hour::setHourstamp(unsigned hourstamp)
 {
-	seconds = hourstamp;
+	seconds = hourstamp % secondsPerDay;
 }
 
 Hour& Hour::operator+=(const Hour &hour)

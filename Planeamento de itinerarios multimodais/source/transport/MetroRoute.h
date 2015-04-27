@@ -13,6 +13,9 @@
 #include "TransportRoute.h"
 #include "MetroStop.h"
 
+/**
+ * @brief Represents a Metro Route - set of metro stops ordered in a certain way
+ */
 class MetroRoute: public TransportRoute {
 public:
 	/**

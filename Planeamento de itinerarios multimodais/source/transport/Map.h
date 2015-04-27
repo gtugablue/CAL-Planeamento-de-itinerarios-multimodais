@@ -27,6 +27,9 @@
 #include "MetroRoute.h"
 #include "../graph/Graph.h"
 
+/**
+ * @brief Abstraction to the real "world" map, able to convert it to a Graph
+ */
 class Map {
 private:
 	std::vector<BusRoute> busRoutes;
@@ -53,8 +56,9 @@ public:
 		void loadBusRoutes(std::vector<BusRoute> &busRoutes) const;
 		void loadSchedule(const BusRoute &busRoute) const;
 		std::vector<std::pair<MetroStop *, std::string> > loadMetroStopNodes(rapidjson::Document &d) const;
-		std::vector<MetroStop *> loadMetroStops(rapidjson::Document &d) const;
-		MetroStop *findClosestMetroStop(const std::vector<MetroStop *> &metroStops, const std::string &metroStopCode) const;
+		MetroStop *loadMetroStop(MetroStop &metroStop);
+		std::vector<MetroStop> loadMetroStops(rapidjson::Document &d) const;
+		MetroStop *findClosestMetroStop(vector<MetroStop> &metroStops, const string &metroStopCode) const;
 		void loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const;
 		Hour generateRandomHour() const;
 		void generateRandomTransportSchedule(unsigned dailyFrequency, TransportRoute *transportRoute) const;

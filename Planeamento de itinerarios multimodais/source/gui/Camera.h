@@ -1,6 +1,9 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+/**
+ * @brief Implements a camera, able to zoom and drag in the graphical interface
+ */
 class Camera{
 
 private:

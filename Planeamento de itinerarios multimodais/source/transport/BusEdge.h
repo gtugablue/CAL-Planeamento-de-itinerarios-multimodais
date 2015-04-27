@@ -14,6 +14,9 @@
 #include <iostream>
 #include <iomanip>
 
+/**
+ * @brief represents a connection between two BusStop 's
+ */
 class BusEdge: public TransportEdge {
 public:
 	/**

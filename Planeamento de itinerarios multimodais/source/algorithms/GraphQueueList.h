@@ -6,6 +6,9 @@
 #include <list>
 #include <algorithm>
 
+/**
+ * @brief Implements a list able to be used with the algorithm's template
+ */
 template<class Comp>
 class GraphQueueList: public GraphQueue<Comp>{
 public:
