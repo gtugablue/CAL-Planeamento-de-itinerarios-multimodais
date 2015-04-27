@@ -2,4 +2,4 @@
 
 double TransportSpeeds::busSpeed = 8;
 double TransportSpeeds::metroSpeed = 13;
-double TransportSpeeds::walkingSpeed = 2.5;
+double TransportSpeeds::walkingSpeed = 0.7;

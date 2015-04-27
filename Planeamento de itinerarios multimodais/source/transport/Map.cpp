@@ -167,7 +167,7 @@ void Map::Loader::loadBusRoutes(std::vector<BusRoute> &busRoutes) const
 			busRoute.addStop(busStops[busStops.size() - 1]);
 
 			// Generate a random schedule
-			generateRandomTransportSchedule(rand() % 60 + 24, &busRoute);
+			generateRandomTransportSchedule(rand() % 60 + 70, &busRoute);
 
 			// Add Route to the Bus Routes vector
 			busRoutes.push_back(busRoute);
@@ -293,7 +293,6 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 		{
 			metroStop = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString())); // TODO delete
 			metroStop->setRouteName(code);
-			cout << "code: " << code << endl;
 			metroRoute.addStop(metroStop);
 
 			// Create Metro Edge
@@ -307,7 +306,7 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 		}
 
 		// Generate a random schedule
-		generateRandomTransportSchedule(rand() % 50 + 100, &metroRoute);
+		generateRandomTransportSchedule(rand() % 50 + 250, &metroRoute);
 
 		// Add the Route to the Metro Route vector
 		metroRoutes.push_back(metroRoute);
@@ -325,7 +324,7 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 			metroRoute2.addStop(metroStop);
 			last = metroStop;
 		}
-		generateRandomTransportSchedule(rand() % 50 + 100, &metroRoute2);
+		generateRandomTransportSchedule(rand() % 50 + 250, &metroRoute2);
 		metroRoutes.push_back(metroRoute2);
 	}
 }

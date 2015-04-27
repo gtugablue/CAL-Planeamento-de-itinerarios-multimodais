@@ -70,7 +70,7 @@ public:
 	 * @brief calculates the time it takes to cross the edge
 	 * @return time in seconds
 	 */
-	virtual double calculateTime() const { return weight.getDistance() / getSpeed(); }
+	double calculateTime() const { return weight.getDistance() / getSpeed(); }
 
 	/**
 	 * @brief class destructor

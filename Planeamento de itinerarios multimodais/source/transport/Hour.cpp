@@ -36,7 +36,7 @@ unsigned Hour::getHourstamp() const
 
 void Hour::setHourstamp(unsigned hourstamp)
 {
-	seconds = hourstamp;
+	seconds = hourstamp % secondsPerDay;
 }
 
 Hour& Hour::operator+=(const Hour &hour)

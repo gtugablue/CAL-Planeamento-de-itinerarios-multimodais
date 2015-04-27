@@ -9,6 +9,8 @@
 #include "WeightInfo.h"
 #include <algorithm>
 #include <stdlib.h>
+#include "MetroEdge.h"
+#include "BusEdge.h"
 
 using namespace std;
 
@@ -49,7 +51,7 @@ double TransportStop::calculateH(Vertex * v)
 		return 0;
 	//double dist = this->getCoords().calcDist(v->getCoords());
 	double dist = this->getCoords().calcDirectDistSquare(v->getCoords());
-	this->storedH = dist / TransportSpeeds::getMaxSpeed() * WeightInfo::getTimeWeight() + dist*WeightInfo::getDistanceWeight();
+	this->storedH = (dist / TransportSpeeds::getMaxSpeed()) * WeightInfo::getTimeWeight() + dist*WeightInfo::getDistanceWeight();
 	return storedH;
 }
 
@@ -67,7 +69,7 @@ void TransportStop::userAddToGraph(Graph* g){
 		transportStops.push((TransportStop *) verts[i]);
 	}
 	size_t counter = 0;
-	while (counter < 10)
+	while (counter < 50)
 	{
 		TransportStop *closest = transportStops.top();
 		transportStops.pop();
@@ -109,7 +111,7 @@ double TransportStop::calcWaitingTime(Hour currentHour) const
 	if (found)
 		return (nextHour - currentHour).getHourstamp();
 	else
-		return (schedule[0] - nextHour).getHourstamp();
+		return 0;
 }
 
 void TransportStop::setParent(Edge *parent)
@@ -117,7 +119,11 @@ void TransportStop::setParent(Edge *parent)
 	Vertex::setParent(parent);
 	if(parent != NULL)
 	{
-		arrival = ((TransportStop *)parent->getSrc())->getArrivalTime() + (((TransportEdge *)parent)->calculateTime());
-		arrival += calcWaitingTime(arrival);
+		TransportEdge *te = (TransportEdge *)parent;
+		TransportStop *src = (TransportStop *)(te->getSrc());
+		arrival = src->getArrivalTime();
+		if (dynamic_cast<BusEdge *>(parent) == NULL && dynamic_cast<MetroEdge *>(parent) == NULL)
+			arrival += src->calcWaitingTime(src->getArrivalTime());
+		arrival += te->calculateTime();
 	}
 }

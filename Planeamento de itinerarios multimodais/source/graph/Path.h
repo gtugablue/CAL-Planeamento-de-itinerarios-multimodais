@@ -185,7 +185,7 @@ public:
 		w.setSwitchs(temp);
 
 		os << endl << "==> Total path cost:" << endl;
-		os << "Time: " << (((TransportStop*)p.edges[p.edges.size() - 1]->getDst())->getArrivalTime() - ((TransportStop*)p.edges[0]->getSrc())->getArrivalTime())/60 << " minutes" << endl;
+		os << "Time: " << (((TransportStop*)p.edges[p.edges.size() - 1]->getDst())->getArrivalTime() - ((TransportStop*)p.edges[0]->getSrc())->getArrivalTime()) << " minutes" << endl;
 		os << "Monetary cost: " << w.getCost() << " euros" << endl;
 		os << "Distance: " << w.getDistance() / 1000 << "km" << endl;
 		os << "Number of transport switches: " << w.getSwitchs() << endl << endl;
