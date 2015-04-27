@@ -15,8 +15,21 @@
 
 class MetroRoute: public TransportRoute {
 public:
+	/**
+	 * @brief class constructor
+	 * @param code Route's code
+	 * @param directior specifies the direction of the route (true and false are opposite route directions, for the same route)
+	 */
 	MetroRoute(const std::string code, bool direction);
+
+	/**
+	 * @brief returns the Metro's speed
+	 */
 	double getSpeed() const;
+
+	/**
+	 * @brief class destructor
+	 */
 	virtual ~MetroRoute();
 };
 
