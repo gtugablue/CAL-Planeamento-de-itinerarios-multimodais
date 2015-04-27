@@ -261,6 +261,7 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 	rapidjson::Document dStops;
 	parseJsonFile(dataFolder + "metro.json", dStops);
 	vector<MetroStop *> metroStops = loadMetroStops(dStops);
+	vector<MetroStop *> reverseMetroStops = loadMetroStops(dStops);
 
 	rapidjson::Document dLines;
 	parseJsonFile(dataFolder + "metroLines.json", dLines);
@@ -302,12 +303,12 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 
 		// Do the same but in the opposite order
 		MetroRoute metroRoute2(code, true);
-		MetroStop *last = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][dLines[i]["stops"].Size() - 1].GetString())); // TODO delete
+		MetroStop *last = findClosestMetroStop(reverseMetroStops, dLines[i]["stops"][dLines[i]["stops"].Size() - 1].GetString()); // TODO delete
 		metroRoute2.addStop(last);
 		for (int j = dLines[i]["stops"].Size() - 2; j >= 0; --j)
 		{
-			metroStop = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString())); // TODO delete
-			last->addEdge(new MetroEdge(last, metroStop));
+			metroStop = findClosestMetroStop(reverseMetroStops, dLines[i]["stops"][j].GetString()); // TODO delete
+			last->addEdge(new MetroEdge(last, metroStop)); // TODO delete
 			metroRoute2.addStop(metroStop);
 			last = metroStop;
 		}
