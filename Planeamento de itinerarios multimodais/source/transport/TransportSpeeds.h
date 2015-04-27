@@ -9,6 +9,9 @@
 #include <stdlib.h>
 #include <algorithm>
 
+/**
+ * @brief generic inteface to preserve the speeds of the different means of transport
+ */
 class TransportSpeeds {
 private:
 	TransportSpeeds() {}

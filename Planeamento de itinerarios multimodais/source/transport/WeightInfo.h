@@ -4,6 +4,9 @@
 #include "Hour.h"
 #include <ostream>
 
+/**
+ * @brief interface to save the user preferences about relative weights and also the different weights of an edge
+ */
 class WeightInfo{
 public:
 

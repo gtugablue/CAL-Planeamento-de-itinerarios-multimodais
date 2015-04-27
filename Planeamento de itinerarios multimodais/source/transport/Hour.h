@@ -11,6 +11,9 @@
 #include <string>
 #include <iostream>
 
+/**
+ * @brief Interface for a hour-minute-second timestamp
+ */
 class Hour {
 private:
 	unsigned seconds;

@@ -1,0 +1,207 @@
+\hypertarget{class_path}{}\section{Path Class Reference}
+\label{class_path}\index{Path@{Path}}
+
+
+A set of edges representing a path between two points.  
+
+
+
+
+{\ttfamily \#include $<$Path.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_path_ad2c6ad256aaa8f14e04a454e5690c961}{Path} (double cost)
+\begin{DoxyCompactList}\small\item\em constructor for path \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_edge}{Edge} $\ast$ $>$ \hyperlink{class_path_a71778fdc2ff927535b0701d9064f7648}{get\+Edges} () const 
+\begin{DoxyCompactList}\small\item\em get edges that form this path \end{DoxyCompactList}\item 
+void \hyperlink{class_path_a3422b044fb9e5a713949278627ee1a9e}{add\+Edge\+End} (\hyperlink{class_edge}{Edge} $\ast$e)
+\begin{DoxyCompactList}\small\item\em add edge to end of path \end{DoxyCompactList}\item 
+void \hyperlink{class_path_a21f45a6d06681e5dc1b55f70bfdb877e}{add\+Edge\+Beginning} (\hyperlink{class_edge}{Edge} $\ast$e)
+\begin{DoxyCompactList}\small\item\em add edge to beginning of path \end{DoxyCompactList}\item 
+bool \hyperlink{class_path_ab1a846eee63b13e03724965d12d0a501}{operator==} (const \hyperlink{class_path}{Path} p2) const 
+\begin{DoxyCompactList}\small\item\em equalitycomparison for paths \end{DoxyCompactList}\item 
+\hypertarget{class_path_a8db20815826ef0f30515cb9e5c415da4}{}void \hyperlink{class_path_a8db20815826ef0f30515cb9e5c415da4}{remove\+Edge\+End} ()\label{class_path_a8db20815826ef0f30515cb9e5c415da4}
+
+\begin{DoxyCompactList}\small\item\em remove the last edge from the path \end{DoxyCompactList}\item 
+double \hyperlink{class_path_a2e92339063f0a7df0db8043828864c6d}{get\+Cost} () const 
+\begin{DoxyCompactList}\small\item\em get the total weight of the path, assuming the it was correctly set \end{DoxyCompactList}\item 
+void \hyperlink{class_path_a3b5228a0e1d37ca0293e82e32ba0fcce}{set\+Cost} (double cost)
+\begin{DoxyCompactList}\small\item\em set the total weight of the path \end{DoxyCompactList}\item 
+\hyperlink{class_path}{Path} \& \hyperlink{class_path_ad99e1ee379832d5ddb7f94c28759e771}{operator=} (const \hyperlink{class_path}{Path} \&p)
+\begin{DoxyCompactList}\small\item\em set this path to be equal to another \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \hyperlink{class_path_a46ad3a4bc74d84677e6c41299334a15e}{operator$<$$<$} (ostream \&os, \hyperlink{class_path}{Path} \&p)
+\begin{DoxyCompactList}\small\item\em write path to outputstream \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A set of edges representing a path between two points. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_path_ad2c6ad256aaa8f14e04a454e5690c961}{}\index{Path@{Path}!Path@{Path}}
+\index{Path@{Path}!Path@{Path}}
+\subsubsection[{Path}]{\setlength{\rightskip}{0pt plus 5cm}Path\+::\+Path (
+\begin{DoxyParamCaption}
+\item[{double}]{cost}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_path_ad2c6ad256aaa8f14e04a454e5690c961}
+
+
+constructor for path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cost} & initial cost of path \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_path_a21f45a6d06681e5dc1b55f70bfdb877e}{}\index{Path@{Path}!add\+Edge\+Beginning@{add\+Edge\+Beginning}}
+\index{add\+Edge\+Beginning@{add\+Edge\+Beginning}!Path@{Path}}
+\subsubsection[{add\+Edge\+Beginning}]{\setlength{\rightskip}{0pt plus 5cm}void Path\+::add\+Edge\+Beginning (
+\begin{DoxyParamCaption}
+\item[{{\bf Edge} $\ast$}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_path_a21f45a6d06681e5dc1b55f70bfdb877e}
+
+
+add edge to beginning of path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & new edge to add \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_path_a3422b044fb9e5a713949278627ee1a9e}{}\index{Path@{Path}!add\+Edge\+End@{add\+Edge\+End}}
+\index{add\+Edge\+End@{add\+Edge\+End}!Path@{Path}}
+\subsubsection[{add\+Edge\+End}]{\setlength{\rightskip}{0pt plus 5cm}void Path\+::add\+Edge\+End (
+\begin{DoxyParamCaption}
+\item[{{\bf Edge} $\ast$}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_path_a3422b044fb9e5a713949278627ee1a9e}
+
+
+add edge to end of path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & new edge to add \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_path_a2e92339063f0a7df0db8043828864c6d}{}\index{Path@{Path}!get\+Cost@{get\+Cost}}
+\index{get\+Cost@{get\+Cost}!Path@{Path}}
+\subsubsection[{get\+Cost}]{\setlength{\rightskip}{0pt plus 5cm}double Path\+::get\+Cost (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_path_a2e92339063f0a7df0db8043828864c6d}
+
+
+get the total weight of the path, assuming the it was correctly set 
+
+\begin{DoxyReturn}{Returns}
+total cost of path 
+\end{DoxyReturn}
+\hypertarget{class_path_a71778fdc2ff927535b0701d9064f7648}{}\index{Path@{Path}!get\+Edges@{get\+Edges}}
+\index{get\+Edges@{get\+Edges}!Path@{Path}}
+\subsubsection[{get\+Edges}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Edge}$\ast$$>$ Path\+::get\+Edges (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_path_a71778fdc2ff927535b0701d9064f7648}
+
+
+get edges that form this path 
+
+\begin{DoxyReturn}{Returns}
+edges of path 
+\end{DoxyReturn}
+\hypertarget{class_path_ad99e1ee379832d5ddb7f94c28759e771}{}\index{Path@{Path}!operator=@{operator=}}
+\index{operator=@{operator=}!Path@{Path}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Path}\& Path\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Path} \&}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_path_ad99e1ee379832d5ddb7f94c28759e771}
+
+
+set this path to be equal to another 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this path 
+\end{DoxyReturn}
+\hypertarget{class_path_ab1a846eee63b13e03724965d12d0a501}{}\index{Path@{Path}!operator==@{operator==}}
+\index{operator==@{operator==}!Path@{Path}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Path\+::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Path}}]{p2}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_path_ab1a846eee63b13e03724965d12d0a501}
+
+
+equalitycomparison for paths 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p2} & path to check for equality \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if paths are equal 
+\end{DoxyReturn}
+\hypertarget{class_path_a3b5228a0e1d37ca0293e82e32ba0fcce}{}\index{Path@{Path}!set\+Cost@{set\+Cost}}
+\index{set\+Cost@{set\+Cost}!Path@{Path}}
+\subsubsection[{set\+Cost}]{\setlength{\rightskip}{0pt plus 5cm}void Path\+::set\+Cost (
+\begin{DoxyParamCaption}
+\item[{double}]{cost}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_path_a3b5228a0e1d37ca0293e82e32ba0fcce}
+
+
+set the total weight of the path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cost} & new cost of path \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_path_a46ad3a4bc74d84677e6c41299334a15e}{}\index{Path@{Path}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Path@{Path}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{os, }
+\item[{{\bf Path} \&}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\label{class_path_a46ad3a4bc74d84677e6c41299334a15e}
+
+
+write path to outputstream 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & outputstream \\
+\hline
+{\em p} & path to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+used outputstream 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+André/\+Desktop/test/graph/Path.\+h\end{DoxyCompactItemize}
