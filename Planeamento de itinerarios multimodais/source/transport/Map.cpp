@@ -109,7 +109,6 @@ vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d, vector<B
 		}
 		else if (string(geo["type"].GetString()) == "MultiLineString")
 		{
-			cout << "aaaa" << endl;
 			for (size_t j = 0; j < coords.Size(); ++j)
 			{
 				rapidjson::Value &coords2 = coords[j];
