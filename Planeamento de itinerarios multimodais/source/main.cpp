@@ -215,8 +215,8 @@ int main(int argc, char* argv[]) {
 
 #include <boost/heap/fibonacci_heap.hpp>
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+#define SCREEN_WIDTH 1200
+#define SCREEN_HEIGHT 900
 
 static SDL_Window* window = NULL;
 
