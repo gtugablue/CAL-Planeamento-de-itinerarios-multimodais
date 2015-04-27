@@ -1,0 +1,181 @@
+\hypertarget{class_pretty_writer}{}\section{Pretty\+Writer$<$ Output\+Stream, Source\+Encoding, Target\+Encoding, Stack\+Allocator $>$ Class Template Reference}
+\label{class_pretty_writer}\index{Pretty\+Writer$<$ Output\+Stream, Source\+Encoding, Target\+Encoding, Stack\+Allocator $>$@{Pretty\+Writer$<$ Output\+Stream, Source\+Encoding, Target\+Encoding, Stack\+Allocator $>$}}
+
+
+\hyperlink{class_writer}{Writer} with indentation and spacing.  
+
+
+
+
+{\ttfamily \#include $<$prettywriter.\+h$>$}
+
+Inheritance diagram for Pretty\+Writer$<$ Output\+Stream, Source\+Encoding, Target\+Encoding, Stack\+Allocator $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_pretty_writer}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_pretty_writer_ab6074f4c51db129e195bc5752eb2b448}{}typedef \hyperlink{class_writer}{Writer}$<$ Output\+Stream, Source\+Encoding, Target\+Encoding, Stack\+Allocator $>$ {\bfseries Base}\label{class_pretty_writer_ab6074f4c51db129e195bc5752eb2b448}
+
+\item 
+\hypertarget{class_pretty_writer_ae5f474c0f087932d795c1cb4b9d0c312}{}typedef Base\+::\+Ch {\bfseries Ch}\label{class_pretty_writer_ae5f474c0f087932d795c1cb4b9d0c312}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_pretty_writer_a83f9be5c5d595a08636962e4ddd27b60}{Pretty\+Writer} (Output\+Stream \&os, Stack\+Allocator $\ast$allocator=0, size\+\_\+t level\+Depth=Base\+::k\+Default\+Level\+Depth)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_pretty_writer}{Pretty\+Writer} \& \hyperlink{class_pretty_writer_afe3a560009b5cd6a79a1e91c807387ad}{Set\+Indent} (Ch indent\+Char, unsigned indent\+Char\+Count)
+\begin{DoxyCompactList}\small\item\em Set custom indentation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}{\bf Implementation of Handler}\par
+{\em \begin{DoxySeeAlso}{See also}
+Handler 
+\end{DoxySeeAlso}
+}\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_pretty_writer_acbcab646050e5e9204ab2b13c798092b}{}bool {\bfseries Null} ()\label{class_pretty_writer_acbcab646050e5e9204ab2b13c798092b}
+
+\item 
+\hypertarget{class_pretty_writer_afddf1586eeba72bc4fbb0e1346ced9b9}{}bool {\bfseries Bool} (bool b)\label{class_pretty_writer_afddf1586eeba72bc4fbb0e1346ced9b9}
+
+\item 
+\hypertarget{class_pretty_writer_a14da2a84e9f41ba42edf2819363be614}{}bool {\bfseries Int} (\hyperlink{_s_d_l__thread_8h_a6a64f9be4433e4de6e2f2f548cf3c08e}{int} i)\label{class_pretty_writer_a14da2a84e9f41ba42edf2819363be614}
+
+\item 
+\hypertarget{class_pretty_writer_a65227d9de9a9f92eb3ca83c616a9c809}{}bool {\bfseries Uint} (unsigned u)\label{class_pretty_writer_a65227d9de9a9f92eb3ca83c616a9c809}
+
+\item 
+\hypertarget{class_pretty_writer_a2ce0d71e221d72b8cf17d2b60ae610af}{}bool {\bfseries Int64} (int64\+\_\+t i64)\label{class_pretty_writer_a2ce0d71e221d72b8cf17d2b60ae610af}
+
+\item 
+\hypertarget{class_pretty_writer_a888229dc2e5a15b2fd577b47e86a17b3}{}bool {\bfseries Uint64} (uint64\+\_\+t u64)\label{class_pretty_writer_a888229dc2e5a15b2fd577b47e86a17b3}
+
+\item 
+\hypertarget{class_pretty_writer_a20ffcf3ada1be664719f44cec76711ed}{}bool {\bfseries Double} (double d)\label{class_pretty_writer_a20ffcf3ada1be664719f44cec76711ed}
+
+\item 
+\hypertarget{class_pretty_writer_ae6cec4b69e86cff3121451f29e4862ef}{}bool {\bfseries String} (const Ch $\ast$str, \hyperlink{rapidjson_8h_a5ed6e6e67250fadbd041127e6386dcb5}{Size\+Type} length, bool copy=false)\label{class_pretty_writer_ae6cec4b69e86cff3121451f29e4862ef}
+
+\item 
+\hypertarget{class_pretty_writer_a445e063722149f86bf1a0cd7b8892f07}{}bool {\bfseries Start\+Object} ()\label{class_pretty_writer_a445e063722149f86bf1a0cd7b8892f07}
+
+\item 
+\hypertarget{class_pretty_writer_a26932858cdca972598f7caa6f415f310}{}bool {\bfseries Key} (const Ch $\ast$str, \hyperlink{rapidjson_8h_a5ed6e6e67250fadbd041127e6386dcb5}{Size\+Type} length, bool copy=false)\label{class_pretty_writer_a26932858cdca972598f7caa6f415f310}
+
+\item 
+\hypertarget{class_pretty_writer_a5837a63cac4735eaeedbaff287e1ab9e}{}bool {\bfseries End\+Object} (\hyperlink{rapidjson_8h_a5ed6e6e67250fadbd041127e6386dcb5}{Size\+Type} member\+Count=0)\label{class_pretty_writer_a5837a63cac4735eaeedbaff287e1ab9e}
+
+\item 
+\hypertarget{class_pretty_writer_a12dd02678ab52b9061bb6ac01cca2601}{}bool {\bfseries Start\+Array} ()\label{class_pretty_writer_a12dd02678ab52b9061bb6ac01cca2601}
+
+\item 
+\hypertarget{class_pretty_writer_a5196275e826a37a163d178da612f58f9}{}bool {\bfseries End\+Array} (\hyperlink{rapidjson_8h_a5ed6e6e67250fadbd041127e6386dcb5}{Size\+Type} member\+Count=0)\label{class_pretty_writer_a5196275e826a37a163d178da612f58f9}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Convenience extensions}\par
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_pretty_writer_ac6ef0185174838b7034b4183013ee073}{}bool \hyperlink{class_pretty_writer_ac6ef0185174838b7034b4183013ee073}{String} (const Ch $\ast$str)\label{class_pretty_writer_ac6ef0185174838b7034b4183013ee073}
+
+\begin{DoxyCompactList}\small\item\em Simpler but slower overload. \end{DoxyCompactList}\item 
+\hypertarget{class_pretty_writer_a0a4859ad940668cf33d18b144e5e1cdd}{}bool {\bfseries Key} (const Ch $\ast$str)\label{class_pretty_writer_a0a4859ad940668cf33d18b144e5e1cdd}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_pretty_writer_a7841433d45abbfc5a1799be0ca1ed792}{}\hyperlink{_s_d_l__audio_8h_a52835ae37c4bb905b903cbaf5d04b05f}{void} {\bfseries Pretty\+Prefix} (\hyperlink{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7}{Type} type)\label{class_pretty_writer_a7841433d45abbfc5a1799be0ca1ed792}
+
+\item 
+\hypertarget{class_pretty_writer_a649ec900d77960e085f76bb4d3c351d9}{}\hyperlink{_s_d_l__audio_8h_a52835ae37c4bb905b903cbaf5d04b05f}{void} {\bfseries Write\+Indent} ()\label{class_pretty_writer_a649ec900d77960e085f76bb4d3c351d9}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_pretty_writer_a2cee1f24795fd6c56420df31d336c41d}{}Ch {\bfseries indent\+Char\+\_\+}\label{class_pretty_writer_a2cee1f24795fd6c56420df31d336c41d}
+
+\item 
+\hypertarget{class_pretty_writer_ab2cffe9d93ce8a4890f927832f00d9f1}{}unsigned {\bfseries indent\+Char\+Count\+\_\+}\label{class_pretty_writer_ab2cffe9d93ce8a4890f927832f00d9f1}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Output\+Stream, typename Source\+Encoding = U\+T\+F8$<$$>$, typename Target\+Encoding = U\+T\+F8$<$$>$, typename Stack\+Allocator = Crt\+Allocator$>$class Pretty\+Writer$<$ Output\+Stream, Source\+Encoding, Target\+Encoding, Stack\+Allocator $>$}
+
+\hyperlink{class_writer}{Writer} with indentation and spacing. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Output\+Stream} & Type of ouptut os. \\
+\hline
+{\em Source\+Encoding} & Encoding of source string. \\
+\hline
+{\em Target\+Encoding} & Encoding of output stream. \\
+\hline
+{\em Stack\+Allocator} & Type of allocator for allocating memory of stack. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_pretty_writer_a83f9be5c5d595a08636962e4ddd27b60}{}\index{Pretty\+Writer@{Pretty\+Writer}!Pretty\+Writer@{Pretty\+Writer}}
+\index{Pretty\+Writer@{Pretty\+Writer}!Pretty\+Writer@{Pretty\+Writer}}
+\subsubsection[{Pretty\+Writer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Output\+Stream , typename Source\+Encoding  = U\+T\+F8$<$$>$, typename Target\+Encoding  = U\+T\+F8$<$$>$, typename Stack\+Allocator  = Crt\+Allocator$>$ {\bf Pretty\+Writer}$<$ Output\+Stream, Source\+Encoding, Target\+Encoding, Stack\+Allocator $>$\+::{\bf Pretty\+Writer} (
+\begin{DoxyParamCaption}
+\item[{Output\+Stream \&}]{os, }
+\item[{Stack\+Allocator $\ast$}]{allocator = {\ttfamily 0}, }
+\item[{size\+\_\+t}]{level\+Depth = {\ttfamily Base\+:\+:kDefaultLevelDepth}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_pretty_writer_a83f9be5c5d595a08636962e4ddd27b60}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Output stream. \\
+\hline
+{\em allocator} & User supplied allocator. If it is null, it will create a private one. \\
+\hline
+{\em level\+Depth} & Initial capacity of stack. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_pretty_writer_afe3a560009b5cd6a79a1e91c807387ad}{}\index{Pretty\+Writer@{Pretty\+Writer}!Set\+Indent@{Set\+Indent}}
+\index{Set\+Indent@{Set\+Indent}!Pretty\+Writer@{Pretty\+Writer}}
+\subsubsection[{Set\+Indent}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Output\+Stream , typename Source\+Encoding  = U\+T\+F8$<$$>$, typename Target\+Encoding  = U\+T\+F8$<$$>$, typename Stack\+Allocator  = Crt\+Allocator$>$ {\bf Pretty\+Writer}\& {\bf Pretty\+Writer}$<$ Output\+Stream, Source\+Encoding, Target\+Encoding, Stack\+Allocator $>$\+::Set\+Indent (
+\begin{DoxyParamCaption}
+\item[{Ch}]{indent\+Char, }
+\item[{unsigned}]{indent\+Char\+Count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_pretty_writer_afe3a560009b5cd6a79a1e91c807387ad}
+
+
+Set custom indentation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indent\+Char} & Character for indentation. Must be whitespace character (\textquotesingle{} \textquotesingle{}, \textquotesingle{}\textbackslash{}t\textquotesingle{}, \textquotesingle{}\textbackslash{}n\textquotesingle{}, \textquotesingle{}\textbackslash{}r\textquotesingle{}). \\
+\hline
+{\em indent\+Char\+Count} & Number of indent characters for each indentation level. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The default indentation is 4 spaces. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/include/rapidjson/prettywriter.\+h\end{DoxyCompactItemize}

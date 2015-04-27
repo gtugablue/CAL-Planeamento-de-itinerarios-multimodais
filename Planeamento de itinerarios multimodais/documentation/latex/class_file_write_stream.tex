@@ -1,0 +1,60 @@
+\hypertarget{class_file_write_stream}{}\section{File\+Write\+Stream Class Reference}
+\label{class_file_write_stream}\index{File\+Write\+Stream@{File\+Write\+Stream}}
+
+
+Wrapper of C file stream for input using fread().  
+
+
+
+
+{\ttfamily \#include $<$filewritestream.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_file_write_stream_abc16aeb69ad4176263ddfcb837fb7b49}{}typedef char \hyperlink{class_file_write_stream_abc16aeb69ad4176263ddfcb837fb7b49}{Ch}\label{class_file_write_stream_abc16aeb69ad4176263ddfcb837fb7b49}
+
+\begin{DoxyCompactList}\small\item\em Character type. Only support char. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_file_write_stream_a553ea3e7377a7f7cace2daa3cc90e1a1}{}{\bfseries File\+Write\+Stream} (std\+::\+F\+I\+L\+E $\ast$fp, char $\ast$buffer, size\+\_\+t buffer\+Size)\label{class_file_write_stream_a553ea3e7377a7f7cace2daa3cc90e1a1}
+
+\item 
+\hypertarget{class_file_write_stream_af6a6061d0accd939fa475b9b34427d85}{}\hyperlink{_s_d_l__audio_8h_a52835ae37c4bb905b903cbaf5d04b05f}{void} {\bfseries Put} (char c)\label{class_file_write_stream_af6a6061d0accd939fa475b9b34427d85}
+
+\item 
+\hypertarget{class_file_write_stream_ad9ec108b24316a2c1c83c6ddc75d308a}{}\hyperlink{_s_d_l__audio_8h_a52835ae37c4bb905b903cbaf5d04b05f}{void} {\bfseries Put\+N} (char c, size\+\_\+t n)\label{class_file_write_stream_ad9ec108b24316a2c1c83c6ddc75d308a}
+
+\item 
+\hypertarget{class_file_write_stream_a939fbf183ba36464c5e0837df4329d37}{}\hyperlink{_s_d_l__audio_8h_a52835ae37c4bb905b903cbaf5d04b05f}{void} {\bfseries Flush} ()\label{class_file_write_stream_a939fbf183ba36464c5e0837df4329d37}
+
+\item 
+\hypertarget{class_file_write_stream_a83a8321c33738544f05330f3638e51c0}{}char {\bfseries Peek} () const \label{class_file_write_stream_a83a8321c33738544f05330f3638e51c0}
+
+\item 
+\hypertarget{class_file_write_stream_ac927a0ae09a85eaba58a74ceb04b40ed}{}char {\bfseries Take} ()\label{class_file_write_stream_ac927a0ae09a85eaba58a74ceb04b40ed}
+
+\item 
+\hypertarget{class_file_write_stream_a72889b68dbd766cea0e003389b990722}{}size\+\_\+t {\bfseries Tell} () const \label{class_file_write_stream_a72889b68dbd766cea0e003389b990722}
+
+\item 
+\hypertarget{class_file_write_stream_a4d1340a64fde3f16ac2afce19537c75e}{}char $\ast$ {\bfseries Put\+Begin} ()\label{class_file_write_stream_a4d1340a64fde3f16ac2afce19537c75e}
+
+\item 
+\hypertarget{class_file_write_stream_a54b14047e4c998db0594290605f8f0dc}{}size\+\_\+t {\bfseries Put\+End} (char $\ast$)\label{class_file_write_stream_a54b14047e4c998db0594290605f8f0dc}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Wrapper of C file stream for input using fread(). 
+
+\begin{DoxyNote}{Note}
+implements Stream concept 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/include/rapidjson/filewritestream.\+h\end{DoxyCompactItemize}

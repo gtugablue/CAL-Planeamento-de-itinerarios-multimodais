@@ -18,6 +18,9 @@ using namespace std;
 class Graph;
 class Edge;
 
+/**
+ * @brief Implements an interface to draw a graph using SDL
+ */
 class SDLGraphDraw{
 private:
 	static unsigned int h_res;

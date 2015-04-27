@@ -20,6 +20,9 @@
 
 class TransportRoute;
 
+/**
+ * @brief represents a transport stop of any type
+ */
 class TransportStop: public Vertex {
 protected:
 	std::string name;

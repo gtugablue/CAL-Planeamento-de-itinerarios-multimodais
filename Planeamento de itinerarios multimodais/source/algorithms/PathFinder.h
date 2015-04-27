@@ -9,6 +9,9 @@
 #include "Dijsktra.h"
 #include "BruteForce.h"
 
+/**
+ * @brief Interface to read user configurations and select algorithms and data structures to use
+ */
 class PathFinder{
 
 public:

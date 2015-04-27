@@ -263,6 +263,16 @@ Uint32 my_callbackfunc(Uint32 interval, void *param)
 	return(interval);
 }
 
+/**
+\mainpage Planeamento de Itinerarios Multimodais - Documentation
+
+This project was made for the course "Concecao e Analise de Algoritmos" at the\n
+"Mestrado Integrado em Engenharia Informatica e Computacao" of the "Universidade do Porto".\n
+To do this, we used the SDL C++ library and the Boost library. To compile the project the boost\n
+library must be under "C:\boost". To run the project you must copy file "SDL2.dll" from the \n
+lib folder to the folder of the executable.
+*/
+
 int main(int argc, char* argv[]) {
 
 	double ini, fin;

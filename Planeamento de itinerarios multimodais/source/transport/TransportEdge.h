@@ -14,6 +14,9 @@
 #include "WeightInfo.h"
 #include "TransportSpeeds.h"
 
+/**
+ * @brief represents the connection between two stops
+ */
 class TransportEdge: public Edge {
 protected:
 	std::vector<Coordinates> line;

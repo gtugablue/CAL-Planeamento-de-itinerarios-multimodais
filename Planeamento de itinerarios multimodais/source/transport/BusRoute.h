@@ -15,6 +15,9 @@
 #include "Hour.h"
 #include "TransportRoute.h"
 
+/**
+ * @brief Represents a BusRoute, having a set of BusStop 's ordered in a certain way
+ */
 class BusRoute: public TransportRoute {
 private:
 public:

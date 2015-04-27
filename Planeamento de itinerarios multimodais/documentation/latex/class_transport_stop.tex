@@ -1,0 +1,412 @@
+\hypertarget{class_transport_stop}{}\section{Transport\+Stop Class Reference}
+\label{class_transport_stop}\index{Transport\+Stop@{Transport\+Stop}}
+
+
+represents a transport stop of any type  
+
+
+
+
+{\ttfamily \#include $<$Transport\+Stop.\+h$>$}
+
+Inheritance diagram for Transport\+Stop\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_transport_stop}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_transport_stop_af12f0e4489f285dc6d4ba723b8f026d1}{Transport\+Stop} (const std\+::string \&name, const \hyperlink{class_coordinates}{Coordinates} \&coords, const std\+::string \&route\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Default class constructor. \end{DoxyCompactList}\item 
+\hypertarget{class_transport_stop_a6ff14aa5560dee86b741720a670eaf52}{}string {\bfseries get\+Route\+Name} () const \label{class_transport_stop_a6ff14aa5560dee86b741720a670eaf52}
+
+\item 
+std\+::string \hyperlink{class_transport_stop_a517602c38c031001c46bf176261fc8f3}{get\+Name} () const 
+\begin{DoxyCompactList}\small\item\em Get Stop name. \end{DoxyCompactList}\item 
+void \hyperlink{class_transport_stop_aaa6a1aa4b046a530ef443fcde0e04cfa}{set\+Route\+Name} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em set Stop name \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_transport_stop_a22ed12a90c26edcc285b94bf9e345177}{get\+Route} () const 
+\begin{DoxyCompactList}\small\item\em Get Stop\textquotesingle{}s route name. \end{DoxyCompactList}\item 
+const \hyperlink{class_hour}{Hour} \& \hyperlink{class_transport_stop_a78b98922c8778bf781b6c194e2e6d39f}{get\+Arrival\+Time} () const 
+\begin{DoxyCompactList}\small\item\em Get arrival time at stop. \end{DoxyCompactList}\item 
+void \hyperlink{class_transport_stop_a5c5dabee8026a55ab610c5c57724adef}{add\+Hour} (const \hyperlink{class_hour}{Hour} \&hour)
+\begin{DoxyCompactList}\small\item\em Adds an hour to the Stop. Every Stop has several \hyperlink{class_hour}{Hour}\textquotesingle{}s, representing all the moments when transports stop there. \end{DoxyCompactList}\item 
+\hyperlink{class_transport_route}{Transport\+Route} $\ast$ \hyperlink{class_transport_stop_abc8403a9e107f7dcb8edc525aef7ed3c}{get\+Transport\+Route} () const 
+\begin{DoxyCompactList}\small\item\em Gets the route in which the \hyperlink{class_transport_stop}{Transport\+Stop} is located. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \hyperlink{class_hour}{Hour} $>$ \& \hyperlink{class_transport_stop_a912501b3b2bb1a68ee443a0fb66575ad}{get\+Schedule} () const 
+\begin{DoxyCompactList}\small\item\em Gets the set of times (\hyperlink{class_hour}{Hour}\textquotesingle{}s) when transports stop at this stop. \end{DoxyCompactList}\item 
+void \hyperlink{class_transport_stop_a3de4faae6f399f1c7e844f3b4aeb9f56}{set\+Transport\+Route} (\hyperlink{class_transport_route}{Transport\+Route} $\ast$transport\+Route)
+\begin{DoxyCompactList}\small\item\em Assign the Stop to a specific route. \end{DoxyCompactList}\item 
+void \hyperlink{class_transport_stop_acf542b1d06522bd3971fc8400df331b2}{set\+Schedule} (std\+::vector$<$ \hyperlink{class_hour}{Hour} $>$ schedule)
+\begin{DoxyCompactList}\small\item\em Sets the Stop\textquotesingle{}s schedule after a given one. \end{DoxyCompactList}\item 
+bool \hyperlink{class_transport_stop_ade8b9ee395616a37616d05e4cb7a0421}{has\+Schedule} () const 
+\begin{DoxyCompactList}\small\item\em Determines if there is any schedule assigned to the stop. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_transport_stop_a862190c81155a2aca27493d268a6c1d6}{set\+Parent} (\hyperlink{class_edge}{Edge} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Sets the stop\textquotesingle{}s vertex\textquotesingle{}s parent to the one specified. \end{DoxyCompactList}\item 
+double \hyperlink{class_transport_stop_ac8451eda14c724048a7afcab1dfb0d3d}{calc\+Waiting\+Time} (\hyperlink{class_hour}{Hour} current\+Hour) const 
+\begin{DoxyCompactList}\small\item\em Calculates the time between the arrival hour at the vertex and the next transport arriving. \end{DoxyCompactList}\item 
+double \hyperlink{class_transport_stop_a2cce3ec4e28f8952981d14d5913f058e}{calculate\+H} (\hyperlink{class_vertex}{Vertex} $\ast$v)
+\begin{DoxyCompactList}\small\item\em Calculates the value of the heuristic (A$\ast$ algorithm) to a certain destination vertex. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_transport_stop_a49e75a0fc1e7e2b62fe0a6894ba4e12a}{operator==} (const \hyperlink{class_transport_stop}{Transport\+Stop} \&transport\+Stop) const 
+\begin{DoxyCompactList}\small\item\em Compares two \hyperlink{class_transport_stop}{Transport\+Stop}\textquotesingle{}s. \end{DoxyCompactList}\item 
+\hypertarget{class_transport_stop_aa320bbb6a30f75d415cf7a37bb4ab6bd}{}virtual \hyperlink{class_transport_stop_aa320bbb6a30f75d415cf7a37bb4ab6bd}{$\sim$\+Transport\+Stop} ()\label{class_transport_stop_aa320bbb6a30f75d415cf7a37bb4ab6bd}
+
+\begin{DoxyCompactList}\small\item\em destructor for the class \end{DoxyCompactList}\item 
+void \hyperlink{class_transport_stop_aaa8fd2447f2d70ef03163e679620730a}{user\+Add\+To\+Graph} (\hyperlink{class_graph}{Graph} $\ast$g)
+\begin{DoxyCompactList}\small\item\em adds the Stop\textquotesingle{}s vertex to the graph specified (used with user\textquotesingle{}s click position) \end{DoxyCompactList}\item 
+void \hyperlink{class_transport_stop_a98fe1e72c2188413957cc39269a04874}{user\+Removefrom\+Graph} (\hyperlink{class_graph}{Graph} $\ast$g)
+\begin{DoxyCompactList}\small\item\em removes the user added \hyperlink{class_vertex}{Vertex} from the graph \end{DoxyCompactList}\item 
+virtual std\+::string \hyperlink{class_transport_stop_a245cff19d0ef473d56b93036042478ef}{get\+Name\+And\+Type} () const 
+\begin{DoxyCompactList}\small\item\em returns a string with the Stop\textquotesingle{}s name and type (e.\+x. Bus\+: A\+V. D\+O\+S A\+L\+I\+A\+D\+O\+S) \end{DoxyCompactList}\item 
+void \hyperlink{class_transport_stop_a55374e514b51c860efae36497636ef3d}{set\+Arrival\+Time} (\hyperlink{class_hour}{Hour} newarrival)
+\begin{DoxyCompactList}\small\item\em sets the arrival time at the stop to the one specified \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_transport_stop_a1b3cfb83e138c05d6055007eb33dc7d4}{}std\+::string {\bfseries name}\label{class_transport_stop_a1b3cfb83e138c05d6055007eb33dc7d4}
+
+\item 
+\hypertarget{class_transport_stop_ab6588e60c61ec1c3e84f4d02bbd7cd5a}{}std\+::string {\bfseries route\+\_\+name}\label{class_transport_stop_ab6588e60c61ec1c3e84f4d02bbd7cd5a}
+
+\item 
+\hypertarget{class_transport_stop_ab2ed9888de5724ead0d7211d21cd8c8c}{}\hyperlink{class_transport_route}{Transport\+Route} $\ast$ {\bfseries transport\+Route}\label{class_transport_stop_ab2ed9888de5724ead0d7211d21cd8c8c}
+
+\item 
+\hypertarget{class_transport_stop_a4597a847ea2dcbfa294910658d9e1309}{}std\+::vector$<$ \hyperlink{class_hour}{Hour} $>$ {\bfseries schedule}\label{class_transport_stop_a4597a847ea2dcbfa294910658d9e1309}
+
+\item 
+\hypertarget{class_transport_stop_a38dccba7563c16328ff723468c474064}{}\hyperlink{class_hour}{Hour} {\bfseries arrival}\label{class_transport_stop_a38dccba7563c16328ff723468c474064}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+represents a transport stop of any type 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_transport_stop_af12f0e4489f285dc6d4ba723b8f026d1}{}\index{Transport\+Stop@{Transport\+Stop}!Transport\+Stop@{Transport\+Stop}}
+\index{Transport\+Stop@{Transport\+Stop}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{Transport\+Stop}]{\setlength{\rightskip}{0pt plus 5cm}Transport\+Stop\+::\+Transport\+Stop (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{name, }
+\item[{const {\bf Coordinates} \&}]{coords, }
+\item[{const std\+::string \&}]{route\+\_\+name}
+\end{DoxyParamCaption}
+)}\label{class_transport_stop_af12f0e4489f285dc6d4ba723b8f026d1}
+
+
+Default class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \hyperlink{class_transport_stop}{Transport\+Stop}\textquotesingle{}s name (e.\+x. \char`\"{}\+A\+V. D\+O\+S A\+L\+I\+A\+D\+O\+S\char`\"{}) \\
+\hline
+{\em coords} & \hyperlink{class_coordinates}{Coordinates} of the stop \\
+\hline
+{\em route\+\_\+name} & name for the Stop\textquotesingle{}s route \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_transport_stop_a5c5dabee8026a55ab610c5c57724adef}{}\index{Transport\+Stop@{Transport\+Stop}!add\+Hour@{add\+Hour}}
+\index{add\+Hour@{add\+Hour}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{add\+Hour}]{\setlength{\rightskip}{0pt plus 5cm}void Transport\+Stop\+::add\+Hour (
+\begin{DoxyParamCaption}
+\item[{const {\bf Hour} \&}]{hour}
+\end{DoxyParamCaption}
+)}\label{class_transport_stop_a5c5dabee8026a55ab610c5c57724adef}
+
+
+Adds an hour to the Stop. Every Stop has several \hyperlink{class_hour}{Hour}\textquotesingle{}s, representing all the moments when transports stop there. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hour} & \hyperlink{class_hour}{Hour} to be added \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_transport_stop_a2cce3ec4e28f8952981d14d5913f058e}{}\index{Transport\+Stop@{Transport\+Stop}!calculate\+H@{calculate\+H}}
+\index{calculate\+H@{calculate\+H}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{calculate\+H}]{\setlength{\rightskip}{0pt plus 5cm}double Transport\+Stop\+::calculate\+H (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertex} $\ast$}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_transport_stop_a2cce3ec4e28f8952981d14d5913f058e}
+
+
+Calculates the value of the heuristic (A$\ast$ algorithm) to a certain destination vertex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & destination vertex \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value of the heuristic 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_vertex_a17ef9b29d37ff0ddbc769802b2fb307e}{Vertex}.
+
+\hypertarget{class_transport_stop_ac8451eda14c724048a7afcab1dfb0d3d}{}\index{Transport\+Stop@{Transport\+Stop}!calc\+Waiting\+Time@{calc\+Waiting\+Time}}
+\index{calc\+Waiting\+Time@{calc\+Waiting\+Time}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{calc\+Waiting\+Time}]{\setlength{\rightskip}{0pt plus 5cm}double Transport\+Stop\+::calc\+Waiting\+Time (
+\begin{DoxyParamCaption}
+\item[{{\bf Hour}}]{current\+Hour}
+\end{DoxyParamCaption}
+) const}\label{class_transport_stop_ac8451eda14c724048a7afcab1dfb0d3d}
+
+
+Calculates the time between the arrival hour at the vertex and the next transport arriving. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Hour} & time of arrival at the stop \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ammount of seconds between the current\+Hour and the next transport 
+\end{DoxyReturn}
+\hypertarget{class_transport_stop_a78b98922c8778bf781b6c194e2e6d39f}{}\index{Transport\+Stop@{Transport\+Stop}!get\+Arrival\+Time@{get\+Arrival\+Time}}
+\index{get\+Arrival\+Time@{get\+Arrival\+Time}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{get\+Arrival\+Time}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Hour}\& Transport\+Stop\+::get\+Arrival\+Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_transport_stop_a78b98922c8778bf781b6c194e2e6d39f}
+
+
+Get arrival time at stop. 
+
+\begin{DoxyReturn}{Returns}
+The \hyperlink{class_hour}{Hour} the path arrived at the stop during path calculation. 
+\end{DoxyReturn}
+\hypertarget{class_transport_stop_a517602c38c031001c46bf176261fc8f3}{}\index{Transport\+Stop@{Transport\+Stop}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{get\+Name}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Transport\+Stop\+::get\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_transport_stop_a517602c38c031001c46bf176261fc8f3}
+
+
+Get Stop name. 
+
+\begin{DoxyReturn}{Returns}
+Name of the transport stop 
+\end{DoxyReturn}
+\hypertarget{class_transport_stop_a245cff19d0ef473d56b93036042478ef}{}\index{Transport\+Stop@{Transport\+Stop}!get\+Name\+And\+Type@{get\+Name\+And\+Type}}
+\index{get\+Name\+And\+Type@{get\+Name\+And\+Type}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{get\+Name\+And\+Type}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::string Transport\+Stop\+::get\+Name\+And\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_transport_stop_a245cff19d0ef473d56b93036042478ef}
+
+
+returns a string with the Stop\textquotesingle{}s name and type (e.\+x. Bus\+: A\+V. D\+O\+S A\+L\+I\+A\+D\+O\+S) 
+
+\begin{DoxyReturn}{Returns}
+string with the specified text 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_bus_stop_a508c7cf008dcb6072ce4a5179cefd42d}{Bus\+Stop}, and \hyperlink{class_metro_stop_ab2805dfc9f452e981ca71028c64cef38}{Metro\+Stop}.
+
+\hypertarget{class_transport_stop_a22ed12a90c26edcc285b94bf9e345177}{}\index{Transport\+Stop@{Transport\+Stop}!get\+Route@{get\+Route}}
+\index{get\+Route@{get\+Route}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{get\+Route}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Transport\+Stop\+::get\+Route (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_transport_stop_a22ed12a90c26edcc285b94bf9e345177}
+
+
+Get Stop\textquotesingle{}s route name. 
+
+\begin{DoxyReturn}{Returns}
+Name of the transport stop route 
+\end{DoxyReturn}
+\hypertarget{class_transport_stop_a912501b3b2bb1a68ee443a0fb66575ad}{}\index{Transport\+Stop@{Transport\+Stop}!get\+Schedule@{get\+Schedule}}
+\index{get\+Schedule@{get\+Schedule}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{get\+Schedule}]{\setlength{\rightskip}{0pt plus 5cm}const vector$<$ {\bf Hour} $>$ \& Transport\+Stop\+::get\+Schedule (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_transport_stop_a912501b3b2bb1a68ee443a0fb66575ad}
+
+
+Gets the set of times (\hyperlink{class_hour}{Hour}\textquotesingle{}s) when transports stop at this stop. 
+
+\begin{DoxyReturn}{Returns}
+vector of \hyperlink{class_hour}{Hour} objets representing the schedule 
+\end{DoxyReturn}
+\hypertarget{class_transport_stop_abc8403a9e107f7dcb8edc525aef7ed3c}{}\index{Transport\+Stop@{Transport\+Stop}!get\+Transport\+Route@{get\+Transport\+Route}}
+\index{get\+Transport\+Route@{get\+Transport\+Route}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{get\+Transport\+Route}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Transport\+Route} $\ast$ Transport\+Stop\+::get\+Transport\+Route (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_transport_stop_abc8403a9e107f7dcb8edc525aef7ed3c}
+
+
+Gets the route in which the \hyperlink{class_transport_stop}{Transport\+Stop} is located. 
+
+\begin{DoxyReturn}{Returns}
+Stop\textquotesingle{}s route 
+\end{DoxyReturn}
+\hypertarget{class_transport_stop_ade8b9ee395616a37616d05e4cb7a0421}{}\index{Transport\+Stop@{Transport\+Stop}!has\+Schedule@{has\+Schedule}}
+\index{has\+Schedule@{has\+Schedule}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{has\+Schedule}]{\setlength{\rightskip}{0pt plus 5cm}bool Transport\+Stop\+::has\+Schedule (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_transport_stop_ade8b9ee395616a37616d05e4cb7a0421}
+
+
+Determines if there is any schedule assigned to the stop. 
+
+\begin{DoxyReturn}{Returns}
+true when the stop has a schedule, false otherwise 
+\end{DoxyReturn}
+\hypertarget{class_transport_stop_a49e75a0fc1e7e2b62fe0a6894ba4e12a}{}\index{Transport\+Stop@{Transport\+Stop}!operator==@{operator==}}
+\index{operator==@{operator==}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Transport\+Stop\+::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Transport\+Stop} \&}]{transport\+Stop}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_transport_stop_a49e75a0fc1e7e2b62fe0a6894ba4e12a}
+
+
+Compares two \hyperlink{class_transport_stop}{Transport\+Stop}\textquotesingle{}s. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transport\+Stop} & Stop to compare to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if both are equal, false otherwise 
+\end{DoxyReturn}
+\hypertarget{class_transport_stop_a55374e514b51c860efae36497636ef3d}{}\index{Transport\+Stop@{Transport\+Stop}!set\+Arrival\+Time@{set\+Arrival\+Time}}
+\index{set\+Arrival\+Time@{set\+Arrival\+Time}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{set\+Arrival\+Time}]{\setlength{\rightskip}{0pt plus 5cm}void Transport\+Stop\+::set\+Arrival\+Time (
+\begin{DoxyParamCaption}
+\item[{{\bf Hour}}]{newarrival}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_transport_stop_a55374e514b51c860efae36497636ef3d}
+
+
+sets the arrival time at the stop to the one specified 
+
+
+\begin{DoxyParams}{Parameters}
+{\em newarrival} & \hyperlink{class_hour}{Hour} value to be set \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_transport_stop_a862190c81155a2aca27493d268a6c1d6}{}\index{Transport\+Stop@{Transport\+Stop}!set\+Parent@{set\+Parent}}
+\index{set\+Parent@{set\+Parent}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{set\+Parent}]{\setlength{\rightskip}{0pt plus 5cm}void Transport\+Stop\+::set\+Parent (
+\begin{DoxyParamCaption}
+\item[{{\bf Edge} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_transport_stop_a862190c81155a2aca27493d268a6c1d6}
+
+
+Sets the stop\textquotesingle{}s vertex\textquotesingle{}s parent to the one specified. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \hyperlink{class_edge}{Edge} to be assigned as parent for the vertex \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_vertex_a330546da58f086e183ae8ee41f5eb7fb}{Vertex}.
+
+\hypertarget{class_transport_stop_aaa6a1aa4b046a530ef443fcde0e04cfa}{}\index{Transport\+Stop@{Transport\+Stop}!set\+Route\+Name@{set\+Route\+Name}}
+\index{set\+Route\+Name@{set\+Route\+Name}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{set\+Route\+Name}]{\setlength{\rightskip}{0pt plus 5cm}void Transport\+Stop\+::set\+Route\+Name (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_transport_stop_aaa6a1aa4b046a530ef443fcde0e04cfa}
+
+
+set Stop name 
+
+\begin{DoxyReturn}{Returns}
+Name of the transport stop 
+\end{DoxyReturn}
+\hypertarget{class_transport_stop_acf542b1d06522bd3971fc8400df331b2}{}\index{Transport\+Stop@{Transport\+Stop}!set\+Schedule@{set\+Schedule}}
+\index{set\+Schedule@{set\+Schedule}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{set\+Schedule}]{\setlength{\rightskip}{0pt plus 5cm}void Transport\+Stop\+::set\+Schedule (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf Hour} $>$}]{schedule}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_transport_stop_acf542b1d06522bd3971fc8400df331b2}
+
+
+Sets the Stop\textquotesingle{}s schedule after a given one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em schedule} & Vector of Hours to be set as the stop\textquotesingle{}s schedule \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_transport_stop_a3de4faae6f399f1c7e844f3b4aeb9f56}{}\index{Transport\+Stop@{Transport\+Stop}!set\+Transport\+Route@{set\+Transport\+Route}}
+\index{set\+Transport\+Route@{set\+Transport\+Route}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{set\+Transport\+Route}]{\setlength{\rightskip}{0pt plus 5cm}void Transport\+Stop\+::set\+Transport\+Route (
+\begin{DoxyParamCaption}
+\item[{{\bf Transport\+Route} $\ast$}]{transport\+Route}
+\end{DoxyParamCaption}
+)}\label{class_transport_stop_a3de4faae6f399f1c7e844f3b4aeb9f56}
+
+
+Assign the Stop to a specific route. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transport\+Route} & Route the stop is to be assigned to \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_transport_stop_aaa8fd2447f2d70ef03163e679620730a}{}\index{Transport\+Stop@{Transport\+Stop}!user\+Add\+To\+Graph@{user\+Add\+To\+Graph}}
+\index{user\+Add\+To\+Graph@{user\+Add\+To\+Graph}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{user\+Add\+To\+Graph}]{\setlength{\rightskip}{0pt plus 5cm}void Transport\+Stop\+::user\+Add\+To\+Graph (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g}
+\end{DoxyParamCaption}
+)}\label{class_transport_stop_aaa8fd2447f2d70ef03163e679620730a}
+
+
+adds the Stop\textquotesingle{}s vertex to the graph specified (used with user\textquotesingle{}s click position) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & \hyperlink{class_graph}{Graph} to be changed \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_transport_stop_a98fe1e72c2188413957cc39269a04874}{}\index{Transport\+Stop@{Transport\+Stop}!user\+Removefrom\+Graph@{user\+Removefrom\+Graph}}
+\index{user\+Removefrom\+Graph@{user\+Removefrom\+Graph}!Transport\+Stop@{Transport\+Stop}}
+\subsubsection[{user\+Removefrom\+Graph}]{\setlength{\rightskip}{0pt plus 5cm}void Transport\+Stop\+::user\+Removefrom\+Graph (
+\begin{DoxyParamCaption}
+\item[{{\bf Graph} $\ast$}]{g}
+\end{DoxyParamCaption}
+)}\label{class_transport_stop_a98fe1e72c2188413957cc39269a04874}
+
+
+removes the user added \hyperlink{class_vertex}{Vertex} from the graph 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & \hyperlink{class_graph}{Graph} to remove vertex from \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+André/\+Desktop/test/transport/Transport\+Stop.\+h\item 
+C\+:/\+Users/\+André/\+Desktop/test/transport/Transport\+Stop.\+cpp\end{DoxyCompactItemize}

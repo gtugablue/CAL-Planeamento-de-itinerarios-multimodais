@@ -8,7 +8,9 @@
 
 using namespace std;
 
-
+/**
+ * @brief Interface to generate a random graph
+ */
 class GraphGen{
 public:
 	static Graph* randGraph(unsigned int numVertices, unsigned int numEdges, unsigned int minx, unsigned int maxx ,unsigned int miny,unsigned int maxy){

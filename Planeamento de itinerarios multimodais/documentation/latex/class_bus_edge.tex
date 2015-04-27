@@ -1,0 +1,106 @@
+\hypertarget{class_bus_edge}{}\section{Bus\+Edge Class Reference}
+\label{class_bus_edge}\index{Bus\+Edge@{Bus\+Edge}}
+
+
+represents a connection between two \hyperlink{class_bus_stop}{Bus\+Stop} \textquotesingle{}s  
+
+
+
+
+{\ttfamily \#include $<$Bus\+Edge.\+h$>$}
+
+Inheritance diagram for Bus\+Edge\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_bus_edge}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_bus_edge_a339f95411a13acf7c8b700af36a43f93}{Bus\+Edge} (\hyperlink{class_vertex}{Vertex} $\ast$src, \hyperlink{class_vertex}{Vertex} $\ast$dst, const vector$<$ \hyperlink{class_coordinates}{Coordinates} $>$ \&line)
+\begin{DoxyCompactList}\small\item\em bus edge constructor \end{DoxyCompactList}\item 
+\hypertarget{class_bus_edge_a8724578c3c10c755f3936e754c58bf57}{}void \hyperlink{class_bus_edge_a8724578c3c10c755f3936e754c58bf57}{print} () const \label{class_bus_edge_a8724578c3c10c755f3936e754c58bf57}
+
+\begin{DoxyCompactList}\small\item\em print the busedge \end{DoxyCompactList}\item 
+virtual double \hyperlink{class_bus_edge_ad89c82a7f0bf9a49610b5ef437f3dcca}{get\+Speed} () const 
+\begin{DoxyCompactList}\small\item\em get the speed of a bus \end{DoxyCompactList}\item 
+double \hyperlink{class_bus_edge_a186045a2fc5cf2694390552627b5f985}{get\+Weight} ()
+\begin{DoxyCompactList}\small\item\em get weight of edge \end{DoxyCompactList}\item 
+\hypertarget{class_bus_edge_ab8473fb0562c52e08ff70ae0b3ccf6b4}{}virtual \hyperlink{class_bus_edge_ab8473fb0562c52e08ff70ae0b3ccf6b4}{$\sim$\+Bus\+Edge} ()\label{class_bus_edge_ab8473fb0562c52e08ff70ae0b3ccf6b4}
+
+\begin{DoxyCompactList}\small\item\em edge destructor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+represents a connection between two \hyperlink{class_bus_stop}{Bus\+Stop} \textquotesingle{}s 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_bus_edge_a339f95411a13acf7c8b700af36a43f93}{}\index{Bus\+Edge@{Bus\+Edge}!Bus\+Edge@{Bus\+Edge}}
+\index{Bus\+Edge@{Bus\+Edge}!Bus\+Edge@{Bus\+Edge}}
+\subsubsection[{Bus\+Edge}]{\setlength{\rightskip}{0pt plus 5cm}Bus\+Edge\+::\+Bus\+Edge (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertex} $\ast$}]{src, }
+\item[{{\bf Vertex} $\ast$}]{dst, }
+\item[{const vector$<$ {\bf Coordinates} $>$ \&}]{line}
+\end{DoxyParamCaption}
+)}\label{class_bus_edge_a339f95411a13acf7c8b700af36a43f93}
+
+
+bus edge constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & source vertex for edge \\
+\hline
+{\em dst} & source vertex for edge \\
+\hline
+{\em line} & set of points for the line \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_bus_edge_ad89c82a7f0bf9a49610b5ef437f3dcca}{}\index{Bus\+Edge@{Bus\+Edge}!get\+Speed@{get\+Speed}}
+\index{get\+Speed@{get\+Speed}!Bus\+Edge@{Bus\+Edge}}
+\subsubsection[{get\+Speed}]{\setlength{\rightskip}{0pt plus 5cm}double Bus\+Edge\+::get\+Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_bus_edge_ad89c82a7f0bf9a49610b5ef437f3dcca}
+
+
+get the speed of a bus 
+
+\begin{DoxyReturn}{Returns}
+bus speed 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_transport_edge_a1e85cb198714507e2b1466b86f97b676}{Transport\+Edge}.
+
+\hypertarget{class_bus_edge_a186045a2fc5cf2694390552627b5f985}{}\index{Bus\+Edge@{Bus\+Edge}!get\+Weight@{get\+Weight}}
+\index{get\+Weight@{get\+Weight}!Bus\+Edge@{Bus\+Edge}}
+\subsubsection[{get\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}double Bus\+Edge\+::get\+Weight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_bus_edge_a186045a2fc5cf2694390552627b5f985}
+
+
+get weight of edge 
+
+\begin{DoxyReturn}{Returns}
+weight of edge 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_transport_edge_ad2b8f66adec9223e97752ae1fb621c0e}{Transport\+Edge}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+André/\+Desktop/test/transport/Bus\+Edge.\+h\item 
+C\+:/\+Users/\+André/\+Desktop/test/transport/Bus\+Edge.\+cpp\end{DoxyCompactItemize}

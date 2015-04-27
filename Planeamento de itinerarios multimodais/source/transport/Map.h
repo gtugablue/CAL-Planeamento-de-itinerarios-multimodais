@@ -27,6 +27,9 @@
 #include "MetroRoute.h"
 #include "../graph/Graph.h"
 
+/**
+ * @brief Abstraction to the real "world" map, able to convert it to a Graph
+ */
 class Map {
 private:
 	std::vector<BusRoute> busRoutes;
