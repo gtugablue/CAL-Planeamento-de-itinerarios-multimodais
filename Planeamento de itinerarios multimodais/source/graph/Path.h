@@ -111,6 +111,7 @@ public:
 
 		WeightInfo w;
 		string prev_line = "";
+		bool printTime = false;
 
 		size_t i;
 		Vertex* v;
@@ -136,11 +137,22 @@ public:
 						Vertex * v2 = p.edges[i-1]->getSrc();
 						TransportStop* ts2 = dynamic_cast<TransportStop*>(v2);
 						if(ts2 != NULL)
+						{
 							os << "Switch from " << ts2->getName() << " to:" << endl;
+							printTime = true;
+						}
 						else
 							os << "Switch to:" << endl;
 					}
-					os << ts->getName() << " - Line " << ts->getRouteName() << " [" << ts->getArrivalTime() << "]" << endl;
+					os << ts->getName() << " - Line " << ts->getRouteName() << " [" << ts->getArrivalTime() << "]";
+
+					if(printTime)
+					{
+						printTime = false;
+						os << " (" << ts->calcWaitingTime(ts->getArrivalTime())/60 << " minutes of wait)";
+					}
+
+					os << endl;
 				}
 			}
 			prev_line = ts->getRouteName();
@@ -153,7 +165,14 @@ public:
 			if(ts != NULL)
 			{
 				if(p.edges.size() > 1)
-					os << "Walk to:" << endl;
+				{
+					Vertex * v2 = p.edges[p.edges.size() - 1]->getSrc();
+					TransportStop* ts2 = dynamic_cast<TransportStop*>(v2);
+					if(ts2 != NULL)
+						os << "Leave at " << ts2->getName() << " and walk to:" << endl;
+					else
+						os << "Walk to:" << endl;
+				}
 
 				os << ts->getNameAndType() << " [" << ts->getArrivalTime() << "]" << endl;
 			}
