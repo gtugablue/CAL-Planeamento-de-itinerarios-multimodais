@@ -145,8 +145,8 @@ public:
 			TransportStop* ts = dynamic_cast<TransportStop*>(v);
 			if(ts != NULL)
 			{
-				//if(p.edges.size() > 1)
-				//	os << "Walk to:" << endl;
+				if(p.edges.size() > 1)
+					os << "Walk to:" << endl;
 
 				os << ts->getNameAndType() << " [" << ts->getArrivalTime() << "]" << endl;
 			}
