@@ -264,8 +264,6 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 {
 	rapidjson::Document dStops;
 	parseJsonFile(dataFolder + "metro.json", dStops);
-	vector<MetroStop *> metroStops = loadMetroStops(dStops);
-	vector<MetroStop *> reverseMetroStops = loadMetroStops(dStops);
 
 	rapidjson::Document dLines;
 	parseJsonFile(dataFolder + "metroLines.json", dLines);
@@ -273,6 +271,9 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 	// Loop through all lines
 	for (size_t i = 0; i < dLines.Size(); ++i)
 	{
+		vector<MetroStop *> metroStops = loadMetroStops(dStops);
+		vector<MetroStop *> reverseMetroStops = loadMetroStops(dStops);
+
 		// Get line's name
 		string code = dLines[i]["code"].GetString();
 
@@ -289,6 +290,7 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 		{
 			metroStop = findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString());
 			metroStop->setRouteName(code);
+			cout << "code: " << code << endl;
 			metroRoute.addStop(metroStop);
 
 			// Create Metro Edge
