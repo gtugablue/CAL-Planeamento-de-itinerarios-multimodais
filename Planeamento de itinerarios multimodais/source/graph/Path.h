@@ -110,6 +110,7 @@ public:
 	friend ostream& operator<<(ostream& os, Path& p){
 
 		WeightInfo w;
+		string prev_line = "";
 
 		size_t i;
 		Vertex* v;
@@ -125,13 +126,17 @@ public:
 			if(te != NULL)
 			{
 				w = w + te->getWeightInfo();
-				if(te->getWeightInfo().getSwitchs() > 0)
-				{
-				}
 
-				if(i != 0)
+				if(i == 0)
+					os << "Walk to:" << endl;
+				if(i != 0 && prev_line != ts->getRouteName())
+				{
+					if(i != 1)
+						os << "Switch to:" << endl;
 					os << ts->getName() << " - Line " << ts->getRouteName() << " [" << ts->getArrivalTime() << "]" << endl;
+				}
 			}
+			prev_line = ts->getRouteName();
 		}
 
 		if(p.edges.size() > 0)
@@ -140,9 +145,17 @@ public:
 			TransportStop* ts = dynamic_cast<TransportStop*>(v);
 			if(ts != NULL)
 			{
+				if(p.edges.size() > 1)
+					os << "Walk to:" << endl;
+
 				os << ts->getNameAndType() << " [" << ts->getArrivalTime() << "]" << endl;
 			}
 		}
+
+		int temp = w.getSwitchs();
+		temp -= 2;
+		if(temp<0) temp = 0;
+		w.setSwitchs(temp);
 
 		os << endl << "==> Total path cost:" << endl << w << endl;
 
