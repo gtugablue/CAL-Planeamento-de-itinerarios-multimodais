@@ -57,7 +57,7 @@ public:
 		MetroStop *findClosestMetroStop(const std::vector<MetroStop *> metroStops, const std::string metroStopCode) const;
 		std::vector<MetroRoute> loadMetroRoutes() const;
 		Hour generateRandomHour() const;
-		void generateRandomTransportSchedule(TransportRoute *transportRoute) const;
+		void generateRandomTransportSchedule(unsigned dailyFrequency, TransportRoute *transportRoute) const;
 		void createConnectingEdges(vector<BusRoute> &busRoutes, vector<MetroRoute> &metroRoutes) const;
 		void connectToClosests(vector<BusRoute> &busRoutes, vector<MetroRoute> &metroRoutes, TransportStop *transportStop) const;
 		void saveConnectingEdges(const vector<BusRoute> &busRoutes, const vector<MetroRoute> &metroRoutes) const;

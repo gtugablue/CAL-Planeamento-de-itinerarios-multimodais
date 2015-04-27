@@ -165,7 +165,7 @@ vector<BusRoute> Map::Loader::loadBusRoutes() const
 			busRoute.addStop(busStops[busStops.size() - 1]);
 
 			// Generate a random schedule
-			generateRandomTransportSchedule(&busRoute);
+			generateRandomTransportSchedule(rand() % 60 + 24,&busRoute);
 
 			// Add Route to the Bus Routes vector
 			busRoutes.push_back(busRoute);
@@ -299,7 +299,7 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 		}
 
 		// Generate a random schedule
-		generateRandomTransportSchedule(&metroRoute);
+		generateRandomTransportSchedule(rand() % 50 + 100, &metroRoute);
 
 		// Add the Route to the Metro Route vector
 		metroRoutes.push_back(metroRoute);
@@ -315,7 +315,7 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 			metroRoute2.addStop(metroStop);
 			last = metroStop;
 		}
-		generateRandomTransportSchedule(&metroRoute2);
+		generateRandomTransportSchedule(rand() % 50 + 100, &metroRoute2);
 		metroRoutes.push_back(metroRoute2);
 	}
 
@@ -327,12 +327,11 @@ Hour Map::Loader::generateRandomHour() const
 	return Hour(rand() % 24, rand() % 60);
 }
 
-void Map::Loader::generateRandomTransportSchedule(TransportRoute *transportRoute) const
+void Map::Loader::generateRandomTransportSchedule(unsigned dailyFrequency, TransportRoute *transportRoute) const
 {
 	vector<TransportStop *> transportStops = transportRoute->getStops();
 	vector<Hour> linearSchedule;
 	linearSchedule.push_back(generateRandomHour());
-	unsigned dailyFrequency = rand() % 50 + 15;
 	for (size_t i = 0; i < transportStops.size(); ++i)
 	{
 		if (i == 0)
