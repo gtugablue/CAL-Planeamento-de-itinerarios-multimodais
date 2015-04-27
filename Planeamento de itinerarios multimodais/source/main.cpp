@@ -371,7 +371,6 @@ int main(int argc, char* argv[]) {
 
 			if(src == NULL){
 				src = new TransportStop("Source", world);
-				((TransportStop*)src)->setArrivalTime(conf.getStartHour());
 				((TransportStop*)src)->userAddToGraph(g1);
 			}
 			else if(dst == NULL){
