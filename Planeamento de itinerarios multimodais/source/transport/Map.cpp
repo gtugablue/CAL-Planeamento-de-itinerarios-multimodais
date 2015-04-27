@@ -562,10 +562,6 @@ Graph Map::generateGraph() const
 		for (size_t j = 0; j < busRoutes[i].getStops().size(); ++j)
 		{
 			graph.addVertex(busRoutes[i].getStops()[j]);
-			for (size_t k = 0; k < busRoutes[i].getStops()[j]->getAdj().size(); ++k)
-			{
-				graph.addVertex(busRoutes[i].getStops()[j]->getAdj()[k]->getDst());
-			}
 		}
 	}
 	for (size_t i = 0; i < metroRoutes.size(); ++i)
@@ -573,10 +569,6 @@ Graph Map::generateGraph() const
 		for (size_t j = 0; j < metroRoutes[i].getStops().size(); ++j)
 		{
 			graph.addVertex(metroRoutes[i].getStops()[j]);
-			for (size_t k = 0; k < metroRoutes[i].getStops()[j]->getAdj().size(); ++k)
-			{
-				graph.addVertex(metroRoutes[i].getStops()[j]->getAdj()[k]->getDst());
-			}
 		}
 	}
 	return graph;
