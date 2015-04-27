@@ -141,7 +141,7 @@ void ProgramConfig::getFromConsole()
 	cout << " Hours : ";
 	hours = readInt(23);
 	cout << " Minutes : ";
-	hours = readInt(59);
+	minutes = readInt(59);
 
 	this->startHour = Hour(hours, minutes);
 }
