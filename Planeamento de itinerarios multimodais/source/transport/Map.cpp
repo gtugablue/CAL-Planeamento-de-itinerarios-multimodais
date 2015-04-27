@@ -73,7 +73,7 @@ void Map::Loader::findBusInfoFromFileName(const string &fileName, std::string &c
 	direction = string(strtok(NULL, "-.")) == "0" ? false : true;
 }
 
-vector<BusStop *> Map::Loader::loadBusStops(const rapidjson::Document &d) const
+vector<BusStop *> Map::Loader::loadBusStops(const rapidjson::Document &d, const string& rt_code) const
 {
 	vector<BusStop *> busStops;
 	for (int i = d["locations"].Size() - 1; i >= 0; --i)
@@ -83,7 +83,7 @@ vector<BusStop *> Map::Loader::loadBusStops(const rapidjson::Document &d) const
 		rapidjson::Document geo;
 		geo.Parse(geomdesc.c_str());
 		rapidjson::Value &coords = geo["coordinates"];
-		busStops.push_back(new BusStop(location["code"].GetString(), location["name"].GetString(), Coordinates(coords[1].GetDouble(), coords[0].GetDouble())));
+		busStops.push_back(new BusStop(location["code"].GetString(), location["name"].GetString(), Coordinates(coords[1].GetDouble(), coords[0].GetDouble()), rt_code));
 	}
 	return busStops;
 }
@@ -140,16 +140,16 @@ void Map::Loader::loadBusRoutes(std::vector<BusRoute> &busRoutes) const
 			if (d["route"].Size() == 0) throw InvalidInputException("File has no data to be read.");
 			if (d["route"].Size() != d["locations"].Size() - 1) throw InvalidInputException("File is corrupt.");
 
-			vector<BusStop *> busStops = loadBusStops(d);
-
-			// Load corresponding Bus Edges
-			vector<BusEdge> busEdges = loadBusEdges(d, busStops);
-
 			// Load Bus Route info
 			bool direction;
 			string code;
 			findBusInfoFromFileName(fileNames[i], code, direction);
 			BusRoute busRoute(code, direction);
+
+			vector<BusStop *> busStops = loadBusStops(d, code);
+
+			// Load corresponding Bus Edges
+			vector<BusEdge> busEdges = loadBusEdges(d, busStops);
 
 			// Add adjacent edges to each vertex and add everything to the Bus Route
 			for (size_t i = 0; i < busStops.size() - 1; ++i)
@@ -226,7 +226,7 @@ vector<MetroStop *> Map::Loader::loadMetroStops(rapidjson::Document &d) const
 			if (elements[i].HasMember("tags") && elements[i]["tags"].HasMember("name"))
 			{
 				const rapidjson::Value &tags = elements[i]["tags"];
-				MetroStop *metroStop = new MetroStop(tags["name"].GetString(), coords); // TODO delete
+				MetroStop *metroStop = new MetroStop(tags["name"].GetString(), coords, ""); // TODO delete
 				metroStops.push_back(metroStop);
 			}
 		}
@@ -276,12 +276,14 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 
 		// Add first stop
 		MetroStop *metroStop = findClosestMetroStop(metroStops, dLines[i]["stops"][0].GetString());
+		metroStop->setRouteName(code);
 		metroRoute.addStop(metroStop);
 
 		// Loop through all other stops
 		for (size_t j = 1; j < dLines[i]["stops"].Size(); ++j)
 		{
 			metroStop = findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString());
+			metroStop->setRouteName(code);
 			metroRoute.addStop(metroStop);
 
 			// Create Metro Edge
@@ -303,11 +305,13 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 		// Do the same but in the opposite order
 		MetroRoute metroRoute2(code, true);
 		MetroStop *last = findClosestMetroStop(reverseMetroStops, dLines[i]["stops"][dLines[i]["stops"].Size() - 1].GetString());
+		metroStop->setRouteName(code);
 		metroRoute2.addStop(last);
 		for (int j = dLines[i]["stops"].Size() - 2; j >= 0; --j)
 		{
 			metroStop = findClosestMetroStop(reverseMetroStops, dLines[i]["stops"][j].GetString());
 			last->addEdge(new MetroEdge(last, metroStop)); // TODO delete
+			metroStop->setRouteName(code);
 			metroRoute2.addStop(metroStop);
 			last = metroStop;
 		}

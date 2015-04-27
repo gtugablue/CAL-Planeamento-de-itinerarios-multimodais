@@ -369,11 +369,11 @@ int main(int argc, char* argv[]) {
 			Coordinates world( c->getWorldY(SDLGraphDraw::getVRes(), y),c->getWorldX(SDLGraphDraw::getHRes(), x)) ;
 
 			if(src == NULL){
-				src = new TransportStop("Source", world);
+				src = new TransportStop("Source", world, "NULL");
 				((TransportStop*)src)->userAddToGraph(g1);
 			}
 			else if(dst == NULL){
-				dst = new TransportStop("Destination", world);
+				dst = new TransportStop("Destination", world, "NULL");
 				((TransportStop*)dst)->userAddToGraph(g1);
 				p = PathFinder::find_path(g1, src, dst, conf);
 				cerr << "calculating" << endl;

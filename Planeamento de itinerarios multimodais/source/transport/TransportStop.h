@@ -23,6 +23,7 @@ class TransportRoute;
 class TransportStop: public Vertex {
 protected:
 	std::string name;
+	std::string route_name;
 	TransportRoute *transportRoute;
 	std::vector<Hour> schedule;
 	Hour arrival;
@@ -31,8 +32,21 @@ public:
 	 * @brief Default class constructor
 	 * @param name TransportStop's name (e.x. "AV. DOS ALIADOS")
 	 * @param coords Coordinates of the stop
+	 * @param route_name Name of the stop's route
 	 */
-	TransportStop(const std::string &name, const Coordinates &coords);
+	TransportStop(const std::string &name, const Coordinates &coords, const std::string& route_name);
+
+	/**
+	 * @brief get the stop's route name
+	 * @return stop's route name
+	 */
+	std::string getRouteName() const { return route_name; }
+
+	/**
+	 * @brief set the stop's route name
+	 * @param route name to be set
+	 */
+	void setRouteName(std::string rt_name) { route_name = rt_name; }
 
 	/**
 	 * @brief Get Stop name
