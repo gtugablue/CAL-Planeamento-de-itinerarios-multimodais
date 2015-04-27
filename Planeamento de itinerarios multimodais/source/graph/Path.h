@@ -135,7 +135,7 @@ public:
 					{
 						Vertex * v2 = p.edges[i-1]->getSrc();
 						TransportStop* ts2 = dynamic_cast<TransportStop*>(v2);
-						if(ts2 != NULL && i == 0)
+						if(ts2 != NULL)
 							os << "Switch from " << ts2->getName() << " to:" << endl;
 						else
 							os << "Switch to:" << endl;

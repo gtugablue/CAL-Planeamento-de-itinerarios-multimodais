@@ -218,9 +218,9 @@ void Map::Loader::loadSchedule(const BusRoute &busRoute) const
 	busRoute.interpolateSchedules();*/
 }
 
-vector<MetroStop *> Map::Loader::loadMetroStops(rapidjson::Document &d) const
+vector<MetroStop> Map::Loader::loadMetroStops(rapidjson::Document &d) const
 {
-	vector<MetroStop *> metroStops;
+	vector<MetroStop> metroStops;
 
 	const rapidjson::Value &elements = d["elements"];
 	for (size_t i = 0; i < elements.Size(); ++i)
@@ -231,7 +231,7 @@ vector<MetroStop *> Map::Loader::loadMetroStops(rapidjson::Document &d) const
 			if (elements[i].HasMember("tags") && elements[i]["tags"].HasMember("name"))
 			{
 				const rapidjson::Value &tags = elements[i]["tags"];
-				MetroStop *metroStop = new MetroStop(tags["name"].GetString(), coords, ""); // TODO delete
+				MetroStop metroStop = MetroStop(tags["name"].GetString(), coords, ""); // TODO delete
 				metroStops.push_back(metroStop);
 			}
 		}
@@ -239,16 +239,21 @@ vector<MetroStop *> Map::Loader::loadMetroStops(rapidjson::Document &d) const
 	return metroStops;
 }
 
-MetroStop *Map::Loader::findClosestMetroStop(const vector<MetroStop *> &metroStops, const string &metroStopCode) const
+MetroStop *Map::Loader::loadMetroStop(MetroStop &metroStop)
+{
+	return new MetroStop(metroStop.getName(), metroStop.getCoords(), "");
+}
+
+MetroStop *Map::Loader::findClosestMetroStop(vector<MetroStop> &metroStops, const string &metroStopCode) const
 {
 	MetroStop *closest;
 	unsigned minScore = -1;
 	for (size_t i = 0; i < metroStops.size(); ++i)
 	{
-		unsigned score = levenshteinDistance(metroStops[i]->getName(), metroStopCode);
+		unsigned score = levenshteinDistance(metroStops[i].getName(), metroStopCode);
 		if (score < minScore)
 		{
-			closest = metroStops[i];
+			closest = &metroStops[i];
 			minScore = score;
 		}
 	}
@@ -264,6 +269,7 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 {
 	rapidjson::Document dStops;
 	parseJsonFile(dataFolder + "metro.json", dStops);
+	vector<MetroStop> metroStops = loadMetroStops(dStops);
 
 	rapidjson::Document dLines;
 	parseJsonFile(dataFolder + "metroLines.json", dLines);
@@ -271,9 +277,6 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 	// Loop through all lines
 	for (size_t i = 0; i < dLines.Size(); ++i)
 	{
-		vector<MetroStop *> metroStops = loadMetroStops(dStops);
-		vector<MetroStop *> reverseMetroStops = loadMetroStops(dStops);
-
 		// Get line's name
 		string code = dLines[i]["code"].GetString();
 
@@ -281,14 +284,14 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 		MetroRoute metroRoute(code, true);
 
 		// Add first stop
-		MetroStop *metroStop = findClosestMetroStop(metroStops, dLines[i]["stops"][0].GetString());
+		MetroStop *metroStop = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][0].GetString())); // TODO delete
 		metroStop->setRouteName(code);
 		metroRoute.addStop(metroStop);
 
 		// Loop through all other stops
 		for (size_t j = 1; j < dLines[i]["stops"].Size(); ++j)
 		{
-			metroStop = findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString());
+			metroStop = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString())); // TODO delete
 			metroStop->setRouteName(code);
 			cout << "code: " << code << endl;
 			metroRoute.addStop(metroStop);

@@ -93,6 +93,7 @@ void TransportStop::userRemovefromGraph(Graph* g){
 
 double TransportStop::calcWaitingTime(Hour currentHour) const
 {
+	return 100;
 	if (schedule.size() == 0)
 		return 0;
 
@@ -116,5 +117,9 @@ void TransportStop::setParent(Edge *parent)
 {
 	Vertex::setParent(parent);
 	if(parent != NULL)
+	{
 		arrival = ((TransportStop *)parent->getSrc())->getArrivalTime() + (((TransportEdge *)parent)->calculateTime());
+		arrival += ((TransportStop *)parent->getSrc())->calcWaitingTime(((TransportStop *)parent->getSrc())->getArrivalTime());
+		//arrival +=
+	}
 }
