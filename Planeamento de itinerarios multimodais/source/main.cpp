@@ -226,7 +226,8 @@ static SDL_Renderer* renderer = NULL;
 
 bool init(){
 
-	if(SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_FULLSCREEN_DESKTOP, &window, &renderer))
+	//if(SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_FULLSCREEN_DESKTOP, &window, &renderer))
+	if(SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI, &window, &renderer))
 		return false;
 	SDLGraphDraw::setRes(SCREEN_WIDTH,SCREEN_HEIGHT);
 	srand(time(NULL));
