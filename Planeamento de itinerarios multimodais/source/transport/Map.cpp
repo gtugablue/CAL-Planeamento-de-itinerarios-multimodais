@@ -132,7 +132,6 @@ void Map::Loader::loadBusRoutes(std::vector<BusRoute> &busRoutes) const
 	for (size_t i = 0; i < fileNames.size(); ++i)
 	{
 		try {
-			cout << "Loading file " << fileNames[i] << endl;
 			// Load Bus Stops code, name and coordinates
 			rapidjson::Document d;
 			parseJsonFile(BusEdgesFolder + fileNames[i], d);

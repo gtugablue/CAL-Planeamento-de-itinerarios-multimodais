@@ -69,10 +69,6 @@ Path* astar(Graph* g, Vertex* ini, Vertex* f, GraphQueue<Vertex::AStarComp>* que
 		vertices[i]->resetVisits();
 		vertices[i]->setParent(NULL);
 		vertices[i]->resetBestWeight();
-		for(size_t j = 0; j < vertices[i]->getAdj().size(); j++){
-			if(vertices[i]->getAdj()[j]->getSrc() != vertices[i])
-				cerr << "oops" << vertices[i]->getIndex() << ", " <<vertices[i]->getAdj()[j]->getSrc()->getIndex() <<endl;
-		}
 	}
 	ini->setBestWeight(0);
 	ini->setParent(NULL);

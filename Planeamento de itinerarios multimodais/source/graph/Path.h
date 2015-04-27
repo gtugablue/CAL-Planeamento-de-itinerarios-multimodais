@@ -111,7 +111,6 @@ public:
 
 		WeightInfo w;
 		string prev_line = "";
-		bool printTime = false;
 
 		size_t i;
 		Vertex* v;
@@ -139,20 +138,11 @@ public:
 						if(ts2 != NULL)
 						{
 							os << "Switch from " << ts2->getName() << " to:" << endl;
-							printTime = true;
 						}
 						else
 							os << "Switch to:" << endl;
 					}
-					os << ts->getName() << " - Line " << ts->getRouteName() << " [" << ts->getArrivalTime() << "]";
-
-					if(printTime || i == 1)
-					{
-						printTime = false;
-						os << " (" << ts->calcWaitingTime(ts->getArrivalTime())/60 << " minutes of wait)";
-					}
-
-					os << endl;
+					os << ts->getName() << " - Line " << ts->getRouteName() << " [" << ts->getArrivalTime() << "]" << endl;
 				}
 
 			}
