@@ -126,10 +126,8 @@ vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d, vector<B
 	return busEdges;
 }
 
-vector<BusRoute> Map::Loader::loadBusRoutes() const
+void Map::Loader::loadBusRoutes(std::vector<BusRoute> &busRoutes) const
 {
-	vector<BusRoute> busRoutes;
-
 	// Loop through all Bus Routes
 	vector<string> fileNames = getFilesInFolder(BusEdgesFolder);
 	for (size_t i = 0; i < fileNames.size(); ++i)
@@ -175,7 +173,6 @@ vector<BusRoute> Map::Loader::loadBusRoutes() const
 			// Do nothing
 		}
 	}
-	return busRoutes;
 }
 
 void Map::Loader::loadSchedule(const BusRoute &busRoute) const
@@ -238,7 +235,7 @@ vector<MetroStop *> Map::Loader::loadMetroStops(rapidjson::Document &d) const
 	return metroStops;
 }
 
-MetroStop *Map::Loader::findClosestMetroStop(const vector<MetroStop *> metroStops, const string metroStopCode) const
+MetroStop *Map::Loader::findClosestMetroStop(const vector<MetroStop *> &metroStops, const string &metroStopCode) const
 {
 	MetroStop *closest;
 	unsigned minScore = -1;
@@ -259,12 +256,12 @@ MetroStop *Map::Loader::findClosestMetroStop(const vector<MetroStop *> metroStop
 	return closest;
 }
 
-vector<MetroRoute> Map::Loader::loadMetroRoutes() const
+void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 {
-	vector<MetroRoute> metroRoutes;
 	rapidjson::Document dStops;
 	parseJsonFile(dataFolder + "metro.json", dStops);
 	vector<MetroStop *> metroStops = loadMetroStops(dStops);
+	vector<MetroStop *> reverseMetroStops = loadMetroStops(dStops);
 
 	rapidjson::Document dLines;
 	parseJsonFile(dataFolder + "metroLines.json", dLines);
@@ -306,20 +303,18 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 
 		// Do the same but in the opposite order
 		MetroRoute metroRoute2(code, true);
-		MetroStop *last = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][dLines[i]["stops"].Size() - 1].GetString())); // TODO delete
-		metroRoute2.addStop(metroStop);
+		MetroStop *last = findClosestMetroStop(reverseMetroStops, dLines[i]["stops"][dLines[i]["stops"].Size() - 1].GetString()); // TODO delete
+		metroRoute2.addStop(last);
 		for (int j = dLines[i]["stops"].Size() - 2; j >= 0; --j)
 		{
-			metroStop = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString())); // TODO delete
-			last->addEdge(new MetroEdge(last, metroStop));
+			metroStop = findClosestMetroStop(reverseMetroStops, dLines[i]["stops"][j].GetString()); // TODO delete
+			last->addEdge(new MetroEdge(last, metroStop)); // TODO delete
 			metroRoute2.addStop(metroStop);
 			last = metroStop;
 		}
 		generateRandomTransportSchedule(rand() % 50 + 100, &metroRoute2);
 		metroRoutes.push_back(metroRoute2);
 	}
-
-	return metroRoutes;
 }
 
 Hour Map::Loader::generateRandomHour() const
@@ -544,22 +539,20 @@ void Map::Loader::loadConnectingEdges(const vector<BusRoute> &busRoutes, const v
 	infile.close();
 }
 
-Map *Map::Loader::load()
+void Map::Loader::load(Map &map)
 {
-	Map *map = new Map();
 	cout << "Loading bus routes..." << endl;
-	map->busRoutes = loadBusRoutes();
+	loadBusRoutes(map.busRoutes);
 	cout << "Bus routes successfully loaded." << endl;
 	cout << "Loading metro routes..." << endl;
-	map->metroRoutes = loadMetroRoutes();
+	loadMetroRoutes(map.metroRoutes);
 	cout << "Metro routes successfully loaded." << endl;
 	cout << "Creating connecting edges.." << endl;
-	createConnectingEdges(map->busRoutes, map->metroRoutes);
+	createConnectingEdges(map.busRoutes, map.metroRoutes);
 	cout << "Connecting edges successfully created." << endl;
-	saveConnectingEdges(map->busRoutes, map->metroRoutes);
+	saveConnectingEdges(map.busRoutes, map.metroRoutes);
 	//loadConnectingEdges(map.busRoutes, map.metroRoutes);
 	//cout << "Loaded connecting edges." << endl;
-	return map;
 }
 
 Graph Map::generateGraph() const
@@ -570,10 +563,6 @@ Graph Map::generateGraph() const
 		for (size_t j = 0; j < busRoutes[i].getStops().size(); ++j)
 		{
 			graph.addVertex(busRoutes[i].getStops()[j]);
-			for (size_t k = 0; k < busRoutes[i].getStops()[j]->getAdj().size(); ++k)
-			{
-				graph.addVertex(busRoutes[i].getStops()[j]->getAdj()[k]->getDst());
-			}
 		}
 	}
 	for (size_t i = 0; i < metroRoutes.size(); ++i)
@@ -581,10 +570,6 @@ Graph Map::generateGraph() const
 		for (size_t j = 0; j < metroRoutes[i].getStops().size(); ++j)
 		{
 			graph.addVertex(metroRoutes[i].getStops()[j]);
-			for (size_t k = 0; k < metroRoutes[i].getStops()[j]->getAdj().size(); ++k)
-			{
-				graph.addVertex(metroRoutes[i].getStops()[j]->getAdj()[k]->getDst());
-			}
 		}
 	}
 	return graph;

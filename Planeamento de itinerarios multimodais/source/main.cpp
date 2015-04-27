@@ -263,9 +263,8 @@ int main(int argc, char* argv[]) {
 	double ini, fin;
 
 	Map::Loader l;
-	Map *map;
-	map = l.load();
-	map->generateGraph();
+	Map map;
+	l.load(map);
 
 	ProgramConfig conf;
 	conf.getFromConsole();
@@ -279,7 +278,7 @@ int main(int argc, char* argv[]) {
 
 	//Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 
-	Graph graph = map->generateGraph();
+	Graph graph = map.generateGraph();
 
 	Graph* g1 = &graph;
 	Vertex* src = NULL;
@@ -371,7 +370,6 @@ int main(int argc, char* argv[]) {
 
 			if(src == NULL){
 				src = new TransportStop("Source", world);
-				((TransportStop*)src)->setArrivalTime(conf.getStartHour());
 				((TransportStop*)src)->userAddToGraph(g1);
 			}
 			else if(dst == NULL){
