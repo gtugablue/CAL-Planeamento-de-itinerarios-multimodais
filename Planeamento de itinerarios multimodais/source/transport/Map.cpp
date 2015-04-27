@@ -76,7 +76,7 @@ void Map::Loader::findBusInfoFromFileName(const string &fileName, std::string &c
 vector<BusStop *> Map::Loader::loadBusStops(const rapidjson::Document &d) const
 {
 	vector<BusStop *> busStops;
-	for (size_t i = 0; i < d["locations"].Size(); ++i)
+	for (int i = d["locations"].Size() - 1; i >= 0; --i)
 	{
 		const rapidjson::Value &location = d["locations"][i];
 		string geomdesc = location["geomdesc"].GetString();
@@ -110,10 +110,10 @@ vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d, vector<B
 		else if (string(geo["type"].GetString()) == "MultiLineString")
 		{
 			cout << "aaaa" << endl;
-			for (int j = coords.Size() - 1; j >= 0; --j)
+			for (size_t j = 0; j < coords.Size(); ++j)
 			{
 				rapidjson::Value &coords2 = coords[j];
-				for (int k = coords2.Size() - 1; k >= 0; --k)
+				for (size_t k = 0; k < coords2.Size(); ++k)
 				{
 					Coordinates coord(coords2[k][1].GetDouble(), coords2[k][0].GetDouble());
 					coordinates.push_back(coord);
@@ -163,7 +163,7 @@ void Map::Loader::loadBusRoutes(std::vector<BusRoute> &busRoutes) const
 			busRoute.addStop(busStops[busStops.size() - 1]);
 
 			// Generate a random schedule
-			generateRandomTransportSchedule(rand() % 60 + 24,&busRoute);
+			generateRandomTransportSchedule(rand() % 60 + 24, &busRoute);
 
 			// Add Route to the Bus Routes vector
 			busRoutes.push_back(busRoute);
@@ -303,11 +303,11 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 
 		// Do the same but in the opposite order
 		MetroRoute metroRoute2(code, true);
-		MetroStop *last = findClosestMetroStop(reverseMetroStops, dLines[i]["stops"][dLines[i]["stops"].Size() - 1].GetString()); // TODO delete
+		MetroStop *last = findClosestMetroStop(reverseMetroStops, dLines[i]["stops"][dLines[i]["stops"].Size() - 1].GetString());
 		metroRoute2.addStop(last);
 		for (int j = dLines[i]["stops"].Size() - 2; j >= 0; --j)
 		{
-			metroStop = findClosestMetroStop(reverseMetroStops, dLines[i]["stops"][j].GetString()); // TODO delete
+			metroStop = findClosestMetroStop(reverseMetroStops, dLines[i]["stops"][j].GetString());
 			last->addEdge(new MetroEdge(last, metroStop)); // TODO delete
 			metroRoute2.addStop(metroStop);
 			last = metroStop;
