@@ -1,0 +1,159 @@
+\hypertarget{class_graph_queue}{}\section{Graph\+Queue$<$ Comp $>$ Class Template Reference}
+\label{class_graph_queue}\index{Graph\+Queue$<$ Comp $>$@{Graph\+Queue$<$ Comp $>$}}
+
+
+generic inteface to be used in algorithms, allows the underlying data structure to switched dynamically  
+
+
+
+
+{\ttfamily \#include $<$Graph\+Queue.\+h$>$}
+
+Inheritance diagram for Graph\+Queue$<$ Comp $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_graph_queue}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_graph_queue_ae29f8312580139ff26acc47b185ef946}{reset} (int num\+Vertices)=0
+\begin{DoxyCompactList}\small\item\em reset the queue \end{DoxyCompactList}\item 
+virtual int \hyperlink{class_graph_queue_a3fc6e39f16b7d44cd4a2e7d10f320eb8}{size} ()=0
+\begin{DoxyCompactList}\small\item\em get the size of the queue \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_graph_queue_a613b3e0e0f4efe16abfc7c1e4c9ebe2a}{push} (\hyperlink{class_vertex}{Vertex} $\ast$v)=0
+\begin{DoxyCompactList}\small\item\em add vertex to the queue \end{DoxyCompactList}\item 
+virtual \hyperlink{class_vertex}{Vertex} $\ast$ \hyperlink{class_graph_queue_a81b7e172ff17a06ce84a679ff80b6a16}{top} () const =0
+\begin{DoxyCompactList}\small\item\em get the highest priority vertex in queue \end{DoxyCompactList}\item 
+virtual \hyperlink{class_vertex}{Vertex} $\ast$ \hyperlink{class_graph_queue_a6b6b42957573d03686dbaaa14893b9d4}{pop} ()=0
+\begin{DoxyCompactList}\small\item\em remove highest priority vertex in queu \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_graph_queue_ae6bace12508bbbbd86a594a2ca8b9e30}{increase} (\hyperlink{class_vertex}{Vertex} $\ast$v)=0
+\begin{DoxyCompactList}\small\item\em increase priority of vertex in queue \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Comp$>$class Graph\+Queue$<$ Comp $>$}
+
+generic inteface to be used in algorithms, allows the underlying data structure to switched dynamically 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_graph_queue_ae6bace12508bbbbd86a594a2ca8b9e30}{}\index{Graph\+Queue@{Graph\+Queue}!increase@{increase}}
+\index{increase@{increase}!Graph\+Queue@{Graph\+Queue}}
+\subsubsection[{increase}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Comp$>$ virtual void {\bf Graph\+Queue}$<$ Comp $>$\+::increase (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertex} $\ast$}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_graph_queue_ae6bace12508bbbbd86a594a2ca8b9e30}
+
+
+increase priority of vertex in queue 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vertex to increase \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_graph_queue_fib_a9c1a2e35ab5a0a02dc527a29c935eda7}{Graph\+Queue\+Fib$<$ Comp $>$}, and \hyperlink{class_graph_queue_list_a27345d639d6719d91c552345d400f5f6}{Graph\+Queue\+List$<$ Comp $>$}.
+
+\hypertarget{class_graph_queue_a6b6b42957573d03686dbaaa14893b9d4}{}\index{Graph\+Queue@{Graph\+Queue}!pop@{pop}}
+\index{pop@{pop}!Graph\+Queue@{Graph\+Queue}}
+\subsubsection[{pop}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Comp$>$ virtual {\bf Vertex}$\ast$ {\bf Graph\+Queue}$<$ Comp $>$\+::pop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_graph_queue_a6b6b42957573d03686dbaaa14893b9d4}
+
+
+remove highest priority vertex in queu 
+
+\begin{DoxyReturn}{Returns}
+highest priority vertex in queue 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_graph_queue_fib_ae0ab49ac553d1872c9cc7da0790b0ee3}{Graph\+Queue\+Fib$<$ Comp $>$}, and \hyperlink{class_graph_queue_list_a17fc1e6582e763755c6b174a44ccd8ec}{Graph\+Queue\+List$<$ Comp $>$}.
+
+\hypertarget{class_graph_queue_a613b3e0e0f4efe16abfc7c1e4c9ebe2a}{}\index{Graph\+Queue@{Graph\+Queue}!push@{push}}
+\index{push@{push}!Graph\+Queue@{Graph\+Queue}}
+\subsubsection[{push}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Comp$>$ virtual void {\bf Graph\+Queue}$<$ Comp $>$\+::push (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertex} $\ast$}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_graph_queue_a613b3e0e0f4efe16abfc7c1e4c9ebe2a}
+
+
+add vertex to the queue 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vertex to add \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_graph_queue_fib_adbf6c8d5e43cfcb5cedc2fcce60c643a}{Graph\+Queue\+Fib$<$ Comp $>$}, and \hyperlink{class_graph_queue_list_aeb2202e70dd2e556e7507327bd8824e9}{Graph\+Queue\+List$<$ Comp $>$}.
+
+\hypertarget{class_graph_queue_ae29f8312580139ff26acc47b185ef946}{}\index{Graph\+Queue@{Graph\+Queue}!reset@{reset}}
+\index{reset@{reset}!Graph\+Queue@{Graph\+Queue}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Comp$>$ virtual void {\bf Graph\+Queue}$<$ Comp $>$\+::reset (
+\begin{DoxyParamCaption}
+\item[{int}]{num\+Vertices}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_graph_queue_ae29f8312580139ff26acc47b185ef946}
+
+
+reset the queue 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Vertices} & number of vertices of grah the structure will be used on \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_graph_queue_fib_a121fe18933b525f9c3d6aed394e9a69c}{Graph\+Queue\+Fib$<$ Comp $>$}, and \hyperlink{class_graph_queue_list_af404c9018114e84516ac28a3eeeee853}{Graph\+Queue\+List$<$ Comp $>$}.
+
+\hypertarget{class_graph_queue_a3fc6e39f16b7d44cd4a2e7d10f320eb8}{}\index{Graph\+Queue@{Graph\+Queue}!size@{size}}
+\index{size@{size}!Graph\+Queue@{Graph\+Queue}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Comp$>$ virtual int {\bf Graph\+Queue}$<$ Comp $>$\+::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_graph_queue_a3fc6e39f16b7d44cd4a2e7d10f320eb8}
+
+
+get the size of the queue 
+
+\begin{DoxyReturn}{Returns}
+number of elements in queue 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_graph_queue_fib_a0ce2194cd1779da1f22551f5e0ffd0f2}{Graph\+Queue\+Fib$<$ Comp $>$}, and \hyperlink{class_graph_queue_list_afc858c2e41de40db8f7b217890cfc75c}{Graph\+Queue\+List$<$ Comp $>$}.
+
+\hypertarget{class_graph_queue_a81b7e172ff17a06ce84a679ff80b6a16}{}\index{Graph\+Queue@{Graph\+Queue}!top@{top}}
+\index{top@{top}!Graph\+Queue@{Graph\+Queue}}
+\subsubsection[{top}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Comp$>$ virtual {\bf Vertex}$\ast$ {\bf Graph\+Queue}$<$ Comp $>$\+::top (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_graph_queue_a81b7e172ff17a06ce84a679ff80b6a16}
+
+
+get the highest priority vertex in queue 
+
+\begin{DoxyReturn}{Returns}
+highest priority vertex in queue 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_graph_queue_fib_a3b1b6a0bf8007559ba3f66978413845c}{Graph\+Queue\+Fib$<$ Comp $>$}, and \hyperlink{class_graph_queue_list_a56493dd03e8378a67033eaba8c71d9ea}{Graph\+Queue\+List$<$ Comp $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+André/\+Desktop/test/algorithms/Graph\+Queue.\+h\end{DoxyCompactItemize}

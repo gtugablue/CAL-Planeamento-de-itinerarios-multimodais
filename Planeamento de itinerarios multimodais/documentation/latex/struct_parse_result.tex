@@ -1,0 +1,73 @@
+\hypertarget{struct_parse_result}{}\section{Parse\+Result Struct Reference}
+\label{struct_parse_result}\index{Parse\+Result@{Parse\+Result}}
+
+
+Result of parsing (wraps Parse\+Error\+Code)  
+
+
+
+
+{\ttfamily \#include $<$error.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{struct_parse_result_acd4a266f815bec59fa27f64f1923fe9e}{}\hyperlink{struct_parse_result_acd4a266f815bec59fa27f64f1923fe9e}{Parse\+Result} ()\label{struct_parse_result_acd4a266f815bec59fa27f64f1923fe9e}
+
+\begin{DoxyCompactList}\small\item\em Default constructor, no error. \end{DoxyCompactList}\item 
+\hypertarget{struct_parse_result_a38ca49a53e80633d0864ad5026adaf84}{}\hyperlink{struct_parse_result_a38ca49a53e80633d0864ad5026adaf84}{Parse\+Result} (\hyperlink{group___r_a_p_i_d_j_s_o_n___e_r_r_o_r_s_ga8d4b32dfc45840bca189ade2bbcb6ba7}{Parse\+Error\+Code} code, size\+\_\+t offset)\label{struct_parse_result_a38ca49a53e80633d0864ad5026adaf84}
+
+\begin{DoxyCompactList}\small\item\em Constructor to set an error. \end{DoxyCompactList}\item 
+\hypertarget{struct_parse_result_a1062b22f0d006e2f8a5b8c74385ff52d}{}\hyperlink{group___r_a_p_i_d_j_s_o_n___e_r_r_o_r_s_ga8d4b32dfc45840bca189ade2bbcb6ba7}{Parse\+Error\+Code} \hyperlink{struct_parse_result_a1062b22f0d006e2f8a5b8c74385ff52d}{Code} () const \label{struct_parse_result_a1062b22f0d006e2f8a5b8c74385ff52d}
+
+\begin{DoxyCompactList}\small\item\em Get the error code. \end{DoxyCompactList}\item 
+\hypertarget{struct_parse_result_aa65430daa3920be0d42dc4baed86df69}{}size\+\_\+t \hyperlink{struct_parse_result_aa65430daa3920be0d42dc4baed86df69}{Offset} () const \label{struct_parse_result_aa65430daa3920be0d42dc4baed86df69}
+
+\begin{DoxyCompactList}\small\item\em Get the error offset, if \hyperlink{struct_parse_result_a07c35a6769f5cb8a73cbc56c41e60a2a}{Is\+Error()}, 0 otherwise. \end{DoxyCompactList}\item 
+\hypertarget{struct_parse_result_a74ab79dfa41d390002d1ea188a749bce}{}\hyperlink{struct_parse_result_a74ab79dfa41d390002d1ea188a749bce}{operator bool} () const \label{struct_parse_result_a74ab79dfa41d390002d1ea188a749bce}
+
+\begin{DoxyCompactList}\small\item\em Conversion to {\ttfamily bool}, returns {\ttfamily true}, iff !\hyperlink{struct_parse_result_a07c35a6769f5cb8a73cbc56c41e60a2a}{Is\+Error()}. \end{DoxyCompactList}\item 
+\hypertarget{struct_parse_result_a07c35a6769f5cb8a73cbc56c41e60a2a}{}bool \hyperlink{struct_parse_result_a07c35a6769f5cb8a73cbc56c41e60a2a}{Is\+Error} () const \label{struct_parse_result_a07c35a6769f5cb8a73cbc56c41e60a2a}
+
+\begin{DoxyCompactList}\small\item\em Whether the result is an error. \end{DoxyCompactList}\item 
+\hypertarget{struct_parse_result_a90794619408c295ffa923f3307526bed}{}bool {\bfseries operator==} (const \hyperlink{struct_parse_result}{Parse\+Result} \&that) const \label{struct_parse_result_a90794619408c295ffa923f3307526bed}
+
+\item 
+\hypertarget{struct_parse_result_a5a0bd70f5bbb383ac63a6450ac4ae4d1}{}bool {\bfseries operator==} (\hyperlink{group___r_a_p_i_d_j_s_o_n___e_r_r_o_r_s_ga8d4b32dfc45840bca189ade2bbcb6ba7}{Parse\+Error\+Code} code) const \label{struct_parse_result_a5a0bd70f5bbb383ac63a6450ac4ae4d1}
+
+\item 
+\hypertarget{struct_parse_result_a88b6d44f052a19e6436ae6aadc2c40b4}{}\hyperlink{_s_d_l__audio_8h_a52835ae37c4bb905b903cbaf5d04b05f}{void} \hyperlink{struct_parse_result_a88b6d44f052a19e6436ae6aadc2c40b4}{Clear} ()\label{struct_parse_result_a88b6d44f052a19e6436ae6aadc2c40b4}
+
+\begin{DoxyCompactList}\small\item\em Reset error code. \end{DoxyCompactList}\item 
+\hypertarget{struct_parse_result_aa81b4a7b776b77216cb752385203a8c1}{}\hyperlink{_s_d_l__audio_8h_a52835ae37c4bb905b903cbaf5d04b05f}{void} \hyperlink{struct_parse_result_aa81b4a7b776b77216cb752385203a8c1}{Set} (\hyperlink{group___r_a_p_i_d_j_s_o_n___e_r_r_o_r_s_ga8d4b32dfc45840bca189ade2bbcb6ba7}{Parse\+Error\+Code} code, size\+\_\+t offset=0)\label{struct_parse_result_aa81b4a7b776b77216cb752385203a8c1}
+
+\begin{DoxyCompactList}\small\item\em Update error code and offset. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{struct_parse_result_a58c9982e833d1c74686506ac7449200c}{}bool {\bfseries operator==} (\hyperlink{group___r_a_p_i_d_j_s_o_n___e_r_r_o_r_s_ga8d4b32dfc45840bca189ade2bbcb6ba7}{Parse\+Error\+Code} code, const \hyperlink{struct_parse_result}{Parse\+Result} \&err)\label{struct_parse_result_a58c9982e833d1c74686506ac7449200c}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Result of parsing (wraps Parse\+Error\+Code) 
+
+
+\begin{DoxyCode}
+\hyperlink{class_generic_document}{Document} doc;
+\hyperlink{struct_parse_result}{ParseResult} ok = doc.\hyperlink{class_generic_document_aebd4e7fddd80c1e1174837aee6d2159b}{Parse}(\textcolor{stringliteral}{"[42]"});
+\textcolor{keywordflow}{if} (!ok) \{
+    fprintf(stderr, \textcolor{stringliteral}{"JSON parse error: %s (%u)"},
+            \hyperlink{group___r_a_p_i_d_j_s_o_n___e_r_r_o_r_s_ga755b523205f46c980c80d12e230a3abd}{GetParseError\_En}(ok.\hyperlink{struct_parse_result_a1062b22f0d006e2f8a5b8c74385ff52d}{Code}()), ok.\hyperlink{struct_parse_result_aa65430daa3920be0d42dc4baed86df69}{Offset}());
+    exit(EXIT\_FAILURE);
+\}
+\end{DoxyCode}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{class_generic_reader_a0c450620d14ff1824e58bb7bd9b42099}{Generic\+Reader\+::\+Parse}, \hyperlink{class_generic_document_aebd4e7fddd80c1e1174837aee6d2159b}{Generic\+Document\+::\+Parse} 
+\end{DoxySeeAlso}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/include/rapidjson/error/\hyperlink{error_8h}{error.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,175 @@
+\hypertarget{rapidjson_8h}{}\section{source/include/rapidjson/rapidjson.h File Reference}
+\label{rapidjson_8h}\index{source/include/rapidjson/rapidjson.\+h@{source/include/rapidjson/rapidjson.\+h}}
+
+
+common definitions and configuration  
+
+
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$cstring$>$}\\*
+{\ttfamily \#include $<$cassert$>$}\\*
+{\ttfamily \#include \char`\"{}allocators.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}encodings.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_stream_traits}{Stream\+Traits$<$ Stream $>$}
+\begin{DoxyCompactList}\small\item\em Provides additional information for stream. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_generic_string_stream}{Generic\+String\+Stream$<$ Encoding $>$}
+\begin{DoxyCompactList}\small\item\em Read-\/only string stream. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_stream_traits_3_01_generic_string_stream_3_01_encoding_01_4_01_4}{Stream\+Traits$<$ Generic\+String\+Stream$<$ Encoding $>$ $>$}
+\item 
+struct \hyperlink{struct_generic_insitu_string_stream}{Generic\+Insitu\+String\+Stream$<$ Encoding $>$}
+\begin{DoxyCompactList}\small\item\em A read-\/write string stream. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_stream_traits_3_01_generic_insitu_string_stream_3_01_encoding_01_4_01_4}{Stream\+Traits$<$ Generic\+Insitu\+String\+Stream$<$ Encoding $>$ $>$}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacerapidjson}{rapidjson}
+\begin{DoxyCompactList}\small\item\em main Rapid\+J\+S\+O\+N namespace \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___r_a_p_i_d_j_s_o_n___c_o_n_f_i_g_ga743a79d3af927391fe3eb5c979136899}{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+N\+A\+M\+E\+S\+P\+A\+C\+E}~rapidjson
+\begin{DoxyCompactList}\small\item\em provide custom rapidjson namespace \end{DoxyCompactList}\item 
+\#define \hyperlink{group___r_a_p_i_d_j_s_o_n___c_o_n_f_i_g_gad3806c8251fdc7da9618b7e922674ffc}{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+N\+A\+M\+E\+S\+P\+A\+C\+E\+\_\+\+B\+E\+G\+I\+N}~namespace \hyperlink{group___r_a_p_i_d_j_s_o_n___c_o_n_f_i_g_ga743a79d3af927391fe3eb5c979136899}{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+N\+A\+M\+E\+S\+P\+A\+C\+E} \{
+\begin{DoxyCompactList}\small\item\em provide custom rapidjson namespace (opening expression) \end{DoxyCompactList}\item 
+\#define \hyperlink{group___r_a_p_i_d_j_s_o_n___c_o_n_f_i_g_gaf18f052a98b9f5df5448d39484b743c1}{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+N\+A\+M\+E\+S\+P\+A\+C\+E\+\_\+\+E\+N\+D}~\}
+\begin{DoxyCompactList}\small\item\em provide custom rapidjson namespace (closing expression) \end{DoxyCompactList}\item 
+\hypertarget{rapidjson_8h_addcc0c3607c5790f35cc4c15885ff97c}{}\#define \hyperlink{rapidjson_8h_addcc0c3607c5790f35cc4c15885ff97c}{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+L\+I\+T\+T\+L\+E\+E\+N\+D\+I\+A\+N}~0\label{rapidjson_8h_addcc0c3607c5790f35cc4c15885ff97c}
+
+\begin{DoxyCompactList}\small\item\em Little endian machine. \end{DoxyCompactList}\item 
+\hypertarget{rapidjson_8h_ac7951ebf8a2624ab85d2dcd3ec7af974}{}\#define \hyperlink{rapidjson_8h_ac7951ebf8a2624ab85d2dcd3ec7af974}{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+B\+I\+G\+E\+N\+D\+I\+A\+N}~1\label{rapidjson_8h_ac7951ebf8a2624ab85d2dcd3ec7af974}
+
+\begin{DoxyCompactList}\small\item\em Big endian machine. \end{DoxyCompactList}\item 
+\hypertarget{rapidjson_8h_a93973847cb99354b6b5bb5605aa7fe52}{}\#define \hyperlink{rapidjson_8h_a93973847cb99354b6b5bb5605aa7fe52}{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+64\+B\+I\+T}~0\label{rapidjson_8h_a93973847cb99354b6b5bb5605aa7fe52}
+
+\begin{DoxyCompactList}\small\item\em Whether using 64-\/bit architecture. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___r_a_p_i_d_j_s_o_n___c_o_n_f_i_g_ga583915242504c7fdb36e826f02f76242}{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+A\+L\+I\+G\+N}(x)~((x + 3u) \& $\sim$3u)
+\begin{DoxyCompactList}\small\item\em Data alignment of the machine. \end{DoxyCompactList}\item 
+\#define \hyperlink{rapidjson_8h_aaee1245f375a71be1ac9b8a07ba5fb8f}{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+U\+I\+N\+T64\+\_\+\+C2}(high32,  low32)~((static\+\_\+cast$<$uint64\+\_\+t$>$(high32) $<$$<$ 32) $\vert$ static\+\_\+cast$<$uint64\+\_\+t$>$(low32))
+\begin{DoxyCompactList}\small\item\em Construct a 64-\/bit literal by a pair of 32-\/bit integer. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___r_a_p_i_d_j_s_o_n___c_o_n_f_i_g_gabeba18d612187bad2ac62aed9276d47c}{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+A\+S\+S\+E\+R\+T}(x)~assert(x)
+\begin{DoxyCompactList}\small\item\em Assertion. \end{DoxyCompactList}\item 
+\#define \hyperlink{rapidjson_8h_af95188da1d8eb6d4b148fe9ce71cd7c4}{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+R\+T}(x)
+\begin{DoxyCompactList}\small\item\em (Internal) macro to check for conditions at compile-\/time \end{DoxyCompactList}\item 
+\hypertarget{rapidjson_8h_ab9e102fa2f1a0ae4914d4dac21f690a2}{}\#define \hyperlink{rapidjson_8h_ab9e102fa2f1a0ae4914d4dac21f690a2}{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+N\+E\+W}(x)~new x\label{rapidjson_8h_ab9e102fa2f1a0ae4914d4dac21f690a2}
+
+\begin{DoxyCompactList}\small\item\em ! customization point for global {\ttfamily new} \end{DoxyCompactList}\item 
+\hypertarget{rapidjson_8h_a52c941c3fdd646527cdcd42aa846a28a}{}\#define \hyperlink{rapidjson_8h_a52c941c3fdd646527cdcd42aa846a28a}{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+D\+E\+L\+E\+T\+E}(x)~delete x\label{rapidjson_8h_a52c941c3fdd646527cdcd42aa846a28a}
+
+\begin{DoxyCompactList}\small\item\em ! customization point for global {\ttfamily delete} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{rapidjson_8h_a269d93f9d27c2dd91bfacac05c478122}{}typedef \hyperlink{struct_generic_string_stream}{Generic\+String\+Stream}$<$ \hyperlink{struct_u_t_f8}{U\+T\+F8}$<$$>$ $>$ \hyperlink{rapidjson_8h_a269d93f9d27c2dd91bfacac05c478122}{String\+Stream}\label{rapidjson_8h_a269d93f9d27c2dd91bfacac05c478122}
+
+\begin{DoxyCompactList}\small\item\em String stream with \hyperlink{struct_u_t_f8}{U\+T\+F8} encoding. \end{DoxyCompactList}\item 
+\hypertarget{rapidjson_8h_a8e02982f60e5b8f697b71640ddaa144c}{}typedef \hyperlink{struct_generic_insitu_string_stream}{Generic\+Insitu\+String\+Stream}$<$ \hyperlink{struct_u_t_f8}{U\+T\+F8}$<$$>$ $>$ \hyperlink{rapidjson_8h_a8e02982f60e5b8f697b71640ddaa144c}{Insitu\+String\+Stream}\label{rapidjson_8h_a8e02982f60e5b8f697b71640ddaa144c}
+
+\begin{DoxyCompactList}\small\item\em Insitu string stream with \hyperlink{struct_u_t_f8}{U\+T\+F8} encoding. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7}{Type} \{ \\*
+\hyperlink{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7aa09befbfb4f2e1409f237817979d8087}{k\+Null\+Type} = 0, 
+\hyperlink{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7a062b8296274a258acf0e142868684c54}{k\+False\+Type} = 1, 
+\hyperlink{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7a209434e5edd66630011ca19d710d7cd6}{k\+True\+Type} = 2, 
+\hyperlink{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7a146f46700e905e8df96a6a90b5c7640f}{k\+Object\+Type} = 3, 
+\\*
+\hyperlink{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7af41527d6925efa3c5c3dadb23dfef7c8}{k\+Array\+Type} = 4, 
+\hyperlink{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7a2d823b89b055bc743d05c03183d3f338}{k\+String\+Type} = 5, 
+\hyperlink{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7afc9f813b7aaf71911bdae20a86b2702d}{k\+Number\+Type} = 6
+ \}
+\begin{DoxyCompactList}\small\item\em Type of J\+S\+O\+N value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{rapidjson_8h_aacdd569be6f98c9d7d9ef71f79ef0fc0}{}{\footnotesize template$<$typename Stream , typename Ch $>$ }\\\hyperlink{_s_d_l__audio_8h_a52835ae37c4bb905b903cbaf5d04b05f}{void} \hyperlink{rapidjson_8h_aacdd569be6f98c9d7d9ef71f79ef0fc0}{Put\+N} (Stream \&stream, Ch c, size\+\_\+t n)\label{rapidjson_8h_aacdd569be6f98c9d7d9ef71f79ef0fc0}
+
+\begin{DoxyCompactList}\small\item\em Put N copies of a character to a stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___r_a_p_i_d_j_s_o_n___c_o_n_f_i_g_gad3806c8251fdc7da9618b7e922674ffc}{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+N\+A\+M\+E\+S\+P\+A\+C\+E\+\_\+\+B\+E\+G\+I\+N} typedef unsigned \hyperlink{rapidjson_8h_a5ed6e6e67250fadbd041127e6386dcb5}{Size\+Type}
+\begin{DoxyCompactList}\small\item\em Size type (for string lengths, array sizes, etc.) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+common definitions and configuration 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___r_a_p_i_d_j_s_o_n___c_o_n_f_i_g}{Rapid\+J\+S\+O\+N configuration} 
+\end{DoxySeeAlso}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{rapidjson_8h_af95188da1d8eb6d4b148fe9ce71cd7c4}{}\index{rapidjson.\+h@{rapidjson.\+h}!R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+R\+T@{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+R\+T}}
+\index{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+R\+T@{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+R\+T}!rapidjson.\+h@{rapidjson.\+h}}
+\subsubsection[{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+R\+T(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)}\label{rapidjson_8h_af95188da1d8eb6d4b148fe9ce71cd7c4}
+
+
+(Internal) macro to check for conditions at compile-\/time 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & compile-\/time condition \\
+\hline
+\end{DoxyParams}
+\hypertarget{rapidjson_8h_aaee1245f375a71be1ac9b8a07ba5fb8f}{}\index{rapidjson.\+h@{rapidjson.\+h}!R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+U\+I\+N\+T64\+\_\+\+C2@{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+U\+I\+N\+T64\+\_\+\+C2}}
+\index{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+U\+I\+N\+T64\+\_\+\+C2@{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+U\+I\+N\+T64\+\_\+\+C2}!rapidjson.\+h@{rapidjson.\+h}}
+\subsubsection[{R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+U\+I\+N\+T64\+\_\+\+C2}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+U\+I\+N\+T64\+\_\+\+C2(
+\begin{DoxyParamCaption}
+\item[{}]{high32, }
+\item[{}]{low32}
+\end{DoxyParamCaption}
+)~((static\+\_\+cast$<$uint64\+\_\+t$>$(high32) $<$$<$ 32) $\vert$ static\+\_\+cast$<$uint64\+\_\+t$>$(low32))}\label{rapidjson_8h_aaee1245f375a71be1ac9b8a07ba5fb8f}
+
+
+Construct a 64-\/bit literal by a pair of 32-\/bit integer. 
+
+64-\/bit literal with or without U\+L\+L suffix is prone to compiler warnings. U\+I\+N\+T64\+\_\+\+C() is C macro which cause compilation problems. Use this macro to define 64-\/bit constants by a pair of 32-\/bit integer. 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7}{}\index{rapidjson.\+h@{rapidjson.\+h}!Type@{Type}}
+\index{Type@{Type}!rapidjson.\+h@{rapidjson.\+h}}
+\subsubsection[{Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Type}}\label{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7}
+
+
+Type of J\+S\+O\+N value. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{k\+Null\+Type@{k\+Null\+Type}!rapidjson.\+h@{rapidjson.\+h}}\index{rapidjson.\+h@{rapidjson.\+h}!k\+Null\+Type@{k\+Null\+Type}}\item[{\em 
+\hypertarget{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7aa09befbfb4f2e1409f237817979d8087}{}k\+Null\+Type\label{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7aa09befbfb4f2e1409f237817979d8087}
+}]null \index{k\+False\+Type@{k\+False\+Type}!rapidjson.\+h@{rapidjson.\+h}}\index{rapidjson.\+h@{rapidjson.\+h}!k\+False\+Type@{k\+False\+Type}}\item[{\em 
+\hypertarget{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7a062b8296274a258acf0e142868684c54}{}k\+False\+Type\label{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7a062b8296274a258acf0e142868684c54}
+}]false \index{k\+True\+Type@{k\+True\+Type}!rapidjson.\+h@{rapidjson.\+h}}\index{rapidjson.\+h@{rapidjson.\+h}!k\+True\+Type@{k\+True\+Type}}\item[{\em 
+\hypertarget{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7a209434e5edd66630011ca19d710d7cd6}{}k\+True\+Type\label{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7a209434e5edd66630011ca19d710d7cd6}
+}]true \index{k\+Object\+Type@{k\+Object\+Type}!rapidjson.\+h@{rapidjson.\+h}}\index{rapidjson.\+h@{rapidjson.\+h}!k\+Object\+Type@{k\+Object\+Type}}\item[{\em 
+\hypertarget{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7a146f46700e905e8df96a6a90b5c7640f}{}k\+Object\+Type\label{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7a146f46700e905e8df96a6a90b5c7640f}
+}]object \index{k\+Array\+Type@{k\+Array\+Type}!rapidjson.\+h@{rapidjson.\+h}}\index{rapidjson.\+h@{rapidjson.\+h}!k\+Array\+Type@{k\+Array\+Type}}\item[{\em 
+\hypertarget{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7af41527d6925efa3c5c3dadb23dfef7c8}{}k\+Array\+Type\label{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7af41527d6925efa3c5c3dadb23dfef7c8}
+}]array \index{k\+String\+Type@{k\+String\+Type}!rapidjson.\+h@{rapidjson.\+h}}\index{rapidjson.\+h@{rapidjson.\+h}!k\+String\+Type@{k\+String\+Type}}\item[{\em 
+\hypertarget{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7a2d823b89b055bc743d05c03183d3f338}{}k\+String\+Type\label{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7a2d823b89b055bc743d05c03183d3f338}
+}]string \index{k\+Number\+Type@{k\+Number\+Type}!rapidjson.\+h@{rapidjson.\+h}}\index{rapidjson.\+h@{rapidjson.\+h}!k\+Number\+Type@{k\+Number\+Type}}\item[{\em 
+\hypertarget{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7afc9f813b7aaf71911bdae20a86b2702d}{}k\+Number\+Type\label{rapidjson_8h_a1d1cfd8ffb84e947f82999c682b666a7afc9f813b7aaf71911bdae20a86b2702d}
+}]number \end{description}
+\end{Desc}
+
+
+\subsection{Variable Documentation}
+\hypertarget{rapidjson_8h_a5ed6e6e67250fadbd041127e6386dcb5}{}\index{rapidjson.\+h@{rapidjson.\+h}!Size\+Type@{Size\+Type}}
+\index{Size\+Type@{Size\+Type}!rapidjson.\+h@{rapidjson.\+h}}
+\subsubsection[{Size\+Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+N\+A\+M\+E\+S\+P\+A\+C\+E\+\_\+\+B\+E\+G\+I\+N} typedef unsigned Size\+Type}\label{rapidjson_8h_a5ed6e6e67250fadbd041127e6386dcb5}
+
+
+Size type (for string lengths, array sizes, etc.) 
+
+Rapid\+J\+S\+O\+N uses 32-\/bit array/string indices even on 64-\/bit platforms, instead of using {\ttfamily size\+\_\+t}. Users may override the Size\+Type by defining R\+A\+P\+I\+D\+J\+S\+O\+N\+\_\+\+N\+O\+\_\+\+S\+I\+Z\+E\+T\+Y\+P\+E\+D\+E\+F\+I\+N\+E. 

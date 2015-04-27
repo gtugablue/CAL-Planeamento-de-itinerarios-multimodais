@@ -13,6 +13,9 @@ using namespace std;
 class Edge;
 class Vertex;
 
+/**
+ * @brief A set of edges representing a path between two points
+ */
 class Path{
 	vector<Edge*> edges;
 	double cost;

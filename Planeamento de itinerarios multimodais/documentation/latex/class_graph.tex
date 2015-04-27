@@ -1,0 +1,82 @@
+\hypertarget{class_graph}{}\section{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+
+
+Generic \hyperlink{class_graph}{Graph} interface.  
+
+
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{}\hyperlink{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{Graph} ()\label{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}
+
+\begin{DoxyCompactList}\small\item\em graph constructor \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_vertex}{Vertex} $\ast$ $>$ \hyperlink{class_graph_a4cca9b48f61d44104aa2ebc959a8728c}{get\+Vertex\+Set} () const 
+\begin{DoxyCompactList}\small\item\em get the list of vertices in the graph \end{DoxyCompactList}\item 
+void \hyperlink{class_graph_aa95e129c42fe7150ee07d13377547324}{add\+Vertex} (\hyperlink{class_vertex}{Vertex} $\ast$v)
+\begin{DoxyCompactList}\small\item\em add vertex to graph, setting its index appropriately \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_graph_a89fc060f50dc936026dea4c334dd86b1}{get\+Num\+Edges} () const 
+\begin{DoxyCompactList}\small\item\em count the total number of edges in graph \end{DoxyCompactList}\item 
+\hypertarget{class_graph_a0d0be9182f1ff998b46122873a7d6cae}{}void \hyperlink{class_graph_a0d0be9182f1ff998b46122873a7d6cae}{remove\+Last} ()\label{class_graph_a0d0be9182f1ff998b46122873a7d6cae}
+
+\begin{DoxyCompactList}\small\item\em remove the last vertex from the graph \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Generic \hyperlink{class_graph}{Graph} interface. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_graph_aa95e129c42fe7150ee07d13377547324}{}\index{Graph@{Graph}!add\+Vertex@{add\+Vertex}}
+\index{add\+Vertex@{add\+Vertex}!Graph@{Graph}}
+\subsubsection[{add\+Vertex}]{\setlength{\rightskip}{0pt plus 5cm}void Graph\+::add\+Vertex (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertex} $\ast$}]{v}
+\end{DoxyParamCaption}
+)}\label{class_graph_aa95e129c42fe7150ee07d13377547324}
+
+
+add vertex to graph, setting its index appropriately 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vertex to add \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_graph_a89fc060f50dc936026dea4c334dd86b1}{}\index{Graph@{Graph}!get\+Num\+Edges@{get\+Num\+Edges}}
+\index{get\+Num\+Edges@{get\+Num\+Edges}!Graph@{Graph}}
+\subsubsection[{get\+Num\+Edges}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Graph\+::get\+Num\+Edges (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_graph_a89fc060f50dc936026dea4c334dd86b1}
+
+
+count the total number of edges in graph 
+
+\begin{DoxyReturn}{Returns}
+number of edges in graph 
+\end{DoxyReturn}
+\hypertarget{class_graph_a4cca9b48f61d44104aa2ebc959a8728c}{}\index{Graph@{Graph}!get\+Vertex\+Set@{get\+Vertex\+Set}}
+\index{get\+Vertex\+Set@{get\+Vertex\+Set}!Graph@{Graph}}
+\subsubsection[{get\+Vertex\+Set}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Vertex} $\ast$ $>$ Graph\+::get\+Vertex\+Set (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_graph_a4cca9b48f61d44104aa2ebc959a8728c}
+
+
+get the list of vertices in the graph 
+
+\begin{DoxyReturn}{Returns}
+list of vertices 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+André/\+Desktop/test/graph/Graph.\+h\item 
+C\+:/\+Users/\+André/\+Desktop/test/graph/Graph.\+cpp\end{DoxyCompactItemize}

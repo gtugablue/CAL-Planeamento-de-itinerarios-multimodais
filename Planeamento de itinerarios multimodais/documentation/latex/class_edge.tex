@@ -1,0 +1,209 @@
+\hypertarget{class_edge}{}\section{Edge Class Reference}
+\label{class_edge}\index{Edge@{Edge}}
+
+
+Generic \hyperlink{class_edge}{Edge} interface.  
+
+
+
+
+{\ttfamily \#include $<$Edge.\+h$>$}
+
+Inheritance diagram for Edge\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_edge}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_edge_a175c30ff76609608a96c498c13ef55b0}{Edge} (\hyperlink{class_vertex}{Vertex} $\ast$src, \hyperlink{class_vertex}{Vertex} $\ast$dst, double stored\+Weight=0)
+\begin{DoxyCompactList}\small\item\em edge construtor \end{DoxyCompactList}\item 
+virtual double \hyperlink{class_edge_a3a776c1ccafacdbdb10fdedd9cb329af}{get\+Weight} ()
+\begin{DoxyCompactList}\small\item\em get the weight of this edge \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_edge_af7851a1bcd26d69b03010c85ae26be4d}{set\+Stored\+Weight} (double stored\+Weight)
+\begin{DoxyCompactList}\small\item\em store a weight value in edge \end{DoxyCompactList}\item 
+virtual \hyperlink{class_vertex}{Vertex} $\ast$ \hyperlink{class_edge_ac8602ef0c7762e086a719e5c300e80b8}{get\+Dst} () const 
+\begin{DoxyCompactList}\small\item\em get the destination of this edge \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_edge_a43d8bf7d905ff0a4df84b2634e8e9860}{set\+Dst} (\hyperlink{class_vertex}{Vertex} $\ast$dst)
+\begin{DoxyCompactList}\small\item\em set the destination of this edge \end{DoxyCompactList}\item 
+virtual \hyperlink{class_vertex}{Vertex} $\ast$ \hyperlink{class_edge_a9942c08298b9abcdd39918c1e723ab6a}{get\+Src} () const 
+\begin{DoxyCompactList}\small\item\em get the source of this edge \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_edge_af48131d832408a09b41ce0b39361c2ab}{set\+Src} (\hyperlink{class_vertex}{Vertex} $\ast$src)
+\begin{DoxyCompactList}\small\item\em set the source of this edge \end{DoxyCompactList}\item 
+\hypertarget{class_edge_afe6e80534a1f9805d2e8730d0d4d5cc7}{}virtual void \hyperlink{class_edge_afe6e80534a1f9805d2e8730d0d4d5cc7}{store\+Weight} ()\label{class_edge_afe6e80534a1f9805d2e8730d0d4d5cc7}
+
+\begin{DoxyCompactList}\small\item\em store weight in edge \end{DoxyCompactList}\item 
+virtual double \hyperlink{class_edge_a1ea100fde60c88afd5eb6f5b7829b796}{get\+Stored\+Weight} () const 
+\begin{DoxyCompactList}\small\item\em retrived weight stored in edge \end{DoxyCompactList}\item 
+virtual \hyperlink{class_s_d_l_r_g_b}{S\+D\+L\+R\+G\+B} \hyperlink{class_edge_a16081643290e304fd50a39144a716e2d}{get\+Color} ()
+\begin{DoxyCompactList}\small\item\em get the vertex\textquotesingle{}s color \end{DoxyCompactList}\item 
+\hypertarget{class_edge_a2f37b72f044427961d6730943daf10e0}{}virtual \hyperlink{class_edge_a2f37b72f044427961d6730943daf10e0}{$\sim$\+Edge} ()\label{class_edge_a2f37b72f044427961d6730943daf10e0}
+
+\begin{DoxyCompactList}\small\item\em edge destructor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_edge_a94f44a5a7b1110641414bc2e00a4ba2f}{}double {\bfseries stored\+Weight}\label{class_edge_a94f44a5a7b1110641414bc2e00a4ba2f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Generic \hyperlink{class_edge}{Edge} interface. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_edge_a175c30ff76609608a96c498c13ef55b0}{}\index{Edge@{Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!Edge@{Edge}}
+\subsubsection[{Edge}]{\setlength{\rightskip}{0pt plus 5cm}Edge\+::\+Edge (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertex} $\ast$}]{src, }
+\item[{{\bf Vertex} $\ast$}]{dst, }
+\item[{double}]{stored\+Weight = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\label{class_edge_a175c30ff76609608a96c498c13ef55b0}
+
+
+edge construtor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & source vertex for edge \\
+\hline
+{\em dst} & source vertex for edge \\
+\hline
+{\em stored\+Weight} & source vertex for edge \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_edge_a16081643290e304fd50a39144a716e2d}{}\index{Edge@{Edge}!get\+Color@{get\+Color}}
+\index{get\+Color@{get\+Color}!Edge@{Edge}}
+\subsubsection[{get\+Color}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+D\+L\+R\+G\+B} Edge\+::get\+Color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_edge_a16081643290e304fd50a39144a716e2d}
+
+
+get the vertex\textquotesingle{}s color 
+
+\begin{DoxyReturn}{Returns}
+color of vertex 
+\end{DoxyReturn}
+\hypertarget{class_edge_ac8602ef0c7762e086a719e5c300e80b8}{}\index{Edge@{Edge}!get\+Dst@{get\+Dst}}
+\index{get\+Dst@{get\+Dst}!Edge@{Edge}}
+\subsubsection[{get\+Dst}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vertex} $\ast$ Edge\+::get\+Dst (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_edge_ac8602ef0c7762e086a719e5c300e80b8}
+
+
+get the destination of this edge 
+
+\begin{DoxyReturn}{Returns}
+destination 
+\end{DoxyReturn}
+\hypertarget{class_edge_a9942c08298b9abcdd39918c1e723ab6a}{}\index{Edge@{Edge}!get\+Src@{get\+Src}}
+\index{get\+Src@{get\+Src}!Edge@{Edge}}
+\subsubsection[{get\+Src}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vertex} $\ast$ Edge\+::get\+Src (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_edge_a9942c08298b9abcdd39918c1e723ab6a}
+
+
+get the source of this edge 
+
+\begin{DoxyReturn}{Returns}
+source 
+\end{DoxyReturn}
+\hypertarget{class_edge_a1ea100fde60c88afd5eb6f5b7829b796}{}\index{Edge@{Edge}!get\+Stored\+Weight@{get\+Stored\+Weight}}
+\index{get\+Stored\+Weight@{get\+Stored\+Weight}!Edge@{Edge}}
+\subsubsection[{get\+Stored\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}double Edge\+::get\+Stored\+Weight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_edge_a1ea100fde60c88afd5eb6f5b7829b796}
+
+
+retrived weight stored in edge 
+
+\begin{DoxyReturn}{Returns}
+stored value 
+\end{DoxyReturn}
+\hypertarget{class_edge_a3a776c1ccafacdbdb10fdedd9cb329af}{}\index{Edge@{Edge}!get\+Weight@{get\+Weight}}
+\index{get\+Weight@{get\+Weight}!Edge@{Edge}}
+\subsubsection[{get\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}double Edge\+::get\+Weight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_edge_a3a776c1ccafacdbdb10fdedd9cb329af}
+
+
+get the weight of this edge 
+
+\begin{DoxyReturn}{Returns}
+weight of edge 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_transport_edge_ad2b8f66adec9223e97752ae1fb621c0e}{Transport\+Edge}, \hyperlink{class_bus_edge_a186045a2fc5cf2694390552627b5f985}{Bus\+Edge}, and \hyperlink{class_metro_edge_abe40bacd0e3d7e72fcdf7d0e38b2b311}{Metro\+Edge}.
+
+\hypertarget{class_edge_a43d8bf7d905ff0a4df84b2634e8e9860}{}\index{Edge@{Edge}!set\+Dst@{set\+Dst}}
+\index{set\+Dst@{set\+Dst}!Edge@{Edge}}
+\subsubsection[{set\+Dst}]{\setlength{\rightskip}{0pt plus 5cm}void Edge\+::set\+Dst (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertex} $\ast$}]{dst}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_edge_a43d8bf7d905ff0a4df84b2634e8e9860}
+
+
+set the destination of this edge 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dst} & new destination \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_edge_af48131d832408a09b41ce0b39361c2ab}{}\index{Edge@{Edge}!set\+Src@{set\+Src}}
+\index{set\+Src@{set\+Src}!Edge@{Edge}}
+\subsubsection[{set\+Src}]{\setlength{\rightskip}{0pt plus 5cm}void Edge\+::set\+Src (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertex} $\ast$}]{src}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_edge_af48131d832408a09b41ce0b39361c2ab}
+
+
+set the source of this edge 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & new source \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_edge_af7851a1bcd26d69b03010c85ae26be4d}{}\index{Edge@{Edge}!set\+Stored\+Weight@{set\+Stored\+Weight}}
+\index{set\+Stored\+Weight@{set\+Stored\+Weight}!Edge@{Edge}}
+\subsubsection[{set\+Stored\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}void Edge\+::set\+Stored\+Weight (
+\begin{DoxyParamCaption}
+\item[{double}]{stored\+Weight}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_edge_af7851a1bcd26d69b03010c85ae26be4d}
+
+
+store a weight value in edge 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & to store \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+André/\+Desktop/test/graph/Edge.\+h\item 
+C\+:/\+Users/\+André/\+Desktop/test/graph/Edge.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,65 @@
+\hypertarget{struct_a_s_c_i_i}{}\section{A\+S\+C\+I\+I$<$ Char\+Type $>$ Struct Template Reference}
+\label{struct_a_s_c_i_i}\index{A\+S\+C\+I\+I$<$ Char\+Type $>$@{A\+S\+C\+I\+I$<$ Char\+Type $>$}}
+
+
+\hyperlink{struct_a_s_c_i_i}{A\+S\+C\+I\+I} encoding.  
+
+
+
+
+{\ttfamily \#include $<$encodings.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{struct_a_s_c_i_i_a2f2c796586b1f9b18c7ff5c452eba0a9}{}enum \{ {\bfseries support\+Unicode} = 0
+ \}\label{struct_a_s_c_i_i_a2f2c796586b1f9b18c7ff5c452eba0a9}
+
+\item 
+\hypertarget{struct_a_s_c_i_i_a1baf6e7914f165be952c30db664cefb4}{}typedef Char\+Type {\bfseries Ch}\label{struct_a_s_c_i_i_a1baf6e7914f165be952c30db664cefb4}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{struct_a_s_c_i_i_af56b1605fe233c54693facc7de457f72}{}{\footnotesize template$<$typename Output\+Stream $>$ }\\static \hyperlink{_s_d_l__audio_8h_a52835ae37c4bb905b903cbaf5d04b05f}{void} {\bfseries Encode} (Output\+Stream \&os, unsigned codepoint)\label{struct_a_s_c_i_i_af56b1605fe233c54693facc7de457f72}
+
+\item 
+\hypertarget{struct_a_s_c_i_i_a44844bbfd0a4fc282993fd72f3f58eee}{}{\footnotesize template$<$typename Input\+Stream $>$ }\\static bool {\bfseries Decode} (Input\+Stream \&is, unsigned $\ast$codepoint)\label{struct_a_s_c_i_i_a44844bbfd0a4fc282993fd72f3f58eee}
+
+\item 
+\hypertarget{struct_a_s_c_i_i_a398680588a09e6ce9b56e32195047c78}{}{\footnotesize template$<$typename Input\+Stream , typename Output\+Stream $>$ }\\static bool {\bfseries Validate} (Input\+Stream \&is, Output\+Stream \&os)\label{struct_a_s_c_i_i_a398680588a09e6ce9b56e32195047c78}
+
+\item 
+\hypertarget{struct_a_s_c_i_i_aad78500eb98f45582a4df020e3fb2278}{}{\footnotesize template$<$typename Input\+Byte\+Stream $>$ }\\static Char\+Type {\bfseries Take\+B\+O\+M} (Input\+Byte\+Stream \&is)\label{struct_a_s_c_i_i_aad78500eb98f45582a4df020e3fb2278}
+
+\item 
+\hypertarget{struct_a_s_c_i_i_ab1b9fdf0a5c05658d62fded913d923a3}{}{\footnotesize template$<$typename Input\+Byte\+Stream $>$ }\\static Ch {\bfseries Take} (Input\+Byte\+Stream \&is)\label{struct_a_s_c_i_i_ab1b9fdf0a5c05658d62fded913d923a3}
+
+\item 
+\hypertarget{struct_a_s_c_i_i_a3036dc1d604039c3224ca0a890ee0134}{}{\footnotesize template$<$typename Output\+Byte\+Stream $>$ }\\static \hyperlink{_s_d_l__audio_8h_a52835ae37c4bb905b903cbaf5d04b05f}{void} {\bfseries Put\+B\+O\+M} (Output\+Byte\+Stream \&os)\label{struct_a_s_c_i_i_a3036dc1d604039c3224ca0a890ee0134}
+
+\item 
+\hypertarget{struct_a_s_c_i_i_a218b244b9cd961ea6c5775a734cec20e}{}{\footnotesize template$<$typename Output\+Byte\+Stream $>$ }\\static \hyperlink{_s_d_l__audio_8h_a52835ae37c4bb905b903cbaf5d04b05f}{void} {\bfseries Put} (Output\+Byte\+Stream \&os, Ch c)\label{struct_a_s_c_i_i_a218b244b9cd961ea6c5775a734cec20e}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Char\+Type = char$>$struct A\+S\+C\+I\+I$<$ Char\+Type $>$}
+
+\hyperlink{struct_a_s_c_i_i}{A\+S\+C\+I\+I} encoding. 
+
+\href{http://en.wikipedia.org/wiki/ASCII}{\tt http\+://en.\+wikipedia.\+org/wiki/\+A\+S\+C\+I\+I} 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Char\+Type} & Code unit for storing 7-\/bit \hyperlink{struct_a_s_c_i_i}{A\+S\+C\+I\+I} data. Default is char. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+implements Encoding concept 
+\end{DoxyNote}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/include/rapidjson/encodings.\+h\end{DoxyCompactItemize}

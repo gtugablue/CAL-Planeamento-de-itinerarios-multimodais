@@ -9,6 +9,9 @@ using namespace std;
 
 class Vertex;
 
+/**
+ * @brief Generic Edge interface
+ */
 class Edge{
 
 public:

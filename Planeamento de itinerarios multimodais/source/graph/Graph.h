@@ -8,6 +8,9 @@ using namespace std;
 
 class Vertex;
 
+/**
+ * @brief Generic Graph interface
+ */
 class Graph{
 	vector<Vertex*> vertexSet;
 public:

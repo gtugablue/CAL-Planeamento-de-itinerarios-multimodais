@@ -1,0 +1,368 @@
+\hypertarget{class_weight_info}{}\section{Weight\+Info Class Reference}
+\label{class_weight_info}\index{Weight\+Info@{Weight\+Info}}
+
+
+interface to save the user preferences about relative weights and also the different weights of an edge  
+
+
+
+
+{\ttfamily \#include $<$Weight\+Info.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_weight_info_a926aa00bc0d9e6cc9007c9ec06bc9b73}{}\hyperlink{class_weight_info_a926aa00bc0d9e6cc9007c9ec06bc9b73}{Weight\+Info} ()\label{class_weight_info_a926aa00bc0d9e6cc9007c9ec06bc9b73}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+double \hyperlink{class_weight_info_a71c15e39640780d0c7a6188bc9c5b1f7}{get\+Weight} () const 
+\begin{DoxyCompactList}\small\item\em get the weight value \end{DoxyCompactList}\item 
+double \hyperlink{class_weight_info_a95cd81eace69fa37d8200cbf503ecbbc}{get\+Cost} () const 
+\begin{DoxyCompactList}\small\item\em get the monetary cost \end{DoxyCompactList}\item 
+void \hyperlink{class_weight_info_abe97f95f7e4fbfda379879e56ba67b82}{set\+Cost} (double cost)
+\begin{DoxyCompactList}\small\item\em set the monetary cost \end{DoxyCompactList}\item 
+double \hyperlink{class_weight_info_a2939a18c59d106925c3ff1559eaae292}{get\+Distance} () const 
+\begin{DoxyCompactList}\small\item\em get the distance \end{DoxyCompactList}\item 
+void \hyperlink{class_weight_info_aeecd1a648ca9ca739a9009c2eff63fbb}{set\+Distance} (double distance)
+\begin{DoxyCompactList}\small\item\em set the distance \end{DoxyCompactList}\item 
+double \hyperlink{class_weight_info_a82dba83714cd8449f08ee632e73dd52c}{get\+Switchs} () const 
+\begin{DoxyCompactList}\small\item\em get the number of switchs made \end{DoxyCompactList}\item 
+void \hyperlink{class_weight_info_a2434a03bba38b88078d27c4de0a4964e}{set\+Switchs} (double switchs)
+\begin{DoxyCompactList}\small\item\em set the number of switchs made \end{DoxyCompactList}\item 
+double \hyperlink{class_weight_info_a97e79f7bf650ad7756d4e3257baa11da}{get\+Time} () const 
+\begin{DoxyCompactList}\small\item\em get the amount of time \end{DoxyCompactList}\item 
+void \hyperlink{class_weight_info_ac38800f9060360b80ee0d7547b228b60}{set\+Time} (double time)
+\begin{DoxyCompactList}\small\item\em set the amount of time \end{DoxyCompactList}\item 
+\hyperlink{class_weight_info}{Weight\+Info} \hyperlink{class_weight_info_a70f3f16d32900beda84d378e911de764}{operator+} (const \hyperlink{class_weight_info}{Weight\+Info} \&w) const 
+\begin{DoxyCompactList}\small\item\em add two Weight\+Infos by adding their components \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \hyperlink{class_weight_info_ad567791b90595732893ea16e4abfba84}{get\+Cost\+Weight} ()
+\begin{DoxyCompactList}\small\item\em get weight given to a unit of monetary cost \end{DoxyCompactList}\item 
+static void \hyperlink{class_weight_info_ad6d08477ecfdcd4120d450a98b6cba12}{set\+Cost\+Weight} (double cost\+Weight)
+\begin{DoxyCompactList}\small\item\em set weight given to a unit of monetary cost \end{DoxyCompactList}\item 
+static double \hyperlink{class_weight_info_af8544ac25bd9b3502329730eea24e9a8}{get\+Distance\+Weight} ()
+\begin{DoxyCompactList}\small\item\em get weight given to a unit of distance \end{DoxyCompactList}\item 
+static void \hyperlink{class_weight_info_a11eb3bb70c15776f094c65604a8a0140}{set\+Distance\+Weight} (double distance\+Weight)
+\begin{DoxyCompactList}\small\item\em set weight given to a unit of distance \end{DoxyCompactList}\item 
+static double \hyperlink{class_weight_info_ae642c6aa8e14eeb72e5abbfc34e6b255}{get\+Switch\+Weight} ()
+\begin{DoxyCompactList}\small\item\em get weight given to a switch \end{DoxyCompactList}\item 
+static void \hyperlink{class_weight_info_a76c6ab9bfe61f4fe9b1f0124c11eeb17}{set\+Switch\+Weight} (double switch\+Weight)
+\begin{DoxyCompactList}\small\item\em set weight given to a switch \end{DoxyCompactList}\item 
+static double \hyperlink{class_weight_info_a1a9d3f5ebb45d737a84e55e337360bee}{get\+Time\+Weight} ()
+\begin{DoxyCompactList}\small\item\em get weight given to a unit of time \end{DoxyCompactList}\item 
+static void \hyperlink{class_weight_info_ad351b068742da448059711d5bdf2b996}{set\+Time\+Weight} (double time\+Weight)
+\begin{DoxyCompactList}\small\item\em set weight given to a unit of time \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{class_weight_info_a3600b20a06b83d7442e5b1d4a8a0f31f}{operator$<$$<$} (std\+::ostream \&os, \hyperlink{class_weight_info}{Weight\+Info} \&w)
+\begin{DoxyCompactList}\small\item\em write weight\+Info to output stream \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+interface to save the user preferences about relative weights and also the different weights of an edge 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_weight_info_a95cd81eace69fa37d8200cbf503ecbbc}{}\index{Weight\+Info@{Weight\+Info}!get\+Cost@{get\+Cost}}
+\index{get\+Cost@{get\+Cost}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{get\+Cost}]{\setlength{\rightskip}{0pt plus 5cm}double Weight\+Info\+::get\+Cost (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_weight_info_a95cd81eace69fa37d8200cbf503ecbbc}
+
+
+get the monetary cost 
+
+\begin{DoxyReturn}{Returns}
+monetary cost 
+\end{DoxyReturn}
+\hypertarget{class_weight_info_ad567791b90595732893ea16e4abfba84}{}\index{Weight\+Info@{Weight\+Info}!get\+Cost\+Weight@{get\+Cost\+Weight}}
+\index{get\+Cost\+Weight@{get\+Cost\+Weight}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{get\+Cost\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}double Weight\+Info\+::get\+Cost\+Weight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_weight_info_ad567791b90595732893ea16e4abfba84}
+
+
+get weight given to a unit of monetary cost 
+
+\begin{DoxyReturn}{Returns}
+weight of monetary cost 
+\end{DoxyReturn}
+\hypertarget{class_weight_info_a2939a18c59d106925c3ff1559eaae292}{}\index{Weight\+Info@{Weight\+Info}!get\+Distance@{get\+Distance}}
+\index{get\+Distance@{get\+Distance}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{get\+Distance}]{\setlength{\rightskip}{0pt plus 5cm}double Weight\+Info\+::get\+Distance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_weight_info_a2939a18c59d106925c3ff1559eaae292}
+
+
+get the distance 
+
+\begin{DoxyReturn}{Returns}
+distance 
+\end{DoxyReturn}
+\hypertarget{class_weight_info_af8544ac25bd9b3502329730eea24e9a8}{}\index{Weight\+Info@{Weight\+Info}!get\+Distance\+Weight@{get\+Distance\+Weight}}
+\index{get\+Distance\+Weight@{get\+Distance\+Weight}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{get\+Distance\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}double Weight\+Info\+::get\+Distance\+Weight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_weight_info_af8544ac25bd9b3502329730eea24e9a8}
+
+
+get weight given to a unit of distance 
+
+\begin{DoxyReturn}{Returns}
+weight of distance 
+\end{DoxyReturn}
+\hypertarget{class_weight_info_a82dba83714cd8449f08ee632e73dd52c}{}\index{Weight\+Info@{Weight\+Info}!get\+Switchs@{get\+Switchs}}
+\index{get\+Switchs@{get\+Switchs}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{get\+Switchs}]{\setlength{\rightskip}{0pt plus 5cm}double Weight\+Info\+::get\+Switchs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_weight_info_a82dba83714cd8449f08ee632e73dd52c}
+
+
+get the number of switchs made 
+
+\begin{DoxyReturn}{Returns}
+number of switchs 
+\end{DoxyReturn}
+\hypertarget{class_weight_info_ae642c6aa8e14eeb72e5abbfc34e6b255}{}\index{Weight\+Info@{Weight\+Info}!get\+Switch\+Weight@{get\+Switch\+Weight}}
+\index{get\+Switch\+Weight@{get\+Switch\+Weight}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{get\+Switch\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}double Weight\+Info\+::get\+Switch\+Weight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_weight_info_ae642c6aa8e14eeb72e5abbfc34e6b255}
+
+
+get weight given to a switch 
+
+\begin{DoxyReturn}{Returns}
+weight of switch 
+\end{DoxyReturn}
+\hypertarget{class_weight_info_a97e79f7bf650ad7756d4e3257baa11da}{}\index{Weight\+Info@{Weight\+Info}!get\+Time@{get\+Time}}
+\index{get\+Time@{get\+Time}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{get\+Time}]{\setlength{\rightskip}{0pt plus 5cm}double Weight\+Info\+::get\+Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_weight_info_a97e79f7bf650ad7756d4e3257baa11da}
+
+
+get the amount of time 
+
+\begin{DoxyReturn}{Returns}
+amount of time 
+\end{DoxyReturn}
+\hypertarget{class_weight_info_a1a9d3f5ebb45d737a84e55e337360bee}{}\index{Weight\+Info@{Weight\+Info}!get\+Time\+Weight@{get\+Time\+Weight}}
+\index{get\+Time\+Weight@{get\+Time\+Weight}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{get\+Time\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}double Weight\+Info\+::get\+Time\+Weight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_weight_info_a1a9d3f5ebb45d737a84e55e337360bee}
+
+
+get weight given to a unit of time 
+
+\begin{DoxyReturn}{Returns}
+weight of time 
+\end{DoxyReturn}
+\hypertarget{class_weight_info_a71c15e39640780d0c7a6188bc9c5b1f7}{}\index{Weight\+Info@{Weight\+Info}!get\+Weight@{get\+Weight}}
+\index{get\+Weight@{get\+Weight}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{get\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}double Weight\+Info\+::get\+Weight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_weight_info_a71c15e39640780d0c7a6188bc9c5b1f7}
+
+
+get the weight value 
+
+\begin{DoxyReturn}{Returns}
+weight value 
+\end{DoxyReturn}
+\hypertarget{class_weight_info_a70f3f16d32900beda84d378e911de764}{}\index{Weight\+Info@{Weight\+Info}!operator+@{operator+}}
+\index{operator+@{operator+}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Weight\+Info} Weight\+Info\+::operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Weight\+Info} \&}]{w}
+\end{DoxyParamCaption}
+) const}\label{class_weight_info_a70f3f16d32900beda84d378e911de764}
+
+
+add two Weight\+Infos by adding their components 
+
+
+\begin{DoxyParams}{Parameters}
+{\em w} & other weightinfo object to add to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+new \hyperlink{class_weight_info}{Weight\+Info}, result of addition 
+\end{DoxyReturn}
+\hypertarget{class_weight_info_abe97f95f7e4fbfda379879e56ba67b82}{}\index{Weight\+Info@{Weight\+Info}!set\+Cost@{set\+Cost}}
+\index{set\+Cost@{set\+Cost}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{set\+Cost}]{\setlength{\rightskip}{0pt plus 5cm}void Weight\+Info\+::set\+Cost (
+\begin{DoxyParamCaption}
+\item[{double}]{cost}
+\end{DoxyParamCaption}
+)}\label{class_weight_info_abe97f95f7e4fbfda379879e56ba67b82}
+
+
+set the monetary cost 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cost} & new monetary cost \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_weight_info_ad6d08477ecfdcd4120d450a98b6cba12}{}\index{Weight\+Info@{Weight\+Info}!set\+Cost\+Weight@{set\+Cost\+Weight}}
+\index{set\+Cost\+Weight@{set\+Cost\+Weight}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{set\+Cost\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}void Weight\+Info\+::set\+Cost\+Weight (
+\begin{DoxyParamCaption}
+\item[{double}]{cost\+Weight}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_weight_info_ad6d08477ecfdcd4120d450a98b6cba12}
+
+
+set weight given to a unit of monetary cost 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cost\+Weight} & new weight of monetary cost \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_weight_info_aeecd1a648ca9ca739a9009c2eff63fbb}{}\index{Weight\+Info@{Weight\+Info}!set\+Distance@{set\+Distance}}
+\index{set\+Distance@{set\+Distance}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{set\+Distance}]{\setlength{\rightskip}{0pt plus 5cm}void Weight\+Info\+::set\+Distance (
+\begin{DoxyParamCaption}
+\item[{double}]{distance}
+\end{DoxyParamCaption}
+)}\label{class_weight_info_aeecd1a648ca9ca739a9009c2eff63fbb}
+
+
+set the distance 
+
+
+\begin{DoxyParams}{Parameters}
+{\em distance} & new distance \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_weight_info_a11eb3bb70c15776f094c65604a8a0140}{}\index{Weight\+Info@{Weight\+Info}!set\+Distance\+Weight@{set\+Distance\+Weight}}
+\index{set\+Distance\+Weight@{set\+Distance\+Weight}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{set\+Distance\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}void Weight\+Info\+::set\+Distance\+Weight (
+\begin{DoxyParamCaption}
+\item[{double}]{distance\+Weight}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_weight_info_a11eb3bb70c15776f094c65604a8a0140}
+
+
+set weight given to a unit of distance 
+
+
+\begin{DoxyParams}{Parameters}
+{\em distance\+Weight} & new weight of distance \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_weight_info_a2434a03bba38b88078d27c4de0a4964e}{}\index{Weight\+Info@{Weight\+Info}!set\+Switchs@{set\+Switchs}}
+\index{set\+Switchs@{set\+Switchs}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{set\+Switchs}]{\setlength{\rightskip}{0pt plus 5cm}void Weight\+Info\+::set\+Switchs (
+\begin{DoxyParamCaption}
+\item[{double}]{switchs}
+\end{DoxyParamCaption}
+)}\label{class_weight_info_a2434a03bba38b88078d27c4de0a4964e}
+
+
+set the number of switchs made 
+
+
+\begin{DoxyParams}{Parameters}
+{\em switchs} & new number of switchs \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_weight_info_a76c6ab9bfe61f4fe9b1f0124c11eeb17}{}\index{Weight\+Info@{Weight\+Info}!set\+Switch\+Weight@{set\+Switch\+Weight}}
+\index{set\+Switch\+Weight@{set\+Switch\+Weight}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{set\+Switch\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}void Weight\+Info\+::set\+Switch\+Weight (
+\begin{DoxyParamCaption}
+\item[{double}]{switch\+Weight}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_weight_info_a76c6ab9bfe61f4fe9b1f0124c11eeb17}
+
+
+set weight given to a switch 
+
+
+\begin{DoxyParams}{Parameters}
+{\em switch\+Weight} & new weight of switch \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_weight_info_ac38800f9060360b80ee0d7547b228b60}{}\index{Weight\+Info@{Weight\+Info}!set\+Time@{set\+Time}}
+\index{set\+Time@{set\+Time}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{set\+Time}]{\setlength{\rightskip}{0pt plus 5cm}void Weight\+Info\+::set\+Time (
+\begin{DoxyParamCaption}
+\item[{double}]{time}
+\end{DoxyParamCaption}
+)}\label{class_weight_info_ac38800f9060360b80ee0d7547b228b60}
+
+
+set the amount of time 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & new amount of time \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_weight_info_ad351b068742da448059711d5bdf2b996}{}\index{Weight\+Info@{Weight\+Info}!set\+Time\+Weight@{set\+Time\+Weight}}
+\index{set\+Time\+Weight@{set\+Time\+Weight}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{set\+Time\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}void Weight\+Info\+::set\+Time\+Weight (
+\begin{DoxyParamCaption}
+\item[{double}]{time\+Weight}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_weight_info_ad351b068742da448059711d5bdf2b996}
+
+
+set weight given to a unit of time 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+Weight} & new weight of time \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_weight_info_a3600b20a06b83d7442e5b1d4a8a0f31f}{}\index{Weight\+Info@{Weight\+Info}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Weight\+Info@{Weight\+Info}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{os, }
+\item[{{\bf Weight\+Info} \&}]{w}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\label{class_weight_info_a3600b20a06b83d7442e5b1d4a8a0f31f}
+
+
+write weight\+Info to output stream 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & output stream to write \\
+\hline
+{\em w} & used outputstream \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+André/\+Desktop/test/transport/Weight\+Info.\+h\item 
+C\+:/\+Users/\+André/\+Desktop/test/transport/Weight\+Info.\+cpp\end{DoxyCompactItemize}

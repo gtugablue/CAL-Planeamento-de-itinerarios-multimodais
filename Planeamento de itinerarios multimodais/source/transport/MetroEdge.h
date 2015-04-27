@@ -11,6 +11,9 @@
 #include "TransportEdge.h"
 #include <vector>
 
+/**
+ * @brief Connection between two metro stops
+ */
 class MetroEdge: public TransportEdge {
 public:
 	/**

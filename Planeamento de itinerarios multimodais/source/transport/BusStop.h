@@ -14,6 +14,9 @@
 #include "Hour.h"
 #include "TransportStop.h"
 
+/**
+ * @brief Represents a bus stop
+ */
 class BusStop : public TransportStop {
 	std::string code;
 public:
