@@ -132,7 +132,14 @@ public:
 				if(i != 0 && prev_line != ts->getRouteName())
 				{
 					if(i != 1)
-						os << "Switch to:" << endl;
+					{
+						Vertex * v2 = p.edges[i-1]->getSrc();
+						TransportStop* ts2 = dynamic_cast<TransportStop*>(v2);
+						if(ts2 != NULL && i == 0)
+							os << "Switch from " << ts2->getName() << " to:" << endl;
+						else
+							os << "Switch to:" << endl;
+					}
 					os << ts->getName() << " - Line " << ts->getRouteName() << " [" << ts->getArrivalTime() << "]" << endl;
 				}
 			}
@@ -145,8 +152,8 @@ public:
 			TransportStop* ts = dynamic_cast<TransportStop*>(v);
 			if(ts != NULL)
 			{
-				//if(p.edges.size() > 1)
-				//	os << "Walk to:" << endl;
+				if(p.edges.size() > 1)
+					os << "Walk to:" << endl;
 
 				os << ts->getNameAndType() << " [" << ts->getArrivalTime() << "]" << endl;
 			}
