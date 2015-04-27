@@ -20,10 +20,29 @@ public:
 	static const unsigned secondsPerDay;
 	unsigned hours;
 	unsigned minutes;
+	/**
+	 * @brief default constructor for hour, set hours and minutesto 0
+	 */
 	Hour(): hours(0), minutes(0) {}
+
+	/**
+	 * @brief construct hour object from string
+	 */
 	Hour(const std::string &hour);
+
+	/**
+	 * @brief construct hour object from number of hours, minutes
+	 */
 	Hour(unsigned hours, unsigned minutes): hours(hours), minutes(minutes) { }
+
+	/**
+	 * @brief construct hour object from a number of seconds
+	 */
 	Hour(double time);
+
+	/**
+	 * @brief get the number of seconds
+	 */
 	unsigned getHourstamp() const;
 	void setHourstamp(unsigned hourstamp);
 	Hour& operator+=(const Hour &hour);
