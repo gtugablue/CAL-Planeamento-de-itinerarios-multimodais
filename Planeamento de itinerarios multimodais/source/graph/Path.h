@@ -146,7 +146,7 @@ public:
 					}
 					os << ts->getName() << " - Line " << ts->getRouteName() << " [" << ts->getArrivalTime() << "]";
 
-					if(printTime)
+					if(printTime || i == 1)
 					{
 						printTime = false;
 						os << " (" << ts->calcWaitingTime(ts->getArrivalTime())/60 << " minutes of wait)";
