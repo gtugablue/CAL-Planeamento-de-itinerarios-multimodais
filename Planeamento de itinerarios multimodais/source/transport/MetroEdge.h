@@ -13,9 +13,31 @@
 
 class MetroEdge: public TransportEdge {
 public:
+	/**
+	 * @brief metro edge constructor
+	 * @param src source vertex of edge
+	 * @param dst destination vertex of edge
+	 */
 	MetroEdge(Vertex *src, Vertex *dst);
+
+	/**
+	 * @brief metro edge constructor
+	 * @param src source vertex of edge
+	 * @param dst destination vertex of edge
+	 * @param line set of points belongingto the edge
+	 */
 	MetroEdge(Vertex *src, Vertex *dst, const std::vector<Coordinates> &line);
+
+	/**
+	 * @brief get the weight of the edge
+	 * @return edge weight
+	 */
 	double getWeight();
+
+	/**
+	 * @brief get the speed of the metro
+	 * @return speed of metro
+	 */
 	double getSpeed() const;
 };
 
