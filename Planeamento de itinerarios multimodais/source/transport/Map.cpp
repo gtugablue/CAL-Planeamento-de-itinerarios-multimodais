@@ -303,7 +303,7 @@ void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 		// Do the same but in the opposite order
 		MetroRoute metroRoute2(code, true);
 		MetroStop *last = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][dLines[i]["stops"].Size() - 1].GetString())); // TODO delete
-		metroRoute2.addStop(metroStop);
+		metroRoute2.addStop(last);
 		for (int j = dLines[i]["stops"].Size() - 2; j >= 0; --j)
 		{
 			metroStop = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString())); // TODO delete
