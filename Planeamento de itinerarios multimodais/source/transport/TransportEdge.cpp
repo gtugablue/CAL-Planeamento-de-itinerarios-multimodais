@@ -49,6 +49,6 @@ void TransportEdge::addPoint(const Coordinates &coords)
 
 double TransportEdge::getWeight()
 {
-	weight.setTime(((TransportStop *)getSrc())->calcWaitingTime(((TransportStop *)getSrc())->getArrivalTime()) + calculateTime());
+	weight.setTime(((TransportStop *)getDst())->calcWaitingTime(((TransportStop *)getDst())->getArrivalTime()) + calculateTime());
 	return weight.getWeight();
 }
