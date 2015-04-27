@@ -339,7 +339,6 @@ int main(int argc, char* argv[]) {
 	SDLGraphDraw::setValues(minx, miny, maxx, maxy);
 	//Camera* c = new Camera(0,0,SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes(), 100);
 	Camera* c = new Camera(minx,miny,maxx,maxy, 100);
-	cout << minx << "  " << miny << "  " << maxx << "  " << maxy << "  "<< graph.getVertexSet().size() << endl;
 	SDL_Cursor * cursormove = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_SIZEALL);
 	SDL_Cursor * cursorresize = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_WAIT);
 	SDL_Cursor * cursordefault = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
