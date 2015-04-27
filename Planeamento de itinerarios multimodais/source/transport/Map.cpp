@@ -235,7 +235,7 @@ vector<MetroStop *> Map::Loader::loadMetroStops(rapidjson::Document &d) const
 	return metroStops;
 }
 
-MetroStop *Map::Loader::findClosestMetroStop(const vector<MetroStop *> metroStops, const string metroStopCode) const
+MetroStop *Map::Loader::findClosestMetroStop(const vector<MetroStop *> &metroStops, const string &metroStopCode) const
 {
 	MetroStop *closest;
 	unsigned minScore = -1;
@@ -538,22 +538,20 @@ void Map::Loader::loadConnectingEdges(const vector<BusRoute> &busRoutes, const v
 	infile.close();
 }
 
-Map *Map::Loader::load()
+void Map::Loader::load(Map &map)
 {
-	Map *map = new Map(); // TODO delete
 	cout << "Loading bus routes..." << endl;
-	loadBusRoutes(map->busRoutes);
+	loadBusRoutes(map.busRoutes);
 	cout << "Bus routes successfully loaded." << endl;
 	cout << "Loading metro routes..." << endl;
-	loadMetroRoutes(map->metroRoutes);
+	loadMetroRoutes(map.metroRoutes);
 	cout << "Metro routes successfully loaded." << endl;
 	cout << "Creating connecting edges.." << endl;
-	createConnectingEdges(map->busRoutes, map->metroRoutes);
+	createConnectingEdges(map.busRoutes, map.metroRoutes);
 	cout << "Connecting edges successfully created." << endl;
-	saveConnectingEdges(map->busRoutes, map->metroRoutes);
+	saveConnectingEdges(map.busRoutes, map.metroRoutes);
 	//loadConnectingEdges(map.busRoutes, map.metroRoutes);
 	//cout << "Loaded connecting edges." << endl;
-	return map;
 }
 
 Graph Map::generateGraph() const
