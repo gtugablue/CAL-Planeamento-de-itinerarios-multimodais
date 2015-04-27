@@ -39,7 +39,7 @@ public:
 	 * @param minutes minutes
 	 * @param seconds seconds (optional)
 	 */
-	Hour(unsigned hours, unsigned minutes, unsigned seconds = 0): seconds(hours * secondsPerHour + minutes * minutesPerHour + seconds) { }
+	Hour(unsigned hours, unsigned minutes, unsigned seconds = 0): seconds(hours * secondsPerHour + minutes * secondsPerMinute + seconds) {}
 
 	/**
 	 * @brief get the number of seconds
