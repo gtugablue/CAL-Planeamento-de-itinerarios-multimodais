@@ -40,7 +40,12 @@ public:
 	 * @brief get a string containing the name of the stop and its type
 	 * @return string containing the information
 	 */
-	virtual std::string getNameAndType() const { return "Bus: " + name + "[ Line " + this->getTransportRoute()->getCode() + " ]"; }
+	virtual std::string getNameAndType() const {
+		//return TransportStop::getNameAndType();
+		if(this->getTransportRoute() != NULL)
+			return "Bus: " + name + "[ Line " + this->getTransportRoute()->getCode() + " ]";
+		return "Bus: " + name + "[ Line X ]";
+	}
 };
 
 #endif /* SOURCE_BUSSTOP_H_ */
