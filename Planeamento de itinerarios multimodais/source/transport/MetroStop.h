@@ -28,7 +28,7 @@ public:
 	 * @brief returns the stop's name and type (e.x. Metro: IPO)
 	 * @return string with stop name and type
 	 */
-	virtual std::string getNameAndType() const { return "Metro: " + name; }
+	virtual std::string getNameAndType() const { return "Metro: " + name + "[ Line " + this->getTransportRoute()->getCode() + " ]"; }
 };
 
 #endif /* SOURCE_METROSTOP_H_ */
