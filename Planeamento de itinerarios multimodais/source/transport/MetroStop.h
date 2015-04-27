@@ -22,7 +22,7 @@ public:
 	 * @param name Stop's name
 	 * @param coords Coordinates of the Stop
 	 */
-	MetroStop(const std::string name, const Coordinates &coords);
+	MetroStop(const std::string name, const Coordinates &coords, const std::string& route_name);
 
 	/**
 	 * @brief returns the stop's name and type (e.x. Metro: IPO)

@@ -268,7 +268,7 @@ int main(int argc, char* argv[]) {
 	l.load(map);
 
 	ProgramConfig conf;
-	conf.getFromConsole();
+	//conf.getFromConsole();
 	cout << endl << "==> Select the source and destination points with the mouse" << endl;
 
 	if(! init() ){
@@ -280,6 +280,9 @@ int main(int argc, char* argv[]) {
 	//Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 
 	Graph graph = map.generateGraph();
+
+	/*cerr << "###" << ((TransportStop*)graph.getVertexSet()[50])->getTransportRoute()->getCode() << endl;
+	system("pause");*/
 
 	Graph* g1 = &graph;
 	Vertex* src = NULL;
@@ -370,11 +373,11 @@ int main(int argc, char* argv[]) {
 			Coordinates world( c->getWorldY(SDLGraphDraw::getVRes(), y),c->getWorldX(SDLGraphDraw::getHRes(), x)) ;
 
 			if(src == NULL){
-				src = new TransportStop("Source", world);
+				src = new TransportStop("Source", world, "NONE");
 				((TransportStop*)src)->userAddToGraph(g1);
 			}
 			else if(dst == NULL){
-				dst = new TransportStop("Destination", world);
+				dst = new TransportStop("Destination", world, "NONE");
 				((TransportStop*)dst)->userAddToGraph(g1);
 				p = PathFinder::find_path(g1, src, dst, conf);
 				cerr << "calculating" << endl;
