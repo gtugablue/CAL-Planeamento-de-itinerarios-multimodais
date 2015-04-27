@@ -216,7 +216,10 @@ int main(int argc, char* argv[]) {
 #include <boost/heap/fibonacci_heap.hpp>
 
 #define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 900
+#define SCREEN_HEIGHT 600
+
+#define MAP_WIDTH 800
+#define MAP_HEIGHT 900
 
 static SDL_Window* window = NULL;
 
@@ -229,7 +232,8 @@ bool init(){
 	//if(SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_FULLSCREEN_DESKTOP, &window, &renderer))
 	if(SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI, &window, &renderer))
 		return false;
-	SDLGraphDraw::setRes(SCREEN_WIDTH,SCREEN_HEIGHT);
+	SDL_SetWindowTitle(window, "CAL PIM");
+	SDLGraphDraw::setRes(MAP_WIDTH, MAP_HEIGHT);
 	srand(time(NULL));
 	return true;
 }
@@ -268,7 +272,7 @@ int main(int argc, char* argv[]) {
 	l.load(map);
 
 	ProgramConfig conf;
-	conf.getFromConsole();
+	//conf.getFromConsole();
 	cout << endl << "==> Select the source and destination points with the mouse" << endl;
 
 	if(! init() ){
@@ -280,6 +284,9 @@ int main(int argc, char* argv[]) {
 	//Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 
 	Graph graph = map.generateGraph();
+
+	/*cerr << "###" << ((TransportStop*)graph.getVertexSet()[50])->getTransportRoute()->getCode() << endl;
+	system("pause");*/
 
 	Graph* g1 = &graph;
 	Vertex* src = NULL;
@@ -370,11 +377,11 @@ int main(int argc, char* argv[]) {
 			Coordinates world( c->getWorldY(SDLGraphDraw::getVRes(), y),c->getWorldX(SDLGraphDraw::getHRes(), x)) ;
 
 			if(src == NULL){
-				src = new TransportStop("Source", world);
+				src = new TransportStop("Source", world, "NONE");
 				((TransportStop*)src)->userAddToGraph(g1);
 			}
 			else if(dst == NULL){
-				dst = new TransportStop("Destination", world);
+				dst = new TransportStop("Destination", world, "NONE");
 				((TransportStop*)dst)->userAddToGraph(g1);
 				p = PathFinder::find_path(g1, src, dst, conf);
 				cerr << "calculating" << endl;

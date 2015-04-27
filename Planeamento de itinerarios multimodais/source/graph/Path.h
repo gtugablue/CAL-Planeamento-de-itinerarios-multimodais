@@ -127,37 +127,10 @@ public:
 				w = w + te->getWeightInfo();
 				if(te->getWeightInfo().getSwitchs() > 0)
 				{
-					if(p.edges.size() == 1)
-						os << "=> Walk to:" << endl;
-					else if(i == 0)
-						os << "=> Enter transport:" << endl;
-					else if(i == p.edges.size() - 1)
-						os << "=> Walk to:" << endl;
-					else
-						os << "=> Switch to transport:" << endl;
-/*
-					if(i != 0)
-					{
-						cerr << "0" << endl;
-						os << "0" << endl;
-						os << ts->getName() << endl;
-						cerr << "1" << endl;
-						os << "1" << endl;
-						os << ts->getNameAndType();
-						cerr << "2" << endl;
-						os << "2" << endl;
-						os << " [" << ts->getArrivalTime() << "]" << endl;
-						cerr << "3" << endl;
-						os << "3" << endl;
-					}*/
-
-
-						/*os << "==> Enter transport:" << endl;
-					else if (i < p.edges.size() - 1)
-						os << "==> Switch to transport:" << endl;
-					else
-						os << "==> Exit to:" << endl;*/
 				}
+
+				if(i != 0)
+					os << ts->getName() << " - Line " << ts->getRouteName() << " [" << ts->getArrivalTime() << "]" << endl;
 			}
 		}
 
