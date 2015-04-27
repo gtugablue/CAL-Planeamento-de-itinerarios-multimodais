@@ -216,7 +216,10 @@ int main(int argc, char* argv[]) {
 #include <boost/heap/fibonacci_heap.hpp>
 
 #define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 900
+#define SCREEN_HEIGHT 600
+
+#define MAP_WIDTH 800
+#define MAP_HEIGHT 900
 
 static SDL_Window* window = NULL;
 
@@ -229,7 +232,8 @@ bool init(){
 	//if(SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_FULLSCREEN_DESKTOP, &window, &renderer))
 	if(SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI, &window, &renderer))
 		return false;
-	SDLGraphDraw::setRes(SCREEN_WIDTH,SCREEN_HEIGHT);
+	SDL_SetWindowTitle(window, "CAL PIM");
+	SDLGraphDraw::setRes(MAP_WIDTH, MAP_HEIGHT);
 	srand(time(NULL));
 	return true;
 }
@@ -268,7 +272,7 @@ int main(int argc, char* argv[]) {
 	l.load(map);
 
 	ProgramConfig conf;
-	//conf.getFromConsole();
+	conf.getFromConsole();
 	cout << endl << "==> Select the source and destination points with the mouse" << endl;
 
 	if(! init() ){
