@@ -154,6 +154,7 @@ public:
 
 					os << endl;
 				}
+
 			}
 			prev_line = ts->getRouteName();
 		}
