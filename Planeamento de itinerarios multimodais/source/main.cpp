@@ -342,12 +342,6 @@ int main(int argc, char* argv[]) {
 	SDL_Cursor * cursormove = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_SIZEALL);
 	SDL_Cursor * cursorresize = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_WAIT);
 	SDL_Cursor * cursordefault = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
-	Slider * slider = new Slider(50,50,
-			SCREEN_WIDTH-100,50,
-			75,75,
-			0,100,
-			50,
-			true);
 
 	SDL_SetCursor(cursordefault);
 	SDL_TimerID  setTimer = 0;
@@ -393,10 +387,6 @@ int main(int argc, char* argv[]) {
 				dst = new TransportStop("Destination", world, "NONE");
 				((TransportStop*)dst)->userAddToGraph(g1);
 				p = PathFinder::find_path(g1, src, dst, conf);
-				cerr << "calculating" << endl;
-				//p = dijsktra_list(g1, src, dst);
-				//p = astar_fib(g1, src, dst);
-				cerr << "done calculating" << endl;
 				if(p->getEdges().size() == 0)
 					cerr << "path not found!" << endl;
 				else
@@ -405,22 +395,6 @@ int main(int argc, char* argv[]) {
 					cout << endl << "==> Press ESC to select new points or Left-Ctrl to exit/change settings." << endl;
 				}
 			}
-
-			//slider->select(x,y);
-			//std::cout << "left pressed"<<endl;
-			//delete g1;
-			//delete p;
-			//g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
-
-			//cerr << "Alg start" << endl;
-			//p = dijsktra_list(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-			//p = dijsktra_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-			//p = astar_list(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-			//p = astar_fib(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-			//p = brute_force(g1, g1->getVertexSet()[0], g1->getVertexSet()[1]);
-
-			//p = PathFinder::find_path(g1, g1->getVertexSet()[0], g1->getVertexSet()[1], conf);
-			//cerr << "Alg end" << endl;
 		}
 		else if(e.type  ==  SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT){
 			moving = true;
@@ -440,20 +414,12 @@ int main(int argc, char* argv[]) {
 			mouseLeftDown = false;
 			int x, y;
 			SDL_GetMouseState(&x, &y);
-			slider->setSelected(false);
 		}
 		else if(e.type  ==  SDL_MOUSEMOTION){
 			if(moving){
 				c->moveRelScreen(-e.motion.xrel, e.motion.yrel, SDLGraphDraw::getHRes(), SDLGraphDraw::getVRes());
 			}
-			if(mouseLeftDown){
-				if(slider->isSelected()){
-					int x, y;
-					SDL_GetMouseState(&x, &y);
-					slider->setValueUI(x);
-				}
 
-			}
 		}
 		else if(e.type  ==  SDL_MOUSEWHEEL ){
 			bool changed = false;
