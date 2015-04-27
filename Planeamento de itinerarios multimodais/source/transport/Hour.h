@@ -12,33 +12,26 @@
 #include <iostream>
 
 class Hour {
+private:
+	unsigned seconds;
 public:
 	static const unsigned secondsPerMinute;
 	static const unsigned minutesPerHour;
 	static const unsigned hoursPerDay;
 	static const unsigned minutesPerDay;
 	static const unsigned secondsPerDay;
-	unsigned hours;
-	unsigned minutes;
-	/**
-	 * @brief default constructor for hour, set hours and minutesto 0
-	 */
-	Hour(): hours(0), minutes(0) {}
-
 	/**
 	 * @brief construct hour object from string
 	 */
+	static const unsigned secondsPerHour;
+	Hour(): seconds(0) {}
 	Hour(const std::string &hour);
-
-	/**
-	 * @brief construct hour object from number of hours, minutes
-	 */
-	Hour(unsigned hours, unsigned minutes): hours(hours), minutes(minutes) { }
+	Hour(unsigned seconds): seconds(seconds) {}
 
 	/**
 	 * @brief construct hour object from a number of seconds
 	 */
-	Hour(double time);
+	Hour(unsigned hours, unsigned minutes, unsigned seconds = 0): seconds(hours * secondsPerHour + minutes * minutesPerHour + seconds) { }
 
 	/**
 	 * @brief get the number of seconds

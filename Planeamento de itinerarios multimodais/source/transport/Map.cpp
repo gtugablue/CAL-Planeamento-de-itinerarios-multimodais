@@ -314,7 +314,6 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 			metroRoute2.addStop(metroStop);
 			last = metroStop;
 		}
-		cout << endl;
 		generateRandomTransportSchedule(&metroRoute2);
 		metroRoutes.push_back(metroRoute2);
 	}
