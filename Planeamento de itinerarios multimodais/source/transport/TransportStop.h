@@ -23,6 +23,7 @@ class TransportRoute;
 class TransportStop: public Vertex {
 protected:
 	std::string name;
+	std::string route_name;
 	TransportRoute *transportRoute;
 	std::vector<Hour> schedule;
 	Hour arrival;
@@ -31,14 +32,27 @@ public:
 	 * @brief Default class constructor
 	 * @param name TransportStop's name (e.x. "AV. DOS ALIADOS")
 	 * @param coords Coordinates of the stop
+	 * @param route_name name for the Stop's route
 	 */
-	TransportStop(const std::string &name, const Coordinates &coords);
+	TransportStop(const std::string &name, const Coordinates &coords, const std::string &route_name);
 
 	/**
 	 * @brief Get Stop name
 	 * @return Name of the transport stop
 	 */
 	std::string getName() const { return name; }
+
+	/**
+	 * @brief set Stop name
+	 * @return Name of the transport stop
+	 */
+	void setRouteName(std::string name) {route_name = name;}
+
+	/**
+	 * @brief Get Stop's route name
+	 * @return Name of the transport stop route
+	 */
+	std::string getRoute() const {return route_name; }
 
 	/**
 	 * @brief Get arrival time at stop
@@ -150,10 +164,10 @@ public:
 	 * @param ts2 second transportstop
 	 * @return true if ts1 is closest to ts2
 	 */
-    bool operator() (const TransportStop *ts1, const TransportStop *ts2)
-    {
-        return reference.calcDirectDistSquare(ts1->getCoords()) > reference.calcDirectDistSquare(ts2->getCoords());
-    }
+	bool operator() (const TransportStop *ts1, const TransportStop *ts2)
+	{
+		return reference.calcDirectDistSquare(ts1->getCoords()) > reference.calcDirectDistSquare(ts2->getCoords());
+	}
 };
 
 #endif /* SOURCE_TRANSPORTSTOP_H_ */

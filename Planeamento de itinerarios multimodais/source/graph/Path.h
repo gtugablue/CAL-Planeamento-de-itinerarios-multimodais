@@ -110,12 +110,14 @@ public:
 	friend ostream& operator<<(ostream& os, Path& p){
 
 		WeightInfo w;
+		string prev_route;
 
 		size_t i;
 		Vertex* v;
 		for(i = 0; i < p.edges.size(); i++)
 		{
 			v = p.edges[i]->getSrc();
+
 
 			TransportStop* ts = dynamic_cast<TransportStop*>(v);
 			if(ts != NULL && i == 0)
@@ -127,38 +129,26 @@ public:
 				w = w + te->getWeightInfo();
 				if(te->getWeightInfo().getSwitchs() > 0)
 				{
-					if(p.edges.size() == 1)
+					/*if(p.edges.size() == 1)
 						os << "=> Walk to:" << endl;
 					else if(i == 0)
 						os << "=> Enter transport:" << endl;
 					else if(i == p.edges.size() - 1)
 						os << "=> Walk to:" << endl;
-					else
-						os << "=> Switch to transport:" << endl;
+					else if(ts->getRoute() != prev_route)
+						os << "=> Switch to transport:" << endl;*/
 
 					if(i != 0)
 					{
-						cerr << "0" << endl;
-						os << "0" << endl;
-						os << ts->getName() << endl;
-						cerr << "1" << endl;
-						os << "1" << endl;
-						os << ts->getNameAndType();
-						cerr << "2" << endl;
-						os << "2" << endl;
-						os << " [" << ts->getArrivalTime() << "]" << endl;
-						cerr << "3" << endl;
-						os << "3" << endl;
+						os << ts->getName() << " - Line " << ts->getRoute() << " [" << ts->getArrivalTime() << "]" << endl;
 					}
-
-
-						/*os << "==> Enter transport:" << endl;
-					else if (i < p.edges.size() - 1)
-						os << "==> Switch to transport:" << endl;
-					else
-						os << "==> Exit to:" << endl;*/
 				}
 			}
+
+			if(ts != NULL)
+				prev_route = ts->getRoute();
+			else
+				prev_route = "";
 		}
 
 		if(p.edges.size() > 0)
@@ -167,7 +157,7 @@ public:
 			TransportStop* ts = dynamic_cast<TransportStop*>(v);
 			if(ts != NULL)
 			{
-				os << ts->getNameAndType() << " [" << ts->getArrivalTime() << "]" << endl;
+				//os << ts->getNameAndType() << " [" << ts->getArrivalTime() << "]" << endl;
 			}
 		}
 
