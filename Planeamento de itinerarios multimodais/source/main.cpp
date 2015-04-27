@@ -272,7 +272,7 @@ int main(int argc, char* argv[]) {
 	l.load(map);
 
 	ProgramConfig conf;
-	//conf.getFromConsole();
+	conf.getFromConsole();
 	cout << endl << "==> Select the source and destination points with the mouse" << endl;
 
 	if(! init() ){
