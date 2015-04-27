@@ -135,7 +135,7 @@ public:
 						os << "=> Walk to:" << endl;
 					else
 						os << "=> Switch to transport:" << endl;
-
+/*
 					if(i != 0)
 					{
 						cerr << "0" << endl;
@@ -149,7 +149,7 @@ public:
 						os << " [" << ts->getArrivalTime() << "]" << endl;
 						cerr << "3" << endl;
 						os << "3" << endl;
-					}
+					}*/
 
 
 						/*os << "==> Enter transport:" << endl;
