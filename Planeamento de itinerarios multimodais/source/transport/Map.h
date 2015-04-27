@@ -64,7 +64,7 @@ public:
 		void loadConnectingEdges(const vector<BusRoute> &busRoutes, const vector<MetroRoute> &metroRoutes) const;
 		unsigned levenshteinDistance(const string &s1, const string &s2) const;
 	public:
-		Map load();
+		Map *load();
 
 		class InvalidInputException {
 			std::string info;

@@ -263,9 +263,9 @@ int main(int argc, char* argv[]) {
 	double ini, fin;
 
 	Map::Loader l;
-	Map map;
+	Map *map;
 	map = l.load();
-	map.generateGraph();
+	map->generateGraph();
 
 	ProgramConfig conf;
 	conf.getFromConsole();
@@ -279,7 +279,7 @@ int main(int argc, char* argv[]) {
 
 	//Graph* g1 = GraphGen::randGraph(10,17,50, 750, 50, 550);
 
-	Graph graph = map.generateGraph();
+	Graph graph = map->generateGraph();
 
 	Graph* g1 = &graph;
 	Vertex* src = NULL;
