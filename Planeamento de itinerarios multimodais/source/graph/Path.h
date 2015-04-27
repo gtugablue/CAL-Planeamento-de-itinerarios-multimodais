@@ -118,7 +118,7 @@ public:
 			v = p.edges[i]->getSrc();
 
 			TransportStop* ts = dynamic_cast<TransportStop*>(v);
-			if(ts != NULL)
+			if(ts != NULL && i == 0)
 				os << ts->getNameAndType() << " [" << ts->getArrivalTime() << "]" << endl;
 
 			TransportEdge* te = dynamic_cast<TransportEdge*>(p.edges[i]);
@@ -126,7 +126,11 @@ public:
 			{
 				w = w + te->getWeightInfo();
 				if(te->getWeightInfo().getSwitchs() > 0)
-					os << "TRANSBORD DETECTED [" << te->getWeightInfo().getSwitchs() << " switches]" << endl;
+				{
+				}
+
+				if(i != 0)
+					os << ts->getName() << " - Line " << ts->getRouteName() << " [" << ts->getArrivalTime() << "]" << endl;
 			}
 		}
 

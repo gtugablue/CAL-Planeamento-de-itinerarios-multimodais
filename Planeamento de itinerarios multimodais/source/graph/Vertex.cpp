@@ -1,5 +1,5 @@
 #include "Vertex.h"
-
+#include <stdlib.h>
 Vertex::Vertex(const Coordinates &coords):
 x(coords.getLatitude()),
 y(coords.getLongitude()),

@@ -22,8 +22,9 @@ public:
 	 * @param code code of bus stop
 	 * @param name name of bus stop
 	 * @param coords coordinates of bus stop to create
+	 * @param route_name name of the stop's route
 	 */
-	BusStop(const std::string &code, const std::string &name, const Coordinates &coords);
+	BusStop(const std::string &code, const std::string &name, const Coordinates &coords, const std::string &route_name);
 
 	/**
 	 * @brief bus stop's code
@@ -40,7 +41,12 @@ public:
 	 * @brief get a string containing the name of the stop and its type
 	 * @return string containing the information
 	 */
-	virtual std::string getNameAndType() const { return "Bus: " + name; }
+	virtual std::string getNameAndType() const {
+		//return TransportStop::getNameAndType();
+		if(this->getTransportRoute() != NULL)
+			return "Bus: " + name + "[ Line " + this->getTransportRoute()->getCode() + " ]";
+		return "Bus: " + name + "[ Line X ]";
+	}
 };
 
 #endif /* SOURCE_BUSSTOP_H_ */

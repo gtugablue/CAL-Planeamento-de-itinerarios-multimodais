@@ -12,6 +12,8 @@
 #include <vector>
 #include "TransportStop.h"
 
+class TransportStop;
+
 class TransportRoute {
 protected:
 	std::string code;

@@ -22,13 +22,18 @@ public:
 	 * @param name Stop's name
 	 * @param coords Coordinates of the Stop
 	 */
-	MetroStop(const std::string name, const Coordinates &coords);
+	MetroStop(const std::string name, const Coordinates &coords, const std::string& route_name);
 
 	/**
 	 * @brief returns the stop's name and type (e.x. Metro: IPO)
 	 * @return string with stop name and type
 	 */
-	virtual std::string getNameAndType() const { return "Metro: " + name; }
+	virtual std::string getNameAndType() const {
+		//return TransportStop::getNameAndType();
+		if(this->getTransportRoute() != NULL)
+			return "Metro: " + name + "[ Line " + this->getTransportRoute()->getCode() + " ]";
+		return "Metro: " + name + "[ Line Y ]";
+	}
 };
 
 #endif /* SOURCE_METROSTOP_H_ */

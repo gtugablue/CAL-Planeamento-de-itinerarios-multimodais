@@ -73,17 +73,17 @@ void Map::Loader::findBusInfoFromFileName(const string &fileName, std::string &c
 	direction = string(strtok(NULL, "-.")) == "0" ? false : true;
 }
 
-vector<BusStop *> Map::Loader::loadBusStops(const rapidjson::Document &d) const
+vector<BusStop *> Map::Loader::loadBusStops(const rapidjson::Document &d, const std::string& route_code) const
 {
 	vector<BusStop *> busStops;
-	for (size_t i = 0; i < d["locations"].Size(); ++i)
+	for (int i = d["locations"].Size() - 1; i >= 0; --i)
 	{
 		const rapidjson::Value &location = d["locations"][i];
 		string geomdesc = location["geomdesc"].GetString();
 		rapidjson::Document geo;
 		geo.Parse(geomdesc.c_str());
 		rapidjson::Value &coords = geo["coordinates"];
-		busStops.push_back(new BusStop(location["code"].GetString(), location["name"].GetString(), Coordinates(coords[1].GetDouble(), coords[0].GetDouble())));
+		busStops.push_back(new BusStop(location["code"].GetString(), location["name"].GetString(), Coordinates(coords[1].GetDouble(), coords[0].GetDouble()), route_code));
 	}
 	return busStops;
 }
@@ -125,10 +125,8 @@ vector<BusEdge> Map::Loader::loadBusEdges(const rapidjson::Document &d, vector<B
 	return busEdges;
 }
 
-vector<BusRoute> Map::Loader::loadBusRoutes() const
+void Map::Loader::loadBusRoutes(std::vector<BusRoute> &busRoutes) const
 {
-	vector<BusRoute> busRoutes;
-
 	// Loop through all Bus Routes
 	vector<string> fileNames = getFilesInFolder(BusEdgesFolder);
 	for (size_t i = 0; i < fileNames.size(); ++i)
@@ -142,16 +140,21 @@ vector<BusRoute> Map::Loader::loadBusRoutes() const
 			if (d["route"].Size() == 0) throw InvalidInputException("File has no data to be read.");
 			if (d["route"].Size() != d["locations"].Size() - 1) throw InvalidInputException("File is corrupt.");
 
-			vector<BusStop *> busStops = loadBusStops(d);
+			/*vector<BusStop *> busStops = loadBusStops(d);
 
 			// Load corresponding Bus Edges
-			vector<BusEdge> busEdges = loadBusEdges(d, busStops);
+			vector<BusEdge> busEdges = loadBusEdges(d, busStops);*/
 
 			// Load Bus Route info
 			bool direction;
 			string code;
 			findBusInfoFromFileName(fileNames[i], code, direction);
 			BusRoute busRoute(code, direction);
+
+			vector<BusStop *> busStops = loadBusStops(d, code);
+
+			// Load corresponding Bus Edges
+			vector<BusEdge> busEdges = loadBusEdges(d, busStops);
 
 			// Add adjacent edges to each vertex and add everything to the Bus Route
 			for (size_t i = 0; i < busStops.size() - 1; ++i)
@@ -164,7 +167,7 @@ vector<BusRoute> Map::Loader::loadBusRoutes() const
 			busRoute.addStop(busStops[busStops.size() - 1]);
 
 			// Generate a random schedule
-			generateRandomTransportSchedule(&busRoute);
+			generateRandomTransportSchedule(rand() % 60 + 24, &busRoute);
 
 			// Add Route to the Bus Routes vector
 			busRoutes.push_back(busRoute);
@@ -174,7 +177,6 @@ vector<BusRoute> Map::Loader::loadBusRoutes() const
 			// Do nothing
 		}
 	}
-	return busRoutes;
 }
 
 void Map::Loader::loadSchedule(const BusRoute &busRoute) const
@@ -229,7 +231,7 @@ vector<MetroStop *> Map::Loader::loadMetroStops(rapidjson::Document &d) const
 			if (elements[i].HasMember("tags") && elements[i]["tags"].HasMember("name"))
 			{
 				const rapidjson::Value &tags = elements[i]["tags"];
-				MetroStop *metroStop = new MetroStop(tags["name"].GetString(), coords); // TODO delete
+				MetroStop *metroStop = new MetroStop(tags["name"].GetString(), coords, ""); // TODO delete
 				metroStops.push_back(metroStop);
 			}
 		}
@@ -237,7 +239,7 @@ vector<MetroStop *> Map::Loader::loadMetroStops(rapidjson::Document &d) const
 	return metroStops;
 }
 
-MetroStop *Map::Loader::findClosestMetroStop(const vector<MetroStop *> metroStops, const string metroStopCode) const
+MetroStop *Map::Loader::findClosestMetroStop(const vector<MetroStop *> &metroStops, const string &metroStopCode) const
 {
 	MetroStop *closest;
 	unsigned minScore = -1;
@@ -258,12 +260,12 @@ MetroStop *Map::Loader::findClosestMetroStop(const vector<MetroStop *> metroStop
 	return closest;
 }
 
-vector<MetroRoute> Map::Loader::loadMetroRoutes() const
+void Map::Loader::loadMetroRoutes(std::vector<MetroRoute> &metroRoutes) const
 {
-	vector<MetroRoute> metroRoutes;
 	rapidjson::Document dStops;
 	parseJsonFile(dataFolder + "metro.json", dStops);
 	vector<MetroStop *> metroStops = loadMetroStops(dStops);
+	vector<MetroStop *> reverseMetroStops = loadMetroStops(dStops);
 
 	rapidjson::Document dLines;
 	parseJsonFile(dataFolder + "metroLines.json", dLines);
@@ -279,12 +281,14 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 
 		// Add first stop
 		MetroStop *metroStop = findClosestMetroStop(metroStops, dLines[i]["stops"][0].GetString());
+		metroStop->setRouteName(code);
 		metroRoute.addStop(metroStop);
 
 		// Loop through all other stops
 		for (size_t j = 1; j < dLines[i]["stops"].Size(); ++j)
 		{
 			metroStop = findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString());
+			metroStop->setRouteName(code);
 			metroRoute.addStop(metroStop);
 
 			// Create Metro Edge
@@ -298,7 +302,7 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 		}
 
 		// Generate a random schedule
-		generateRandomTransportSchedule(&metroRoute);
+		generateRandomTransportSchedule(rand() % 50 + 100, &metroRoute);
 
 		// Add the Route to the Metro Route vector
 		metroRoutes.push_back(metroRoute);
@@ -306,20 +310,19 @@ vector<MetroRoute> Map::Loader::loadMetroRoutes() const
 		// Do the same but in the opposite order
 		MetroRoute metroRoute2(code, true);
 		MetroStop *last = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][dLines[i]["stops"].Size() - 1].GetString())); // TODO delete
+		metroStop->setRouteName(code);
 		metroRoute2.addStop(metroStop);
 		for (int j = dLines[i]["stops"].Size() - 2; j >= 0; --j)
 		{
 			metroStop = new MetroStop(*findClosestMetroStop(metroStops, dLines[i]["stops"][j].GetString())); // TODO delete
 			last->addEdge(new MetroEdge(last, metroStop));
+			metroStop->setRouteName(code);
 			metroRoute2.addStop(metroStop);
 			last = metroStop;
 		}
-		cout << endl;
-		generateRandomTransportSchedule(&metroRoute2);
+		generateRandomTransportSchedule(rand() % 50 + 100, &metroRoute2);
 		metroRoutes.push_back(metroRoute2);
 	}
-
-	return metroRoutes;
 }
 
 Hour Map::Loader::generateRandomHour() const
@@ -327,12 +330,11 @@ Hour Map::Loader::generateRandomHour() const
 	return Hour(rand() % 24, rand() % 60);
 }
 
-void Map::Loader::generateRandomTransportSchedule(TransportRoute *transportRoute) const
+void Map::Loader::generateRandomTransportSchedule(unsigned dailyFrequency, TransportRoute *transportRoute) const
 {
 	vector<TransportStop *> transportStops = transportRoute->getStops();
 	vector<Hour> linearSchedule;
 	linearSchedule.push_back(generateRandomHour());
-	unsigned dailyFrequency = rand() % 50 + 15;
 	for (size_t i = 0; i < transportStops.size(); ++i)
 	{
 		if (i == 0)
@@ -545,22 +547,20 @@ void Map::Loader::loadConnectingEdges(const vector<BusRoute> &busRoutes, const v
 	infile.close();
 }
 
-Map Map::Loader::load()
+void Map::Loader::load(Map &map)
 {
-	Map map;
 	cout << "Loading bus routes..." << endl;
-	map.busRoutes = loadBusRoutes();
+	loadBusRoutes(map.busRoutes);
 	cout << "Bus routes successfully loaded." << endl;
 	cout << "Loading metro routes..." << endl;
-	map.metroRoutes = loadMetroRoutes();
 	cout << "Metro routes successfully loaded." << endl;
+	loadMetroRoutes(map.metroRoutes);
 	cout << "Creating connecting edges.." << endl;
 	createConnectingEdges(map.busRoutes, map.metroRoutes);
 	cout << "Connecting edges successfully created." << endl;
 	saveConnectingEdges(map.busRoutes, map.metroRoutes);
 	//loadConnectingEdges(map.busRoutes, map.metroRoutes);
 	//cout << "Loaded connecting edges." << endl;
-	return map;
 }
 
 Graph Map::generateGraph() const
@@ -568,23 +568,25 @@ Graph Map::generateGraph() const
 	Graph graph;
 	for (size_t i = 0; i < busRoutes.size(); ++i)
 	{
-		for (size_t j = 0; j < busRoutes[i].getStops().size(); ++j)
+		vector<TransportStop*> ts = busRoutes[i].getStops();
+		for (size_t j = 0; j < ts.size(); ++j)
 		{
-			graph.addVertex(busRoutes[i].getStops()[j]);
-			for (size_t k = 0; k < busRoutes[i].getStops()[j]->getAdj().size(); ++k)
+			graph.addVertex(ts[j]);
+			for (size_t k = 0; k < ts[j]->getAdj().size(); ++k)
 			{
-				graph.addVertex(busRoutes[i].getStops()[j]->getAdj()[k]->getDst());
+				graph.addVertex(ts[j]->getAdj()[k]->getDst());
 			}
 		}
 	}
 	for (size_t i = 0; i < metroRoutes.size(); ++i)
 	{
-		for (size_t j = 0; j < metroRoutes[i].getStops().size(); ++j)
+		vector<TransportStop*> ts = metroRoutes[i].getStops();
+		for (size_t j = 0; j < ts.size(); ++j)
 		{
-			graph.addVertex(metroRoutes[i].getStops()[j]);
-			for (size_t k = 0; k < metroRoutes[i].getStops()[j]->getAdj().size(); ++k)
+			graph.addVertex(ts[j]);
+			for (size_t k = 0; k < ts[j]->getAdj().size(); ++k)
 			{
-				graph.addVertex(metroRoutes[i].getStops()[j]->getAdj()[k]->getDst());
+				graph.addVertex(ts[j]->getAdj()[k]->getDst());
 			}
 		}
 	}

@@ -8,15 +8,14 @@
 #include "TransportStop.h"
 #include "WeightInfo.h"
 #include <algorithm>
+#include <stdlib.h>
 
 using namespace std;
 
 Coordinates TransportStopDistCompare::reference = Coordinates(0, 0);
 
-TransportStop::TransportStop(const std::string &name, const Coordinates &coords):
-	Vertex(coords), name(name)
-{
-}
+TransportStop::TransportStop(const std::string &name, const Coordinates &coords, const std::string &route_name):
+	Vertex(coords), name(name), transportRoute(NULL), route_name(route_name) {}
 
 void TransportStop::addHour(const Hour &hour)
 {
@@ -94,7 +93,6 @@ void TransportStop::userRemovefromGraph(Graph* g){
 
 double TransportStop::calcWaitingTime(Hour currentHour) const
 {
-	return 1000;
 	if (schedule.size() == 0)
 		return 0;
 

@@ -7,6 +7,7 @@ using namespace std;
 
 Path* PathFinder::find_path(Graph *g, Vertex* ini, Vertex* f, ProgramConfig conf)
 {
+	((TransportStop*)ini)->setArrivalTime(conf.getStartHour());
 	RunningMode r = conf.runningMode();
 	switch(r)
 	{
