@@ -107,15 +107,9 @@ double TransportStop::calcWaitingTime(Hour currentHour) const
 		}
 	}
 	if (found)
-	{
-		cout << (nextHour - currentHour).getHourstamp() << endl;
 		return (nextHour - currentHour).getHourstamp();
-	}
 	else
-	{
-		cerr << "--------- " << (schedule[0] - nextHour).getHourstamp() << " -----------" << " size: " << schedule.size() << " current: " << currentHour << endl;
 		return (schedule[0] - nextHour).getHourstamp();
-	}
 }
 
 void TransportStop::setParent(Edge *parent)
